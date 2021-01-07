@@ -76,6 +76,7 @@ Replicant {
 -- create a Nexus9 cell using Replicant as blueprint
 Nexus9 from Replicant {
     model: 'Nexus 9'
+    intelligence: 100
     thoughts: []  -- a list
     
     think: ($thought:String) -> {
@@ -92,7 +93,7 @@ Nexus9 from Replicant {
         &(move 2)
         
         -- if-else using the `if-true` behaviour of `Boolean`
-        intelligent (if-true {
+        intelligence > 100 (if-true {
             think ('Why did I just move?')
             think ('Am I really a replicant?')
             think ('Do I even exist?')
@@ -108,7 +109,7 @@ Nexus9 from Replicant {
 }
 
 -- create a new Nexus 9 replicant with some properties, then freeze it
-officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligent true)) (freeze)
+officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligence 140)) (freeze)
 
 -- call the `move` behaviour
 officer-k (move)

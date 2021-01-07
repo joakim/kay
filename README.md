@@ -148,18 +148,18 @@ The building blocks:
 
 ```lua
 -- definition of the base cell, a blueprint for all cells
-Cell Cell {
+Cell {
     -- behavior for cloning itself (matches an empty message)
     () -> `Object.assign(Object.create(null), self)`
     
     -- behavior for applying a behavior on the caller
     (apply $message on $cell) -> `Reflect.apply(self, $cell, $message)`
     
-    -- automagically set properties:
+    -- properties that are automagically set
     type: 'Cell'
     lineage: []
     
-    -- when "extended", the new descendant sets the type to its name and adds itself to the lineage:
+    -- when "extended", the new descendant sets the type to its name and adds itself to the lineage
     lineage (prepend (WeakRef (self)))
 }
 
@@ -240,4 +240,7 @@ console: {
     (log $value) -> `console.log($value)`
     -- ...
 }
+
+-- the bottom type is represented by an empty tuple that only ever returns itself
+() { () -> self }
 ```

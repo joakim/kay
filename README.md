@@ -143,33 +143,40 @@ The building blocks:
 ```lua
 -- definition of the base cell, a blueprint for all cells
 Cell Cell {
-    value: ()
-    
     -- behavior for cloning itself (matches an empty message)
     () -> `Object.assign(Object.create(null), self)`
     
-    -- getter
-    (get) -> value
+    -- behavior for applying a behavior on the caller
+    (apply $message on $cell) -> `Reflect.apply(self, $cell, $message)`
+}
+
+-- definition of the base Value cell, "inheriting" behaviors from Cell
+Value Cell {
+    -- internal state
+    value: ()
+    
+    -- constructor
+    ($value) -> self () (set $value)
     
     -- setter
     (set $value) -> `value = $value`
     
-    -- behavior for calling a behavior as if belonging to the caller
-    (call $message as $cell) -> `Reflect.apply(self, $cell, $message)`
+    -- getter
+    (get) -> value
 }
 
--- definition of Boolean, "inheriting" behaviors from Cell
-Boolean Cell {
-    -- "constructor" behavior, returning a new cell set to the value cast to boolean
-    ($value) -> Cell () (set `Boolean($value)`)
+-- definition of the Boolean value
+Boolean Value {
+    -- setter behavior, overriding the one "inherited" from Value
+    (set $value) -> `value = Boolean($value)`
     
-    -- setter behavior, overriding the one from Cell
-    (set $value) -> Cell (call (set `Boolean($value)`) as self)
-
-    -- yes-no behavior (if-then-else, if-then and "if-not")
+    -- yes-no behavior ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) -> `(self.value ? do($then) : do($else))`
     (yes $then) -> self (yes $then no ())
     (no $else) -> self (yes () no $else)
+    
+    -- toggle behavior
+    (toggle) -> self (set `!value`)
 }
 
 -- instantiated booleans (on the "global" cell)
@@ -183,10 +190,10 @@ console: {
 
 -- definition of Array
 Array Cell {
-    (first $value) -> { return `$value[0]` }
-    (last $value) -> { return `$value[$value.length - 1]` }
-    (append $value) -> { return `[...self, $value]` }
-    (prepend $value) -> { return `[$value, ...self]` }
+    (first $value) -> `$value[0]`
+    (last $value) -> `$value[$value.length - 1]`
+    (append $value) -> `[...self, $value]`
+    (prepend $value) -> `[$value, ...self]`
     -- ...
 }
 
@@ -206,13 +213,9 @@ Object Cell {
     }
     
     -- setter behavior for properties
-    (set $key to $value) -> {
-        return `self[$key] = $value`
-    }
+    (set $key to $value) -> `self[$key] = $value`
     
     -- freeze itself
-    (freeze) -> {
-        return `Object.freeze(self)`
-    }
+    (freeze) -> `Object.freeze(self)`
 }
 ```

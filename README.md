@@ -173,26 +173,24 @@ Boolean Value {
     -- setter behavior, overriding the one "inherited" from Value
     (set $value) -> `value = Boolean($value)`
     
+    -- toggle behavior
+    (toggle) -> self (set `!value`)
+    
     -- yes-no behavior ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) -> `(value ? do($then) : do($else))`
     (yes $then) -> self (yes $then no ())
     (no $else) -> self (yes () no $else)
-    
-    -- toggle behavior
-    (toggle) -> self (set `!value`)
 }
 
 -- instantiated booleans (on the "global" cell)
 true: Boolean (1)
 false: Boolean (0)
 
--- `console` is just a cell on the "global" cell
-console: {
-    (log $value) -> `console.log($value)`
-    -- ...
-}
+-- toggling a boolean
+bool: true  -- sugar for `true ()`, primitive values are very sweet
+bool (toggle)  --> false (the value is automagically unwrapped when read)
 
--- definition of Array
+-- definition of the Array value
 Array Value {
     (first $value) -> `$value[0]`
     (last $value) -> `$value[$value.length - 1]`
@@ -201,25 +199,33 @@ Array Value {
     -- ...
 }
 
--- definition of Object
-Object Cell {
+-- definition of the Object value
+Object Value {
+    value: `new PersistentDataStructure()`
+    
+    -- setter behavior for object properties
+    (set $key to $value) -> `self[$key] = $value`
+    
     -- behavior for cloning itself with added properties (`$x:` binds a value as a local name)
-    (with $props:Tuple) -> {
+    (with $properties:Tuple) -> {
         -- define a local property
         object: self ()  -- call the basic clone behavior
         
-        -- call the `for` behavior on `$props`, passing a behavior to loop over its items
-        $props (for (each $key as $value) -> {
+        -- call the `for` behavior on `$properties`, passing a behavior to loop over its items
+        $properties (for (each $key as $value) -> {
             object (set $key to $value)  -- set an internal property on the object
         })
         
         return object
     }
     
-    -- setter behavior for properties
-    (set $key to $value) -> `self[$key] = $value`
-    
     -- freeze itself
     (freeze) -> `Object.freeze(self)`
+}
+
+-- `console` is simply a cell on the "global" cell that takes messages
+console: {
+    (log $value) -> `console.log($value)`
+    -- ...
 }
 ```

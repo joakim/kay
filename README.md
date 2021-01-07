@@ -152,8 +152,8 @@ Cell {
     -- behavior for cloning itself (matches an empty message)
     () -> `Object.assign(Object.create(null), self)`
     
-    -- behavior for applying a behavior on the caller
-    (apply $message on $cell) -> `Reflect.apply(self, $cell, $message)`
+    -- behavior for applying a behavior to the caller
+    (apply $message to $cell) -> `Reflect.apply(self, $cell, $message)`
     
     -- properties that are automagically set
     type: 'Cell'

@@ -110,7 +110,7 @@ officer-k (move)
 
 It's all cells:
 
-```
+```lua
 -- an empty cell literal
 cell: {}
 

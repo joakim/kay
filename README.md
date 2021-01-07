@@ -2,25 +2,25 @@
 
 A small programming language inspired by Smalltalk and Blade Runner.
 
-<p> </p>
+<br>
 
 > OOP to me means only messaging, local retention and protection and hiding of state-process, and extreme late-binding of all things.
 
 – Alan Kay
 
-<p> </p>
+<br>
 
 > The basic principle of recursive design is to make the parts have the same power as the whole.
 
 – Bob Barton
 
-<p> </p>
+<br>
 
 > A system of cells interlinked within cells interlinked within cells interlinked within one stem.
 
 – K, Blade Runner 2049 (Vladimir Nabokov, Pale Fire)
 
-<p> </p>
+<br>
 
 ## Cells
 

@@ -40,7 +40,7 @@ ECMAScript is the runtime in the following examples.
 
 ```lua
 -- create a Replicant object
-Replicant Object {
+Replicant from Object {
     -- local state (properties)
     name: 'Replicant'
     model: 'generic'
@@ -58,7 +58,7 @@ Replicant Object {
 }
 
 -- create a Nexus9 object using Replicant as its blueprint
-Nexus9 Replicant {
+Nexus9 from Replicant {
     model: 'Nexus 9'
     intelligence: 100
     thoughts: []  -- an array
@@ -145,7 +145,7 @@ The building blocks:
 
 ```lua
 -- definition of the base cell, a blueprint for all cells
-Cell () {
+Cell from () {
     -- method for cloning itself (matches an empty message)
     () -> `Object.assign(Object.create(null), self)`
     
@@ -161,7 +161,7 @@ Cell () {
 }
 
 -- definition of the base Value cell, "extended" from Cell
-Value Cell {
+Value from Cell {
     -- internal value
     value: ()
     
@@ -179,7 +179,7 @@ Value Cell {
 }
 
 -- definition of the Boolean value
-Boolean Value {
+Boolean from Value {
     -- setter method, overriding the one "inherited" from Value
     (set $value) -> `(self.value = Boolean($value), self)`
     
@@ -204,7 +204,7 @@ bool: true  -- sugar for `true ()`, primitive values are sweet
 bool toggle  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
-Array Value {
+Array from Value {
     (first) -> `value[0]`
     (last) -> `value[value.length - 1]`
     (append $value) -> `value = [...self.value, $value]`
@@ -213,7 +213,7 @@ Array Value {
 }
 
 -- definition of the Object value
-Object Value {
+Object from Value {
     value: `new PersistentDataStructure()`
     
     -- setter method for mutating object properties

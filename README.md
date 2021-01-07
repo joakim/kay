@@ -60,7 +60,7 @@ Nexus9 Replicant {
     -- typed function signature
     think: ($thought:String) -> {
         thoughts (append $thought)
-        console (log $thought)
+        console (log "{name} thinks: $thought")
     }
     
     -- a behaviour without any arguments
@@ -70,19 +70,17 @@ Nexus9 Replicant {
         -- call the `move` behaviour "inherited" from `Replicant`
         self (move 2)
         
-        -- if…else "statement" using the `if-true` behaviour of `Boolean`
-        intelligence > 100 (if-true {
-            think ('Why did I just move?')
+        -- if…else "statement" using the `yes-no` behaviour of `Boolean`
+        intelligence > 100 (yes {
+            think ('Why did I move?')
             think ('Am I really a replicant?')
             think ('Do I even exist?')
-            
-            -- update internal state
-            name (set 'Joe')
-            
-            say ("My name is {name}")
+            think ('My name is Joe...')
+            name (set 'Joe')  -- update internal state
+            say ("I have a purpose!")
         }
-        else {
-            think ("*nothing*")
+        no {
+            think ("*void*")
         })
     }
 }
@@ -95,10 +93,11 @@ officer-k (move)
 
 --> '*moves*'
 --> 'K the Nexus 9 replicant moved 2 meters'
---> 'Why did I just move?'
---> 'Am I really a replicant?'
---> 'Do I even exist?'
---> 'Joe says: My name is Joe'
+--> 'K thinks: Why did I move?'
+--> 'K thinks: Am I really a replicant?'
+--> 'K thinks: Do I even exist?'
+--> 'K thinks: My name is Joe...'
+--> 'Joe says: I have a purpose!'
 ```
 
 The underlying building blocks:

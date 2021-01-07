@@ -22,7 +22,7 @@ A small programming language inspired by Smalltalk and Blade Runner.
 
 <p> </p>
 
-### Cells
+## Cells
 
 It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements and expressions) and behaviours (functions). Cells communicate by passing messages, represented as tuples `(key value key value …)`. Received messages are matched against behaviour signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is opaque, its internal state (properties) is not available from the outside, except through setters/getters.
 

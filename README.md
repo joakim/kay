@@ -92,6 +92,9 @@ Rabbit from Animal {
             think ('Why did I just jump?')
             think ('Am I really a rabbit?')
             think ('Do I even exist?')
+        }
+        else {
+            think ("D'oh!")
         })
     }
 }

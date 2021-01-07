@@ -239,5 +239,5 @@ console: {
 }
 
 -- the void type is represented by an empty tuple that only ever returns itself
-() { () -> self }
+(): { (*) -> self }
 ```

@@ -13,9 +13,9 @@ A small programming language inspired by Smalltalk and Blade Runner that compile
 
 ### Cells
 
-It's cells all the way down, from modules to values. Cells consist of internal state, code and behaviours. They are at the same time objects, functions and compound statements. Cells communicate by listening for and passing messages (represented as tuples `()`). Messages are pattern matched against behaviours and may be typed. There's no inheritance, only composition and behavioural traits. A cell's properties (its internal state) are not available from the outside except through setters/getter.
+It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements) and behaviours (functions). Cells communicate by passing messages, represented as tuples `(key value key value …)`. Received messages are matched against behaviour signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is opaque, its internal state (properties) is not available from the outside, except through setters/getters.
 
-Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state as it was at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of its past states.
+Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of the past versions of its state.
 
 The runtime is the stem.
 
@@ -23,12 +23,12 @@ The runtime is the stem.
 -- the base cell, used as a blueprint for all cells
 Cell {
     -- behaviour for cloning itself (matches an empty message)
-    () {
+    () -> {
         return `Object.assign(Object.create(null), self)`  -- embedded ECMAScript
     }
     
     -- behaviour for cloning itself with added properties ($foo: binds a value as a local name)
-    (with $props:Tuple) {
+    (with $props:Tuple) -> {
         -- local property (& references the cell itself)
         cell: &()  -- call the basic clone behaviour
         
@@ -42,24 +42,24 @@ Cell {
     }
     
     -- generic setter behaviour
-    (set $key to $value) {
+    (set $key to $value) -> {
         &$key: $value
     }
     
     -- freeze itself
-    (freeze) {
+    (freeze) -> {
         return `Object.freeze(self)`
     }
 }
 
 -- cell definition (uses Cell as its blueprint)
 Console {
-    (log $value): `console.log($value)`
+    (log $value) -> `console.log($value)`
 }
 
 -- create an Animal cell
 Animal {
-     (move $distance:Number) {
+     (move $distance:Number) -> {
         -- string interpolation referencing cell properties
         Console (log "{&name} the {&color} {&kind} moved {$distance}m")
     }
@@ -78,7 +78,7 @@ Rabbit from Animal {
     }
     
     -- a behaviour without arguments
-    (move) {
+    (move) -> {
         -- call the `log` behaviour of the `Console` cell
         Console (log '*jumps*')
         

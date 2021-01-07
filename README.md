@@ -39,14 +39,15 @@ Replicant Object {
     name: 'Replicant'
     model: 'generic'
     
-    -- internal function (a behaviour assigned to a property)
-    say: ($words) -> {
-        -- string interpolation referencing properties
-        console (log "{name} says: {$words}")
+    -- a behaviour
+    (move $meters) -> {
+        -- calling a behaviour on another object
+        console (log "{name} the {model} replicant moved {$meters} meters")
     }
     
-    (move $meters) -> {
-        console (log "{name} the {model} replicant moved {$meters} meters")
+    -- an internal function (a behaviour assigned to a property)
+    say: ($words) -> {
+        console (log "{name} says: {$words}")
     }
 }
 

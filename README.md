@@ -1,6 +1,6 @@
 # Kay
 
-A small programming language inspired by Smalltalk and Blade Runner that compiles to JavaScript.
+A small programming language inspired by Smalltalk and Blade Runner.
 
 <p> </p>
 
@@ -28,7 +28,7 @@ It's cells all the way down, from modules to values. Cells consist of internal s
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of the past versions of its state.
 
-The runtime is the stem.
+The runtime is the stem. In this example, ECMAScript.
 
 <p> </p>
 

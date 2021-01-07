@@ -15,7 +15,7 @@ A small programming language inspired by Smalltalk and Blade Runner that compile
 
 It's cells all the way down, from modules to values. Cells consist of internal state, code and behaviours. They communicate by listening for and passing messages (represented as tuples `()`). Messages are pattern matched against behaviours and may be typed. There's no inheritance, only composition and behavioural traits.
 
-Cells are passed by reference and implemented as persistent (immutable) data structures. The "reader" of a cell gets a "view" of the cell's state as it was at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of its past states.
+Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state as it was at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of its past states.
 
 The runtime is the stem.
 

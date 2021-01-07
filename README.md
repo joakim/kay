@@ -64,7 +64,7 @@ Replicant {
     }
 }
 
--- create a Rabbit cell using Animal as blueprint
+-- create a Nexus9 cell using Replicant as blueprint
 Nexus9 from Replicant {
     -- properties (internal state)
     model: 'Nexus 9'
@@ -82,7 +82,7 @@ Nexus9 from Replicant {
         -- call the `log` behaviour of the `console` cell
         console (log '*moves*')
         
-        -- call the `move` behaviour it got from `Animal`
+        -- call the `move` behaviour it got from `Replicant`
         &(move 2)
         
         -- update internal state

@@ -73,7 +73,7 @@ Nexus9 Replicant {
     (move) -> {
         console (log '*moves*')
         
-        -- call the `move` behavior "inherited" from `Replicant`
+        -- call the `move $meters` behavior "inherited" from `Replicant`
         self (move 2)
         
         -- if…else "statement" using the `yes-no` behavior of `Boolean`

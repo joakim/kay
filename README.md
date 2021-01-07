@@ -2,6 +2,8 @@
 
 A small programming language inspired by Smalltalk and Blade Runner that compiles to JavaScript.
 
+<p> </p>
+
 > OOP to me means only messaging, local retention and protection and hiding of state-process, and extreme late-binding of all things.
 
 – Alan Kay
@@ -14,6 +16,7 @@ A small programming language inspired by Smalltalk and Blade Runner that compile
 
 – K, Blade Runner 2049 (Vladimir Nabokov, Pale Fire)
 
+<p> </p>
 
 ### Cells
 
@@ -22,6 +25,8 @@ It's cells all the way down, from modules to values. Cells consist of internal s
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of the past versions of its state.
 
 The runtime is the stem.
+
+<p> </p>
 
 ```lua
 -- the base cell, used as a blueprint for all cells

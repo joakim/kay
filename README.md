@@ -154,6 +154,9 @@ Cell Cell {
     
     -- behavior for applying a behavior on the caller
     (apply $message on $cell) -> `Reflect.apply(self, $cell, $message)`
+    
+    -- when a cell is "extended", its ancestor is appended to this array as a weak reference
+    lineage: []  -- (append (WeakRef (Cell)))
 }
 
 -- definition of the base Value cell, "inheriting" behaviors from Cell

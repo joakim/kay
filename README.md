@@ -27,12 +27,12 @@ Cell {
         return `Object.assign(Object.create(null), self)`  -- embedded ECMAScript
     }
     
-    -- behaviour for cloning itself with added properties ($foo: binds a value as a local name)
+    -- behaviour for cloning itself with added properties (`$foo:` binds a value as a local name)
     (with $props:Tuple) -> {
-        -- define a local property (& references the cell itself)
+        -- define a local property (`&` references the cell itself)
         cell: &()  -- call the basic clone behaviour
         
-        -- call the iterate behaviour on the $props tuple, with a lambda to iterate its elements
+        -- call the `for` behaviour on the `$props` tuple, with a lambda to iterate its elements
         $props (for (each $key as $value) -> {
             cell (set $key to $value)  -- set an internal property on the cell
         })

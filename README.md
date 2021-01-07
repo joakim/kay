@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements and expressions) and behaviors (functions). Cells communicate by passing messages, represented as tuples `(key value key value …)`. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its internal state (properties) is not available from the outside except through setters/getters.
+It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements and expressions) and behaviors (functions). Cells communicate by passing messages. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its internal state (properties) is not available from the outside except through setters/getters.
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
@@ -48,12 +48,12 @@ Replicant Object {
     -- a behavior
     (move $meters) -> {
         -- calling a behavior on another object
-        console (log "{name} the {model} replicant moved {$meters} meters")
+        console log "{name} the {model} replicant moved {$meters} meters"
     }
     
     -- an internal behavior (a behavior assigned to a property)
     say: ($words) -> {
-        console (log "{name} says: {$words}")
+        console log "{name} says: {$words}"
     }
 }
 
@@ -65,37 +65,37 @@ Nexus9 Replicant {
     
     -- typed behavior signature
     think: ($thought:String) -> {
-        thoughts (append $thought)
-        console (log "{name} thinks: $thought")
+        thoughts append $thought
+        console log "{name} thinks: $thought"
     }
     
     -- a behavior without any arguments
     (move) -> {
-        console (log '*moves*')
+        console log '*moves*'
         
         -- call the `move $meters` behavior "inherited" from `Replicant`
-        self (move 2)
+        self move 2
         
         -- if…else "statement" using the `yes-no` behavior of `Boolean`
         intelligence > 100 (yes {
-            think ('Why did I move?')
-            think ('Am I really a replicant?')
-            think ('Do I even exist?')
-            think ('My name is Joe...')
-            name (set 'Joe')  -- update internal state
-            say ("I have a purpose!")
+            think 'Why did I move?'
+            think 'Am I really a replicant?'
+            think 'Do I even exist?'
+            think 'My name is Joe...'
+            name set 'Joe'  -- update internal state
+            say "I have a purpose!"
         }
         no {
-            think ("*nothing*")
+            think "*nothing*"
         })
     }
 }
 
 -- create a new Nexus 9 replicant with some properties
-officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligence 140))
+officer-k: Nexus9 with (name 'K' id 'KD6-3.7' intelligence 140)
 
 -- call the `move` behavior
-officer-k (move)
+officer-k move
 
 --> '*moves*'
 --> 'K the Nexus 9 replicant moved 2 meters'
@@ -122,7 +122,7 @@ code: {
 }
 
 -- running a cell's code (`do` is a "global" behavior)
-result: do (code)  --> 5
+result: do code  --> 5
 
 -- the definition of `do`
 do: ($cell) -> `$cell()`  -- ECMAScript embedded within backticks
@@ -134,9 +134,6 @@ behavior: (add $a to $b) -> {
 
 -- the above behavior inlined (implicit return)
 inlined: (add $a to $b) -> $a + $b
-
--- all values are cells
-number: 40 (plus 2)  --> 42
 
 -- primitive values automagically unwrap to return their internal value when read
 primitive: 42  --> 42
@@ -160,10 +157,7 @@ Cell {
     lineage: [()]
     
     -- when "extended", the new descendant sets the type to its name and adds itself to the lineage
-    lineage (prepend (WeakRef (self)))
-    
-    -- or using message composition
-    WeakRef (self) » prepend » lineage
+    lineage prepend (WeakRef self)
 }
 
 -- definition of the base Value cell, "extended" from Cell
@@ -172,27 +166,27 @@ Value Cell {
     value: ()
     
     -- constructor
-    ($value) -> self () (set $value)
+    ($value) -> (self ()) set $value
     
     -- setter
-    (set $value) -> `value = $value`
+    (set $value) -> `(self.value = $value, self)`
     
     -- getter
-    (get) -> value
+    (get) -> self.value
 }
 
 -- definition of the Boolean value
 Boolean Value {
     -- setter behavior, overriding the one "inherited" from Value
-    (set $value) -> `value = Boolean($value)`
+    (set $value) -> `(self.value = Boolean($value), self)`
     
     -- toggle behavior
-    (toggle) -> self (set `!value`)
+    (toggle) -> self set `!value`
     
     -- yes-no behavior ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) -> `(value ? do($then) : do($else))`
-    (yes $then) -> self (yes $then no ())
-    (no $else) -> self (yes () no $else)
+    (yes $then) -> self yes $then no ()
+    (no $else) -> self yes () no $else
 }
 
 -- instantiated booleans (on the "global" cell)
@@ -201,7 +195,7 @@ false: Boolean (0)
 
 -- toggling a boolean
 bool: true  -- sugar for `true ()`, primitive values are sweet
-bool (toggle)  --> false (the value is automagically unwrapped when read)
+bool toggle  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
 Array Value {
@@ -225,9 +219,9 @@ Object Value {
         object: self ()  -- call the basic clone behavior
         
         -- call the `for` behavior on `$properties`, passing a behavior to loop over its items
-        $properties (for (each $key as $value) -> {
-            object (set $key to $value)  -- set an internal property on the object
-        })
+        $properties for (each $key as $value) -> {
+            object set $key to $value  -- set an internal property on the object
+        }
         
         return object
     }

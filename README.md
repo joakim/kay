@@ -142,7 +142,7 @@ The building blocks:
 
 ```lua
 -- definition of the base cell, a blueprint for all cells
-Cell {
+Cell Cell {
     value: ()
     
     -- behavior for cloning itself (matches an empty message)

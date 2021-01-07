@@ -1,6 +1,6 @@
 # Kay
 
-A small programming language inspired by Smalltalk and Blade Runner.
+A small programming language inspired by [Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf) and Blade Runner.
 
 <br/>
 
@@ -24,7 +24,7 @@ A small programming language inspired by Smalltalk and Blade Runner.
 
 ## Cells
 
-It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements and expressions) and behaviours (functions). Cells communicate by passing messages, represented as tuples `(key value key value …)`. Received messages are dynamically matched against behaviour signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its internal state (properties) is not available from the outside except through setters/getters.
+It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements and expressions) and behaviors (functions). Cells communicate by passing messages, represented as tuples `(key value key value …)`. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its internal state (properties) is not available from the outside except through setters/getters.
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
@@ -39,13 +39,13 @@ Replicant Object {
     name: 'Replicant'
     model: 'generic'
     
-    -- a behaviour
+    -- a behavior
     (move $meters) -> {
-        -- calling a behaviour on another object
+        -- calling a behavior on another object
         console (log "{name} the {model} replicant moved {$meters} meters")
     }
     
-    -- an internal function (a behaviour assigned to a property)
+    -- an internal function (a behavior assigned to a property)
     say: ($words) -> {
         console (log "{name} says: {$words}")
     }
@@ -63,14 +63,14 @@ Nexus9 Replicant {
         console (log "{name} thinks: $thought")
     }
     
-    -- a behaviour without any arguments
+    -- a behavior without any arguments
     (move) -> {
         console (log '*moves*')
         
-        -- call the `move` behaviour "inherited" from `Replicant`
+        -- call the `move` behavior "inherited" from `Replicant`
         self (move 2)
         
-        -- if…else "statement" using the `yes-no` behaviour of `Boolean`
+        -- if…else "statement" using the `yes-no` behavior of `Boolean`
         intelligence > 100 (yes {
             think ('Why did I move?')
             think ('Am I really a replicant?')
@@ -88,7 +88,7 @@ Nexus9 Replicant {
 -- create a new Nexus 9 replicant with some properties, then freeze it
 officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligence 140)) (freeze)
 
--- call the `move` behaviour
+-- call the `move` behavior
 officer-k (move)
 
 --> '*moves*'
@@ -105,30 +105,30 @@ The underlying building blocks:
 ```lua
 -- definition of the base cell, a blueprint for all cells
 Cell {
-    -- behaviour for cloning itself (matches an empty message)
+    -- behavior for cloning itself (matches an empty message)
     () -> {
         return `Object.assign(Object.create(null), self)`  -- embedded ECMAScript
     }
     
-    -- setter behaviour
+    -- setter behavior
     (set $value) -> {
         return `self.value = $value`
     }
     
-    -- behaviour for calling a behaviour as if belonging to the caller
+    -- behavior for calling a behavior as if belonging to the caller
     (call $message as $cell) -> {
         return `Reflect.apply(self, $cell, $message)`
     }
 }
 
--- definition of Boolean, "inheriting" behaviours from Cell
+-- definition of Boolean, "inheriting" behaviors from Cell
 Boolean Cell {
-    -- "constructor" behaviour, returning a new cell set to the value cast to boolean
+    -- "constructor" behavior, returning a new cell set to the value cast to boolean
     ($value) -> {
         return Cell () (set `Boolean($value)`)
     }
     
-    -- setter behaviour, overriding the one from Cell
+    -- setter behavior, overriding the one from Cell
     (set $value) -> {
         return Cell (call (set `Boolean($value)`) as self)
     }
@@ -140,12 +140,12 @@ false: Boolean (0)
 
 -- definition of Object, the most common blueprint
 Object Cell {
-    -- behaviour for cloning itself with added properties (`$x:` binds a value as a local name)
+    -- behavior for cloning itself with added properties (`$x:` binds a value as a local name)
     (with $props:Tuple) -> {
         -- define a local property
-        object: self ()  -- call the basic clone behaviour
+        object: self ()  -- call the basic clone behavior
         
-        -- call the `for` behaviour on `$props`, passing a behaviour to loop over its items
+        -- call the `for` behavior on `$props`, passing a behavior to loop over its items
         $props (for (each $key as $value) -> {
             object (set $key to $value)  -- set an internal property on the object
         })
@@ -153,7 +153,7 @@ Object Cell {
         return object
     }
     
-    -- setter behaviour for properties
+    -- setter behavior for properties
     (set $key to $value) -> {
         return `self[$key] = $value`
     }

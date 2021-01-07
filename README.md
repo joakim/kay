@@ -105,7 +105,7 @@ Nexus9 from Replicant {
         -- call the `move` behaviour it got from `Replicant`
         &(move 2)
         
-        -- if-else using the `if-true` behaviour of `Boolean`
+        -- if…else using the `if-true` behaviour of `Boolean`
         intelligence > 100 (if-true {
             think ('Why did I just move?')
             think ('Am I really a replicant?')

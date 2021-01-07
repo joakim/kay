@@ -163,7 +163,7 @@ Cell {
     lineage (prepend (WeakRef (self)))
     
     -- or using a pipeline
-    lineage ◁ prepend ◁ WeakRef ◁ self
+    WeakRef (self) ▷ prepend ▷ lineage
 }
 
 -- definition of the base Value cell, "extended" from Cell

@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from modules to values. Cells consist of internal state (properties), code (statements and expressions) and behaviors (functions). Cells communicate by passing messages. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its internal state (properties) is not available from the outside except through setters/getters.
+It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and behaviors (functions). Cells communicate by passing messages. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters.
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
@@ -41,7 +41,7 @@ ECMAScript is the runtime in the following examples.
 ```lua
 -- create a Replicant object
 Replicant Object {
-    -- internal state (properties)
+    -- local state (properties)
     name: 'Replicant'
     model: 'generic'
     
@@ -51,7 +51,7 @@ Replicant Object {
         console log "{name} the {model} replicant moved {$meters} meters"
     }
     
-    -- an internal behavior (a behavior assigned to a property)
+    -- a local behavior (a behavior assigned to a property)
     say: ($words) -> {
         console log "{name} says: {$words}"
     }
@@ -82,7 +82,7 @@ Nexus9 Replicant {
             think 'Am I really a replicant?'
             think 'Do I even exist?'
             think 'My name is Joe...'
-            name set 'Joe'  -- update internal state
+            name set 'Joe'  -- update local state
             say "I have a purpose!"
         }
         no {
@@ -114,7 +114,7 @@ It's all cells:
 -- an empty cell literal
 cell: {}
 
--- a cell with internal state and code (equivalent to a function with no arguments)
+-- a cell with local state and code (equivalent to a function with no arguments)
 code: {
     a: 2
     b: a + 3
@@ -162,7 +162,7 @@ Cell {
 
 -- definition of the base Value cell, "extended" from Cell
 Value Cell {
-    -- internal state
+    -- internal value
     value: ()
     
     -- constructor
@@ -220,7 +220,7 @@ Object Value {
         
         -- call the `for` behavior on `$properties`, passing a behavior to loop over its items
         $properties for (each $key as $value) -> {
-            object set $key to $value  -- set an internal property on the object
+            object set $key to $value  -- mutate a property of the object
         }
         
         return object

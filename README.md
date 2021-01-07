@@ -2,25 +2,25 @@
 
 A small programming language inspired by Smalltalk and Blade Runner.
 
-<br>
+<br/>
 
 > OOP to me means only messaging, local retention and protection and hiding of state-process, and extreme late-binding of all things.
 
 – Alan Kay
 
-<br>
+<br/>
 
 > The basic principle of recursive design is to make the parts have the same power as the whole.
 
 – Bob Barton
 
-<br>
+<br/>
 
 > A system of cells interlinked within cells interlinked within cells interlinked within one stem.
 
 – K, Blade Runner 2049 (Vladimir Nabokov, Pale Fire)
 
-<br>
+<br/>
 
 ## Cells
 
@@ -30,7 +30,7 @@ Cells are passed by reference and implemented as persistent (immutable) data str
 
 The runtime is the stem. In the following example, ECMAScript.
 
-<br>
+<br/>
 
 ```lua
 -- the base cell, used as a blueprint for all cells

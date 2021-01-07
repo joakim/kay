@@ -68,7 +68,7 @@ Replicant {
         console (log "{name} says: {$words}")
     }
     
-    (move $meters:Number) -> {
+    (move $meters) -> {
         console (log "{name} the {model} replicant moved {$meters} meters")
     }
 }

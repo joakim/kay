@@ -68,7 +68,7 @@ Nexus9 Replicant {
         console (log '*moves*')
         
         -- call the `move` behaviour "inherited" from `Replicant`
-        &(move 2)
+        self (move 2)
         
         -- if…else "statement" using the `if-true` behaviour of `Boolean`
         intelligence > 100 (if-true {
@@ -131,7 +131,7 @@ Boolean Cell {
     
     -- setter behaviour, overriding the one from Cell
     (set $value) -> {
-        return Cell (call (set `Boolean($value)`) as &)  -- `&` references the cell the behaviour belongs to
+        return Cell (call (set `Boolean($value)`) as self)
     }
 }
 
@@ -144,7 +144,7 @@ Object Cell {
     -- behaviour for cloning itself with added properties (`$x:` binds a value as a local name)
     (with $props:Tuple) -> {
         -- define a local property
-        object: &()  -- call the basic clone behaviour
+        object: self ()  -- call the basic clone behaviour
         
         -- call the `for` behaviour on `$props`, passing a behaviour to loop over its items
         $props (for (each $key as $value) -> {

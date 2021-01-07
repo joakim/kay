@@ -27,7 +27,7 @@ Cell {
         return `Object.assign(Object.create(null), self)`  -- embedded ECMAScript
     }
     
-    -- behaviour for cloning itself with added properties ($ binds a value as a local name)
+    -- behaviour for cloning itself with added properties ($foo: binds a value as a local name)
     (with $props:Tuple) {
         -- local property (& references the cell itself)
         cell: &()  -- call the basic clone behaviour

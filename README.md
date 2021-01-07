@@ -42,7 +42,7 @@ Cell {
     
     -- generic setter behaviour
     (set $key to $value) -> {
-        &$key: $value
+        return `self[$key] = $value`
     }
     
     -- freeze itself

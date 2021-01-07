@@ -145,19 +145,19 @@ The building blocks:
 
 ```lua
 -- definition of the base cell, a blueprint for all cells
-Cell {
+Cell () {
     -- method for cloning itself (matches an empty message)
     () -> `Object.assign(Object.create(null), self)`
     
     -- method for applying a method to the caller
     (apply $message to $cell) -> `Reflect.apply(self, $cell, $message)`
     
-    -- properties that are automagically set
-    type: 'Cell'
-    lineage: [()]
+    -- properties that are automagically set:
+    type: 'Cell'  -- the name of the cell
+    lineage: [()]  -- the cell's ancestors
     
-    -- when "extended", the new descendant sets the type to its name and adds itself to the lineage
-    lineage prepend (WeakRef self)
+    -- when "extending", the descendant sets the type to its own name and adds its ancestor to the lineage:
+    lineage prepend (WeakRef ancestor)
 }
 
 -- definition of the base Value cell, "extended" from Cell
@@ -173,6 +173,9 @@ Value Cell {
     
     -- getter
     (get) -> self.value
+    
+    -- type: 'Value'
+    -- lineage: [WeakRef Cell, ()]
 }
 
 -- definition of the Boolean value
@@ -187,6 +190,9 @@ Boolean Value {
     (yes $then no $else) -> `(value ? do($then) : do($else))`
     (yes $then) -> self yes $then no ()
     (no $else) -> self yes () no $else
+
+    -- type: 'Boolean'
+    -- lineage: [WeakRef Value, WeakRef Cell, ()]
 }
 
 -- instantiated booleans (on the "global" cell)
@@ -229,7 +235,8 @@ Object Value {
     -- freeze itself
     (freeze) -> `Object.freeze(self)`
     
-    -- it's lineage is: [Object, Value, Cell, ()]
+    -- type: 'Object'
+    -- lineage: [WeakRef Object, WeakRef Value, WeakRef Cell, ()]
 }
 
 -- `console` is simply a cell on the "global" cell that takes messages

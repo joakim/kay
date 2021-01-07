@@ -157,7 +157,7 @@ Cell {
     
     -- properties that are automagically set
     type: 'Cell'
-    lineage: []
+    lineage: [()]
     
     -- when "extended", the new descendant sets the type to its name and adds itself to the lineage
     lineage (prepend (WeakRef (self)))
@@ -232,7 +232,7 @@ Object Value {
     -- freeze itself
     (freeze) -> `Object.freeze(self)`
     
-    -- it's lineage is: [Object, Value, Cell]
+    -- it's lineage is: [Object, Value, Cell, ()]
 }
 
 -- `console` is simply a cell on the "global" cell that takes messages

@@ -162,7 +162,7 @@ Cell {
     -- when "extended", the new descendant sets the type to its name and adds itself to the lineage
     lineage (prepend (WeakRef (self)))
     
-    -- or using composition
+    -- or using message composition
     WeakRef (self) » prepend » lineage
 }
 

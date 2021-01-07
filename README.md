@@ -100,10 +100,10 @@ Rabbit from Animal {
 }
 
 -- create a new Rabbit cell with some properties, then freeze it
-rabbit: Rabbit (with (name 'Roger' color 'white')) (freeze)
+roger: Rabbit (with (name 'Roger' color 'white')) (freeze)
 
 -- call the `move` behaviour on the rabbit
-rabbit (move)
+roger (move)
 
 --> '*jumps*'
 --> 'Roger the white rabbit moved 2m'

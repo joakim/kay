@@ -174,7 +174,7 @@ Boolean Value {
     (set $value) -> `value = Boolean($value)`
     
     -- yes-no behavior ("if-then-else", "if-then" and "if-not")
-    (yes $then no $else) -> `(self.value ? do($then) : do($else))`
+    (yes $then no $else) -> `(value ? do($then) : do($else))`
     (yes $then) -> self (yes $then no ())
     (no $else) -> self (yes () no $else)
     

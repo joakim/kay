@@ -30,6 +30,8 @@ Cells are passed by reference and implemented as persistent (immutable) data str
 
 The runtime is the stem.
 
+<br/>
+
 ## Examples
 
 ECMAScript is the runtime in the following examples.
@@ -102,6 +104,8 @@ officer-k (move)
 --> 'Joe says: I have a purpose!'
 ```
 
+<br/>
+
 It's all cells:
 
 ```
@@ -129,6 +133,8 @@ inlined: (add $a to $b) -> $a + $b
 -- all values are cells
 number: 40 (plus 2)  --> 42
 ```
+
+<br/>
 
 The building blocks:
 

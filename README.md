@@ -83,15 +83,15 @@ Rabbit from Animal {
         Console (log '*jumps*')
         
         -- call the `move` behaviour it got from `Animal`
-        &(move 5)
+        &(move 2)
         
         -- update internal state
         thoughtful (set true)
         
         -- call the internal `think` function
         think ('Why did I just jump?')
-        think ('What is my purpose?')
-        think ('Why do I exist?')
+        think ('Why do I even exist?')
+        think ('Am I really a rabbit?')
     }
 }
 
@@ -102,8 +102,8 @@ rabbit: Rabbit (with (name 'Roger' color 'white')) (freeze)
 rabbit (move)
 
 --> '*jumps*'
---> 'Roger the white rabbit moved 5m'
+--> 'Roger the white rabbit moved 2m'
 --> 'Why did I just jump?'
---> 'What is my purpose?'
---> 'Why do I exist?'
+--> 'Why do I even exist?'
+--> 'Am I really a rabbit?'
 ```

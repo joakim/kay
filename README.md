@@ -8,7 +8,7 @@ A small programming language inspired by Smalltalk and Blade Runner that compile
 
 > A system of cells interlinked within cells interlinked within cells interlinked within one stem.
 
-– Vladimir Nabokov, Pale Fire
+– K, Blade Runner 2049 (Vladimir Nabokov, Pale Fire)
 
 
 ### Cells
@@ -52,34 +52,35 @@ Cell {
 }
 
 -- cell definition (uses Cell as its blueprint)
-Console {
+console {
     (log $value) -> `console.log($value)`
 }
 
--- create an Animal cell
-Animal {
-     (move $distance:Number) -> {
+-- create a Replicant
+Replicant {
+     (move $meters:Number) -> {
         -- string interpolation referencing cell properties
-        Console (log "{&name} the {&color} {&kind} moved {$distance}m")
+        console (log "{&name} the {&model} replicant moved {$meters} meters")
     }
 }
 
 -- create a Rabbit cell using Animal as blueprint
-Rabbit from Animal {
+Nexus9 from Replicant {
     -- properties (internal state)
-    thoughtful: false
+    model: 'Nexus 9'
     thoughts: []  -- a list
+    thoughtful: false
     
     -- function (a behaviour assigned to a property)
     think: ($thought:String) {
         thoughts (append $thought)
-        Console (log $thought)
+        console (log $thought)
     }
     
     -- a behaviour without arguments
     (move) -> {
-        -- call the `log` behaviour of the `Console` cell
-        Console (log '*jumps*')
+        -- call the `log` behaviour of the `console` cell
+        console (log '*move*')
         
         -- call the `move` behaviour it got from `Animal`
         &(move 2)
@@ -89,25 +90,25 @@ Rabbit from Animal {
 
         -- call the `if-true` behaviour on the boolean `thoughtful` property
         thoughtful (if-true {
-            think ('Why did I just jump?')
-            think ('Am I really a rabbit?')
+            think ('Why did I just move?')
+            think ('Am I really a replicant?')
             think ('Do I even exist?')
         }
         else {
-            think ("D'oh!")
+            think ("*nothing*")
         })
     }
 }
 
--- create a new Rabbit cell with some properties, then freeze it
-roger: Rabbit (with (name 'Roger' color 'white')) (freeze)
+-- create a new Nexus 9 replicant with some properties, then freeze it
+officer-k: Nexus9 (with (name 'K' id 'KD6-3.7')) (freeze)
 
--- call the `move` behaviour on the rabbit
-roger (move)
+-- call the `move` behaviour
+officer-k (move)
 
---> '*jumps*'
---> 'Roger the white rabbit moved 2m'
---> 'Why did I just jump?'
---> 'Am I really a rabbit?'
+--> '*moves*'
+--> 'K the Nexus 9 replicant moved 2 meters'
+--> 'Why did I just move?'
+--> 'Am I really a replicant?'
 --> 'Do I even exist?'
 ```

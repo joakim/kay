@@ -57,20 +57,20 @@ Nexus9 Replicant {
     intelligence: 100
     thoughts: []  -- a list
     
+    -- typed function signature
     think: ($thought:String) -> {
         thoughts (append $thought)
         console (log $thought)
     }
     
-    -- a behaviour without arguments
+    -- a behaviour without any arguments
     (move) -> {
-        -- call the `log` behaviour of the `console`
         console (log '*moves*')
         
-        -- call the `move` behaviour it got from `Replicant`
+        -- call the `move` behaviour "inherited" from `Replicant`
         &(move 2)
         
-        -- if…else using the `if-true` behaviour of `Boolean`
+        -- if…else "statement" using the `if-true` behaviour of `Boolean`
         intelligence > 100 (if-true {
             think ('Why did I just move?')
             think ('Am I really a replicant?')
@@ -78,6 +78,7 @@ Nexus9 Replicant {
             
             -- update internal state
             name (set 'Joe')
+            
             say ("My name is {name}")
         }
         else {

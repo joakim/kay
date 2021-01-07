@@ -13,7 +13,7 @@ A small programming language inspired by Smalltalk and Blade Runner that compile
 
 ### Cells
 
-It's cells all the way down, from modules to values. Cells consist of internal state, code and behaviours. They communicate by listening for and passing messages (represented as tuples `()`). Messages are pattern matched against behaviours and may be typed. There's no inheritance, only composition and behavioural traits. A cell's properties (its internal state) are not available from the outside except through setters/getter.
+It's cells all the way down, from modules to values. Cells consist of internal state, code and behaviours. They are at the same time objects, functions and compound statements. Cells communicate by listening for and passing messages (represented as tuples `()`). Messages are pattern matched against behaviours and may be typed. There's no inheritance, only composition and behavioural traits. A cell's properties (its internal state) are not available from the outside except through setters/getter.
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state as it was at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of its past states.
 
@@ -87,11 +87,13 @@ Rabbit from Animal {
         
         -- update internal state
         thoughtful (set true)
-        
-        -- call the internal `think` function
-        think ('Why did I just jump?')
-        think ('Am I really a rabbit?')
-        think ('Do I even exist?')
+
+        -- call the `if-true` behaviour on the boolean `thoughtful` property
+        thoughtful (if-true {
+            think ('Why did I just jump?')
+            think ('Am I really a rabbit?')
+            think ('Do I even exist?')
+        })
     }
 }
 

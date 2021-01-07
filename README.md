@@ -46,7 +46,7 @@ Cell {
         &$key: $value
     }
     
-    -- freeze a cell
+    -- freeze itself
     (freeze) {
         return `Object.freeze(self)`
     }

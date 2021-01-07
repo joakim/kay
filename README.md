@@ -121,7 +121,7 @@ code: {
     return b
 }
 
--- running a cell's code (`do` is a global behavior)
+-- running a cell's code (`do` is a "global" behavior)
 result: do (code)  --> 5
 
 -- a behavior is a cell that takes a message (equivalent to a function with arguments)
@@ -175,11 +175,11 @@ Boolean Cell {
     }
 }
 
--- instantiated booleans (on the global cell)
+-- instantiated booleans (on the "global" cell)
 true: Boolean (1)
 false: Boolean (0)
 
--- `console` is just a cell on the global cell
+-- `console` is just a cell on the "global" cell
 console: {
     (log $value) -> `console.log($value)`
 }

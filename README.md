@@ -80,7 +80,7 @@ Nexus9 from Replicant {
     -- a behaviour without arguments
     (move) -> {
         -- call the `log` behaviour of the `console` cell
-        console (log '*move*')
+        console (log '*moves*')
         
         -- call the `move` behaviour it got from `Animal`
         &(move 2)

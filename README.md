@@ -160,7 +160,7 @@ Cell {
     lineage: [()]
     
     -- when "extended", the new descendant sets the type to its name and adds itself to the lineage
-    lineage (prepend (WeakRef (self)))
+    lineage (prepend (WeakRef (self)))  -- or: self |> WeakRef |> prepend |> lineage ?
 }
 
 -- definition of the base Value cell, "extended" from Cell

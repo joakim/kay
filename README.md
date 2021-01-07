@@ -90,8 +90,8 @@ Rabbit from Animal {
         
         -- call the internal `think` function
         think ('Why did I just jump?')
-        think ('Why do I even exist?')
         think ('Am I really a rabbit?')
+        think ('Do I even exist?')
     }
 }
 
@@ -104,6 +104,6 @@ rabbit (move)
 --> '*jumps*'
 --> 'Roger the white rabbit moved 2m'
 --> 'Why did I just jump?'
---> 'Why do I even exist?'
 --> 'Am I really a rabbit?'
+--> 'Do I even exist?'
 ```

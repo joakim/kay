@@ -210,7 +210,7 @@ Array Value {
 Object Value {
     value: `new PersistentDataStructure()`
     
-    -- setter method for object properties
+    -- setter method for mutating object properties
     (set $key to $value) -> `self.value[$key] = $value`
     
     -- method for cloning itself with added properties (`$x:` binds a value as a local name)

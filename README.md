@@ -58,21 +58,27 @@ console {
 
 -- create a Replicant
 Replicant {
-     (move $meters:Number) -> {
+    -- properties (internal state)
+    name: 'Replicant'
+    model: 'generic'
+    
+    -- function (a behaviour assigned to a property)
+    say: ($words) -> {
         -- string interpolation referencing cell properties
-        console (log "{&name} the {&model} replicant moved {$meters} meters")
+        console (log "{name} says: {$words}")
+    }
+    
+    (move $meters:Number) -> {
+        console (log "{name} the {model} replicant moved {$meters} meters")
     }
 }
 
 -- create a Nexus9 cell using Replicant as blueprint
 Nexus9 from Replicant {
-    -- properties (internal state)
     model: 'Nexus 9'
     thoughts: []  -- a list
-    thoughtful: false
     
-    -- function (a behaviour assigned to a property)
-    think: ($thought:String) {
+    think: ($thought:String) -> {
         thoughts (append $thought)
         console (log $thought)
     }
@@ -85,14 +91,15 @@ Nexus9 from Replicant {
         -- call the `move` behaviour it got from `Replicant`
         &(move 2)
         
-        -- update internal state
-        thoughtful (set true)
-
-        -- call the `if-true` behaviour on the boolean `thoughtful` property
-        thoughtful (if-true {
+        -- if-else using the `if-true` behaviour of `Boolean`
+        intelligent (if-true {
             think ('Why did I just move?')
             think ('Am I really a replicant?')
             think ('Do I even exist?')
+            
+            -- update internal state
+            name (set 'Joe')
+            say ("My name is {name}")
         }
         else {
             think ("*nothing*")
@@ -101,7 +108,7 @@ Nexus9 from Replicant {
 }
 
 -- create a new Nexus 9 replicant with some properties, then freeze it
-officer-k: Nexus9 (with (name 'K' id 'KD6-3.7')) (freeze)
+officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligent true)) (freeze)
 
 -- call the `move` behaviour
 officer-k (move)
@@ -111,4 +118,5 @@ officer-k (move)
 --> 'Why did I just move?'
 --> 'Am I really a replicant?'
 --> 'Do I even exist?'
+--> 'Joe says: My name is Joe'
 ```

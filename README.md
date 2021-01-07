@@ -193,7 +193,7 @@ console: {
 }
 
 -- definition of Array
-Array Cell {
+Array Value {
     (first $value) -> `$value[0]`
     (last $value) -> `$value[$value.length - 1]`
     (append $value) -> `[...self, $value]`

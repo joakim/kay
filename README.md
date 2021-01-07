@@ -6,6 +6,10 @@ A small programming language inspired by Smalltalk and Blade Runner that compile
 
 – Alan Kay
 
+> The basic principle of recursive design is to make the parts have the same power as the whole.
+
+– Bob Barton
+
 > A system of cells interlinked within cells interlinked within cells interlinked within one stem.
 
 – K, Blade Runner 2049 (Vladimir Nabokov, Pale Fire)

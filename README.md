@@ -32,8 +32,10 @@ Cell {
         -- local property (& references the cell)
         cell: &()  -- call the more basic factory behaviour
         
-        -- call the iterate behaviour on the $spec tuple, passing a function to iterate its elements
-        $spec (iterate ($key $value) -> cell (set $key $value))
+        -- call the iterate behaviour on the $spec tuple, with a lambda to iterate its elements
+        $spec (iterate ($key $value) -> {
+            cell (set $key $value)
+        })
         
         return cell
     }

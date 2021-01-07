@@ -28,9 +28,9 @@ It's cells all the way down, from modules to values. Cells consist of internal s
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", with structural sharing of the past versions of its state.
 
-The runtime is the stem. In this example, ECMAScript.
+The runtime is the stem. In the following example, ECMAScript.
 
-<p> </p>
+### Example
 
 ```lua
 -- the base cell, used as a blueprint for all cells
@@ -45,7 +45,7 @@ Cell {
         -- define a local property
         cell: &()  -- call the basic clone behaviour (`&` references the cell itself)
         
-        -- call the `for` behaviour on the `$props, passing a behaviour to loop over its elements
+        -- call the `for` behaviour on `$props`, passing a behaviour to loop over its items
         $props (for (each $key as $value) -> {
             cell (set $key to $value)  -- set an internal property on the cell
         })

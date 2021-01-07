@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and behaviors (functions). Cells communicate by passing messages. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters.
+It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and methods (functions). Cells communicate by passing messages. Received messages are dynamically matched against method signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters.
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
@@ -45,13 +45,13 @@ Replicant Object {
     name: 'Replicant'
     model: 'generic'
     
-    -- a behavior
+    -- a method
     (move $meters) -> {
-        -- calling a behavior on another object
+        -- calling a method on another object
         console log "{name} the {model} replicant moved {$meters} meters"
     }
     
-    -- a local behavior (a behavior assigned to a property)
+    -- a local method (a method assigned to a property)
     say: ($words) -> {
         console log "{name} says: {$words}"
     }
@@ -63,20 +63,20 @@ Nexus9 Replicant {
     intelligence: 100
     thoughts: []  -- an array
     
-    -- typed behavior signature
+    -- typed method signature
     think: ($thought:String) -> {
         thoughts append $thought
         console log "{name} thinks: $thought"
     }
     
-    -- a behavior without any arguments
+    -- a method without any arguments
     (move) -> {
         console log '*moves*'
         
-        -- call the `move $meters` behavior "inherited" from `Replicant`
+        -- call the `move $meters` method "inherited" from `Replicant`
         self move 2
         
-        -- if…else "statement" using the `yes-no` behavior of `Boolean`
+        -- if…else "statement" using the `yes-no` method of `Boolean`
         intelligence > 100 (yes {
             think 'Why did I move?'
             think 'Am I really a replicant?'
@@ -94,7 +94,7 @@ Nexus9 Replicant {
 -- create a new Nexus 9 replicant with some properties
 officer-k: Nexus9 with (name 'K' id 'KD6-3.7' intelligence 140)
 
--- call the `move` behavior
+-- call the `move` method
 officer-k move
 
 --> '*moves*'
@@ -121,18 +121,18 @@ code: {
     return b
 }
 
--- running a cell's code (`do` is a "global" behavior)
+-- running a cell's code (`do` is a "global" method)
 result: do code  --> 5
 
 -- the definition of `do`
 do: ($cell) -> `$cell()`  -- ECMAScript embedded within backticks
 
--- a behavior is a cell that takes a message (equivalent to a function with arguments)
-behavior: (add $a to $b) -> {
+-- a method is a cell that takes a message (equivalent to a function with arguments)
+method: (add $a to $b) -> {
     return $a + $b
 }
 
--- the above behavior inlined (implicit return)
+-- the above method inlined (implicit return)
 inlined: (add $a to $b) -> $a + $b
 
 -- primitive values automagically unwrap to return their internal value when read
@@ -146,10 +146,10 @@ The building blocks:
 ```lua
 -- definition of the base cell, a blueprint for all cells
 Cell {
-    -- behavior for cloning itself (matches an empty message)
+    -- method for cloning itself (matches an empty message)
     () -> `Object.assign(Object.create(null), self)`
     
-    -- behavior for applying a behavior to the caller
+    -- method for applying a method to the caller
     (apply $message to $cell) -> `Reflect.apply(self, $cell, $message)`
     
     -- properties that are automagically set
@@ -177,13 +177,13 @@ Value Cell {
 
 -- definition of the Boolean value
 Boolean Value {
-    -- setter behavior, overriding the one "inherited" from Value
+    -- setter method, overriding the one "inherited" from Value
     (set $value) -> `(self.value = Boolean($value), self)`
     
-    -- toggle behavior
+    -- toggle method
     (toggle) -> self set `!value`
     
-    -- yes-no behavior ("if-then-else", "if-then" and "if-not")
+    -- yes-no method ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) -> `(value ? do($then) : do($else))`
     (yes $then) -> self yes $then no ()
     (no $else) -> self yes () no $else
@@ -210,15 +210,15 @@ Array Value {
 Object Value {
     value: `new PersistentDataStructure()`
     
-    -- setter behavior for object properties
+    -- setter method for object properties
     (set $key to $value) -> `self.value[$key] = $value`
     
-    -- behavior for cloning itself with added properties (`$x:` binds a value as a local name)
+    -- method for cloning itself with added properties (`$x:` binds a value as a local name)
     (with $properties:Tuple) -> {
         -- define a local property
-        object: self ()  -- call the basic clone behavior
+        object: self ()  -- call the basic clone method
         
-        -- call the `for` behavior on `$properties`, passing a behavior to loop over its items
+        -- call the `for` method on `$properties`, passing a method to loop over its items
         $properties for (each $key as $value) -> {
             object set $key to $value  -- mutate a property of the object
         }

@@ -189,6 +189,7 @@ false: Boolean (0)
 -- `console` is just a cell on the "global" cell
 console: {
     (log $value) -> `console.log($value)`
+    -- ...
 }
 
 -- definition of Array

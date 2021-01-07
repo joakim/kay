@@ -63,7 +63,7 @@ Rabbit from Animal {
     thoughtful: false
     thoughts: []  -- a list
     
-    -- function (a cell with only one behaviour)
+    -- function (a named cell with only one behaviour)
     think: ($thought:String) {
         thoughts (append $thought)
         Console (log $thought)

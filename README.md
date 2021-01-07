@@ -161,18 +161,15 @@ Cell {
 -- definition of Boolean, "inheriting" behaviors from Cell
 Boolean Cell {
     -- "constructor" behavior, returning a new cell set to the value cast to boolean
-    ($value) -> {
-        return Cell () (set `Boolean($value)`)
-    }
+    ($value) -> Cell () (set `Boolean($value)`)
     
     -- setter behavior, overriding the one from Cell
-    (set $value) -> {
-        return Cell (call (set `Boolean($value)`) as self)
-    }
-    
-    (yes $true-clause:Cell no $false-clause):Cell -> {
-        return `self.value ? do($true-clause) : do($false-clause)`
-    }
+    (set $value) -> Cell (call (set `Boolean($value)`) as self)
+
+    -- yes-no behavior (if-then-else, if-then and "if-not")
+    (yes $then no $else) -> `(self.value ? do($then) : do($else))`
+    (yes $then) -> self (yes $then no ())
+    (no $else) -> self (yes () no $else)
 }
 
 -- instantiated booleans (on the "global" cell)

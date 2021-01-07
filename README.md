@@ -137,6 +137,9 @@ inlined: (add $a to $b) -> $a + $b
 
 -- all values are cells
 number: 40 (plus 2)  --> 42
+
+-- primitive values automagically unwrap to return their internal value when read
+primitive: 42  --> 42
 ```
 
 <br/>
@@ -187,15 +190,15 @@ true: Boolean (1)
 false: Boolean (0)
 
 -- toggling a boolean
-bool: true  -- sugar for `true ()`, primitive values are very sweet
+bool: true  -- sugar for `true ()`, primitive values are sweet
 bool (toggle)  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
 Array Value {
-    (first $value) -> `$value[0]`
-    (last $value) -> `$value[$value.length - 1]`
-    (append $value) -> `[...self, $value]`
-    (prepend $value) -> `[$value, ...self]`
+    (first) -> `value[0]`
+    (last) -> `value[value.length - 1]`
+    (append $value) -> `value = [...self.value, $value]`
+    (prepend $value) -> `value = [$value, ...self.value]`
     -- ...
 }
 
@@ -204,7 +207,7 @@ Object Value {
     value: `new PersistentDataStructure()`
     
     -- setter behavior for object properties
-    (set $key to $value) -> `self[$key] = $value`
+    (set $key to $value) -> `self.value[$key] = $value`
     
     -- behavior for cloning itself with added properties (`$x:` binds a value as a local name)
     (with $properties:Tuple) -> {

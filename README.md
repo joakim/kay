@@ -51,7 +51,7 @@ Replicant Object {
         console (log "{name} the {model} replicant moved {$meters} meters")
     }
     
-    -- an internal function (a behavior assigned to a property)
+    -- an internal behavior (a behavior assigned to a property)
     say: ($words) -> {
         console (log "{name} says: {$words}")
     }
@@ -63,7 +63,7 @@ Nexus9 Replicant {
     intelligence: 100
     thoughts: []  -- an array
     
-    -- typed function signature
+    -- typed behavior signature
     think: ($thought:String) -> {
         thoughts (append $thought)
         console (log "{name} thinks: $thought")
@@ -114,17 +114,17 @@ It's all cells:
 -- an empty cell literal
 cell: {}
 
--- a cell with internal state and code (= a function with no arguments)
+-- a cell with internal state and code (equivalent to a function with no arguments)
 code: {
     a: 2
     b: a + 3
     return b
 }
 
--- running a cell's code (`do` is a global function)
+-- running a cell's code (`do` is a global behavior)
 result: do (code)  --> 5
 
--- a behavior is a cell that takes a message (= function with arguments)
+-- a behavior is a cell that takes a message (equivalent to a function with arguments)
 behavior: (add $a to $b) -> {
     return $a + $b
 }

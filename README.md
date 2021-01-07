@@ -30,7 +30,7 @@ Cells are passed by reference and implemented as persistent (immutable) data str
 
 The runtime is the stem. In the following example, ECMAScript.
 
-### Example
+<p> </p>
 
 ```lua
 -- the base cell, used as a blueprint for all cells

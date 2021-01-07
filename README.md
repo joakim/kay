@@ -156,7 +156,7 @@ Cell () {
     type: 'Cell'  -- the name of the cell
     lineage: [()]  -- the cell's ancestors
     
-    -- when "extending", the descendant sets the type to its own name and adds its ancestor to the lineage:
+    -- when "extending", the descendant automagically adds its ancestor to the lineage:
     lineage prepend (WeakRef ancestor)
 }
 

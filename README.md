@@ -124,6 +124,9 @@ code: {
 -- running a cell's code (`do` is a "global" behavior)
 result: do (code)  --> 5
 
+-- the definition of `do`
+do: ($cell) -> `$cell()`  -- ECMAScript embedded within backticks
+
 -- a behavior is a cell that takes a message (equivalent to a function with arguments)
 behavior: (add $a to $b) -> {
     return $a + $b

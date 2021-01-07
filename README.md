@@ -86,7 +86,7 @@ Nexus9 Replicant {
             say ("I have a purpose!")
         }
         no {
-            think ("*void*")
+            think ("*nothing*")
         })
     }
 }

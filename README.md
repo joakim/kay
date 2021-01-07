@@ -74,7 +74,7 @@ Rabbit from Animal {
         -- call the `log` behaviour of the `Console` cell
         Console (log '*jumps*')
         
-        -- call the `move` behaviour inherited from `Animal` (through composition, not prototype/class)
+        -- call the `move` behaviour "inherited" from `Animal`
         &(move 5)
         
         -- call an internal function

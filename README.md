@@ -29,10 +29,10 @@ Cell {
     
     -- behaviour for cloning itself with added properties (`$foo:` binds a value as a local name)
     (with $props:Tuple) -> {
-        -- define a local property (`&` references the cell itself)
-        cell: &()  -- call the basic clone behaviour
+        -- define a local property
+        cell: &()  -- call the basic clone behaviour (`&` references the cell itself)
         
-        -- call the `for` behaviour on the `$props` tuple, with a lambda to iterate its elements
+        -- call the `for` behaviour on the `$props, passing a behaviour to loop over its elements
         $props (for (each $key as $value) -> {
             cell (set $key to $value)  -- set an internal property on the cell
         })

@@ -58,11 +58,11 @@ console {
 
 -- create a Replicant
 Replicant {
-    -- properties (internal state)
+    -- internal state (properties)
     name: 'Replicant'
     model: 'generic'
     
-    -- function (a behaviour assigned to a property)
+    -- internal function (a behaviour assigned to a property)
     say: ($words) -> {
         -- string interpolation referencing cell properties
         console (log "{name} says: {$words}")

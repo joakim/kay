@@ -28,9 +28,11 @@ It's cells all the way down, from modules to values. Cells consist of internal s
 
 Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
-The runtime is the stem. Which is ECMAScript in the following examples.
+The runtime is the stem.
 
-<br/>
+## Examples
+
+ECMAScript is the runtime in the following examples.
 
 ```lua
 -- create a Replicant object
@@ -55,7 +57,7 @@ Replicant Object {
 Nexus9 Replicant {
     model: 'Nexus 9'
     intelligence: 100
-    thoughts: []  -- a list
+    thoughts: []  -- an array
     
     -- typed function signature
     think: ($thought:String) -> {
@@ -85,8 +87,8 @@ Nexus9 Replicant {
     }
 }
 
--- create a new Nexus 9 replicant with some properties, then freeze it
-officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligence 140)) (freeze)
+-- create a new Nexus 9 replicant with some properties
+officer-k: Nexus9 (with (name 'K' id 'KD6-3.7' intelligence 140))
 
 -- call the `move` behavior
 officer-k (move)
@@ -100,25 +102,52 @@ officer-k (move)
 --> 'Joe says: I have a purpose!'
 ```
 
-The underlying building blocks:
+It's all cells:
+
+```
+-- an empty cell literal
+cell: {}
+
+-- a cell with internal state and code (= a function with no arguments)
+code: {
+    a: 2
+    b: a + 3
+    return b
+}
+
+-- running a cell's code (`do` is a global function)
+result: do (code)  --> 5
+
+-- a behavior is a cell that takes a message (= function with arguments)
+behavior: (add $a to $b) -> {
+    return $a + $b
+}
+
+-- the above behavior inlined (implicit return)
+inlined: (add $a to $b) -> $a + $b
+
+-- all values are cells
+number: 40 (plus 2)  --> 42
+```
+
+The building blocks:
 
 ```lua
 -- definition of the base cell, a blueprint for all cells
 Cell {
-    -- behavior for cloning itself (matches an empty message)
-    () -> {
-        return `Object.assign(Object.create(null), self)`  -- embedded ECMAScript
-    }
+    value: ()
     
-    -- setter behavior
-    (set $value) -> {
-        return `self.value = $value`
-    }
+    -- behavior for cloning itself (matches an empty message)
+    () -> `Object.assign(Object.create(null), self)`
+    
+    -- getter
+    (get) -> value
+    
+    -- setter
+    (set $value) -> `value = $value`
     
     -- behavior for calling a behavior as if belonging to the caller
-    (call $message as $cell) -> {
-        return `Reflect.apply(self, $cell, $message)`
-    }
+    (call $message as $cell) -> `Reflect.apply(self, $cell, $message)`
 }
 
 -- definition of Boolean, "inheriting" behaviors from Cell
@@ -132,13 +161,31 @@ Boolean Cell {
     (set $value) -> {
         return Cell (call (set `Boolean($value)`) as self)
     }
+    
+    (yes $true-clause:Cell no $false-clause):Cell -> {
+        return `self.value ? do($true-clause) : do($false-clause)`
+    }
 }
 
--- instantiated booleans
+-- instantiated booleans (on the global cell)
 true: Boolean (1)
 false: Boolean (0)
 
--- definition of Object, the most common blueprint
+-- `console` is just a cell on the global cell
+console: {
+    (log $value) -> `console.log($value)`
+}
+
+-- definition of Array
+Array Cell {
+    (first $value) -> { return `$value[0]` }
+    (last $value) -> { return `$value[$value.length - 1]` }
+    (append $value) -> { return `[...self, $value]` }
+    (prepend $value) -> { return `[$value, ...self]` }
+    -- ...
+}
+
+-- definition of Object
 Object Cell {
     -- behavior for cloning itself with added properties (`$x:` binds a value as a local name)
     (with $props:Tuple) -> {
@@ -162,9 +209,5 @@ Object Cell {
     (freeze) -> {
         return `Object.freeze(self)`
     }
-}
-
-console {
-    (log $value) -> `console.log($value)`
 }
 ```

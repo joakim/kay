@@ -155,11 +155,15 @@ Cell Cell {
     -- behavior for applying a behavior on the caller
     (apply $message on $cell) -> `Reflect.apply(self, $cell, $message)`
     
-    -- when a cell is "extended", its ancestor is appended to this array as a weak reference
-    lineage: []  -- (append (WeakRef (Cell)))
+    -- automagically set properties:
+    type: 'Cell'
+    lineage: []
+    
+    -- when "extended", the new descendant sets the type to its name and adds itself to the lineage:
+    lineage (prepend (WeakRef (self)))
 }
 
--- definition of the base Value cell, "inheriting" behaviors from Cell
+-- definition of the base Value cell, "extended" from Cell
 Value Cell {
     -- internal state
     value: ()
@@ -227,6 +231,8 @@ Object Value {
     
     -- freeze itself
     (freeze) -> `Object.freeze(self)`
+    
+    -- it's lineage is: [Object, Value, Cell]
 }
 
 -- `console` is simply a cell on the "global" cell that takes messages

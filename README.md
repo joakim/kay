@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and methods (functions). Cells communicate by passing messages. Received messages are dynamically matched against method signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters. A cell can not crash, any exceptions are handled internally.
+It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and methods/behaviors (functions). Cells communicate by passing messages. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters. A cell can not crash, any exceptions are handled internally.
 
 Cells are reference values that are implemented as persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
@@ -45,13 +45,13 @@ Replicant: Object with {
     name: 'Replicant'
     model: 'generic'
     
-    -- a method
+    -- a behavior (a function exposed to the outside)
     (move $meters) => {
-        -- calling a method on another object
+        -- calling a behavior on another object
         console log "{name} the {model} replicant moved {$meters} meters"
     }
     
-    -- a local method (a method assigned to a property)
+    -- a method (a function assigned to a property)
     say: ($words) => {
         console log "{name} says: {$words}"
     }
@@ -69,14 +69,14 @@ Nexus9: Replicant with {
         console log "{name} thinks: $thought"
     }
     
-    -- a method without any arguments
+    -- a behavior without any arguments
     (move) => {
         console log '*moves*'
         
-        -- call the `move $meters` method "inherited" from `Replicant`
+        -- call the `move $meters` behavior "inherited" from `Replicant`
         self move 2
         
-        -- if…else "statement" using the `yes-no` method of `Boolean`
+        -- if…else "statement" using the `yes-no` behavior of `Boolean`
         intelligence > 100 (yes {
             think 'Why did I move?'
             think 'Am I really a replicant?'
@@ -93,7 +93,7 @@ Nexus9: Replicant with {
 -- create a new Nexus 9 replicant with some properties
 officer-k: Nexus9 with (name 'K' id 'KD6-3.7' intelligence 140)
 
--- call the `move` method
+-- call the `move` behavior
 officer-k move
 
 --> '*moves*'
@@ -147,16 +147,16 @@ The building blocks:
 
 -- definition of the base Object cell
 Object: {
-    -- method for cloning itself (matches an empty message)
+    -- behavior for cloning itself (matches an empty message)
     () => `Object.assign(Object.create(null), self)`
     
-    -- method for cloning itself with added features (`$x:` binds a value as a local name)
+    -- behavior for cloning itself with added features (`$x:` binds a value as a local name)
     (with $properties:Tuple) => {
         clone: self ()
         
-        -- call the `for` method on `$properties`, passing a method to loop over its items
+        -- call the `for` behavior on `$properties`, passing a method to loop over its items
         $properties for (each $key as $value) => {
-            clone set $key to $value
+            `clone[$key] = $value`
         }
         
         -- add the parent object as an ancestor
@@ -165,16 +165,13 @@ Object: {
         return clone
     }
     
-    -- setter method for mutating object properties
-    (set $key to $value) => `self[$key] = $value`
-    
-    -- getter
+    -- getter behavior
     (get $key) => `self[$key]`
     
     -- freeze itself
     (freeze) => `Object.freeze(self)`
     
-    -- method for applying a method to the caller
+    -- behavior for applying a behavior to the caller
     (apply $message to $cell) => `Reflect.apply(self, $cell, $message)`
     
     lineage: [{}]
@@ -185,13 +182,17 @@ Value: Object with {
     -- internal value
     value: {}
     
+    -- setter method for the internal value
+    set: ($value) => `(self.value = $value, self)`
+    
     -- constructor
-    ($value) => (self ()) set $value
+    ($value) => {
+        new: self ()
+        `new.value = $value`
+        return new
+    }
     
-    -- setter
-    (set $value) => self set value to $value
-    
-    -- getter
+    -- getter behavior for the internal value
     (get) => self get value
     
     -- lineage: [WeakRef Object, {}]
@@ -200,12 +201,12 @@ Value: Object with {
 -- definition of the Boolean value
 Boolean: Value with {
     -- setter method, overriding the one "inherited" from Value
-    (set $value) => `(self.value = Boolean($value), self)`
+    set: ($value) => `(self.value = Boolean($value), self)`
     
-    -- toggle method
-    (toggle) => self set `!value`
+    -- toggle behavior
+    (toggle) => set `!self.value`
     
-    -- yes-no method ("if-then-else", "if-then" and "if-not")
+    -- yes-no behavior ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) => `(value ? do($then) : do($else))`
     (yes $then) => self yes $then no {}
     (no $else) => self yes {} no $else
@@ -223,8 +224,8 @@ bool toggle  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
 Array: Value with {
-    (first) => `value[0]`
-    (last) => `value[value.length - 1]`
+    (first) => `self.value[0]`
+    (last) => `self.value[value.length - 1]`
     (append $value) => `value = [...self.value, $value]`
     (prepend $value) => `value = [$value, ...self.value]`
     -- ...

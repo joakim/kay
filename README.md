@@ -32,7 +32,7 @@ Cells are completely isolated from one another. A cell's local state is only acc
 
 Cells are reference types with persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions. Cells in the same context may subscribe to each other's events, enabling reactivity.
 
-In short: A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message passing. The runtime environment is the stem.
+TLDR: A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message passing. The runtime environment is the stem.
 
 <br/>
 

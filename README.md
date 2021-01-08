@@ -1,6 +1,6 @@
 # Kay
 
-A small programming language inspired by [Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf) and Blade Runner.
+A small programming language inspired by [Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf), [Erlang](https://en.wikipedia.org/wiki/Erlang_(programming_language)), Clojure and [Blade Runner](https://maidenpublishing.co.uk/review/bladerunner/).
 
 <br/>
 
@@ -26,7 +26,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and methods (functions). Cells communicate by passing messages. Received messages are dynamically matched against method signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters. A cell can not crash, any exceptions are handled internally.
 
-Cells are passed by reference and implemented as persistent (immutable) data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
+Cells are passed by reference and implemented as persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 
 The runtime environment is the stem.
 

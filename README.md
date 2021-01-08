@@ -200,8 +200,8 @@ Value: Object with {
 
 -- definition of the Boolean value
 Boolean: Value with {
-    -- setter method, overriding the one "inherited" from Value
-    set: ($value) => `(self.value = Boolean($value), self)`
+    -- preprocess any passed value, casting it to a boolean
+    value preprocess ($value) => `Boolean($value)`
     
     -- toggle behavior
     (toggle) => set `!self.value`
@@ -229,6 +229,7 @@ Array: Value with {
     (append $value) => `value = [...self.value, $value]`
     (prepend $value) => `value = [$value, ...self.value]`
     -- ...
+    
     -- lineage: [WeakRef Value, WeakRef Object, {}]
 }
 

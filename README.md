@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells consist of local state (properties), code (statements and expressions) and methods/behaviors (functions). Cells communicate by message passing. Received messages are dynamically matched against behavior signatures, which may be typed.
+It's cells all the way down, from `global` to values. Cells consist of local state (properties), code (statements and expressions) and methods/behaviors (functions). Cells communicate by message passing. Received messages are dynamically matched against behavior signatures, which may be typed.
 
 There's no inheritance or prototypes, only composition and traits (duck-typing).
 

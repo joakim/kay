@@ -30,9 +30,9 @@ There's no inheritance or prototypes, only composition and traits (duck-typing).
 
 Cells are completely isolated from one another. A cell's local state is only accessible from the outside in a controlled manner through setters and getters. A cell simply _can not_ crash, any exceptions are handled internally.
 
-Cells are reference values with persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions. Cells in the same context may subscribe to each other's events, enabling reactivity.
+Cells are reference types with persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions. Cells in the same context may subscribe to each other's events, enabling reactivity.
 
-The runtime environment is the stem.
+In short: A cell is the synthesis of an object, a block and a function, implemented as a reference type with built-in persistence. The runtime environment is the stem.
 
 <br/>
 

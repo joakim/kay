@@ -80,7 +80,6 @@ Nexus9: Replicant with {
         intelligence > 100 (yes {
             think 'Why did I move?'
             think 'Am I really a replicant?'
-            think 'Do I even exist?'
             think 'My name is Joe...'
             name set 'Joe'  -- update local state
             say "I have a purpose!"
@@ -101,7 +100,6 @@ officer-k move
 --> 'K the Nexus 9 replicant moved 2 meters'
 --> 'K thinks: Why did I move?'
 --> 'K thinks: Am I really a replicant?'
---> 'K thinks: Do I even exist?'
 --> 'K thinks: My name is Joe...'
 --> 'Joe says: I have a purpose!'
 ```

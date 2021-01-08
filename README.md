@@ -1,6 +1,6 @@
 # Kay
 
-A small programming language inspired by [Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf), [Erlang](https://www.eighty-twenty.org/2011/05/08/weaknesses-of-smalltalk-strengths-of-erlang), [Clojure](https://clojure.org/about/state) and [Blade Runner](https://maidenpublishing.co.uk/review/bladerunner/).
+A small programming language inspired by [Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf), [Self](https://selflanguage.org/), [Erlang](https://www.eighty-twenty.org/2011/05/08/weaknesses-of-smalltalk-strengths-of-erlang), [Clojure](https://clojure.org/about/state) and [Blade Runner](https://maidenpublishing.co.uk/review/bladerunner/).
 
 <br/>
 
@@ -147,16 +147,26 @@ primitive: 42  --> 42
 The building blocks:
 
 ```lua
--- the void type is represented by an empty cell that only ever returns itself
-{}: { (*) => self }
-
--- definition of the base Object cell
-Object: {
-    -- behavior for cloning itself (matches an empty message)
+-- blueprint of the base cell
+{
+    -- clones itself (matches an empty message)
     () => `Object.assign(Object.create(null), self)`
     
+    -- checks whether the cell has a behavior
+    (receives $signature) => `self.receives($signature)`
+    
+    -- record and provide the cell's lineage
+    lineage: [{}]
+    (lineage) => lineage
+}
+
+-- the void type is represented by an empty cell that only ever returns itself
+{}: { (_) => self }
+
+-- definition of the Object cell
+Object: {
     -- behavior for cloning itself with added features (`$x:` binds a value as a local name)
-    (with $properties:Tuple) => {
+    (with $properties) => {
         clone: self ()
         
         -- call the `for` behavior on `$properties`, passing a lambda to loop over its items
@@ -178,11 +188,9 @@ Object: {
     
     -- behavior for applying a behavior to the caller
     (apply $message to $cell) => `Reflect.apply(self, $cell, $message)`
-    
-    lineage: [{}]
 }
 
--- definition of the base Value object
+-- definition of the Value object
 Value: Object with {
     -- internal value
     value: {}

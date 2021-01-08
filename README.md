@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and methods/behaviors (functions). Cells communicate by message passing. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. A cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters. A cell can not crash, any exceptions are handled internally.
+It's cells all the way down, from modules to values. Cells consist of local state (properties), code (statements and expressions) and methods/behaviors (functions). Cells communicate by message passing. Received messages are dynamically matched against behavior signatures, which may be typed. There's no inheritance or prototypes, only composition and duck-typing. Each cell is fully opaque, its local state (properties) is not available from the outside except through setters/getters. A cell can not crash, any exceptions are handled internally.
 
 Cells are reference values that are implemented as persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions.
 

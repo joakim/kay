@@ -26,7 +26,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 It's cells all the way down, from environment to values. Cells consist of slots (properties), code (statements and expressions) and methods (functions). Cells communicate by [message signalling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods.
 
-There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.m.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
+There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
 By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter messages, except for explicitly exposed slots. A cell _can not_ crash, any exceptions are handled internally.
 

@@ -45,12 +45,12 @@ Replicant: Object with {
     name: 'Replicant'
     model: 'generic'
     
-    -- a method (a function assigned to a property)
+    -- local method (a function assigned to a property)
     say: ($words) => {
         console log "{name} says: {$words}"
     }
     
-    -- a behavior (a function exposed to the outside)
+    -- behavior (a function exposed to the outside)
     (move $meters) => {
         -- calling a behavior on another object
         console log "{name} the {model} replicant moved {$meters} meters"

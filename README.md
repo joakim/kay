@@ -154,7 +154,7 @@ Object: {
     (with $properties:Tuple) => {
         clone: self ()
         
-        -- call the `for` behavior on `$properties`, passing a method to loop over its items
+        -- call the `for` behavior on `$properties`, passing a lambda to loop over its items
         $properties for (each $key as $value) => {
             `clone[$key] = $value`
         }

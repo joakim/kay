@@ -24,41 +24,37 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells consist of local state (properties), code (statements and expressions) and methods/behaviors (functions). Cells communicate by message passing. Received messages are dynamically matched against behavior signatures, which may be typed.
+It's cells all the way down, from environment to values. Cells consist of slots (properties), code (statements/expressions) and methods/receptors (functions). Cells communicate by [message signalling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are dynamically matched against [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) signatures.
 
-There's no inheritance or prototypes, only composition and traits (duck-typing).
+There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.m.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded, however.
 
-Cells are completely isolated from one another. A cell's local state is only accessible from the outside in a controlled manner through setters and getters. A cell simply _can not_ crash, any exceptions are handled internally.
+By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter messages, except for explicitly exposed slots. A cell _can not_ crash, any exceptions are handled internally.
 
-Cells are reference types with persistent data structures. The receiver of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. Mutating a cell creates a new version from that "view", based on structural sharing of its past versions. Cells in the same context may subscribe to each other's events, enabling reactivity.
+Cells are reference types with persistent data structures. The "reader" of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that "view", based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
 <b title="Too long; didn't read">TL;DR</b>  
-A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message passing. The runtime environment is the stem.
+A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signalling. The runtime environment is the stem.
 
 <br/>
 
 ## Examples
 
-ECMAScript is the runtime in the following examples.
-
-<br/>
-
 ```lua
 -- create a Replicant object
 Replicant: Object with {
-    -- local state (properties)
+    -- slots (properties)
     name: 'Replicant'
     model: 'generic'
     
     -- local method (a function assigned to a property)
     say: ($words) => {
-        console log "{name} says: {$words}"
+        print "{name} says: {$words}"
     }
     
-    -- behavior (a function exposed to the outside)
+    -- receptor method (a function exposed to the outside)
     (move $meters) => {
-        -- calling a behavior on another object
-        console log "{name} the {model} replicant moved {$meters} meters"
+        -- calling a receptor on another object
+        print "{name} the {model} replicant moved {$meters} meters"
     }
 }
 
@@ -71,17 +67,17 @@ Nexus9: Replicant with {
     -- typed method signature
     think: ($thought:String) => {
         thoughts append $thought
-        console log "{name} thinks: $thought"
+        print "{name} thinks: $thought"
     }
     
-    -- a behavior without any arguments
+    -- a receptor without any arguments
     (move) => {
-        console log '*moves*'
+        print '*moves*'
         
-        -- call the `move $meters` behavior "inherited" from `Replicant`
+        -- call the `move $meters` receptor "inherited" from `Replicant`
         self move 2
         
-        -- if…else "statement" using the `yes-no` behavior of `Boolean`
+        -- if…else "statement" using the `yes-no` receptor of `Boolean`
         intelligence > 100 (yes {
             think 'Why did I move?'
             think 'Am I really a replicant?'
@@ -98,7 +94,7 @@ Nexus9: Replicant with {
 -- create a new Nexus 9 replicant with some properties
 officer-k: Nexus9 with (name 'K' id 'KD6-3.7' intelligence 140)
 
--- call the `move` behavior
+-- call the `move` receptor
 officer-k move
 
 --> '*moves*'
@@ -125,7 +121,7 @@ code: {
 }
 
 -- running a cell's code (`do` is a "global" method)
-result: do code  --> 5
+do code  --> 5
 
 -- the definition of `do`
 do: ($cell) => `$cell()`  -- ECMAScript embedded within backticks
@@ -138,8 +134,20 @@ method: (add $a to $b) => {
 -- the above method inlined (implicit return)
 inlined: (add $a to $b) => $a + $b
 
--- primitive values automagically unwrap to return their internal value when read
-primitive: 42  --> 42
+-- primitive values are unboxed when read to return their internal value
+print 42  --> 42, not `Number 42`
+
+-- a cell with exposed slots (marked with an asterisk)
+addition: {
+    *a: 2
+    *b: 3
+    return 2 + 3
+}
+
+-- self-modifying code (powerful, but dangerous)
+do addition  --> 5
+addition a: 7  -- mutate the cell's internal state from the outside
+do addition  --> 10
 ```
 
 <br/>
@@ -147,46 +155,57 @@ primitive: 42  --> 42
 The building blocks:
 
 ```lua
--- blueprint of the base cell
-{
-    -- clones itself (matches an empty message)
-    () => `Object.assign(Object.create(null), self)`
-    
-    -- checks whether the cell has a behavior
-    (receives $signature) => `self.receives($signature)`
-    
-    -- record and provide the cell's lineage
+-- the void type is a special cell that only ever returns itself
+{}: { (_) => self }
+
+-- all other cells descend from this base cell
+Cell: {
     lineage: [{}]
+    
+    -- returns the cell's lineage
     (lineage) => lineage
+    
+    -- clones itself (matches an empty message)
+    () => {
+        clone: `Object.assign(Object.create(null), self)`
+        
+        -- append itself as the parent of the clone
+        `clone.lineage.push(WeakRef(self))`
+        return clone
+    }
+    
+    -- checks whether the cell has a receptor method
+    (receives $signature) => `self.receives($signature)`
 }
 
--- the void type is represented by an empty cell that only ever returns itself
-{}: { (_) => self }
+-- definition of the Method cell
+-- the literal `(args) => { body }` is syntactic sugar for `Method (args) { body }`
+-- any method literal not assigned to a slot is a receptor of the cell
+Method: {
+    ($arguments $body) => `function ($arguments) { $body }`
+}
 
 -- definition of the Object cell
 Object: {
-    -- behavior for cloning itself with added features (`$x:` binds a value as a local name)
+    -- receptor for cloning itself with added features (`$x:` binds a value as a local name)
     (with $properties) => {
         clone: self ()
         
-        -- call the `for` behavior on `$properties`, passing a lambda to loop over its items
+        -- call the `for` receptor on `$properties`, passing a lambda to loop over its items
         $properties for (each $key as $value) => {
             `clone[$key] = $value`
         }
         
-        -- add the parent object as an ancestor
-        (clone get lineage) prepend (WeakRef self)
-        
         return clone
     }
     
-    -- getter behavior
+    -- getter receptor
     (get $key) => `self[$key]`
     
     -- freeze itself
     (freeze) => `Object.freeze(self)`
     
-    -- behavior for applying a behavior to the caller
+    -- receptor for applying a receptor to the caller
     (apply $message to $cell) => `Reflect.apply(self, $cell, $message)`
 }
 
@@ -205,7 +224,7 @@ Value: Object with {
         return new
     }
     
-    -- getter behavior for the internal value
+    -- getter receptor for the internal value
     (get) => self get value
     
     -- lineage: [WeakRef Object, {}]
@@ -216,10 +235,10 @@ Boolean: Value with {
     -- preprocess any passed value, casting it to a boolean
     value preprocess ($value) => `Boolean($value)`
     
-    -- toggle behavior
+    -- toggle receptor
     (toggle) => set `!self.value`
     
-    -- yes-no behavior ("if-then-else", "if-then" and "if-not")
+    -- yes-no receptor ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) => `(value ? do($then) : do($else))`
     (yes $then) => self yes $then no {}
     (no $else) => self yes {} no $else
@@ -246,7 +265,10 @@ Array: Value with {
     -- lineage: [WeakRef Value, WeakRef Object, {}]
 }
 
--- `console` is simply a cell on the "global" cell that takes messages
+-- `print` is a slot on the "global" cell that is a method cell
+print: ($value) => console log $value
+
+-- `console` is a cell with receptors
 console: {
     (log $value) => `console.log($value)`
     -- ...

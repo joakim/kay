@@ -40,37 +40,37 @@ ECMAScript is the runtime in the following examples.
 
 ```lua
 -- create a Replicant object
-Replicant from Object {
+Replicant: Object with {
     -- local state (properties)
     name: 'Replicant'
     model: 'generic'
     
     -- a method
-    (move $meters) -> {
+    (move $meters) => {
         -- calling a method on another object
         console log "{name} the {model} replicant moved {$meters} meters"
     }
     
     -- a local method (a method assigned to a property)
-    say: ($words) -> {
+    say: ($words) => {
         console log "{name} says: {$words}"
     }
 }
 
 -- create a Nexus9 object using Replicant as its blueprint
-Nexus9 from Replicant {
+Nexus9: Replicant with {
     model: 'Nexus 9'
     intelligence: 100
     thoughts: []  -- an array
     
     -- typed method signature
-    think: ($thought:String) -> {
+    think: ($thought:String) => {
         thoughts append $thought
         console log "{name} thinks: $thought"
     }
     
     -- a method without any arguments
-    (move) -> {
+    (move) => {
         console log '*moves*'
         
         -- call the `move $meters` method "inherited" from `Replicant`
@@ -125,15 +125,15 @@ code: {
 result: do code  --> 5
 
 -- the definition of `do`
-do: ($cell) -> `$cell()`  -- ECMAScript embedded within backticks
+do: ($cell) => `$cell()`  -- ECMAScript embedded within backticks
 
 -- a method is a cell that takes a message (equivalent to a function with arguments)
-method: (add $a to $b) -> {
+method: (add $a to $b) => {
     return $a + $b
 }
 
 -- the above method inlined (implicit return)
-inlined: (add $a to $b) -> $a + $b
+inlined: (add $a to $b) => $a + $b
 
 -- primitive values automagically unwrap to return their internal value when read
 primitive: 42  --> 42
@@ -144,55 +144,75 @@ primitive: 42  --> 42
 The building blocks:
 
 ```lua
--- definition of the base cell, a blueprint for all cells
-Cell from () {
-    -- method for cloning itself (matches an empty message)
-    () -> `Object.assign(Object.create(null), self)`
-    
-    -- method for applying a method to the caller
-    (apply $message to $cell) -> `Reflect.apply(self, $cell, $message)`
-    
-    -- properties that are automagically set:
-    type: 'Cell'  -- the name of the cell
-    lineage: [()]  -- the cell's ancestors
-    
-    -- when "extending", the descendant automagically adds its ancestor to the lineage:
-    lineage prepend (WeakRef ancestor)
-}
+-- the void type is represented by an empty cell that only ever returns itself
+{}: { (*) => self }
 
--- definition of the base Value cell, "extended" from Cell
-Value from Cell {
-    -- internal value
-    value: ()
+-- definition of the base Object cell
+Object: {
+    -- method for cloning itself (matches an empty message)
+    () => `Object.assign(Object.create(null), self)`
     
-    -- constructor
-    ($value) -> (self ()) set $value
+    -- method for cloning itself with added features (`$x:` binds a value as a local name)
+    (with $properties:Tuple) => {
+        clone: self ()
+        
+        -- call the `for` method on `$properties`, passing a method to loop over its items
+        $properties for (each $key as $value) => {
+            clone set $key to $value
+        }
+        
+        -- add the parent object as an ancestor
+        (clone get lineage) prepend (WeakRef self)
+        
+        return clone
+    }
     
-    -- setter
-    (set $value) -> `(self.value = $value, self)`
+    -- setter method for mutating object properties
+    (set $key to $value) => `self[$key] = $value`
     
     -- getter
-    (get) -> self.value
+    (get $key) => `self[$key]`
     
-    -- type: 'Value'
-    -- lineage: [WeakRef Cell, ()]
+    -- freeze itself
+    (freeze) => `Object.freeze(self)`
+    
+    -- method for applying a method to the caller
+    (apply $message to $cell) => `Reflect.apply(self, $cell, $message)`
+    
+    lineage: [{}]
+}
+
+-- definition of the base Value object
+Value: Object with {
+    -- internal value
+    value: {}
+    
+    -- constructor
+    ($value) => (self ()) set $value
+    
+    -- setter
+    (set $value) => self set value to $value
+    
+    -- getter
+    (get) => self get value
+    
+    -- lineage: [WeakRef Object, {}]
 }
 
 -- definition of the Boolean value
-Boolean from Value {
+Boolean: Value with {
     -- setter method, overriding the one "inherited" from Value
-    (set $value) -> `(self.value = Boolean($value), self)`
+    (set $value) => `(self.value = Boolean($value), self)`
     
     -- toggle method
-    (toggle) -> self set `!value`
+    (toggle) => self set `!value`
     
     -- yes-no method ("if-then-else", "if-then" and "if-not")
-    (yes $then no $else) -> `(value ? do($then) : do($else))`
-    (yes $then) -> self yes $then no ()
-    (no $else) -> self yes () no $else
+    (yes $then no $else) => `(value ? do($then) : do($else))`
+    (yes $then) => self yes $then no {}
+    (no $else) => self yes {} no $else
 
-    -- type: 'Boolean'
-    -- lineage: [WeakRef Value, WeakRef Cell, ()]
+    -- lineage: [WeakRef Value, WeakRef Object, {}]
 }
 
 -- instantiated booleans (on the "global" cell)
@@ -204,47 +224,18 @@ bool: true  -- sugar for `true ()`, primitive values are sweet
 bool toggle  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
-Array from Value {
-    (first) -> `value[0]`
-    (last) -> `value[value.length - 1]`
-    (append $value) -> `value = [...self.value, $value]`
-    (prepend $value) -> `value = [$value, ...self.value]`
+Array: Value with {
+    (first) => `value[0]`
+    (last) => `value[value.length - 1]`
+    (append $value) => `value = [...self.value, $value]`
+    (prepend $value) => `value = [$value, ...self.value]`
     -- ...
-}
-
--- definition of the Object value
-Object from Value {
-    value: `new PersistentDataStructure()`
-    
-    -- setter method for mutating object properties
-    (set $key to $value) -> `self.value[$key] = $value`
-    
-    -- method for cloning itself with added properties (`$x:` binds a value as a local name)
-    (with $properties:Tuple) -> {
-        -- define a local property
-        object: self ()  -- call the basic clone method
-        
-        -- call the `for` method on `$properties`, passing a method to loop over its items
-        $properties for (each $key as $value) -> {
-            object set $key to $value  -- mutate a property of the object
-        }
-        
-        return object
-    }
-    
-    -- freeze itself
-    (freeze) -> `Object.freeze(self)`
-    
-    -- type: 'Object'
-    -- lineage: [WeakRef Object, WeakRef Value, WeakRef Cell, ()]
+    -- lineage: [WeakRef Value, WeakRef Object, {}]
 }
 
 -- `console` is simply a cell on the "global" cell that takes messages
 console: {
-    (log $value) -> `console.log($value)`
+    (log $value) => `console.log($value)`
     -- ...
 }
-
--- the void type is represented by an empty tuple that only ever returns itself
-(): { (*) -> self }
 ```

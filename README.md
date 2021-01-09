@@ -201,10 +201,10 @@ Cell: {
 }
 
 -- definition of the Method cell
--- the literal `(args) => { body }` is syntactic sugar for `Method (args) { body }`
--- any method literal not assigned to a slot is a receptor of the cell
+-- the literal `(message) => { code }` is syntactic sugar for `Method (message) { code }`
+-- a method literal declared without being assigned to a slot is a receptor of the cell
 Method: {
-    ($arguments $body) => `function ($arguments) { $body }`
+    ($message $code) => `function ($message) { $code }`
 }
 
 -- definition of the Object cell

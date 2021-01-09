@@ -57,7 +57,7 @@ Replicant: Object with {
     }
 }
 
--- create a Nexus9 object using Replicant as its blueprint
+-- create a Nexus9 object by cloning and extending Replicant
 Nexus9: Replicant with {
     replicant: self  -- a reference to this cell (used in nested cells)
     model: 'Nexus 9'

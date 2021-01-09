@@ -59,6 +59,7 @@ Replicant: Object with {
 
 -- create a Nexus9 object using Replicant as its blueprint
 Nexus9: Replicant with {
+    replicant: self  -- a reference to the cell (used later)
     model: 'Nexus 9'
     intelligence: 100
     thoughts: []  -- an array
@@ -72,14 +73,16 @@ Nexus9: Replicant with {
         print '*moves*'
         
         -- signaling the `move $meters` receptor "inherited" from `Replicant`
-        self move 2
+        replicant move 2
         
         -- if…else "statement" by sending a `yes-no` message to the boolean result of >
         intelligence > 100 | yes -> {
             think 'Why did I move?'
             think 'Am I really a replicant?'
             think 'My name is Joe...'
-            name set 'Joe'  -- update local state
+            
+            -- mutate local state
+            replicant name: 'Joe'
             say "I have a purpose!"
         } no -> {
             think "*nothing*"
@@ -178,6 +181,7 @@ The building blocks:
 
 -- all other cells descend from the base Cell
 Cell: {
+    self: `this`
     lineage: [{}]
     
     -- returns the cell's lineage
@@ -186,6 +190,7 @@ Cell: {
     -- clones itself (matches an empty message)
     () => {
         clone: `Object.assign(Object.create(null), self)`
+        `clone.self = clone`
         
         -- append a reference to itself as the parent of the clone
         `clone.lineage.push(WeakRef(self))`
@@ -194,7 +199,7 @@ Cell: {
     }
     
     -- checks whether the cell has a receptor method
-    (receives $signature) => `self.receives($signature)`
+    (has-receptor $signature) => `self.has-receptor($signature)`
 }
 
 -- definition of the Method cell
@@ -206,14 +211,16 @@ Method: {
 
 -- definition of the Object cell
 Object: {
+    object: self
+    
     -- clones itself, merging with specified cell(s)
     (with $spec) => {
-        clone: self ()
+        clone: object ()
         
         -- merge slots into clone
         merge: ($slots) => {
             $slots each ($key and $value) => {
-                `self.clone[$key] = $value`
+                `object.clone[$key] = $value`
             }
         }
         
@@ -227,46 +234,50 @@ Object: {
     }
     
     -- getter
-    (get $key) => `self[$key]`
+    (get $key) => `object[$key]`
     
     -- freezes itself
-    (freeze) => `Object.freeze(self)`
+    (freeze) => `Object.freeze(object)`
     
     -- applies a receptor of this cell to another cell
-    (apply $message to $cell) => `Reflect.apply(self, $cell, $message)`
+    (apply $message to $cell) => `Reflect.apply(object, $cell, $message)`
 }
 
 -- definition of the Value object
 Value: Object with {
+    object: self
+    
     -- internal value
     value: {}
     
     -- setter method for the internal value
-    set: ($value) => `(self.value = $value, self)`
+    set: ($value) => `(object.value = $value, object)`
     
     -- constructor
     ($value) => {
-        new: self ()
+        new: object ()
         `new.value = $value`
         return new
     }
     
     -- getter receptor for the internal value
-    (get) => self get value
+    (get) => object get value
 }
 
 -- definition of the Boolean value
 Boolean: Value with {
+    object: self
+    
     -- preprocess any passed value, casting it to a boolean
     value add-preprocessor ($value) => `Boolean($value)`
     
     -- toggle receptor
-    (toggle) => set `!self.value`
+    (toggle) => set `!object.value`
     
     -- yes-no receptor ("if-then-else", "if-then" and "if-not")
     (yes $then no $else) => `(value ? do($then) : do($else))`
-    (yes $then) => self yes $then no {}
-    (no $else) => self yes {} no $else
+    (yes $then) => object yes $then no {}
+    (no $else) => object yes {} no $else
 }
 
 -- instantiated booleans (on the environment cell)
@@ -279,10 +290,12 @@ bool toggle  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
 Array: Value with {
-    (first) => `self.value[0]`
-    (last) => `self.value[value.length - 1]`
-    (append $value) => `value = [...self.value, $value]`
-    (prepend $value) => `value = [$value, ...self.value]`
+    object: self
+    
+    (first) => `object.value[0]`
+    (last) => `object.value[value.length - 1]`
+    (append $value) => `value = [...object.value, $value]`
+    (prepend $value) => `value = [$value, ...object.value]`
     -- ...
 }
 

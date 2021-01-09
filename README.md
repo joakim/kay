@@ -72,10 +72,10 @@ Nexus9: Replicant with {
     (move) => {
         print '*moves*'
         
-        -- signaling the `move $meters` receptor "inherited" from `Replicant`
+        -- signal the `move $meters` receptor "inherited" from `Replicant`
         replicant move 2
         
-        -- if…else "statement" by sending a `yes-no` message to the boolean result of >
+        -- if…else "statement" by sending a `yes-no` message to the boolean result of `> 100`
         intelligence > 100 | yes -> {
             think 'Why did I move?'
             think 'Am I really a replicant?'

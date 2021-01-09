@@ -63,20 +63,18 @@ Nexus9: Replicant with {
     intelligence: 100
     thoughts: []  -- an array
     
-    -- typed method signature
     think: ($thought) => {
         thoughts append $thought
         print "{name} thinks: $thought"
     }
     
-    -- a receptor with a unary message
     (move) => {
         print '*moves*'
         
         -- signaling the `move $meters` receptor "inherited" from `Replicant`
         self move 2
         
-        -- if…else "statement" by sending a `yes-no` message to the boolean
+        -- if…else "statement" by sending a `yes-no` message to the boolean result of >
         intelligence > 100 | yes -> {
             think 'Why did I move?'
             think 'Am I really a replicant?'

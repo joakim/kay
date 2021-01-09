@@ -83,7 +83,7 @@ Nexus9: Replicant with {
             
             -- mutate local state
             replicant name: 'Joe'
-            say "I have a purpose!"
+            say "My name is {name}!"
         } no -> {
             think "*nothing*"
         }

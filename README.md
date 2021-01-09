@@ -28,7 +28,7 @@ It's cells all the way down, from environment to values. Cells consist of slots 
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
-By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter messages, except for explicitly exposed slots. A cell _can not_ crash, any exceptions are handled internally.
+By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter signals, except for explicitly exposed slots. A cell _can not_ crash, any exceptions are handled internally.
 
 Cells are reference types with persistent data structures. The "reader" of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that "view", based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
@@ -70,7 +70,7 @@ Nexus9: Replicant with {
         print "{name} thinks: $thought"
     }
     
-    -- a receptor without any arguments
+    -- a receptor with a unary message
     (move) => {
         print '*moves*'
         
@@ -119,7 +119,7 @@ block: -> {}
 method: => {}
 
 -- literal for a method with arguments (function)
-method-2: (foo bar) => {}
+method-2: (foo $bar) => {}
 
 -- cell with local state and code (equivalent to a function expression with no arguments)
 code: {
@@ -209,27 +209,33 @@ Method: {
 
 -- definition of the Object cell
 Object: {
-    -- receptor for cloning itself with added features (`$x:` binds a value as a local name)
-    (with $props) => {
+    -- clones itself with specified slots or slots of specified cells
+    (with $spec) => {
         clone: self ()
         
-        props: $props is-array? | yes -> $props no -> 
+        -- merge slots into clone
+        merge: ($slots) => {
+            $slots each ($key and $value) => {
+                `self.clone[$key] = $value`
+            }
+        }
         
-        -- call the `for` receptor on `$props`, passing a lambda to loop over its items
-        $props for (each $key as $value) => {
-            `clone[$key] = $value`
+        $spec is-array? | yes -> {
+            $spec each ($item) => { merge $item }
+        } no -> {
+            merge $spec
         }
         
         return clone
     }
     
-    -- getter receptor
+    -- getter
     (get $key) => `self[$key]`
     
-    -- freeze itself
+    -- freezes itself
     (freeze) => `Object.freeze(self)`
     
-    -- receptor for applying a receptor to the caller
+    -- applies a receptor of this cell to another cell
     (apply $message to $cell) => `Reflect.apply(self, $cell, $message)`
 }
 
@@ -250,14 +256,12 @@ Value: Object with {
     
     -- getter receptor for the internal value
     (get) => self get value
-    
-    -- lineage: [WeakRef Object, {}]
 }
 
 -- definition of the Boolean value
 Boolean: Value with {
     -- preprocess any passed value, casting it to a boolean
-    value preprocess ($value) => `Boolean($value)`
+    value add-preprocessor ($value) => `Boolean($value)`
     
     -- toggle receptor
     (toggle) => set `!self.value`
@@ -266,8 +270,6 @@ Boolean: Value with {
     (yes $then no $else) => `(value ? do($then) : do($else))`
     (yes $then) => self yes $then no {}
     (no $else) => self yes {} no $else
-
-    -- lineage: [WeakRef Value, WeakRef Object, {}]
 }
 
 -- instantiated booleans (on the "global" cell)
@@ -285,8 +287,6 @@ Array: Value with {
     (append $value) => `value = [...self.value, $value]`
     (prepend $value) => `value = [$value, ...self.value]`
     -- ...
-    
-    -- lineage: [WeakRef Value, WeakRef Object, {}]
 }
 
 -- `print` is a slot on the "global" cell that is a method cell

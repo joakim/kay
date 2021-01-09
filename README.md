@@ -53,7 +53,6 @@ Replicant: Object with {
     
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
-        -- signaling a receptor on another object
         print "{name} the {model} replicant moved {$meters} meter{$meters <> 1 | yes -> 's'}"
     }
 }
@@ -109,7 +108,7 @@ officer-k move
 It's all cells:
 
 ```lua
--- empty cell literal (object)
+-- empty cell literal
 cell: {}
 
 -- literal signifying a code cell (block)
@@ -148,7 +147,7 @@ inlined: (add $a to $b) => $a + $b
 -- primitive values are unboxed when read to return their internal value
 print 42  --> 42, not `Number 42`
 
--- a mutable "object" cell (all slots exposed, like objects/structs/dicts in other languages)
+-- a mutable cell with all slots exposed (like objects/structs/dicts in other languages)
 object: *{
     foo: 42
     bar: true
@@ -158,7 +157,7 @@ object: *{
 object foo: 10
 object bar: false
 
--- a "block" cell with an exposed slot (marked with an asterisk)
+-- a cell with an exposed slot, marked with an asterisk (block)
 addition: {
     *a: 2
     b: 3

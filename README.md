@@ -53,7 +53,7 @@ Replicant: Object with {
     
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
-        -- calling a receptor on another object
+        -- signaling a receptor on another object
         print "{name} the {model} replicant moved {$meters} meter{$meters <> 1 | yes -> 's'}"
     }
 }
@@ -74,7 +74,7 @@ Nexus9: Replicant with {
     (move) => {
         print '*moves*'
         
-        -- call the `move $meters` receptor "inherited" from `Replicant`
+        -- signaling the `move $meters` receptor "inherited" from `Replicant`
         self move 2
         
         -- if…else "statement" by sending a `yes-no` message to the boolean
@@ -93,7 +93,7 @@ Nexus9: Replicant with {
 -- create a new Nexus 9 replicant with some properties
 officer-k: Nexus9 with { name: 'K', intelligence: 140 }
 
--- call the `move` receptor
+-- signaling the `move` receptor
 officer-k move
 
 --> '*moves*'

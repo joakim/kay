@@ -46,7 +46,7 @@ Replicant: Object with {
     name: 'Replicant'
     model: 'generic'
     
-    -- local method (a function assigned to a property)
+    -- local method (a function assigned to a slot)
     say: ($words) => {
         print "{name} says: {$words}"
     }

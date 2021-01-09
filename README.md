@@ -24,7 +24,7 @@ A small programming language inspired by [Smalltalk](http://worrydream.com/refs/
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells consist of slots (properties), code (statements and expressions) and methods (functions). Cells communicate by [message signalling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods.
+It's cells all the way down, from environment to values. Cells consist of slots (properties), code (statements and expressions) and methods (functions). Cells communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. The matched receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of the signal and producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
@@ -33,7 +33,7 @@ By default, cells are opaque and isolated. A cell's internal state may only be a
 Cells are reference types with persistent data structures. The "reader" of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that "view", based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
 <b title="Too long; didn't read">TL;DR</b>  
-A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signalling. The runtime environment is the stem.
+A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime environment is the stem.
 
 <br/>
 
@@ -77,17 +77,16 @@ Nexus9: Replicant with {
         -- call the `move $meters` receptor "inherited" from `Replicant`
         self move 2
         
-        -- if…else "statement" using the `yes-no` receptor of `Boolean`
-        intelligence > 100 (yes {
+        -- if…else "statement" by sending a `yes-no` message to the boolean
+        intelligence > 100 | yes -> {
             think 'Why did I move?'
             think 'Am I really a replicant?'
             think 'My name is Joe...'
             name set 'Joe'  -- update local state
             say "I have a purpose!"
-        }
-        no {
+        } no -> {
             think "*nothing*"
-        })
+        }
     }
 }
 
@@ -110,41 +109,63 @@ officer-k move
 It's all cells:
 
 ```lua
--- an empty cell literal
+-- empty cell literal (object)
 cell: {}
 
--- a cell with local state and code (equivalent to a function with no arguments)
+-- literal signifying a code cell (block)
+block: -> {}
+
+-- literal signifying a method cell (function)
+method: => {}
+
+-- literal for a method with arguments (function)
+method-2: (foo bar) => {}
+
+-- cell with local state and code (equivalent to a function expression with no arguments)
 code: {
     a: 2
-    b: a + 3
-    return b
+    b: 3
+    c: a + b
+    print "{a} + {b} = {c}"
+    return c
 }
 
--- running a cell's code (`do` is a "global" method)
-do code  --> 5
+-- running a cell's code (`do` is an environment method)
+result: do code  --> "2 + 3 = 5"
+print result  --> 5
 
--- the definition of `do`
-do: ($cell) => `$cell()`  -- ECMAScript embedded within backticks
+-- definition of the `do` method
+do: ($cell) => `$cell()`  -- JavaScript in backticks to illustrate what it does
 
 -- a method is a cell that takes a message (equivalent to a function with arguments)
 method: (add $a to $b) => {
     return $a + $b
 }
 
--- the above method inlined (implicit return)
+-- the above method, inlined (implicit return)
 inlined: (add $a to $b) => $a + $b
 
 -- primitive values are unboxed when read to return their internal value
 print 42  --> 42, not `Number 42`
 
--- a cell with exposed slots (marked with an asterisk)
+-- a mutable cell (all slots exposed, like objects/structs/dicts in other languages)
+object: *{
+    foo: 42
+    bar: true
+}
+
+-- mutating the cell from the outside
+object foo: 10
+object bar: false
+
+-- a cell with only one exposed slot (marked with an asterisk)
 addition: {
     *a: 2
-    *b: 3
+    b: 3
     return 2 + 3
 }
 
--- self-modifying code (powerful, but dangerous)
+-- makes self-modifying code possible (powerful/dangerous)
 do addition  --> 5
 addition a: 7  -- mutate the cell's internal state from the outside
 do addition  --> 10
@@ -158,7 +179,7 @@ The building blocks:
 -- the void type is a special cell that only ever returns itself
 {}: { (_) => self }
 
--- all other cells descend from this base cell
+-- all other cells descend from the base Cell
 Cell: {
     lineage: [{}]
     
@@ -169,8 +190,9 @@ Cell: {
     () => {
         clone: `Object.assign(Object.create(null), self)`
         
-        -- append itself as the parent of the clone
+        -- append a reference to itself as the parent of the clone
         `clone.lineage.push(WeakRef(self))`
+        
         return clone
     }
     
@@ -188,11 +210,13 @@ Method: {
 -- definition of the Object cell
 Object: {
     -- receptor for cloning itself with added features (`$x:` binds a value as a local name)
-    (with $properties) => {
+    (with $props) => {
         clone: self ()
         
-        -- call the `for` receptor on `$properties`, passing a lambda to loop over its items
-        $properties for (each $key as $value) => {
+        props: $props is-array? | yes -> $props no -> 
+        
+        -- call the `for` receptor on `$props`, passing a lambda to loop over its items
+        $props for (each $key as $value) => {
             `clone[$key] = $value`
         }
         

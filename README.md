@@ -271,7 +271,7 @@ Boolean: Value with {
     (no $else) => self yes {} no $else
 }
 
--- instantiated booleans (on the "global" cell)
+-- instantiated booleans (on the environment cell)
 true: Boolean 1
 false: Boolean 0
 
@@ -288,7 +288,7 @@ Array: Value with {
     -- ...
 }
 
--- `print` is a slot on the "global" cell that is a method cell
+-- `print` is a slot on the environment cell that is a method cell
 print: ($value) => console log $value
 
 -- `console` is a cell with receptors

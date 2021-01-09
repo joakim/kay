@@ -59,7 +59,7 @@ Replicant: Object with {
 
 -- create a Nexus9 object using Replicant as its blueprint
 Nexus9: Replicant with {
-    replicant: self  -- a reference to the cell (used later)
+    replicant: self  -- a reference to this cell (used in nested cells)
     model: 'Nexus 9'
     intelligence: 100
     thoughts: []  -- an array

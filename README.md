@@ -209,7 +209,7 @@ Method: {
 
 -- definition of the Object cell
 Object: {
-    -- clones itself with specified slots or slots of specified cells
+    -- clones itself, merging with specified cell(s)
     (with $spec) => {
         clone: self ()
         

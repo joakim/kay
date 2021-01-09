@@ -54,7 +54,7 @@ Replicant: Object with {
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
         -- calling a receptor on another object
-        print "{name} the {model} replicant moved {$meters} meters"
+        print "{name} the {model} replicant moved {$meters} meter{$meters <> 1 | yes -> 's'}"
     }
 }
 
@@ -91,7 +91,7 @@ Nexus9: Replicant with {
 }
 
 -- create a new Nexus 9 replicant with some properties
-officer-k: Nexus9 with (name 'K' id 'KD6-3.7' intelligence 140)
+officer-k: Nexus9 with { name: 'K', intelligence: 140 }
 
 -- call the `move` receptor
 officer-k move
@@ -273,8 +273,8 @@ Boolean: Value with {
 }
 
 -- instantiated booleans (on the "global" cell)
-true: Boolean (1)
-false: Boolean (0)
+true: Boolean 1
+false: Boolean 0
 
 -- toggling a boolean
 bool: true  -- sugar for `true ()`, primitive values are sweet

@@ -53,7 +53,7 @@ Replicant: Object with {
     
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
-        print "{name} the {model} replicant moved {$meters} meter{$meters <> 1 | yes -> 's'}"
+        print "{name} the {model} replicant moved {$meters} meter{$meters <> 1 | true -> 's'}"
     }
 }
 
@@ -75,8 +75,8 @@ Nexus9: Replicant with {
         -- signal the `move $meters` receptor "inherited" from `Replicant`
         replicant move 2
         
-        -- if…else "statement" by sending a `yes-no` message to the boolean result of `> 100`
-        intelligence > 100 | yes -> {
+        -- if…else "statement" by sending a `true-false` message to the boolean result of `> 100`
+        intelligence > 100 | true -> {
             think 'Why did I move?'
             think 'Am I really a replicant?'
             think 'My name is Joe...'
@@ -84,7 +84,7 @@ Nexus9: Replicant with {
             -- mutate local state
             replicant name: 'Joe'
             say "My name is {name}!"
-        } no -> {
+        } false -> {
             think "*nothing*"
         }
     }
@@ -224,9 +224,9 @@ Object: {
             }
         }
         
-        $spec is-array? | yes -> {
+        $spec is-array? | true -> {
             $spec each ($item) => { merge $item }
-        } no -> {
+        } false -> {
             merge $spec
         }
         
@@ -271,13 +271,13 @@ Boolean: Value with {
     -- preprocess any passed value, casting it to a boolean
     value add-preprocessor ($value) => `Boolean($value)`
     
-    -- toggle receptor
+    -- toggles the value
     (toggle) => set `!object.value`
     
-    -- yes-no receptor ("if-then-else", "if-then" and "if-not")
-    (yes $then no $else) => `(value ? do($then) : do($else))`
-    (yes $then) => object yes $then no {}
-    (no $else) => object yes {} no $else
+    -- conditionals ("if-then-else", "if-then" and "if-not")
+    (true $then false $else) => `(value ? do($then) : do($else))`
+    (true $then) => object true $then false {}
+    (false $else) => object true {} false $else
 }
 
 -- instantiated booleans (on the environment cell)

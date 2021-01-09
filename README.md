@@ -93,7 +93,7 @@ Nexus9: Replicant with {
 -- create a new Nexus 9 replicant
 officer-k: Nexus9 with { name: 'K', intelligence: 140 }
 
--- signal the `move` receptor
+-- signal its `move` receptor
 officer-k move
 
 --> '*moves*'

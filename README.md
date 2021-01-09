@@ -48,12 +48,12 @@ Replicant: Object with {
     
     -- local method (a function assigned to a slot)
     say: ($words) => {
-        print "{name} says: {$words}"
+        print "{name} says: {words}"
     }
     
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
-        print "{name} the {model} replicant moved {$meters} meter{$meters <> 1 | true -> 's'}"
+        print "{name} the {model} replicant moved {meters} meter{meters <> 1 | 's' if true}"
     }
 }
 
@@ -65,8 +65,8 @@ Nexus9: Replicant with {
     thoughts: []  -- an array
     
     think: ($thought) => {
-        thoughts append $thought
-        print "{name} thinks: $thought"
+        thoughts append thought
+        print "{name} thinks: {thought}"
     }
     
     (move) => {
@@ -75,18 +75,16 @@ Nexus9: Replicant with {
         -- signal the `move $meters` receptor "inherited" from `Replicant`
         replicant move 2
         
-        -- if…else "statement" by sending a `true-false` message to the boolean result of `> 100`
-        intelligence > 100 | true -> {
-            think 'Why did I move?'
-            think 'Am I really a replicant?'
-            think 'My name is Joe...'
-            
-            -- mutate local state
-            replicant name: 'Joe'
-            say "My name is {name}!"
-        } false -> {
-            think "*nothing*"
-        }
+        -- "if…else statement" using `true` and `false` on the boolean result of `> 100`
+        intelligence > 100
+            | true -> {
+                think 'Why did I move?'
+                think 'Am I really a replicant?'
+                think 'My name is Joe...'
+                replicant name: 'Joe'  -- mutate local state
+                say "My name is {name}!"
+            }
+            | false -> think "*nothing*"
     }
 }
 
@@ -135,15 +133,15 @@ result: do code  --> "2 + 3 = 5"
 print result  --> 5
 
 -- definition of the `do` method
-do: ($cell) => `$cell()`  -- JavaScript in backticks to illustrate what it does
+do: ($cell) => `cell()`  -- JavaScript in backticks to illustrate what it does
 
 -- a method is a cell that takes a message (equivalent to a function with arguments)
 method: (add $a to $b) => {
-    return $a + $b
+    return a + b
 }
 
 -- the above method, inlined (implicit return)
-inlined: (add $a to $b) => $a + $b
+inlined: (add $a to $b) => a + b
 
 -- primitive values are unboxed when read to return their internal value
 print 42  --> 42, not `Number 42`
@@ -198,15 +196,16 @@ Cell: {
         return clone
     }
     
-    -- checks whether the cell has a receptor method
-    (has-receptor $signature) => `self.hasReceptor($signature)`
-}
-
--- definition of the Method cell
--- the literal `(message) => { code }` is syntactic sugar for `Method (message) { code }`
--- a method literal declared without being assigned to a slot is a receptor of the cell
-Method: {
-    ($message $code) => `function ($message) { $code }`
+    -- conditionals (replaces if statements, any cell can define its truthy/falsy-ness)
+    (true $then) => `(object.value ? do(then) : undefined) ?? object`
+    (false $then) => `(object.value ? undefined : do(then)) ?? object`
+    ($cell if true) => `object.value ? cell : object`
+    ($cell if false) => `object.value ? object : cell`
+    ($cell if true else $cell2) => `object.value ? cell : cell2`
+    ($cell if false else $cell2) => `object.value ? cell2 : cell`
+    
+    -- checks whether the cell has a receptor matching the signature
+    (has-receptor $signature) => `self.hasReceptor(signature)`
 }
 
 -- definition of the Object cell
@@ -219,28 +218,32 @@ Object: {
         
         -- merge slots into clone
         merge: ($slots) => {
-            $slots each ($key and $value) => {
-                `object.clone[$key] = $value`
+            slots each ($key and $value) => {
+                `object.clone[key] = value`
             }
         }
         
-        $spec is-array? | true -> {
-            $spec each ($item) => { merge $item }
-        } false -> {
-            merge $spec
-        }
+        spec is-array
+            | true -> spec each ($item) => merge item
+            | false -> merge spec
         
         return clone
     }
     
     -- getter
-    (get $key) => `object[$key]`
+    ($key) => object is-mutable | `object[key]` if true
+    
+    -- setter
+    ($key: $value) => object is-mutable | true => {
+        `object[key] = value`
+        return object
+    }
     
     -- freezes itself
     (freeze) => `Object.freeze(object)`
     
     -- applies a receptor of this cell to another cell
-    (apply $message to $cell) => `Reflect.apply(object, $cell, $message)`
+    (apply $message to $cell) => `Reflect.apply(object, cell, message)`
 }
 
 -- definition of the Value object
@@ -251,12 +254,12 @@ Value: Object with {
     value: {}
     
     -- setter method for the internal value
-    set: ($value) => `(object.value = $value, object)`
+    set: ($value) => `(object.value = value, object)`
     
     -- constructor
     ($value) => {
         new: object ()
-        `new.value = $value`
+        `new.value = value`
         return new
     }
     
@@ -268,16 +271,11 @@ Value: Object with {
 Boolean: Value with {
     object: self
     
-    -- preprocess any passed value, casting it to a boolean
-    value add-preprocessor ($value) => `Boolean($value)`
+    -- preprocess the value before being set, casting it to a boolean
+    value add-preprocessor ($value) => `Boolean(value)`
     
     -- toggles the value
     (toggle) => set `!object.value`
-    
-    -- conditionals ("if-then-else", "if-then" and "if-not")
-    (true $then false $else) => `(value ? do($then) : do($else))`
-    (true $then) => object true $then false {}
-    (false $else) => object true {} false $else
 }
 
 -- instantiated booleans (on the environment cell)
@@ -292,19 +290,27 @@ bool toggle  --> false (the value is automagically unwrapped when read)
 Array: Value with {
     object: self
     
+    (is-array) => true  -- obviously
     (first) => `object.value[0]`
     (last) => `object.value[value.length - 1]`
-    (append $value) => `value = [...object.value, $value]`
-    (prepend $value) => `value = [$value, ...object.value]`
+    (append $value) => `object.value = [...object.value, value]`
+    (prepend $value) => `object.value = [value, ...object.value]`
+    (map $mapper) => `object.value.map(mapper)`
     -- ...
 }
 
+-- the literal `(message) => { code }` is syntactic sugar equivalent to `Method (message) { code }`
+-- any method literal declared without being assigned to a slot is a receptor of the cell
+Method: {
+    ($message $code) => `function (message) { code }`
+}
+
 -- `print` is a slot on the environment cell that is a method cell
-print: ($value) => console log $value
+print: ($value) => console log value
 
 -- `console` is a cell with receptors
 console: {
-    (log $value) => `console.log($value)`
+    (log $value) => `console.log(value)`
     -- ...
 }
 ```

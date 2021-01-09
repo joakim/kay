@@ -64,7 +64,7 @@ Nexus9: Replicant with {
     thoughts: []  -- an array
     
     -- typed method signature
-    think: ($thought:String) => {
+    think: ($thought) => {
         thoughts append $thought
         print "{name} thinks: $thought"
     }

@@ -199,7 +199,7 @@ Cell: {
     }
     
     -- checks whether the cell has a receptor method
-    (has-receptor $signature) => `self.has-receptor($signature)`
+    (has-receptor $signature) => `self.hasReceptor($signature)`
 }
 
 -- definition of the Method cell

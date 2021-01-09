@@ -28,9 +28,9 @@ It's cells all the way down, from environment to values. Cells consist of slots 
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
-By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter signals, unless slots are explicitly exposed. Exceptions are handled internally, a cell _can not crash_.
+By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter signals, unless slots are explicitly exposed. Exceptions are handled internally, a cell can not crash.
 
-Cells are reference types with persistent data structures. The "reader" of a cell gets a "view" of the cell's state _as it was_ at that particular instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that "view", based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
+Cells are reference types with persistent data structures. The "reader" of a cell gets a "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that "view", based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
 <b title="Too long; didn't read">TL;DR</b>  
 A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime environment is the stem.

@@ -260,7 +260,7 @@ print 42  --> "42, not `Number 42`"
 foo: 42
 self foo: 42
 
-"setters are special messages, what follows `:` is evaluated as an expression, `()` is not needed"
+"setters have special messages, what follows `:` is evaluated as an expression, `()` is not needed"
 bar: foo
 print (bar)  --> 42
 ```

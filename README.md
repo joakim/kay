@@ -50,8 +50,8 @@ Cells are first-class reference types with persistent data structures. The "[obs
 <sup>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Comments should be like [Haskell's](https://wiki.haskell.org/Commenting). In the following examples, comments are also enclosed in `""` for the Smalltalk syntax highlighting to look right. `-->` signifies output.</sup>
 
 ```smalltalk
--- "create a Replicant object"
-Replicant: Object with {
+-- "create a Replicant cell"
+Replicant: {
     -- "slots"
     name: 'Replicant'
     model: 'Generic'
@@ -68,7 +68,7 @@ Replicant: Object with {
     }
 }
 
--- "create a Nexus9 object by cloning and extending Replicant"
+-- "create a Nexus9 cell by cloning and extending Replicant"
 Nexus9: Replicant with {
     replicant: self
     model: 'Nexus 9'
@@ -172,7 +172,7 @@ method-inlined: | (argument) | => true
 method: => {
     a: 2
     b: 3
-    result: (a + b)
+    result: a + b
     print '{a} + {b} = {result}'
     return (result)
 }
@@ -230,8 +230,8 @@ adder: | (x) | => {
     }
 }
 
-add-5: (adder 5)
-add-10: (adder 10)
+add-5: adder 5
+add-10: adder 10
 
 print (add-5 2)   --> 7
 print (add-10 2)  --> 12
@@ -267,6 +267,7 @@ The building blocks:
 
 -- "all other cells descend from the base Cell"
 Cell: {
+    cell: self
     lineage: [{}]
     exposed: {}
     
@@ -278,10 +279,27 @@ Cell: {
     
     -- "clones itself (matches an empty message)"
     | | => {
-        clone: `Object.assign(Object.create(null), self)`
+        clone: `Object.assign(Object.create(null), cell)`
         
         -- "append a reference to itself as the parent of the clone"
-        `clone.lineage.push(WeakRef(self))`
+        `clone.lineage.push(WeakRef(cell))`
+        
+        return (clone)
+    }
+    
+    -- "clones itself, merging with the specified cell(s), enabling composition of multiple cells"
+    | with (spec) | => {
+        clone: cell
+        
+        -- "merge slots into the clone"
+        merge: | (slots) | => {
+            slots each | (key) (value) | => `Reflect.set(clone, key, value)`
+        }
+        
+        -- "if merging with an array of cells, merge each cell in turn"
+        spec (is array)
+            then -> spec each | (item) | => merge (item)
+            else -> merge (spec)
         
         return (clone)
     }
@@ -299,10 +317,10 @@ Cell: {
     | (key): (value) | => (self is mutable) or (self has (key)) << `(Reflect.set(self.exposed, key, value), self)` if true
     
     -- "conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)"
-    | then (cell) | => self if true (cell)
-    | else (cell) | => self if false (cell)
-    | if true (cell) | => `(self ? do(cell) : undefined) ?? self`
-    | if false (cell) | => `(self ? undefined : do(cell)) ?? self`
+    | then (implication) | => self if true (implication)
+    | else (implication) | => self if false (implication)
+    | if true (implication) | => `(self ? do(implication) : undefined) ?? self`
+    | if false (implication) | => `(self ? undefined : do(implication)) ?? self`
     | (value) if true | => `self ? value : undefined`
     | (value) if false | => `self ? undefined : value`
     | (value-1) if true else (value-2) | => `self ? value-1 : value-2`
@@ -315,35 +333,11 @@ Cell: {
     | has receptor (signature) | => `self.hasReceptor(signature)`
     
     -- "applies a receptor of this cell to another cell"
-    | apply (message) to (cell) | => `Reflect.apply(self, cell, message)`
+    | apply (message) to (other) | => `Reflect.apply(self, other, message)`
 }
 
--- "definition of the Object cell"
-Object: {
-    cell: self
-    
-    -- "clones itself, merging with the specified cell(s), enabling composition of multiple cells"
-    | with (spec) | => {
-        clone: cell
-        
-        -- "merge slots into the clone"
-        merge: | (slots) | => {
-            slots each | (key) (value) | => {
-                `cell.clone[key] = value`
-            }
-        }
-        
-        -- "if merging with an array of cells, merge each cell in turn"
-        spec (is array)
-            then -> spec each | (item) | => merge (item)
-            else -> merge (spec)
-        
-        return (clone)
-    }
-}
-
--- "definition of the Value object"
-Value: Object with {
+-- "definition of the Value cell"
+Value: {
     cell: self
     
     -- "internal value and its validators, preprocessors and subscribers"
@@ -447,4 +441,48 @@ console: {
 
 -- "the `do` method"
 do: | (cell) | => `cell()`
+```
+
+Simulating a biological cell (disclaimer: I am not a molecular biologist!):
+
+```smalltalk
+foobar: Cell {
+	cell: self
+	
+	dna: *{
+		foo: 40
+	}
+	
+	rna: Stack
+	
+	ribosomes: []
+	
+	dna on change do transcribe
+	
+	transcribe: | (value) | -> {
+		instructions: { "..." }
+		foo ≥ 42 then -> rna put (instructions)
+	}
+	
+	ribosome: {
+		process: | (instructions) | => {
+			protein: Protein from (instructions)
+			cell emit (protein)
+		}
+		
+		loop -> {
+			await -> instructions: rna take
+			process (instructions)
+		}
+	}
+	
+	ribosomes append ribosome
+	
+	| increase foo | => dna foo increment
+}
+
+foobar increase foo
+foobar increase foo
+
+-- "A new protein is emitted!"
 ```

@@ -79,7 +79,7 @@ Nexus9: Replicant with {
         -- "signal the `move (meters)` receptor inherited from `Replicant`"
         replicant move 2
         
-        -- "signaling `then` and `else` to the boolean result of `> 100`, like an if statement"
+        -- "signaling `then` and `else` of the boolean result of `> 100`, like an if statement"
         intelligence > 100
             then -> {
                 think 'Why did I move?'

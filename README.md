@@ -245,7 +245,7 @@ inlined: | (x) | => | (y) | => x + y
 
 "self-modifying code by mutating exposed slots between calls (powerful/dangerous)"
 add: | (a) to (b) | => {
-    expose output: {}
+    *output: {}
     output (a + b)
 }
 
@@ -282,7 +282,7 @@ Cell: {
     "slot initialization"
     set: | (key): ...(value) | => `Reflect.set(self, key, value)`
     
-    "exposed slot initialization"
+    "exposed slot initialization (`*`) is syntactic sugar for this method"
     expose: | (key): ...(value) | => exposed (key): value
     
     "clones itself (matches an empty message)"

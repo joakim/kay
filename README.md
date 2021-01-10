@@ -272,7 +272,7 @@ Object: {
     
     -- clones itself, merging with specified cell(s)
     'with (spec)' => {
-        clone: cell ()
+        clone: cell
         
         -- merge slots into clone
         merge: '(slots)' => {
@@ -304,7 +304,7 @@ Value: Object with {
     
     -- constructor
     '(value)' => {
-        clone: cell ()
+        clone: cell
         `clone.value = value`
         return (clone)
     }
@@ -351,7 +351,7 @@ true: Boolean 1
 false: Boolean 0
 
 -- toggling a boolean
-bool: true  -- sugar for `true ()`, primitive values are sweet
+bool: true
 bool negate
 print (bool)  --> false (the value is automagically unwrapped when read)
 

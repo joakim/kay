@@ -247,8 +247,8 @@ Cell: {
     '(key)' => (self is mutable) or (self has (key)) | `Reflect.get(self.exposed, key)` if true
     
     -- conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)
-    'then (cell)' => self if true cell
-    'else (cell)' => self if false cell
+    'then (cell)' => self if true (cell)
+    'else (cell)' => self if false (cell)
     'if true (cell)' => `(self ? do(cell) : undefined) ?? self`
     'if false (cell)' => `(self ? undefined : do(cell)) ?? self`
     '(value) if true' => `self ? value : undefined`

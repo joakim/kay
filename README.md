@@ -245,7 +245,10 @@ Cell: {
     lineage: [{}]
     exposed: {}
     
-    -- "local exposed slot definition method"
+    -- "slot initialization"
+    set: | (key): (...value) | => `Reflect.set(self, key, value)`
+    
+    -- "exposed slot initialization"
     expose: | (key): (...value) | => exposed (key): (value)
     
     -- "clones itself (matches an empty message)"

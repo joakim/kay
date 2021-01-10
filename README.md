@@ -188,8 +188,11 @@ mutable: *{
 }
 
 -- "mutating exposed slots from outside the cell"
--- "setters return the cell, so multiple messages may be piped/chained (fluent interface)"
-mutable foo: 10 << bar: false
+-- "setters return the cell, so messages may be piped/chained (fluent interface)"
+-- "here using indentation syntax for chaining setter messages"
+mutable
+    foo: 10
+    bar: false
 
 -- "specifying the slot name using a string"
 key: 'foo'

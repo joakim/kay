@@ -53,7 +53,7 @@ Replicant: Object with {
     -- receptor method (a function exposed to the outside)
     'move (distance)' => {
         meters: distance = 1 | "meter" if true else "meters"
-        print | "{name} the {model} replicant moved {distance} {meters}"
+        print "{name} the {model} replicant moved {distance} {meters}"
     }
 }
 

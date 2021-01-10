@@ -249,9 +249,9 @@ add: | (a) to (b) | => {
     output (a + b)
 }
 
-add 2 to 3  --> {}
+add 2 to 2  --> {}
 add output: print
-add 2 to 3  --> 5
+add 2 to 2  --> 4
 
 "primitive values are unboxed when read, returning their internal value"
 print 42  --> "42, not `Number 42`"
@@ -261,7 +261,8 @@ foo: 42
 self foo: 42
 
 "setters are special messages, what follows `:` is evaluated as an expression, `()` is not needed"
-bar: 5 + foo
+bar: foo
+print (bar)  --> 42
 ```
 
 <br/>

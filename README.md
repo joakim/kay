@@ -24,7 +24,7 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells encapsulate slots, expressions and methods, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received signal and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate slots, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received signal and for producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
@@ -36,7 +36,7 @@ Cells are first-class reference types with persistent data structures. The "[obs
 
 - **Object** cells have closure and always return themselves
 - **Method** cells have closure, take arguments and can return values
-- **Block** cells do not have closure and always return themselves
+- **Block** cells (do/do not, undecided) have closure and always return themselves
 
 All cell types are first-class reference types passed by value, supporting receptors. Each have their own literal.
 

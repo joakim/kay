@@ -40,7 +40,7 @@ Cells are reference types with persistent data structures. The "[observer](https
 
 ## Examples
 
-<sub>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Comments should be like [Haskell's](https://wiki.haskell.org/Commenting). In these examples they are also enclosed in `""` for the Smalltalk syntax highlighting to look right. `-->` signifies output.</sub>
+<sup>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Comments should be like [Haskell's](https://wiki.haskell.org/Commenting). In these examples they are also enclosed in `""` for the Smalltalk syntax highlighting to look right. `-->` signifies output.</sup>
 
 ```smalltalk
 -- "create a Replicant object"

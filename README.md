@@ -69,7 +69,7 @@ Nexus9: Replicant with {
     thoughts: []
     
     think: | (thought) | => {
-        -- send an `append` message to the `thoughts` array with the value of the `thought` argument"
+        -- "send an `append` message to the `thoughts` array with the `thought` argument's value"
         thoughts append (thought)
         print '{name} thinks: {thought}'
     }
@@ -80,7 +80,7 @@ Nexus9: Replicant with {
         -- "signal the `move (meters)` receptor inherited from `Replicant`"
         replicant move 2
         
-        -- "signal `then` and `else` of the boolean result of `> 100`, equivalent to an if statement"
+        -- "signal `then` and `else` of the boolean result of `>`, equivalent to an if statement"
         intelligence > 100
             then -> {
                 think 'Why did I move?'

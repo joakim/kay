@@ -32,7 +32,7 @@ By default, cells are opaque and isolated. A cell's internal state may only be a
 
 Cells are reference types with persistent data structures. The "observer" of a cell gets an immutable "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
-<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime environment is the stem.
+<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime is the stem.
 
 <sub>Note: This is just an exploration of possibilities. Consider it Readme Driven Programming Language Design.</sub>
 

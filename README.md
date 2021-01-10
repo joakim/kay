@@ -62,7 +62,7 @@ Nexus9: Replicant with {
     replicant: self  -- a reference to this cell (used in nested cells)
     model: "Nexus 9"
     intelligence: 100
-    thoughts: []  -- array
+    thoughts: []
     
     think: '(thought)' => {
         thoughts append (thought)

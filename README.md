@@ -130,7 +130,7 @@ method-3: (add $a to $b) => a + b
 -- literal for a receptor method (a method that is not assigned to a slot)
 (foo $bar) => { … }
 
--- full example
+-- full receptor example
 (receptor taking an $argument) => {
     -- messages are string-like patterns that may contain spaces
     -- arguments, marked with `$`, are bound to slots in the method's cell
@@ -142,10 +142,10 @@ method-3: (add $a to $b) => a + b
     print "argument is {argument}"
     
     -- the receiver of a message does not have to be referenced with `$`
-    argument if true -> print "It is true"
+    argument if true -> { print "It is true" }
 }
 
--- cells have closure
+-- cells have lexical scope
 enclosed: {
     local: 42
     nested: {
@@ -154,8 +154,20 @@ enclosed: {
     (answer) => nested answer
 }
 
--- messages may be piped/chained
-print (enclosed answer | = 42 | "Correct" if true)  --> "Correct"
+-- messages can be piped/chained and expressions grouped
+print (enclosed answer = 42 | "Indeed" if true)  --> "Indeed"
+
+-- cells have closure
+adder: ($x) => {
+    ($y) => {
+        return $x + $y
+    }
+}
+
+add-5: adder 5
+add-10: adder 10
+print (add-5 2)  --> 7
+print (add-10 2)  --> 12
 
 -- a cell with local state and code (equivalent to a function expression with no arguments)
 code-cell: {

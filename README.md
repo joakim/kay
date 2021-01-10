@@ -232,10 +232,7 @@ Cell: {
     (has $key) => `Reflect.has(self.exposed, key)`
     
     -- exposed slot setter (returns itself, enabling piping/chaining)
-    ($key: $value) => {
-        self is mutable | then -> `Reflect.set(self.exposed, key, value)`
-        return $self
-    }
+    ($key: $value) => self is mutable | then => `(Reflect.set(self.exposed, key, value), self)`
     
     -- exposed slot getter
     ($key) => (self is mutable) or (self has $key) | `Reflect.get(self.exposed, key)` if true

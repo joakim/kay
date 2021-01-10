@@ -46,14 +46,14 @@ Replicant: Object with {
     model: "Generic"
     
     -- local method (a function assigned to a slot)
-    say: ('words) => {
+    say: ($words) => {
         print "{name} says: {words}"
     }
     
     -- receptor method (a function exposed to the outside)
-    (move 'meters) => {
+    (move $meters) => {
         plural: meters <> 1 | "s" if true
-        print ("{name} the {model} replicant moved {meters} meter" append 'plural)
+        print ("{name} the {model} replicant moved {meters} meter" append $plural)
     }
 }
 
@@ -64,15 +64,15 @@ Nexus9: Replicant with {
     intelligence: 100
     thoughts: []  -- array
     
-    think: ('thought) => {
-        thoughts append 'thought
+    think: ($thought) => {
+        thoughts append $thought
         print "{name} thinks: {thought}"
     }
     
     (move) => {
         print "*moves*"
         
-        -- signal the `move 'meters` receptor "inherited" from `Replicant`
+        -- signal the `move $meters` receptor "inherited" from `Replicant`
         replicant move 2
         
         -- "if statement" using `then` and `else` on the boolean result of `> 100`
@@ -122,26 +122,26 @@ code: -> { … }
 method: => { … }
 
 -- literal for a method cell that takes a message (function)
-method-2: (foo 'bar) => { … }
+method-2: (foo $bar) => { … }
 
 -- methods may be inlined (implicit `return`)
-method-3: (add 'a to 'b) => a + b
+method-3: (add $a to $b) => a + b
 
 -- literal for a receptor method (a method that is not assigned to a slot)
-(foo 'bar) => { … }
+(foo $bar) => { … }
 
 -- full example
-(receptor taking an 'argument) => {
+(receptor taking an $argument) => {
     -- messages are string-like patterns that may contain spaces
-    -- arguments, marked with `'`, are bound to slots in the method's cell
+    -- arguments, marked with `$`, are bound to slots in the method's cell
     
-    -- `'` is also used to reference slots when sending a message
-    print 'argument
+    -- `$` is also used to reference slots when sending a message
+    print $argument
     
     -- and to interpolate slots in strings
-    print "argument is 'argument"
+    print "argument is $argument"
     
-    -- the receiver of a message does not have to be referenced with `'`
+    -- the receiver of a message does not have to be referenced with `$`
     argument if true -> print "It is true"
 }
 
@@ -149,7 +149,7 @@ method-3: (add 'a to 'b) => a + b
 enclosed: {
     local: 42
     nested: {
-        (answer) => 'local
+        (answer) => $local
     }
     (answer) => nested answer
 }
@@ -161,14 +161,14 @@ print (enclosed answer | = 42 | "Correct" if true)  --> "Correct"
 code-cell: {
     a: 2
     b: 3
-    result: 'a + 'b  -- one can add ' to the receiver for symmetry's sake (+ is a message)
+    result: $a + $b  -- one can add `$` to the receiver for symmetry's sake (`+` is a message)
     print "{a} + {b} = {result}"
-    return 'result
+    return $result
 }
 
 -- running a cell's code (`do` is an environment method)
-result: do 'code-cell  --> "2 + 3 = 5"
-print 'result  --> 5
+result: do $code-cell  --> "2 + 3 = 5"
+print $result  --> 5
 
 -- a mutable cell with all slots exposed, marked with `*` (object/struct/dict in other languages)
 mutable: *{
@@ -182,19 +182,19 @@ mutable foo: 10 | bar: false
 
 -- specifying the slot name using a string
 key: "foo"
-mutable 'key: 42
+mutable $key: 42
 
 -- a cell with an individually exposed slot, marked with `*` (a block in other languages)
 addition: {
     a: 3  -- local slot
     *b: 2  -- exposed slot
-    return ('a + 'b)
+    return ($a + $b)
 }
 
 -- it's possible to mutate the exposed slot between calls (powerful/dangerous)
-do 'addition  --> 5
+do $addition  --> 5
 addition b: 7
-do 'addition  --> 10
+do $addition  --> 10
 
 -- primitive values are unboxed when read, returning their internal value
 print 42  --> 42, not `Number 42`
@@ -225,36 +225,36 @@ Cell: {
         -- append a reference to itself as the parent of the clone
         `clone.lineage.push(WeakRef(self))`
         
-        return 'clone
+        return $clone
     }
     
     -- exposed slot checker
-    (has 'key) => `Reflect.has(self.exposed, key)`
+    (has $key) => `Reflect.has(self.exposed, key)`
     
     -- exposed slot setter (returns itself, enabling piping/chaining)
-    ('key: 'value) => self is mutable | then => `(Reflect.set(self.exposed, key, value), self)`
+    ($key: $value) => self is mutable | then => `(Reflect.set(self.exposed, key, value), self)`
     
     -- exposed slot getter
-    ('key) => (self is mutable) or (self has 'key) | `Reflect.get(self.exposed, key)` if true
+    ($key) => (self is mutable) or (self has $key) | `Reflect.get(self.exposed, key)` if true
     
     -- conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)
-    (then 'cell) => self if true 'cell
-    (else 'cell) => self if false 'cell
-    (if true 'cell) => `(self ? do(cell) : undefined) ?? self`
-    (if false 'cell) => `(self ? undefined : do(cell)) ?? self`
-    ('value if true) => `self ? value : undefined`
-    ('value if false) => `self ? undefined : value`
-    ('value-1 if true else 'value-2) => `self ? value-1 : value-2`
-    ('value-1 if false else 'value-2) => `self ? value-2 : value-1`
+    (then $cell) => self if true $cell
+    (else $cell) => self if false $cell
+    (if true $cell) => `(self ? do(cell) : undefined) ?? self`
+    (if false $cell) => `(self ? undefined : do(cell)) ?? self`
+    ($value if true) => `self ? value : undefined`
+    ($value if false) => `self ? undefined : value`
+    ($value-1 if true else $value-2) => `self ? value-1 : value-2`
+    ($value-1 if false else $value-2) => `self ? value-2 : value-1`
     
     -- returns whether the cell has all exposed slots
     (is exposed) => Boolean | exposed size
     
     -- checks whether the cell has a receptor matching the signature
-    (has receptor 'signature) => `self.hasReceptor(signature)`
+    (has receptor $signature) => `self.hasReceptor(signature)`
     
     -- applies a receptor of this cell to another cell
-    (apply 'message to 'cell) => `Reflect.apply(self, cell, message)`
+    (apply $message to $cell) => `Reflect.apply(self, cell, message)`
 }
 
 -- definition of the Object cell
@@ -262,23 +262,23 @@ Object: {
     cell: self
     
     -- clones itself, merging with specified cell(s)
-    (with 'spec) => {
+    (with $spec) => {
         clone: cell ()
         
         -- merge slots into clone
-        merge: ('slots) => {
-            'slots each ('key and 'value) => {
+        merge: ($slots) => {
+            $slots each ($key and $value) => {
                 `cell.clone[key] = value`
             }
         }
         
         -- pattern matching instead of `then` and `else`
-        'spec is array | match [
-            true -> 'spec each ('item) => merge 'item
-            false -> merge 'spec
+        $spec is array | match [
+            true -> $spec each ($item) => merge $item
+            false -> merge $spec
         ]
         
-        return 'clone
+        return $clone
     }
 }
 
@@ -291,39 +291,39 @@ Value: Object with {
     preprocessors: []
     
     -- local setter method for the internal value
-    set: ('value) => `(cell.value = value, cell)`
+    set: ($value) => `(cell.value = value, cell)`
     
     -- constructor
-    ('value) => {
+    ($value) => {
         clone: cell ()
         `clone.value = value`
-        return 'clone
+        return $clone
     }
     
     -- unwraps the internal value
     (unwrap) => `cell.value`
     
     -- adds a preprocessor for the value
-    (add preprocessor 'cell) => preprocessors append 'cell
+    (add preprocessor $cell) => preprocessors append $cell
     
     -- pattern matching
-    (match 'alternatives) => {
-        alternative: 'alternatives find ('method) => matches (method signature)
-        return do 'alternative
+    (match $alternatives) => {
+        alternative: $alternatives find ($method) => matches (method signature)
+        return do $alternative
     }
 
     -- pattern match checker
-    matches: ('pattern) => {
-        -- @todo Check if the value and pattern match
+    matches: ($pattern) => {
+        -- Check if the value and pattern match
     }
     
     -- conditionals
-    (if true 'then) => `(cell.value ? do(then) : undefined) ?? cell`
-    (if false 'else) => `(cell.value ? undefined : do(else)) ?? cell`
-    ('value if true) => `cell.value ? value : undefined`
-    ('value if false) => `cell.value ? undefined : value`
-    ('value-1 if true else 'value-2) => `cell.value ? value-1 : value-2`
-    ('value-1 if false else 'value-2) => `cell.value ? value-2 : value-1`
+    (if true $then) => `(cell.value ? do(then) : undefined) ?? cell`
+    (if false $else) => `(cell.value ? undefined : do(else)) ?? cell`
+    ($value if true) => `cell.value ? value : undefined`
+    ($value if false) => `cell.value ? undefined : value`
+    ($value-1 if true else $value-2) => `cell.value ? value-1 : value-2`
+    ($value-1 if false else $value-2) => `cell.value ? value-2 : value-1`
 }
 
 -- definition of the Boolean value
@@ -331,7 +331,7 @@ Boolean: Value with {
     cell: self
     
     -- preprocess the value before being set, casting it to a boolean
-    cell add preprocessor ('value) => `Boolean(value)`
+    cell add preprocessor ($value) => `Boolean(value)`
     
     -- negates the value
     (negate) => set `!cell.value`
@@ -344,38 +344,38 @@ false: Boolean 0
 -- toggling a boolean
 bool: true  -- sugar for `true ()`, primitive values are sweet
 bool negate
-print 'bool  --> false (the value is automagically unwrapped when read)
+print $bool  --> false (the value is automagically unwrapped when read)
 
 -- definition of the Array value
 Array: Value with {
-    cell: 'self
+    cell: $self
     
     (is array) => true  -- obviously
     (first) => `cell.value[0]`
     (last) => `cell.value[value.length - 1]`
-    (append 'value) => `cell.value = [...cell.value, value]`
-    (prepend 'value) => `cell.value = [value, ...cell.value]`
-    (map 'mapper) => `cell.value.map(mapper)`
-    (each 'handler) => `cell.value.forEach(handler)`
+    (append $value) => `cell.value = [...cell.value, value]`
+    (prepend $value) => `cell.value = [value, ...cell.value]`
+    (map $mapper) => `cell.value.map(mapper)`
+    (each $handler) => `cell.value.forEach(handler)`
     -- ...
 }
 
 -- the literal `(message) => { code }` is syntactic sugar equivalent to `Method (message) { code }`
 -- any method literal declared without being assigned to a slot is a receptor of the cell
 Method: {
-    ('message 'code) => `function (message) { code }`
+    ($message $code) => `function (message) { code }`
     (signature) => -- ...
 }
 
 -- `print` is a slot on the environment cell that is a method cell
-print: ('value) => console log 'value
+print: ($value) => console log $value
 
 -- `console` is a cell with receptors
 console: {
-    (log 'value) => `console.log(value)`
+    (log $value) => `console.log(value)`
     -- ...
 }
 
 -- the `do` method
-do: ('cell) => `cell()`
+do: ($cell) => `cell()`
 ```

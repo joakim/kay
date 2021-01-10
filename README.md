@@ -139,7 +139,7 @@ method-3: (add $a to $b) => a + b
     print $argument
     
     -- and to interpolate slots in strings
-    print "argument is $argument"
+    print "argument is {argument}"
     
     -- the receiver of a message does not have to be referenced with `$`
     argument if true -> print "It is true"

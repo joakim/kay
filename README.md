@@ -34,9 +34,11 @@ Cells are first-class reference types with persistent data structures. The "[obs
 
 #### Cell types
 
-- **Basic** cells have closure, implicitly return themselves only
-- **Block** cells do not have closure, implicitly return themselves only
-- **Method** cells have closure, can explicitly return values, implicitly if inlined
+- **Basic** cells have closure, support receptors, and always return themselves
+- **Method** cells have closure, support receptors, and can return values
+- **Block** cells do not have closure, can not have receptors, and always return themselves
+
+All cell types are first-class reference types passed by value.
 
 <br/>
 

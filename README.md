@@ -84,7 +84,7 @@ Nexus9: Replicant with {
     | move | => {
         print '*moves*'
         
-        "signal the `move (meters)` receptor inherited from `Replicant`"
+        "signal the `move (distance)` receptor inherited from `Replicant`"
         replicant move 2
         
         "signal `then` and `else` of the boolean result of `>`, equivalent to an if statement"

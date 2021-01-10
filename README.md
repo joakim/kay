@@ -289,7 +289,7 @@ Cell: {
 Object: {
     cell: self
     
-    -- "clones itself, merging with specified cell(s), enabling composition of multiple cells into one"
+    -- "clones itself, merging with the specified cell(s), enabling composition of multiple cells"
     | with (spec) | => {
         clone: cell
         

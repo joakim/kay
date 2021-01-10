@@ -38,7 +38,7 @@ Cells are first-class reference types with persistent data structures. The "[obs
 - **Method** cells have closure and can return values
 - **Block** cells do not have closure and always return themselves
 
-All cell types are first-class reference types passed by value.
+All cell types are first-class reference types passed by value, with their own literals.
 
 <br/>
 

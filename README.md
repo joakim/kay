@@ -237,15 +237,15 @@ Cell: {
     -- exposed slot getter
     ($key) => (self is mutable) or (self has $key) | `Reflect.get(self.exposed, key)` if true
     
-    -- conditionals (replaces if statements, any cell can define its truthy/falsy-ness)
+    -- conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)
     (then $cell) => self if true $cell
     (else $cell) => self if false $cell
-    (if true $cell) => `(self.value ? do(cell) : undefined) ?? self`
-    (if false $cell) => `(self.value ? undefined : do(cell)) ?? self`
-    ($cell if true) => `self.value ? cell : undefined`
-    ($cell if false) => `self.value ? undefined : cell`
-    ($cell if true else $cell-2) => `self.value ? cell : cell-2`
-    ($cell if false else $cell-2) => `self.value ? cell-2 : cell`
+    (if true $cell) => `(self ? do(cell) : undefined) ?? self`
+    (if false $cell) => `(self ? undefined : do(cell)) ?? self`
+    ($value if true) => `self ? value : undefined`
+    ($value if false) => `self ? undefined : value`
+    ($value-1 if true else $value-2) => `self ? value-1 : value-2`
+    ($value-1 if false else $value-2) => `self ? value-2 : value-1`
     
     -- returns whether the cell has all exposed slots
     (is exposed) => Boolean | exposed size
@@ -316,6 +316,14 @@ Value: Object with {
     matches: ($pattern) => {
         -- @todo Check if the value and pattern match
     }
+    
+    -- conditionals
+    (if true $then) => `(cell.value ? do(then) : undefined) ?? cell`
+    (if false $else) => `(cell.value ? undefined : do(else)) ?? cell`
+    ($value if true) => `cell.value ? value : undefined`
+    ($value if false) => `cell.value ? undefined : value`
+    ($value-1 if true else $value-2) => `cell.value ? value-1 : value-2`
+    ($value-1 if false else $value-2) => `cell.value ? value-2 : value-1`
 }
 
 -- definition of the Boolean value

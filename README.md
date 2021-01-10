@@ -51,9 +51,9 @@ Replicant: Object with {
     }
     
     -- receptor method (a function exposed to the outside)
-    'move (meters)' => {
-        plural: meters <> 1 | "s" if true
-        print | "{name} the {model} replicant moved {meters} meter" append (plural)
+    'move (distance)' => {
+        meters: distance = 1 | "meter" if true else "meters"
+        print | "{name} the {model} replicant moved {distance} {meters}"
     }
 }
 

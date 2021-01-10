@@ -86,7 +86,7 @@ Nexus9: Replicant with {
                 think 'Why did I move?'
                 think 'Am I really a replicant?'
                 think 'My name is Joe...'
-                replicant name: 'Joe'  -- "mutate local state"
+                replicant name: 'Joe'  -- "mutate the state of an outer cell"
                 say 'My name is {name}!'
             }
             else -> think '*crickets*'

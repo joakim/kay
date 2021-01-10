@@ -163,7 +163,7 @@ scoped: {
 -- "expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
 print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
 
--- "a transparent cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
+-- "a cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
 transparent: *{
     foo: 42
     bar: true
@@ -289,7 +289,7 @@ Cell: {
 Object: {
     cell: self
     
-    -- "clones itself, merging with specified cell(s), enabling the composition of multiple cells into one"
+    -- "clones itself, merging with specified cell(s), enabling composition of multiple cells into one"
     | with (spec) | => {
         clone: cell
         
@@ -396,8 +396,8 @@ Array: Value with {
     -- "..."
 }
 
--- "the literal `| message | => { code }` is syntactic sugar equivalent to `Method  | message | { code }`"
--- "any method literal declared without being assigned to a slot is a receptor of the cell"
+-- "the method literal is the syntax sugar equivalent to `Method  | message | { code }`"
+-- "a method literal declared without being assigned to a slot is a receptor of the cell"
 Method: {
     | (message) (code) | => `function (message) { code }`
     | signature | => -- "..."

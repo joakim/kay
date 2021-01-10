@@ -34,7 +34,7 @@ Cells are first-class reference types with persistent data structures. The "[obs
 
 #### Cell types
 
-- **Basic** cells have closure and always return themselves
+- **Object** cells have closure and always return themselves
 - **Method** cells have closure and can return values
 - **Block** cells do not have closure and always return themselves
 
@@ -50,6 +50,8 @@ All cell types are first-class reference types passed by value, with their own l
 ## Examples
 
 <sup>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. The following examples use Smalltalk syntax highlighting, comments are therefore enclosed in `""`. They should really be like [Haskell's](https://wiki.haskell.org/Commenting). `-->` signifies output.</sup>
+
+### Blade Runner
 
 ```smalltalk
 "create a Replicant cell"
@@ -118,16 +120,18 @@ officer-k move
 
 <br/>
 
+### Demonstrations
+
 It's all interlinked cells with slots, expressions and messages.
 
 `Environment > Modules > (Cells...) > Values`
 
 ```smalltalk
-"literal for a basic cell"
-basic-literal: {}
+"literal for an object cell"
+object-literal: {}
 
-"a basic cell with a slot and an expression"
-basic-example: {
+"an object cell with a slot and (unlike other languages) an expression"
+object-example: {
     answer: 42
     print (answer)
 }
@@ -261,7 +265,8 @@ self foo: 42
 
 <br/>
 
-The building blocks:
+### Building blocks
+
 
 ```smalltalk
 "the void type is a special cell that only ever returns itself"
@@ -445,7 +450,11 @@ console: {
 do: | (cell) | => `cell()`
 ```
 
-Simulating a biological cell (disclaimer: I am not a molecular biologist!):
+<br/>
+
+### Biological cell simulation
+
+Disclaimer: I am not a molecular biologist!
 
 ```smalltalk
 foobar: Cell {

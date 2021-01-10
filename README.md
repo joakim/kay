@@ -24,7 +24,7 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells consist of slots (properties), code (statements and expressions) and methods (functions). Cells communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of the received signal and for producing a response.
+It's cells all the way down, from environment to values. Cells consist of slots (properties), expressions and methods. Cells communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of the received signal and for producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
@@ -109,36 +109,34 @@ officer-k move
 
 <br/>
 
-It's all interlinked cells with slots, code and messages.
+It's all interlinked cells with slots, expressions and messages.
 
 `Environment > Modules > (Cells...) > Values`
 
 ```smalltalk
 -- "literal for a generic cell (slots are not exposed by default)"
 -- "`generic` is itself a slot on the enclosing cell"
-generic: {
+generic-cell: {
     answer: 42
 }
 
--- "literal signifying a code cell (compound statements in other languages)"
--- "code cells can not `return` a value"
-code: -> { … }
+-- "literal signifying a block cell (compound statements in other languages)"
+block-cell: -> { … }
 
 -- "literal signifying a method cell (functions in other languages)"
--- "method cells can `return` a value"
-method: => { … }
+method-cell-1: => { … }
 
 -- "method cell that takes a message"
-method-2: | (argument) | => { … }
+method-cell-2: | (argument) | => { … }
 
 -- "method cells may be inlined, having implicit `return` (lambda in other languages)"
-method-3: | (argument) | => true
+method-cell-3: | (argument) | => true
 
 -- "literal for a receptor method (object method in other languages)"
 -- "a receptor method is simply a method that is not assigned to a slot"
 | foo (bar) | => { … }
 
--- "receptor method illustrating how messages are used"
+-- "a receptor method illustrating how messages are used"
 | receptor taking an (argument) | => {
     -- "messages are flexible string patterns that may contain arguments"
     -- "arguments are enclosed in `()`, any matched value will be bound to a slot of that name"
@@ -150,6 +148,19 @@ method-3: | (argument) | => true
     -- "`{}` is used to interpolate expressions (including slots) in strings"
     print 'argument is {argument}'
 }
+
+-- "a block is a cell with expressions (equivalent to a function expression with no arguments)"
+block: {
+    a: 2
+    b: 3
+    result: a + b
+    print '{a} + {b} = {result}'
+    return result
+}
+
+-- "running the block's expressions using `do` (an environment method)"
+result: do (block)  --> '2 + 3 = 5'
+print (result)      --> 5
 
 -- "all cells have lexical scope"
 scoped: {
@@ -201,23 +212,10 @@ print (add-10 2)  --> 12
 -- "inlined version of adder"
 inlined: | (x) | => | (y) | => x + y
 
--- "a cell with slots and code (equivalent to a function expression with no arguments)"
-code-cell: {
-    a: 2
-    b: 3
-    result: a + b
-    print '{a} + {b} = {result}'
-    return result
-}
-
--- "running the cell's code using `do` (an environment method)"
-result: do (code-cell)  --> '2 + 3 = 5'
-print (result)          --> 5
-
--- "a cell with an individually exposed slot, marked with `*`"
+-- "a cell with an individually exposed slot
 addition: {
-    a: 3   -- "a local slot"
-    *b: 2  -- "an exposed slot"
+    a: 3
+    expose b: 2
     return (a + b)
 }
 
@@ -228,6 +226,10 @@ do (addition)  --> 10
 
 -- "primitive values are unboxed when read, returning their internal value"
 print 42  --> "42, not `Number 42`"
+
+-- "slots are really setter messages on the current cell (`self`), the following are equivalent"
+foo: 42
+self foo: 42
 ```
 
 <br/>
@@ -242,6 +244,9 @@ The building blocks:
 Cell: {
     lineage: [{}]
     exposed: {}
+    
+    -- "local exposed slot definition method"
+    expose: | (key): (...value) | => exposed (key): (value)
     
     -- "clones itself (matches an empty message)"
     | | => {
@@ -259,11 +264,11 @@ Cell: {
     -- "exposed slot checker"
     | has (key) | => `Reflect.has(self.exposed, key)`
     
-    -- "exposed slot setter (returns itself, enabling piping/chaining)"
-    | (key): (value) | => self is mutable << then => `(Reflect.set(self.exposed, key, value), self)`
-    
     -- "exposed slot getter"
     | (key) | => (self is mutable) or (self has (key)) << `Reflect.get(self.exposed, key)` if true
+    
+    -- "exposed slot setter (returns itself, enabling piping/chaining)"
+    | (key): (value) | => (self is mutable) or (self has (key)) << `(Reflect.set(self.exposed, key, value), self)` if true
     
     -- "conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)"
     | then (cell) | => self if true (cell)

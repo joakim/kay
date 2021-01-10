@@ -208,7 +208,7 @@ addition b: 7
 do (addition)  --> 10
 
 -- "primitive values are unboxed when read, returning their internal value"
-print 42  --> 42, not `Number 42`
+print 42  --> 42, "not `Number 42`"
 ```
 
 <br/>

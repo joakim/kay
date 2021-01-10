@@ -47,13 +47,13 @@ Replicant: Object with {
     
     -- local method (a function assigned to a slot)
     say: ($words) => {
-        print "{name} says: {$words}"
+        print "$name says: $words"
     }
     
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
-        plural: $meters <> 1
-        print "{name} the {model} replicant moved {$meters} meter{plural | 's' if true}"
+        plural: $meters <> 1 | 's' if true
+        print ("$name the $model replicant moved $meters meter" append plural)
     }
 }
 
@@ -104,39 +104,49 @@ officer-k move
 
 <br/>
 
-It's all cells and messages:
+It's all cells with slots, code and messages.
+
+`Environment > Modules > (Cells...) > Values`
 
 ```lua
--- empty cell literal
-cell: {}
+-- literal for a generic cell, here with one slot (not exposed by default)
+-- `generic` is itself a slot on the enclosing cell
+generic: {
+    answer: 42
+}
 
--- literal signifying a code cell (block, can not `return`)
-block: -> {}
+-- literal signifying a code cell (block, can not use `return`)
+code: -> { … }
 
--- literal signifying a local method cell (function)
-method: => {}
+-- literal signifying a method cell (function, can use `return`)
+method: => { … }
 
--- literal for a local method taking a message (function)
-method-2: (foo $bar) => {
-    -- message arguments are bound to slots in the method cell using `$`
-    -- $ is also used to reference slots when sending a message
+-- literal for a method cell that takes a message (function)
+method-2: (foo $bar) => { … }
+
+-- methods may be inlined (implicit `return`)
+method-3: (add $a to $b) => $a + $b
+
+-- literal for a receptor method (a method that is not assigned to a slot)
+(foo $bar) => { … }
+
+-- full example
+(receptor taking an $argument) => {
+    -- messages are string-like patterns that may contain spaces
+    -- arguments, marked with `$`, are bound to slots in the method's cell
+    
+    -- `$` is also used to reference slots when sending a message
     print $bar
     
-    -- $ is also used to interpolate slots in strings
+    -- and to interpolate slots in strings
     print "bar is $bar"
     
-    -- the receiver of a message does not have to be referenced with `$`
+    -- the receiver of a message does not have to be referenced with `$`, however
     bar if true -> print "It is true"
 }
 
--- literal for a receptor method
-(receptor taking an $argument) => {
-    -- messages may contain spaces, unlike slot names which use `-`
-    -- inside, it's just like a local method
-}
-
--- cell with local state and code (equivalent to a function expression with no arguments)
-code: {
+-- a cell with local state and code (equivalent to a function expression with no arguments)
+code-cell: {
     a: 2
     b: 3
     result: $a + $b  -- one can add $ to the receiver for symmetry's sake (+ is a message)
@@ -145,27 +155,24 @@ code: {
 }
 
 -- running a cell's code (`do` is an environment method)
-result: do $code  --> "2 + 3 = 5"
+result: do $code-cell  --> "2 + 3 = 5"
 print $result  --> 5
 
--- definition of the `do` method
-do: ($cell) => `cell()`  -- JavaScript in backticks to illustrate what it does
-
--- a mutable cell, with all slots exposed (object/struct/dict in other languages)
-object: *{
+-- a mutable cell with all slots exposed, marked with `*` (object/struct/dict in other languages)
+mutable: *{
     foo: 42
     bar: true
 }
 
 -- mutating exposed slots from outside the cell
 -- setters return the cell, so multiple messages may be piped/chained (fluent interface)
-object foo: 10 | bar: false
+mutable foo: 10 | bar: false
 
 -- specifying the slot name using a string
 key: 'foo'
-object $key: 42
+mutable $key: 42
 
--- a cell with one exposed slot, marked with an asterisk (a block in other languages)
+-- a cell with an individually exposed slot, marked with `*` (a block in other languages)
 addition: {
     a: 3  -- local slot
     *b: 2  -- exposed slot
@@ -176,14 +183,6 @@ addition: {
 do $addition  --> 5
 addition b: 7
 do $addition  --> 10
-
--- a method is simply a cell that takes a message (a function with arguments)
-method: (add $a to $b) => {
-    return $a + $b  -- explicit return
-}
-
--- the method cell may be inlined (implicit return)
-inlined: (add $a to $b) => $a + $b
 
 -- primitive values are unboxed when read, returning their internal value
 print 42  --> 42, not `Number 42`
@@ -359,4 +358,7 @@ console: {
     (log $value) => `console.log(value)`
     -- ...
 }
+
+-- the `do` method
+do: ($cell) => `cell()`
 ```

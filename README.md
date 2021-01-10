@@ -24,19 +24,26 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells consist of slots (properties), expressions and methods. Cells communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of the received signal and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate slots (properties), expressions and methods. Cells communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of the received signal and for producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
 By default, cells are opaque and isolated. A cell's internal state may only be accessed from the outside through setter and getter signals, unless slots are explicitly exposed. Exceptions are handled internally, a cell can not crash.
 
-Cells are reference types with persistent data structures. The "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
+Cells are first-class reference types with persistent data structures. The "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
+
+#### Cell types
+
+- **Basic** cells have closure, implicitly return themselves only
+- **Block** cells do not have closure, implicitly return themselves only
+- **Method** cells have closure, can explicitly return values, implicitly if inlined
 
 <br/>
 
-<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime is the stem.
+<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, block and method, implemented as a first-class reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime is the stem.
 
 <br/>
+
 
 ## Examples
 
@@ -114,59 +121,71 @@ It's all interlinked cells with slots, expressions and messages.
 `Environment > Modules > (Cells...) > Values`
 
 ```smalltalk
--- "literal for a generic cell (slots are not exposed by default)"
--- "`generic` is itself a slot on the enclosing cell"
-generic-cell: {
+-- "literal for a basic cell"
+basic-literal: {}
+
+-- "a basic cell with a slot and an expression"
+basic-example: {
     answer: 42
+    print (answer)
 }
 
--- "literal signifying a block cell (compound statements in other languages)"
-block-cell: -> { … }
+-- "literal for a block cell (compound statements in other languages)"
+block-literal: -> { … }
 
--- "literal signifying a method cell (functions in other languages)"
-method-cell-1: => { … }
+-- "a block cell passed as an argument to the `then` receptor of Boolean"
+block-example: true then -> {
+    truth: 'It is true'
+    print (truth)
+}
 
--- "method cell that takes a message"
-method-cell-2: | (argument) | => { … }
+-- "literal for a method cell (function in other languages)"
+method-literal: => { … }
 
--- "method cells may be inlined, having implicit `return` (lambda in other languages)"
-method-cell-3: | (argument) | => true
+-- "a method cell that takes a message, prints its argument and returns a string"
+method-example: | (argument) | => {
+    print (argument)
+    return 'argument was {argument}'
+}
+
+-- "an inlined method cells, having implicit `return` (lambda in other languages)"
+method-inlined: | (argument) | => true
 
 -- "literal for a receptor method (object method in other languages)"
--- "a receptor method is simply a method that is not assigned to a slot"
+-- "a receptor is simply a method that is not assigned to a slot"
 | foo (bar) | => { … }
 
 -- "a receptor method illustrating how messages are used"
-| receptor taking an (argument) | => {
+| receptor with one (argument) | => {
     -- "messages are flexible string patterns that may contain arguments"
-    -- "arguments are enclosed in `()`, any matched value will be bound to a slot of that name"
-    -- "this syntax could be extended to support typed arguments"
+    -- "arguments are enclosed in `()`, the matched value will be bound to a slot of that name"
+    -- "the syntax could be extended to support typed arguments"
     
-    -- "`()` is also used to interpolate expressions (including slots) when sending messages"
+    -- "`()` is similarly used to interpolate expressions (also slots) when sending messages"
     print (argument)
     
-    -- "`{}` is used to interpolate expressions (including slots) in strings"
+    -- "`{}` is used to interpolate expressions (also slots) in strings"
     print 'argument is {argument}'
 }
 
--- "a block is a cell with expressions (equivalent to a function expression with no arguments)"
-block: {
+-- "a method cell without arguments (equivalent to a function expression with no arguments)"
+method: => {
     a: 2
     b: 3
-    result: a + b
+    result: (a + b)
     print '{a} + {b} = {result}'
-    return result
+    return (result)
 }
 
--- "running the block's expressions using `do` (an environment method)"
-result: do (block)  --> '2 + 3 = 5'
-print (result)      --> 5
+-- "calling the method using `do` (an environment method)"
+result: do (method)  --> '2 + 3 = 5'
+print (result)       --> 5
 
 -- "all cells have lexical scope"
 scoped: {
     inner: 42
     nested: {
-        | answer | => inner
+        | answer | => (inner)
     }
     | answer | => nested answer
 }
@@ -174,29 +193,37 @@ scoped: {
 -- "expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
 print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
 
--- "a cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
-transparent: *{
+-- "a cell with all its slots exposed, marked with `*` (object/struct/dict in other languages)"
+mutable: *{
     foo: 42
     bar: true
 }
 
--- "mutating exposed slots from outside the transparent cell"
--- "setters receptors return the cell itself, enabling chaining of messages"
-transparent (foo: 10) (bar: false)
+-- "mutating exposed slots from outside the mutable cell"
+-- "setters return the cell itself, enabling chaining of messages"
+mutable (foo: 10) (bar: false)
 
 -- "alternative syntax using the pipe operator"
-transparent foo: 10 << bar: false
+mutable foo: 10 << bar: false
 
 -- "alternative syntax using indentation (fluent interface)"
-transparent
+mutable
     foo: 10
     bar: false
 
--- "mutating a slot by referencing its name with a local slot's value"
+-- "mutating a slot by referencing its name using a local slot's value"
 key: 'foo'
 mutable (key): 42
 
--- "all cells have closure"
+-- "a cell with an individually exposed slot"
+exposed: {
+    foo: 42
+    *bar: true
+}
+
+exposed bar: false
+
+-- "method demonstrating closure"
 adder: | (x) | => {
     return | (y) | => {
         return x + y
@@ -209,20 +236,18 @@ add-10: (adder 10)
 print (add-5 2)   --> 7
 print (add-10 2)  --> 12
 
--- "inlined version of adder"
+-- "inlined version of the `adder` method"
 inlined: | (x) | => | (y) | => x + y
 
--- "a cell with an individually exposed slot
-addition: {
-    a: 3
-    expose b: 2
-    return (a + b)
+-- "self-modifying code by mutating exposed slots between calls (powerful/dangerous)"
+add: | (a) to (b) | => {
+    expose output: {}
+    output (a + b)
 }
 
--- "it's possible to mutate the exposed slot between calls (powerful/dangerous)"
-do (addition)  --> 5
-addition b: 7
-do (addition)  --> 10
+add 2 to 3  --> {}
+add output: print
+add 2 to 3  --> 5
 
 -- "primitive values are unboxed when read, returning their internal value"
 print 42  --> "42, not `Number 42`"
@@ -246,10 +271,10 @@ Cell: {
     exposed: {}
     
     -- "slot initialization"
-    set: | (key): (...value) | => `Reflect.set(self, key, value)`
+    set: | (key): ...(value) | => `Reflect.set(self, key, value)`
     
     -- "exposed slot initialization"
-    expose: | (key): (...value) | => exposed (key): (value)
+    expose: | (key): ...(value) | => exposed (key): value
     
     -- "clones itself (matches an empty message)"
     | | => {

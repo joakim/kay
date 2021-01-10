@@ -42,7 +42,7 @@ All cell types are first-class reference types passed by value.
 
 <br/>
 
-<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, block and method, implemented as a first-class reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime is the stem.
+<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, method and block, implemented as a first-class reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime is the stem.
 
 <br/>
 

@@ -109,36 +109,40 @@ officer-k move
 
 <br/>
 
-It's all cells with slots, code and messages.
+It's all interlinked cells with slots, code and messages.
 
 `Environment > Modules > (Cells...) > Values`
 
 ```smalltalk
--- "literal for a generic cell, here with one slot (not exposed by default)"
+-- "literal for a generic cell (slots are not exposed by default)"
 -- "`generic` is itself a slot on the enclosing cell"
 generic: {
     answer: 42
 }
 
--- "literal signifying a code cell (block, can not use `return`)"
+-- "literal signifying a code cell (compound statements in other languages)"
+-- "code cells can not `return` a value"
 code: -> { … }
 
--- "literal signifying a method cell (function, can use `return`)"
+-- "literal signifying a method cell (functions in other languages)"
+-- "method cells can `return` a value"
 method: => { … }
 
--- "literal for a method cell that takes a message (function)"
-method-2: | foo | => { … }
+-- "method cell that takes a message"
+method-2: | (argument) | => { … }
 
--- "method literals may be inlined (implicit `return`)"
-method-3: | foo | => true
+-- "method cells may be inlined, having implicit `return` (lambda in other languages)"
+method-3: | (argument) | => true
 
--- "literal for a receptor method (a method that is not assigned to a slot)"
+-- "literal for a receptor method (object method in other languages)"
+-- "a receptor method is simply a method that is not assigned to a slot"
 | foo (bar) | => { … }
 
--- "receptor method example showing how messages are used"
+-- "receptor method illustrating how messages are used"
 | receptor taking an (argument) | => {
-    -- "messages are string patterns, possibly with arguments"
-    -- "arguments are enclosed in `()`, the matched value will be bound to a slot of that name"
+    -- "messages are flexible string patterns that may contain arguments"
+    -- "arguments are enclosed in `()`, any matched value will be bound to a slot of that name"
+    -- "this syntax could be extended to support typed arguments"
     
     -- "`()` is also used to interpolate expressions (including slots) when sending messages"
     print (argument)
@@ -147,8 +151,8 @@ method-3: | foo | => true
     print 'argument is {argument}'
 }
 
--- "cells have lexical scope"
-enclosed: {
+-- "all cells have lexical scope"
+scoped: {
     inner: 42
     nested: {
         | answer | => inner
@@ -156,22 +160,48 @@ enclosed: {
     | answer | => nested answer
 }
 
--- "messages can be piped/chained and expressions grouped"
-print (enclosed answer = 42 << 'Indeed' if true)  --> 'Indeed'
+-- "expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
+print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
 
--- "cells have closure"
+-- "a transparent cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
+transparent: *{
+    foo: 42
+    bar: true
+}
+
+-- "mutating exposed slots from outside the transparent cell"
+-- "setters receptors return the cell itself, enabling chaining of messages"
+transparent (foo: 10) (bar: false)
+
+-- "alternative syntax using the pipe operator"
+transparent foo: 10 << bar: false
+
+-- "alternative syntax using indentation (fluent interface)"
+transparent
+    foo: 10
+    bar: false
+
+-- "mutating a slot by referencing its name with a local slot's value"
+key: 'foo'
+mutable (key): 42
+
+-- "all cells have closure"
 adder: | (x) | => {
-    | (y) | => {
+    return | (y) | => {
         return x + y
     }
 }
 
-add-5: adder 5
-add-10: adder 10
+add-5: (adder 5)
+add-10: (adder 10)
+
 print (add-5 2)   --> 7
 print (add-10 2)  --> 12
 
--- "a cell with local state and code (equivalent to a function expression with no arguments)"
+-- "inlined version of adder"
+inlined: | (x) | => | (y) | => x + y
+
+-- "a cell with slots and code (equivalent to a function expression with no arguments)"
 code-cell: {
     a: 2
     b: 3
@@ -180,30 +210,13 @@ code-cell: {
     return result
 }
 
--- "running a cell's code (`do` is an environment method)"
+-- "running the cell's code using `do` (an environment method)"
 result: do (code-cell)  --> '2 + 3 = 5'
-print (result)  --> 5
+print (result)          --> 5
 
--- "a mutable cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
-mutable: *{
-    foo: 42
-    bar: true
-}
-
--- "mutating exposed slots from outside the cell"
--- "setters return the cell, so messages may be piped/chained (fluent interface)"
--- "here using indentation syntax for chaining setter messages"
-mutable
-    foo: 10
-    bar: false
-
--- "specifying the slot name using a string"
-key: 'foo'
-mutable key: 42
-
--- "a cell with an individually exposed slot, marked with `*` (a block in other languages)"
+-- "a cell with an individually exposed slot, marked with `*`"
 addition: {
-    a: 3  -- "a local slot"
+    a: 3   -- "a local slot"
     *b: 2  -- "an exposed slot"
     return (a + b)
 }
@@ -214,7 +227,7 @@ addition b: 7
 do (addition)  --> 10
 
 -- "primitive values are unboxed when read, returning their internal value"
-print 42  --> 42 "not `Number 42`"
+print 42  --> "42, not `Number 42`"
 ```
 
 <br/>
@@ -231,7 +244,7 @@ Cell: {
     exposed: {}
     
     -- "clones itself (matches an empty message)"
-    || => {
+    | | => {
         clone: `Object.assign(Object.create(null), self)`
         
         -- "append a reference to itself as the parent of the clone"
@@ -276,22 +289,21 @@ Cell: {
 Object: {
     cell: self
     
-    -- "clones itself, merging with specified cell(s)"
+    -- "clones itself, merging with specified cell(s), enabling the composition of multiple cells into one"
     | with (spec) | => {
         clone: cell
         
-        -- "merge slots into clone"
+        -- "merge slots into the clone"
         merge: | (slots) | => {
             slots each | (key) (value) | => {
                 `cell.clone[key] = value`
             }
         }
         
-        -- "pattern matching instead of `then` and `else`"
-        spec is array << match [
-            | true | -> spec each | (item) | => merge (item)
-            | false | -> merge (spec)
-        ]
+        -- "if merging with an array of cells, merge each cell in turn"
+        spec (is array)
+            then -> spec each | (item) | => merge (item)
+            else -> merge (spec)
         
         return (clone)
     }
@@ -301,12 +313,20 @@ Object: {
 Value: Object with {
     cell: self
     
-    -- "internal value"
+    -- "internal value and its validators, preprocessors and subscribers"
     value: {}
+    validators: []
     preprocessors: []
+    subscribers: {}
     
-    -- "local setter method for the internal value"
-    set: | (value) | => `(cell.value = value, cell)`
+    -- "local setter method for mutating the internal value"
+    set: | (value) | => {
+        -- "validate and preprocess..."
+        `(cell.value = value, cell)`
+    }
+    
+    -- "local pattern match checker"
+    matches: | (pattern) | => -- "..."
     
     -- "constructor"
     | (value) | => {
@@ -318,17 +338,20 @@ Value: Object with {
     -- "unwraps the internal value"
     | unwrap | => `cell.value`
     
+    -- "adds a validator for the value"
+    | add validator (validator) | => validators append (validator)
+    
     -- "adds a preprocessor for the value"
-    | add preprocessor (cell) | => preprocessors append (cell)
+    | add preprocessor (preprocessor) | => preprocessors append (preprocessor)
+    
+    -- "adds a subscriber to an event"
+    | on (event) (subscriber) | => subscribers (event) << append (subscriber)
     
     -- "pattern matching"
     | match (alternatives) | => {
         alternative: alternatives find | (method) | => matches (method signature)
         return do (alternative)
     }
-
-    -- "pattern match checker"
-    matches: | (pattern) | => -- "..."
     
     -- "conditionals"
     | if true (then) | => `(cell.value ? do(then) : undefined) ?? cell`

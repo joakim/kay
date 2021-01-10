@@ -53,7 +53,7 @@ Replicant: Object with {
     -- receptor method (a function exposed to the outside)
     (move $meters) => {
         plural: $meters <> 1 | 's' if true
-        print ("$name the $model replicant moved $meters meter" append plural)
+        print ("$name the $model replicant moved $meters meter" append $plural)
     }
 }
 

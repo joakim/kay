@@ -45,30 +45,31 @@ Cells are reference types with persistent data structures. The "[observer](https
 ```smalltalk
 -- "create a Replicant object"
 Replicant: Object with {
-    -- "slots (properties)"
+    -- "slots"
     name: 'Replicant'
     model: 'Generic'
     
-    -- "local method (a function assigned to a slot)"
-    say: | (words) | => {
-        print '{name} says: {words}'
-    }
-    
-    -- "receptor method (a function exposed to the outside)"
+    -- "receptor method (exposed to the outside)"
     | move (distance) | => {
         meters: distance = 1 << 'meter' if true else 'meters'
         print '{name} the {model} replicant moved {distance} {meters}'
+    }
+    
+    -- "local method (assigned to a slot)"
+    say: | (words) | => {
+        print '{name} says: {words}'
     }
 }
 
 -- "create a Nexus9 object by cloning and extending Replicant"
 Nexus9: Replicant with {
-    replicant: self  -- "a reference to this cell (used in nested cells)"
+    replicant: self
     model: 'Nexus 9'
     intelligence: 100
     thoughts: []
     
     think: | (thought) | => {
+        -- send an `append` message to the `thoughts` array with the value of the `thought` argument"
         thoughts append (thought)
         print '{name} thinks: {thought}'
     }
@@ -79,7 +80,7 @@ Nexus9: Replicant with {
         -- "signal the `move (meters)` receptor inherited from `Replicant`"
         replicant move 2
         
-        -- "signaling `then` and `else` of the boolean result of `> 100`, like an if statement"
+        -- "signal `then` and `else` of the boolean result of `> 100`, equivalent to an if statement"
         intelligence > 100
             then -> {
                 think 'Why did I move?'

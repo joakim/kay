@@ -136,14 +136,26 @@ method-3: (add $a to $b) => $a + $b
     -- arguments, marked with `$`, are bound to slots in the method's cell
     
     -- `$` is also used to reference slots when sending a message
-    print $bar
+    print $argument
     
     -- and to interpolate slots in strings
-    print "bar is $bar"
+    print "argument is $argument"
     
     -- the receiver of a message does not have to be referenced with `$`, however
-    bar if true -> print "It is true"
+    argument if true -> print "It is true"
 }
+
+-- cells have closure
+enclosed: {
+    local: 42
+    nested: {
+        (answer) => $local
+    }
+    (answer) => nested answer
+}
+
+-- messages may be piped/chained
+print (enclosed answer | = 42 | 'Correct' if true)  --> 'Correct'
 
 -- a cell with local state and code (equivalent to a function expression with no arguments)
 code-cell: {

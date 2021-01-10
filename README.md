@@ -259,6 +259,9 @@ print 42  --> "42, not `Number 42`"
 "slots are really setter messages on the current cell (`self`), the following are equivalent"
 foo: 42
 self foo: 42
+
+"setters are special messages, what follows `:` is evaluated as an expression, `()` is not needed"
+bar: 5 + foo
 ```
 
 <br/>

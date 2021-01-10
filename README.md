@@ -34,11 +34,11 @@ Cells are reference types with persistent data structures. The "[observer](https
 
 <b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, block and function, implemented as an independent reference type with complete isolation and built-in persistence, communicating by message signaling. The runtime is the stem.
 
-<br>
+<br/>
 
 ## Examples
 
-<sub>Note: This is just an exploration of possibilities. Consider it Readme Driven Programming Language Design. Comments should be like Haskell/Lua's. In these examples they are also enclosed in `""` for the Smalltalk syntax highlighting to look right.</sub>
+<sub>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Comments should be like [Haskell's](https://wiki.haskell.org/Commenting). In these examples they are also enclosed in `""` for the Smalltalk syntax highlighting to look right.</sub>
 
 ```smalltalk
 -- "create a Replicant object"

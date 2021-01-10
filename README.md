@@ -213,7 +213,7 @@ addition b: 7
 do (addition)  --> 10
 
 -- "primitive values are unboxed when read, returning their internal value"
-print 42  --> 42, "not `Number 42`"
+print 42  --> 42 "not `Number 42`"
 ```
 
 <br/>
@@ -226,14 +226,12 @@ The building blocks:
 
 -- "all other cells descend from the base Cell"
 Cell: {
-    self: `this`
     lineage: [{}]
     exposed: {}
     
     -- "clones itself (matches an empty message)"
     || => {
         clone: `Object.assign(Object.create(null), self)`
-        `clone.self = clone`
         
         -- "append a reference to itself as the parent of the clone"
         `clone.lineage.push(WeakRef(self))`

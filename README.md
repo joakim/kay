@@ -144,9 +144,9 @@ method-3: 'foo' => true
 
 -- cells have lexical scope
 enclosed: {
-    local: 42
+    inner: 42
     nested: {
-        'answer' => local
+        'answer' => inner
     }
     'answer' => nested answer
 }

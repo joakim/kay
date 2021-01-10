@@ -38,7 +38,7 @@ Cells are first-class reference types with persistent data structures. The "[obs
 - **Method** cells have closure and can return values
 - **Block** cells do not have closure and always return themselves
 
-All cell types are first-class reference types passed by value, with their own literals.
+All cell types are first-class reference types passed by value, supporting receptors. Each have their own literal.
 
 <br/>
 
@@ -72,7 +72,7 @@ Replicant: {
     }
 }
 
-"create a Nexus9 cell by cloning and extending Replicant"
+"create a Nexus9 cell by cloning and extending the Replicant cell"
 Nexus9: Replicant with {
     replicant: self
     model: 'Nexus 9'
@@ -122,15 +122,13 @@ officer-k move
 
 ### Demonstrations
 
-It's all interlinked cells with slots, expressions and messages.
-
-`Environment > Modules > (Cells...) > Values`
+Everything is a cell: `Environment > Modules > (Cells > Cells...) > Values`
 
 ```smalltalk
 "literal for an object cell"
 object-literal: {}
 
-"an object cell with a slot and (unlike other languages) an expression"
+"an object cell with a slot and, unlike other languages, an expression"
 object-example: {
     answer: 42
     print (answer)
@@ -139,7 +137,7 @@ object-example: {
 "literal for a block cell (compound statements in other languages)"
 block-literal: -> { … }
 
-"a block cell passed as an argument to the `then` receptor of Boolean"
+"a block cell sent as an argument to the `then` receptor of Boolean"
 block-example: true then -> {
     truth: 'It is true'
     print (truth)
@@ -148,13 +146,13 @@ block-example: true then -> {
 "literal for a method cell (function in other languages)"
 method-literal: => { … }
 
-"a method cell that takes a message, prints its argument and returns a string"
+"a method cell that receives a message, prints its argument and returns a string"
 method-example: | (argument) | => {
     print (argument)
     return 'argument was {argument}'
 }
 
-"an inlined method cells, having implicit `return` (lambda in other languages)"
+"an inlined method cell, having implicit `return` (lambda in other languages)"
 method-inlined: | (argument) | => true
 
 "literal for a receptor method (object method in other languages)"
@@ -267,6 +265,9 @@ self foo: 42
 
 ### Building blocks
 
+> The cell is the basic structural, functional, and logical unit of all known programs. A cell is the smallest unit of code. Cells are often called the "building blocks of code".
+
+Paraphrased from the Wikipedia article on [Cell](https://en.wikipedia.org/wiki/Cell_(biology)).
 
 ```smalltalk
 "the void type is a special cell that only ever returns itself"

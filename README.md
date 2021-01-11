@@ -309,7 +309,7 @@ print (bar)  --> 42
 
 > The cell is the basic structural, functional, and logical unit of all known programs. A cell is the smallest unit of code. Cells are often called the "building blocks of code".
 
-Paraphrased from the Wikipedia article on [Cell](https://en.wikipedia.org/wiki/Cell_(biology)).
+Paraphrased from the Wikipedia article on [Cell (biology)](https://en.wikipedia.org/wiki/Cell_(biology)).
 
 ```smalltalk
 "the void type is a special cell that only ever returns itself"

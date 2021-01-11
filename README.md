@@ -24,8 +24,7 @@ A simple message-based programming language inspired by [Smalltalk](http://worry
 
 ```elixir
 hello: [(name)] => {
-    greeting: 'hello, {name}!'
-    return: greeting
+    return: 'hello, {name}!'
 }
 
 print << hello 'world'  --> 'hello, world!'
@@ -125,7 +124,9 @@ A few, easy to understand concepts that are capable of implementing most concept
 `()` = message argument, evaluation/grouping  
 `=>` = method  
 `->` = block  
-`| ` = pipe  
+`<<` = pipe backward  
+`>>` = pipe forward  
+`| ` = pipeline (backward)  
 `* ` = mutable  
 `: ` = assignment  
 `= ` = equality  

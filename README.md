@@ -531,7 +531,7 @@ foobar: Cell {
         }
         
         loop -> {
-            await -> instructions: rna take
+            instructions: await -> rna take
             process (instructions)
         }
     }

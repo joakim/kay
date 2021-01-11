@@ -505,38 +505,38 @@ Disclaimer: I am not a molecular biologist! Nor am I a computer scientist.
 
 ```smalltalk
 foobar: Cell {
-	cell: self
-	
-	dna: *{
-		foo: 40
-	}
-	
-	rna: Stack
-	
-	ribosomes: []
-	
-	dna on change do transcribe
-	
-	transcribe: | (value) | -> {
-		instructions: { "..." }
-		foo ≥ 42 then -> rna put (instructions)
-	}
-	
-	ribosome: {
-		process: | (instructions) | => {
-			protein: Protein from (instructions)
-			cell emit (protein)
-		}
-		
-		loop -> {
-			await -> instructions: rna take
-			process (instructions)
-		}
-	}
-	
-	ribosomes append ribosome
-	
-	| increase foo | => dna foo increment
+    cell: self
+    
+    dna: *{
+        foo: 40
+    }
+    
+    rna: Stack
+    
+    ribosomes: []
+    
+    dna on change do transcribe
+    
+    transcribe: | (value) | -> {
+        instructions: { "..." }
+        foo ≥ 42 then -> rna put (instructions)
+    }
+    
+    ribosome: {
+        process: | (instructions) | => {
+            protein: Protein from (instructions)
+            cell emit (protein)
+        }
+        
+        loop -> {
+            await -> instructions: rna take
+            process (instructions)
+        }
+    }
+    
+    ribosomes append ribosome
+    
+    | increase foo | => dna foo increment
 }
 
 foobar increase foo

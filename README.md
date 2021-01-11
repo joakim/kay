@@ -22,7 +22,7 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 <br/>
 
-```lua
+```f
 greeter: {
     greeting: 'hello, world'
     

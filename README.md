@@ -55,6 +55,7 @@ All cell types are first-class reference types passed by value, supporting recep
 
 `{}` = cell literal  
 `[]` = array literal  
+`()` = grouping / message interpolation
 `||` = message definition  
 `=>` = method  
 `->` = block  

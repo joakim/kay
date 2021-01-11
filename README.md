@@ -29,7 +29,7 @@ greeter: {
     [say hello] => response
 }
 
-print << greeter say hello
+print | greeter say hello
 ```
 
 <br/>
@@ -71,7 +71,7 @@ Newline and indentation is significant within cells.
 `()` = message argument, grouping  
 `=>` = method  
 `->` = block  
-`<<` = pipe  
+`| ` = pipe  
 `* ` = mutable  
 `= ` = equality  
 `: ` = assignment  
@@ -124,14 +124,14 @@ Nexus9: Replicant with {
         
         "signal receptors of the boolean result of `>`, equivalent to an if statement"
         intelligence > 100
-            then -> {
+            | then -> {
                 think 'Why did I move?'
                 think 'Am I really a replicant?'
                 think 'My name is Joe...'
                 replicant name: 'Joe'  "mutate the state of an outer cell"
                 say 'My name is {name}!'
             }
-            else -> think '*crickets*'
+            | else -> think '*crickets*'
     }
 }
 
@@ -168,7 +168,7 @@ object-example: {
 block-literal: -> { … }
 
 "a block cell sent as an argument to the `then` receptor of `Boolean`"
-block-example: true then -> {
+block-example: true | then -> {
     truth: 'It is true'
     print (truth)
 }
@@ -226,12 +226,12 @@ mutable: *{
 mutable (foo: 10) (bar: false)
 
 "alternative syntax using the pipe operator"
-mutable foo: 10 << bar: false
+mutable foo: 10 | bar: false
 
-"alternative syntax using indentation (fluent interface)"
+"or multiline (fluent interface)"
 mutable
-    foo: 10
-    bar: false
+    | foo: 10
+    | bar: false
 
 "mutating a slot by referencing its name using a local slot's value"
 key: 'foo'
@@ -262,8 +262,8 @@ scoped: {
     [answer] => nested answer
 }
 
-"expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
-print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
+"expressions can be grouped/evaluated with `()` and messages piped/chained with `|`"
+print (scoped answer = 42 | 'Indeed' if true)  --> 'Indeed'
 
 "a method demonstrating closure"
 adder: [(x)] => {
@@ -347,8 +347,8 @@ Cell: {
         
         "if merging with an array of cells, merge each cell in turn"
         spec (is array)
-            then -> spec each [(item)] => merge (item)
-            else -> merge (spec)
+            | then -> spec each [(item)] => merge (item)
+            | else -> merge (spec)
         
         return: clone
     }
@@ -360,12 +360,12 @@ Cell: {
     [has (key)] => `Reflect.has(cell.exposed, key)`
     
     "exposed slot getter"
-    [(key)] => (cell is mutable) or (cell has (key)) << `Reflect.get(cell.exposed, key)` if true
+    [(key)] => (cell is mutable) or (cell has (key)) | `Reflect.get(cell.exposed, key)` if true
     
     "exposed slot setter (returns itself, enabling piping/chaining)"
     [(key): (value)] => {
         (cell is mutable) or (cell has (key))
-            if true -> `Reflect.set(cell.exposed, key, value)`
+            | if true -> `Reflect.set(cell.exposed, key, value)`
         return: cell
     }
     
@@ -425,7 +425,7 @@ Value: {
     [add preprocessor (preprocessor)] => preprocessors append (preprocessor)
     
     "adds a subscriber to an event"
-    [on (event) (subscriber)] => subscribers (event) << append (subscriber)
+    [on (event) (subscriber)] => subscribers (event) | append (subscriber)
     
     "pattern matching"
     [match (alternatives)] => {
@@ -519,7 +519,7 @@ foobar: Cell {
     transcribe: [(value)] => {
         instructions: { "..." }
         foo ≥ 42
-            then -> rna put (instructions)
+            | then -> rna put (instructions)
     }
     
     ribosome: {
@@ -536,7 +536,7 @@ foobar: Cell {
     
     ribosomes append ribosome
     
-    [increase foo] => dna foo << increment
+    [increase foo] => dna foo | increment
 }
 
 foobar increase foo

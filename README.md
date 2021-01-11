@@ -24,9 +24,9 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 ```elixir
 greeter: {
-    greeting: 'hello, world'
+    response: 'hello, world'
     
-    | say hello | => greeting
+    | say hello | => response
 }
 
 print << greeter say hello

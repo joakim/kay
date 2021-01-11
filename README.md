@@ -519,8 +519,6 @@ foobar: Cell {
     
     ribosomes: []
     
-    dna on change (transcribe)
-    
     transcribe: [(value)] => {
         instructions: { "..." }
         foo ≥ 42
@@ -540,6 +538,8 @@ foobar: Cell {
     }
     
     ribosomes append ribosome
+    
+    dna on change (transcribe)
     
     [increase foo] => dna foo | increment
 }

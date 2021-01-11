@@ -515,7 +515,7 @@ foobar: Cell {
     
     ribosomes: []
     
-    dna on change do transcribe
+    dna on change (transcribe)
     
     transcribe: | (value) | -> {
         instructions: { "..." }
@@ -536,7 +536,7 @@ foobar: Cell {
     
     ribosomes append ribosome
     
-    | increase foo | => dna foo increment
+    | increase foo | => dna foo << increment
 }
 
 foobar increase foo

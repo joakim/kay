@@ -47,7 +47,7 @@ Cells are first-class reference types with persistent data structures. The "[obs
 #### Cell types
 
 - **Object** cells are not executable
-- **Block** cells are executable, only returning themselves
+- **Block** cells are executable, but can not return values
 - **Method** cells are executable, take arguments and return values
 
 All cell types are first-class reference types that are passed by value and have closure. All cells support receptors.

@@ -67,10 +67,10 @@ Newline and indentation is significant within cells.
 #### Operators
 
 `{}` = cell literal  
-`=>` = method  
-`->` = block  
 `[]` = message definition, array literal  
 `()` = message argument, grouping  
+`=>` = method  
+`->` = block  
 `<<` = pipe  
 `* ` = mutable  
 `= ` = equality  

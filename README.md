@@ -230,10 +230,10 @@ mutable: *{
 "setters return the cell itself, enabling chaining of messages"
 mutable (foo: 10) (bar: false)
 
-"alternative syntax using the pipe operator"
+"simpler syntax using the pipe operator"
 mutable foo: 10 | bar: false
 
-"or multiline (fluent interface)"
+"looks great when multiline (fluent interface)"
 mutable
     | foo: 10
     | bar: false
@@ -505,7 +505,7 @@ do: [(cell)] => `cell()`
 
 ### Biological cell simulation
 
-Disclaimer: I am not a molecular biologist! Nor am I a computer scientist.
+Disclaimer: I am not a molecular biologist! (Nor am I a computer scientist.)
 
 ```smalltalk
 foobar: Cell {

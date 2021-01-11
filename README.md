@@ -216,11 +216,11 @@ method: => {
 result: do (method)  --> '2 + 3 = 5'
 print (result)       --> 5
 
-"all cells have lexical scope"
+"slots are block scoped (mutating a slot requires a reference to the slot's cell)"
 scoped: {
     inner: 42
     nested: {
-        | answer | => (inner)
+        | answer | => inner
     }
     | answer | => nested answer
 }

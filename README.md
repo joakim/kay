@@ -88,8 +88,8 @@ Newline and indentation is significant within cells.
 ```smalltalk
 "create a Replicant cell"
 Replicant: {
-    "slots"
-    name: 'Replicant'
+    "slots (`name` is marked as mutable)"
+    *name: 'Replicant'
     model: 'Generic'
     
     "receptor method (responds to messages from the outside)"

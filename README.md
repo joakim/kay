@@ -59,9 +59,9 @@ All cell types are first-class reference types passed by value, supporting recep
 `=>` = method  
 `->` = block  
 `<<` = pipe  
-`* ` = mutable  
-`= ` = equality  
-`: ` = assignment  
+`* ` = mutable  
+`= ` = equality  
+`: ` = assignment  
 
 ### Blade Runner
 

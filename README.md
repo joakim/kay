@@ -51,6 +51,18 @@ All cell types are first-class reference types passed by value, supporting recep
 
 <sup>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. The following examples use Smalltalk syntax highlighting, comments are therefore enclosed in `""`. They should really be like [Haskell's](https://wiki.haskell.org/Commenting) `--`. `-->` signifies output.</sup>
 
+#### Operators
+
+`{}` = cell literal  
+`[]` = array literal  
+`||` = message definition  
+`=>` = method  
+`->` = block  
+`<<` = pipe  
+`* ` = mutable  
+`= ` = equality  
+`: ` = assignment  
+
 ### Blade Runner
 
 ```smalltalk

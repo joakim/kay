@@ -73,8 +73,11 @@ Newline and indentation is significant within cells.
 `->` = block  
 `| ` = pipe  
 `* ` = mutable  
-`= ` = equality  
 `: ` = assignment  
+`= ` = equality  
+`≠ ` = inequality  
+`≥ ` = greater than or equals  
+`≤ ` = less than or equals  
 
 <br/>
 

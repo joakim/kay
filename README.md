@@ -22,7 +22,7 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 <br/>
 
-```f#
+```kotlin
 greeter: {
     greeting: 'hello, world'
     

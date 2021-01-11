@@ -75,19 +75,19 @@ console log 'hello, world'
 
 This sends a `log 'hello, world'` message to the `console` cell, matching its `log (value)` receptor.
 
-Assignment is also a message, implicitly sent to the current cell (`self`):
+Even assignment is a message, implicitly sent to the current cell (`self`):
 
 ```smalltalk
 foo: 42
 ```
 
-This matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`.
+This matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
 
 A method can be assigned to a slot, its arguments are part of the message. Returning a value is also done by assignment:
 
 ```smalltalk
 double: [(number)] => {
-    return: (number) * 2
+    return: number * 2
 }
 
 double 21  --> 42

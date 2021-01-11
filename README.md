@@ -322,7 +322,7 @@ Cell: {
     exposed: {}
     
     "slot initialization"
-    set: | (key): ...(value) | => `Reflect.set(self, key, value)`
+    set: | (key): ...(value) | => `Reflect.set(cell, key, value)`
     
     "exposed slot initialization (`*`) is syntactic sugar for this method"
     expose: | (key): ...(value) | => exposed (key): value
@@ -358,35 +358,36 @@ Cell: {
     | lineage | => lineage
     
     "exposed slot checker"
-    | has (key) | => `Reflect.has(self.exposed, key)`
+    | has (key) | => `Reflect.has(cell.exposed, key)`
     
     "exposed slot getter"
-    | (key) | => (self is mutable) or (self has (key)) << `Reflect.get(self.exposed, key)` if true
+    | (key) | => (cell is mutable) or (cell has (key)) << `Reflect.get(cell.exposed, key)` if true
     
     "exposed slot setter (returns itself, enabling piping/chaining)"
     | (key): (value) | => {
-        return: (self is mutable) or (self has (key))
-            << `(Reflect.set(self.exposed, key, value), self)` if true
+        (cell is mutable) or (cell has (key))
+            if true -> `Reflect.set(cell.exposed, key, value)`
+        return: cell
     }
     
     "conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)"
-    | then (implication) | => self if true (implication)
-    | else (implication) | => self if false (implication)
-    | if true (implication) | => `(self ? do(implication) : undefined) ?? self`
-    | if false (implication) | => `(self ? undefined : do(implication)) ?? self`
-    | (value) if true | => `self ? value : undefined`
-    | (value) if false | => `self ? undefined : value`
-    | (value-1) if true else (value-2) | => `self ? value-1 : value-2`
-    | (value-1) if false else (value-2) | => `self ? value-2 : value-1`
+    | then (implication) | => cell if true (implication)
+    | else (implication) | => cell if false (implication)
+    | if true (implication) | => `(cell ? do(implication) : undefined) ?? cell`
+    | if false (implication) | => `(cell ? undefined : do(implication)) ?? cell`
+    | (value) if true | => `cell ? value : undefined`
+    | (value) if false | => `cell ? undefined : value`
+    | (value-1) if true else (value-2) | => `cell ? value-1 : value-2`
+    | (value-1) if false else (value-2) | => `cell ? value-2 : value-1`
     
     "returns whether the cell has all exposed slots"
     | is exposed | => Boolean (exposed size)
     
     "checks whether the cell has a receptor matching the signature"
-    | has receptor (signature) | => `self.hasReceptor(signature)`
+    | has receptor (signature) | => `cell.hasReceptor(signature)`
     
     "applies a receptor of this cell to another cell"
-    | apply (message) to (other) | => `Reflect.apply(self, other, message)`
+    | apply (message) to (other) | => `Reflect.apply(cell, other, message)`
 }
 
 "definition of the Value cell"

@@ -28,7 +28,7 @@ hello: [(name)] => {
     return: greeting
 }
 
-print | hello 'world'  --> 'hello, world!'
+print << hello 'world'  --> 'hello, world!'
 ```
 
 <br/>

@@ -93,7 +93,7 @@ Replicant: {
     
     "receptor method (responds to messages from the outside)"
     [move (distance)] => {
-        meters: (distance = 1) 'meter' if true else 'meters'
+        meters: distance = 1 | 'meter' if true else 'meters'
         print '{name} the {model} replicant moved {distance} {meters}'
     }
     

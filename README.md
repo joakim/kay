@@ -34,11 +34,11 @@ Cells are first-class reference types with persistent data structures. The "[obs
 
 #### Cell types
 
-- **Object** cells have closure and always return themselves
-- **Method** cells have closure, take arguments and can return values
-- **Block** cells (do/do not, undecided) have closure and always return themselves
+- **Object** cells are not executable
+- **Block** cells are executable, only returning themselves
+- **Method** cells are executable, take arguments and return values
 
-All cell types are first-class reference types passed by value, supporting receptors. Each have their own literal.
+All cell types are first-class reference types that are passed by value and have closure. All cells support receptors.
 
 <br/>
 
@@ -54,11 +54,11 @@ All cell types are first-class reference types passed by value, supporting recep
 #### Operators
 
 `{}` = cell literal  
+`=>` = method  
+`->` = block  
 `[]` = array literal  
 `||` = message definition  
 `()` = message argument, grouping  
-`=>` = method  
-`->` = block  
 `<<` = pipe  
 `* ` = mutable  
 `= ` = equality  

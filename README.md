@@ -61,8 +61,6 @@ All cells are first-class reference types that are passed by value, having inter
 
 Everything is an expression. There are no statements, only cells and message passing.
 
-Newline and indentation is significant within cells.
-
 #### Operators
 
 `{}` = cell literal  

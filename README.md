@@ -365,7 +365,8 @@ Cell: {
     
     "exposed slot setter (returns itself, enabling piping/chaining)"
     | (key): (value) | => {
-        return: (self is mutable) or (self has (key)) << `(Reflect.set(self.exposed, key, value), self)` if true
+        return: (self is mutable) or (self has (key))
+            << `(Reflect.set(self.exposed, key, value), self)` if true
     }
     
     "conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)"

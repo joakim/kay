@@ -56,10 +56,10 @@ All cell types are first-class reference types that are passed by value and have
 `{}` = cell literal  
 `=>` = method  
 `->` = block  
-`[]` = array literal  
 `||` = message definition  
 `()` = message argument, grouping  
 `<<` = pipe  
+`[]` = array literal  
 `* ` = mutable  
 `= ` = equality  
 `: ` = assignment  

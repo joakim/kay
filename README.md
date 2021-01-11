@@ -216,7 +216,7 @@ method: => {
 result: do (method)  --> '2 + 3 = 5'
 print (result)       --> 5
 
-"slots are block scoped (mutating a slot requires a reference to the slot's cell)"
+"slots are block scoped (mutating a parent cell's slot requires a reference to the cell)"
 scoped: {
     inner: 42
     nested: {

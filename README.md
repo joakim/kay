@@ -26,7 +26,7 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 greeter: {
     response: 'hello, world'
     
-    | say hello | => response
+    [say hello] => response
 }
 
 print << greeter say hello
@@ -69,10 +69,9 @@ Newline and indentation is significant within cells.
 `{}` = cell literal  
 `=>` = method  
 `->` = block  
-`||` = message definition  
+`[]` = message definition, array literal  
 `()` = message argument, grouping  
 `<<` = pipe  
-`[]` = array literal  
 `* ` = mutable  
 `= ` = equality  
 `: ` = assignment  
@@ -93,13 +92,13 @@ Replicant: {
     model: 'Generic'
     
     "receptor method (responds to messages from the outside)"
-    | move (distance) | => {
+    [move (distance)] => {
         meters: (distance = 1) 'meter' if true else 'meters'
         print '{name} the {model} replicant moved {distance} {meters}'
     }
     
     "local method (assigned to a slot)"
-    say: | (words) | => {
+    say: [(words)] => {
         print '{name} says: {words}'
     }
 }
@@ -111,19 +110,19 @@ Nexus9: Replicant with {
     intelligence: 100
     thoughts: []
     
-    think: | (thought) | => {
+    think: [(thought)] => {
         "send an `append` message to the `thoughts` array with the `thought` argument's value"
         thoughts append (thought)
         print '{name} thinks: {thought}'
     }
     
-    | move | => {
+    [move] => {
         print '*moves*'
         
         "signal the `move (distance)` receptor cloned from `Replicant`"
         replicant move 2
         
-        "signal `then` and `else` of the boolean result of `>`, equivalent to an if statement"
+        "signal receptors of the boolean result of `>`, equivalent to an if statement"
         intelligence > 100
             then -> {
                 think 'Why did I move?'
@@ -175,23 +174,23 @@ block-example: true then -> {
 }
 
 "literal for a method cell (function or private method in other languages)"
-method-literal: => { … }
+method-literal: [] => { … }
 
 "a method cell that receives a message, prints its argument and returns a string"
-method-example: | (argument) | => {
+method-example: [(argument)] => {
     print (argument)
     return: 'argument was {argument}'
 }
 
 "an inlined method cell, having implicit `return` (lambda in other languages)"
-method-inlined: | (argument) | => true
+method-inlined: [(argument)] => true
 
 "literal for a receptor method (replaces object method in other languages)"
 "a receptor is simply a method that is not assigned to a slot"
-| foo (bar) | => { … }
+[foo (bar)] => { … }
 
 "a receptor method illustrating how messages are used"
-| receptor with one (argument) | => {
+[receptor with one (argument)] => {
     "messages are flexible string patterns that may contain arguments"
     "arguments are enclosed in `()`, the matched value will be bound to a slot of that name"
     "the syntax could be extended to support typed arguments"
@@ -243,7 +242,7 @@ mutable-slot: {
     cell: self
     *bar: true
     
-    | mutate | => {
+    [mutate] => {
         cell bar: false
     }
 }
@@ -253,22 +252,22 @@ scoped: {
     inner: 42
     
     nested: {
-        | answer | => {
+        [answer] => {
             original: inner       --> "42 (a clone of `inner`)"
-            inner: 'shadowed'  --> "'shadowed' (a new, local slot)"
+            inner: 'shadowed'     --> "'shadowed' (a new, local slot)"
             return: original
         }
     }
     
-    | answer | => nested answer
+    [answer] => nested answer
 }
 
 "expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
 print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
 
 "a method demonstrating closure"
-adder: | (x) | => {
-    return: | (y) | => {
+adder: [(x)] => {
+    return: [(y)] => {
         return: x + y
     }
 }
@@ -280,10 +279,10 @@ print (add-5 2)   --> 7
 print (add-10 2)  --> 12
 
 "inlined version of the `adder` method"
-inlined: | (x) | => | (y) | => x + y
+inlined: [(x)] => [(y)] => x + y
 
 "a method with exposed slots is possible (but dangerous)"
-add: | (a) to (b) | => *{
+add: [(a) to (b)] => *{
     output: {}
     output (a + b)
 }
@@ -313,7 +312,7 @@ Paraphrased from the Wikipedia article on [Cell (biology)](https://en.wikipedia.
 
 ```smalltalk
 "the void type is a special cell that only ever returns itself"
-{}: { | _ | => self }
+{}: { [_] => self }
 
 "all other cells descend from the base Cell"
 Cell: {
@@ -322,13 +321,13 @@ Cell: {
     exposed: {}
     
     "slot initialization"
-    set: | (key): ...(value) | => `Reflect.set(cell, key, value)`
+    set: [(key): ...(value)] => `Reflect.set(cell, key, value)`
     
     "exposed slot initialization (`*`) is syntactic sugar for this method"
-    expose: | (key): ...(value) | => exposed (key): value
+    expose: [(key): ...(value)] => exposed (key): value
     
     "clones itself (matches an empty message)"
-    | | => {
+    [] => {
         clone: `Object.assign(Object.create(null), cell)`
         
         "append a reference to itself as the parent of the clone"
@@ -338,56 +337,56 @@ Cell: {
     }
     
     "clones itself, merging with the specified cell(s), enabling composition of multiple cells"
-    | with (spec) | => {
+    [with (spec)] => {
         clone: cell
         
         "merge slots into the clone"
-        merge: | (slots) | => {
-            slots each | (key) (value) | => `Reflect.set(clone, key, value)`
+        merge: [(slots)] => {
+            slots each [(key) (value)] => `Reflect.set(clone, key, value)`
         }
         
         "if merging with an array of cells, merge each cell in turn"
         spec (is array)
-            then -> spec each | (item) | => merge (item)
+            then -> spec each [(item)] => merge (item)
             else -> merge (spec)
         
         return: clone
     }
     
     "returns the cell's lineage"
-    | lineage | => lineage
+    [lineage] => lineage
     
     "exposed slot checker"
-    | has (key) | => `Reflect.has(cell.exposed, key)`
+    [has (key)] => `Reflect.has(cell.exposed, key)`
     
     "exposed slot getter"
-    | (key) | => (cell is mutable) or (cell has (key)) << `Reflect.get(cell.exposed, key)` if true
+    [(key)] => (cell is mutable) or (cell has (key)) << `Reflect.get(cell.exposed, key)` if true
     
     "exposed slot setter (returns itself, enabling piping/chaining)"
-    | (key): (value) | => {
+    [(key): (value)] => {
         (cell is mutable) or (cell has (key))
             if true -> `Reflect.set(cell.exposed, key, value)`
         return: cell
     }
     
     "conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)"
-    | then (implication) | => cell if true (implication)
-    | else (implication) | => cell if false (implication)
-    | if true (implication) | => `(cell ? do(implication) : undefined) ?? cell`
-    | if false (implication) | => `(cell ? undefined : do(implication)) ?? cell`
-    | (value) if true | => `cell ? value : undefined`
-    | (value) if false | => `cell ? undefined : value`
-    | (value-1) if true else (value-2) | => `cell ? value-1 : value-2`
-    | (value-1) if false else (value-2) | => `cell ? value-2 : value-1`
+    [then (implication)] => cell if true (implication)
+    [else (implication)] => cell if false (implication)
+    [if true (implication)] => `(cell ? do(implication) : undefined) ?? cell`
+    [if false (implication)] => `(cell ? undefined : do(implication)) ?? cell`
+    [(value) if true] => `cell ? value : undefined`
+    [(value) if false] => `cell ? undefined : value`
+    [(value-1) if true else (value-2)] => `cell ? value-1 : value-2`
+    [(value-1) if false else (value-2)] => `cell ? value-2 : value-1`
     
     "returns whether the cell has all exposed slots"
-    | is exposed | => Boolean (exposed size)
+    [is exposed] => Boolean (exposed size)
     
     "checks whether the cell has a receptor matching the signature"
-    | has receptor (signature) | => `cell.hasReceptor(signature)`
+    [has receptor (signature)] => `cell.hasReceptor(signature)`
     
     "applies a receptor of this cell to another cell"
-    | apply (message) to (other) | => `Reflect.apply(cell, other, message)`
+    [apply (message) to (other)] => `Reflect.apply(cell, other, message)`
 }
 
 "definition of the Value cell"
@@ -401,46 +400,46 @@ Value: {
     subscribers: {}
     
     "local setter method for mutating the internal value"
-    set: | (value) | => {
+    set: [(value)] => {
         "validate and preprocess..."
         `(cell.value = value, cell)`
     }
     
     "local pattern match checker"
-    matches: | (pattern) | => "..."
+    matches: [(pattern)] => "..."
     
     "constructor"
-    | (value) | => {
+    [(value)] => {
         clone: cell
         `clone.value = value`
         return: clone
     }
     
     "unwraps the internal value"
-    | unwrap | => `cell.value`
+    [unwrap] => `cell.value`
     
     "adds a validator for the value"
-    | add validator (validator) | => validators append (validator)
+    [add validator (validator)] => validators append (validator)
     
     "adds a preprocessor for the value"
-    | add preprocessor (preprocessor) | => preprocessors append (preprocessor)
+    [add preprocessor (preprocessor)] => preprocessors append (preprocessor)
     
     "adds a subscriber to an event"
-    | on (event) (subscriber) | => subscribers (event) << append (subscriber)
+    [on (event) (subscriber)] => subscribers (event) << append (subscriber)
     
     "pattern matching"
-    | match (alternatives) | => {
-        alternative: alternatives find | (method) | => matches (method signature)
+    [match (alternatives)] => {
+        alternative: alternatives find [(method)] => matches (method signature)
         return: do (alternative)
     }
     
     "conditionals"
-    | if true (then) | => `(cell.value ? do(then) : undefined) ?? cell`
-    | if false (else) | => `(cell.value ? undefined : do(else)) ?? cell`
-    | (value) if true | => `cell.value ? value : undefined`
-    | (value) if false | => `cell.value ? undefined : value`
-    | (value-1) if true else (value-2) | => `cell.value ? value-1 : value-2`
-    | (value-1) if false else (value-2) | => `cell.value ? value-2 : value-1`
+    [if true (then)] => `(cell.value ? do(then) : undefined) ?? cell`
+    [if false (else)] => `(cell.value ? undefined : do(else)) ?? cell`
+    [(value) if true] => `cell.value ? value : undefined`
+    [(value) if false] => `cell.value ? undefined : value`
+    [(value-1) if true else (value-2)] => `cell.value ? value-1 : value-2`
+    [(value-1) if false else (value-2)] => `cell.value ? value-2 : value-1`
 }
 
 "definition of the Boolean value"
@@ -448,10 +447,10 @@ Boolean: Value with {
     cell: self
     
     "preprocess the value before being set, casting it to a boolean"
-    cell add preprocessor | (value) | => `Boolean(value)`
+    cell add preprocessor [(value)] => `Boolean(value)`
     
     "negates the value"
-    | negate | => set `!cell.value`
+    [negate] => set `!cell.value`
 }
 
 "instantiated booleans (on the environment cell)"
@@ -467,34 +466,34 @@ print (bool)  --> false "(the value is automagically unwrapped when read)"
 Array: Value with {
     cell: self
     
-    | is array | => true
-    | first | => `cell.value[0]`
-    | last | => `cell.value[value.length - 1]`
-    | append (value) | => `cell.value = [...cell.value, value]`
-    | prepend (value) | => `cell.value = [value, ...cell.value]`
-    | map (mapper) | => `cell.value.map(mapper)`
-    | each (handler) | => `cell.value.forEach(handler)`
+    [is array] => true
+    [first] => `cell.value[0]`
+    [last] => `cell.value[value.length - 1]`
+    [append (value)] => `cell.value = [...cell.value, value]`
+    [prepend (value)] => `cell.value = [value, ...cell.value]`
+    [map (mapper)] => `cell.value.map(mapper)`
+    [each (handler)] => `cell.value.forEach(handler)`
     "..."
 }
 
-"the method literal is the syntax sugar equivalent to `Method  | message | { code }`"
+"the method literal is the syntax sugar equivalent to `Method (message) { code... }`"
 "a method literal declared without being assigned to a slot is a receptor of the cell"
 Method: {
-    | (message) (code) | => `function (message) { code }`
-    | signature | => "..."
+    [(message) (code)] => `function (message) { code }`
+    [signature] => "..."
 }
 
 "`print` is a slot on the environment cell that is a method cell"
-print: | (value) | => console log (value)
+print: [(value)] => console log (value)
 
 "`console` is a cell with receptors"
 console: {
-    | log (value) | => `console.log(value)`
+    [log (value)] => `console.log(value)`
     "..."
 }
 
 "the `do` method"
-do: | (cell) | => `cell()`
+do: [(cell)] => `cell()`
 ```
 
 <br/>
@@ -517,13 +516,14 @@ foobar: Cell {
     
     dna on change (transcribe)
     
-    transcribe: | (value) | -> {
+    transcribe: [(value)] => {
         instructions: { "..." }
-        foo ≥ 42 then -> rna put (instructions)
+        foo ≥ 42
+            then -> rna put (instructions)
     }
     
     ribosome: {
-        process: | (instructions) | => {
+        process: [(instructions)] => {
             protein: Protein from (instructions)
             cell emit (protein)
         }
@@ -536,7 +536,7 @@ foobar: Cell {
     
     ribosomes append ribosome
     
-    | increase foo | => dna foo << increment
+    [increase foo] => dna foo << increment
 }
 
 foobar increase foo

@@ -22,6 +22,20 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 <br/>
 
+```smalltalk
+greeter: {
+    greeting: 'hello, world'
+    
+    | say hello | => {
+        return: greeting
+    }
+}
+
+greeter say hello
+```
+
+<br/>
+
 ## Cells
 
 It's cells all the way down, from environment to values. Cells encapsulate slots, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Signals are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received signal and for producing a response.
@@ -168,7 +182,7 @@ method-literal: => { … }
 "a method cell that receives a message, prints its argument and returns a string"
 method-example: | (argument) | => {
     print (argument)
-    return 'argument was {argument}'
+    return: 'argument was {argument}'
 }
 
 "an inlined method cell, having implicit `return` (lambda in other languages)"
@@ -197,7 +211,7 @@ method: => {
     b: 3
     result: a + b
     print '{a} + {b} = {result}'
-    return (result)
+    return: result
 }
 
 "calling the method using `do` (an environment method)"
@@ -248,8 +262,8 @@ exposed bar: false
 
 "method demonstrating closure"
 adder: | (x) | => {
-    return | (y) | => {
-        return x + y
+    return: | (y) | => {
+        return: x + y
     }
 }
 
@@ -315,7 +329,7 @@ Cell: {
         "append a reference to itself as the parent of the clone"
         `clone.lineage.push(WeakRef(cell))`
         
-        return (clone)
+        return: clone
     }
     
     "clones itself, merging with the specified cell(s), enabling composition of multiple cells"
@@ -332,7 +346,7 @@ Cell: {
             then -> spec each | (item) | => merge (item)
             else -> merge (spec)
         
-        return (clone)
+        return: clone
     }
     
     "returns the cell's lineage"
@@ -390,7 +404,7 @@ Value: {
     | (value) | => {
         clone: cell
         `clone.value = value`
-        return (clone)
+        return: clone
     }
     
     "unwraps the internal value"
@@ -408,7 +422,7 @@ Value: {
     "pattern matching"
     | match (alternatives) | => {
         alternative: alternatives find | (method) | => matches (method signature)
-        return do (alternative)
+        return: do (alternative)
     }
     
     "conditionals"

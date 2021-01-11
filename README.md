@@ -45,7 +45,7 @@ Cells are first-class reference types with persistent data structures. The "[obs
 
 #### Cell types
 
-- **Object** cells are not executable
+- **Record** cells are not executable
 - **Block** cells are executable, but can not return values
 - **Method** cells are executable, take arguments and return values
 
@@ -53,7 +53,7 @@ All cell types are first-class reference types that are passed by value and have
 
 <br/>
 
-<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
+<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of object, function and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
 
 <br/>
 
@@ -160,11 +160,11 @@ officer-k move
 Everything is a cell: `Environment > Modules > (Cells > Cells...) > Values`
 
 ```smalltalk
-"literal for an object cell"
-object-literal: {}
+"literal for a record cell"
+record-literal: {}
 
-"an object cell with a slot (private property in other languages)"
-object-example: {
+"a record cell with a slot (object with a private property in other languages)"
+record-example: {
     answer: 42
 }
 
@@ -189,7 +189,7 @@ method-example: [(argument)] => {
 "an inlined method cell, having implicit `return` (lambda in other languages)"
 method-inlined: [(argument)] => true
 
-"literal for a receptor method (replaces object method in other languages)"
+"literal for a receptor method (similar to object method in other languages)"
 "a receptor is simply a method that is not assigned to a slot"
 [foo (bar)] => { … }
 
@@ -219,7 +219,7 @@ method: => {
 result: do (method)  --> '2 + 3 = 5'
 print (result)       --> 5
 
-"a mutable cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
+"a mutable record with all slots exposed, marked with `*` (object/struct/dict in other languages)"
 mutable: *{
     foo: 42
     bar: true
@@ -241,7 +241,7 @@ mutable
 key: 'foo'
 mutable (key): 42
 
-"an object cell with a mutable slot (only mutable from within)"
+"a record cell with a mutable slot (only mutable from within)"
 mutable-slot: {
     cell: self
     *bar: true
@@ -250,6 +250,7 @@ mutable-slot: {
         cell bar: false
     }
 }
+mutable-slot mutate
 
 "slots are block scoped and may be shadowed by nested cells"
 scoped: {

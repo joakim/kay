@@ -282,7 +282,7 @@ print (add-10 2)  --> 12
 "inlined version of the `adder` method"
 inlined: | (x) | => | (y) | => x + y
 
-"a method with a exposed slots is possible (but dangerous)"
+"a method with exposed slots is possible (but dangerous)"
 add: | (a) to (b) | => *{
     output: {}
     output (a + b)

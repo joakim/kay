@@ -24,7 +24,8 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 ```elixir
 greet: [(name)] => {
-    return: 'hello, {name}!'
+    greeting: 'hello, {name}!'
+    return: greeting
 }
 
 print | greet 'world'  --> 'hello, world'

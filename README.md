@@ -501,7 +501,7 @@ do: | (cell) | => `cell()`
 
 ### Biological cell simulation
 
-Disclaimer: I am not a molecular biologist!
+Disclaimer: I am not a molecular biologist! Nor am I a computer scientist.
 
 ```smalltalk
 foobar: Cell {

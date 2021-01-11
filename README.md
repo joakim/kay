@@ -31,7 +31,7 @@ greeter: {
     }
 }
 
-greeter say hello
+print << greeter say hello
 ```
 
 <br/>

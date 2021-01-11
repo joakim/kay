@@ -73,17 +73,23 @@ To write to the console:
 console log 'hello, world'
 ```
 
-This sends a `log 'hello, world'` message to the `console` cell, matching its `log (value)` receptor.
+This sends a `log 'hello, world'` message to the `console` cell, matching its `log (value)` receptor:
+
+```smalltalk
+console: {
+    [log (value)] => `console.log(value)`
+}
+```
 
 Even assignment is a message, implicitly sent to the current cell:
 
 ```smalltalk
-foo: 42
+answer: 42
 ```
 
-This matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
+This message matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
 
-A method can be assigned to a slot, its arguments are part of the message. Returning a value is also done by assignment:
+A method can also be assigned to a slot, becoming a local method. Its arguments form part of the message. Even returning a value is done by assignment:
 
 ```smalltalk
 double: [(number)] => {
@@ -92,6 +98,25 @@ double: [(number)] => {
 
 double 21  --> 42
 ```
+
+Blocks can form part of messages, as this example equivalent to an if-else statement shows:
+
+```smalltalk
+answer = 42
+    | then -> {
+        console log 'Correct'
+        marvin shrug
+    }
+    | else -> marvin despair
+```
+
+And messages can include expressions wrapped in `()`:
+
+```smalltalk
+console log (answer = 42 | then => 'Correct' | else => 'You are mistaken')
+```
+
+A few, easy to understand concepts that are capable of implementing most concepts typically found in high-level programming languages.
 
 ### Operators
 

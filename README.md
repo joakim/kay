@@ -511,7 +511,7 @@ foobar: Cell {
         foo: 40
     }
     
-    rna: Stack
+    rna: Queue
     
     ribosomes: []
     

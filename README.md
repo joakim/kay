@@ -216,25 +216,13 @@ method: => {
 result: do (method)  --> '2 + 3 = 5'
 print (result)       --> 5
 
-"slots are block scoped (mutating a parent cell's slot requires a reference to the cell)"
-scoped: {
-    inner: 42
-    nested: {
-        | answer | => inner
-    }
-    | answer | => nested answer
-}
-
-"expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
-print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
-
-"a cell with all its slots exposed, marked with `*` (object/struct/dict in other languages)"
+"a mutable cell with all slots exposed, marked with `*` (object/struct/dict in other languages)"
 mutable: *{
     foo: 42
     bar: true
 }
 
-"mutating exposed slots from outside the mutable cell"
+"mutating slots from outside the cell"
 "setters return the cell itself, enabling chaining of messages"
 mutable (foo: 10) (bar: false)
 
@@ -250,15 +238,35 @@ mutable
 key: 'foo'
 mutable (key): 42
 
-"a cell with an individually exposed slot"
-exposed: {
-    foo: 42
+"an object cell with a mutable slot (only mutable from within)"
+mutable-slot: {
+    cell: self
     *bar: true
+    
+    | mutate | => {
+        cell bar: false
+    }
 }
 
-exposed bar: false
+"slots are block scoped and may be shadowed by nested cells"
+scoped: {
+    inner: 42
+    
+    nested: {
+        | answer | => {
+            original: inner       --> "42 (a clone of `inner`)"
+            inner: 'shadowed'  --> "'shadowed' (a new, local slot)"
+            return: original
+        }
+    }
+    
+    | answer | => nested answer
+}
 
-"method demonstrating closure"
+"expressions can be grouped/evaluated with `()` and messages piped/chained with `<<`"
+print (scoped answer = 42 << 'Indeed' if true)  --> 'Indeed'
+
+"a method demonstrating closure"
 adder: | (x) | => {
     return: | (y) | => {
         return: x + y

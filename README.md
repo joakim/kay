@@ -56,7 +56,7 @@ All cell types are first-class reference types passed by value, supporting recep
 `{}` = cell literal  
 `[]` = array literal  
 `||` = message definition  
-`()` = message argument, grouping
+`()` = message argument, grouping  
 `=>` = method  
 `->` = block  
 `<<` = pipe  

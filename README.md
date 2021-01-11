@@ -285,18 +285,7 @@ print (add-10 2)  --> 12
 "inlined version of the `adder` method"
 inlined: [(x)] => [(y)] => x + y
 
-"a method with exposed slots is possible (but dangerous)"
-add: [(a) to (b)] => *{
-    output: {}
-    output (a + b)
-}
-
-"self-modifying code by mutating exposed slot between calls"
-add 2 to 2  --> {}
-add output: print
-add 2 to 2  --> 4
-
-"as in the self language, assignment is really setter messages on the current cell (`self`)"
+"as in the self language, assignment is really implicit setter signals on the current cell (`self`)"
 foo: 42
 self foo: 42  -- "the two are equivalent"
 

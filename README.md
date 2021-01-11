@@ -274,25 +274,24 @@ print (add-10 2)  --> 12
 "inlined version of the `adder` method"
 inlined: | (x) | => | (y) | => x + y
 
-"self-modifying code by mutating exposed slots between calls (powerful/dangerous)"
+"a method with an exposed slot is possible"
 add: | (a) to (b) | => {
     *output: {}
     output (a + b)
 }
 
+"self-modifying code by mutating exposed slot between calls (powerful/dangerous)"
 add 2 to 2  --> {}
 add output: print
 add 2 to 2  --> 4
 
-"primitive values are unboxed when read, returning their internal value"
-print 42  --> "42, not `Number 42`"
-
-"slots are really setter messages on the current cell (`self`), the following are equivalent"
+"as in the self language, assignment is really setter messages on the current cell (`self`)"
 foo: 42
-self foo: 42
+self foo: 42  -- "the two are equivalent"
 
-"setters have special messages, what follows `:` is evaluated as an expression, `()` is not needed"
+"setters are special, what follows `:` is evaluated as an expression, `()` is not needed"
 bar: foo
+
 print (bar)  --> 42
 ```
 

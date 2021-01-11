@@ -282,13 +282,13 @@ print (add-10 2)  --> 12
 "inlined version of the `adder` method"
 inlined: | (x) | => | (y) | => x + y
 
-"a method with an exposed slot is possible"
-add: | (a) to (b) | => {
-    *output: {}
+"a method with a exposed slots is possible (but dangerous)"
+add: | (a) to (b) | => *{
+    output: {}
     output (a + b)
 }
 
-"self-modifying code by mutating exposed slot between calls (powerful/dangerous)"
+"self-modifying code by mutating exposed slot between calls"
 add 2 to 2  --> {}
 add output: print
 add 2 to 2  --> 4

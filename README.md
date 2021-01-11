@@ -23,12 +23,12 @@ A simple message-based programming language inspired by [Smalltalk](http://worry
 <br/>
 
 ```elixir
-greet: [(name)] => {
+hello: [(name)] => {
     greeting: 'hello, {name}!'
     return: greeting
 }
 
-print | greet 'world'  --> 'hello, world!'
+print | hello 'world'  --> 'hello, world!'
 ```
 
 <br/>

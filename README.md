@@ -196,7 +196,7 @@ method-inlined: [(argument)] => true
 
 "a receptor method illustrating how messages are used"
 [receptor with one (argument)] => {
-    "messages are flexible string patterns that may contain arguments"
+    "messages are flexible text patterns that may contain arguments"
     "arguments are enclosed in `()`, the matched value will be bound to a slot of that name"
     "the syntax could be extended to support typed arguments"
     

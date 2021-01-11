@@ -23,13 +23,11 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 <br/>
 
 ```elixir
-greeter: {
-    response: 'hello, world'
-    
-    [say hello] => response
+greet: [(name)] => {
+    return: 'hello, {name}!'
 }
 
-print | greeter say hello
+print | greet 'world'  --> 'hello, world'
 ```
 
 <br/>

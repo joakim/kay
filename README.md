@@ -46,14 +46,14 @@ Cells are first-class reference types with persistent data structures. The "[obs
 #### Cell types
 
 - **Record** cells are not executable
-- **Block** cells are executable, but can not return values
 - **Method** cells are executable, take arguments and return values
+- **Block** cells are executable, but can not take arguments or return values
 
-All cell types are first-class reference types that are passed by value and have closure. All cells support receptors.
+All cells are first-class reference types that are passed by value, having internal state and closure. All cells may have receptor methods.
 
 <br/>
 
-<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of record, method/function and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque, safe. The runtime is the stem.
+<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
 
 <br/>
 

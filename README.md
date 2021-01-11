@@ -65,13 +65,17 @@ Syntax for sending a message to a cell, signaling its matching receptor:
 
 `<cell> <message with an (argument)>`
 
-The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding).
-
-For example:
+The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding). For example:
 
 `console log 'hello, world'`
 
 This sends a `log 'hello, world'` message to the `console` cell, matching its `log (value)` receptor.
+
+Assignment is also a message, implicitly sent to the current cell (`self`):
+
+`foo: 42`
+
+This matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`.
 
 ### Operators
 

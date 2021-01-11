@@ -61,7 +61,19 @@ All cells are first-class reference types that are passed by value, having inter
 
 Everything is an expression. There are no statements, only cells and message passing.
 
-#### Operators
+Syntax for sending a message to a cell, signaling its matching receptor:
+
+`<cell> <message with an (argument)>`
+
+The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding).
+
+For example:
+
+`console log 'hello, world'`
+
+This sends a `log 'hello, world'` message to the `console` cell, matching its `log (value)` receptor.
+
+### Operators
 
 `{}` = cell literal  
 `[]` = message definition, array literal  

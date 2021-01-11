@@ -46,10 +46,9 @@ All cell types are first-class reference types that are passed by value and have
 
 <br/>
 
+## Syntax
 
-## Examples
-
-<sup>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. The following examples use Smalltalk syntax highlighting, comments are therefore enclosed in `""`. They should really be like [Haskell's](https://wiki.haskell.org/Commenting) `--`. `-->` signifies output.</sup>
+Everything is an expression. There are no statements, only cells and message passing. Newline and indentation is significant within cells.
 
 #### Operators
 
@@ -63,6 +62,11 @@ All cell types are first-class reference types that are passed by value and have
 `* ` = mutable  
 `= ` = equality  
 `: ` = assignment  
+
+
+## Examples
+
+<sup>This is just an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. The following examples use Smalltalk syntax highlighting, comments are therefore enclosed in `""`. They should really be like [Haskell's](https://wiki.haskell.org/Commenting) `--`. `-->` signifies output.</sup>
 
 ### Blade Runner
 
@@ -141,16 +145,15 @@ Everything is a cell: `Environment > Modules > (Cells > Cells...) > Values`
 "literal for an object cell"
 object-literal: {}
 
-"an object cell with a slot and, unlike other languages, an expression"
+"an object cell with a slot (private property in other languages)"
 object-example: {
     answer: 42
-    print (answer)
 }
 
 "literal for a block cell (compound statements in other languages)"
 block-literal: -> { … }
 
-"a block cell sent as an argument to the `then` receptor of Boolean"
+"a block cell sent as an argument to the `then` receptor of `Boolean`"
 block-example: true then -> {
     truth: 'It is true'
     print (truth)

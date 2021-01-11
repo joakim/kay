@@ -22,13 +22,11 @@ A simple programming language inspired by [Smalltalk](http://worrydream.com/refs
 
 <br/>
 
-```kotlin
+```elixir
 greeter: {
     greeting: 'hello, world'
     
-    | say hello | => {
-        return: greeting
-    }
+    | say hello | => greeting
 }
 
 print << greeter say hello

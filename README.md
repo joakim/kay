@@ -65,7 +65,9 @@ Syntax for sending a message to a cell, signaling its matching receptor:
 
 `<cell> <message with an (argument)>`
 
-The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding). For example:
+The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding).
+
+To write to the console:
 
 ```smalltalk
 console log 'hello, world'
@@ -80,6 +82,16 @@ foo: 42
 ```
 
 This matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`.
+
+A method can be assigned to a slot, its arguments are part of the message. Returning a value is also done by assignment:
+
+```smalltalk
+double: [(number)] => {
+    return: (number) * 2
+}
+
+double 21  --> 42
+```
 
 ### Operators
 

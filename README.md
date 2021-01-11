@@ -67,7 +67,7 @@ Newline and indentation is significant within cells.
 
 `{}` = cell literal  
 `[]` = message definition, array literal  
-`()` = message argument, grouping  
+`()` = message argument, evaluates/groups expressions  
 `=>` = method  
 `->` = block  
 `| ` = pipe  

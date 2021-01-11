@@ -165,7 +165,7 @@ object-example: {
     answer: 42
 }
 
-"literal for a block cell (compound statements in other languages)"
+"literal for a block cell (compound statements or closure in other languages)"
 block-literal: -> { … }
 
 "a block cell sent as an argument to the `then` receptor of `Boolean`"
@@ -174,7 +174,7 @@ block-example: true then -> {
     print (truth)
 }
 
-"literal for a method cell (function in other languages)"
+"literal for a method cell (function or private method in other languages)"
 method-literal: => { … }
 
 "a method cell that receives a message, prints its argument and returns a string"
@@ -186,7 +186,7 @@ method-example: | (argument) | => {
 "an inlined method cell, having implicit `return` (lambda in other languages)"
 method-inlined: | (argument) | => true
 
-"literal for a receptor method (object method in other languages)"
+"literal for a receptor method (replaces object method in other languages)"
 "a receptor is simply a method that is not assigned to a slot"
 | foo (bar) | => { … }
 

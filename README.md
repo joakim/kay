@@ -63,7 +63,7 @@ Everything is an expression. There are no statements, only cells and message pas
 
 Syntax for sending a message to a cell, signaling its matching receptor:
 
-`<cell> <message with an (argument)>`
+`cell` `message with an (argument)`
 
 The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding).
 

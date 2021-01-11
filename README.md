@@ -75,7 +75,7 @@ console log 'hello, world'
 
 This sends a `log 'hello, world'` message to the `console` cell, matching its `log (value)` receptor.
 
-Even assignment is a message, implicitly sent to the current cell (`self`):
+Even assignment is a message, implicitly sent to the current cell:
 
 ```smalltalk
 foo: 42

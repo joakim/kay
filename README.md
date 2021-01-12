@@ -62,7 +62,7 @@ Slots hold the cell's internal state. Slots are read-only, unless explicitly mar
 
 ## Expressions / Messages
 
-Everything is an expression.
+Every line of code is an expression.
 
 There are no statements or variables, only cells (senders and receivers) and messages.
 

@@ -72,11 +72,11 @@ Every expression is the sending of a message to a receiver. Messages may contain
 
 ## Syntax
 
-Syntax for sending a message to a cell:
+Sending a message to a cell:
 
 `cell` `message with an (argument)`
 
-The message is a sequence of words lasting until a pipe operator, closing bracket, comment or end of line is encountered. It can contain arguments and expressions, and form a signature that the receiving cell's receptors are matched against.
+The message is a sequence of words that may contain arguments (evaluated as expressions). The message forms a signature that the receiving cell's receptors are matched against. The message ends when a closing bracket, pipe operator, comment or end of line is encountered.
 
 For example, to log to the console:
 

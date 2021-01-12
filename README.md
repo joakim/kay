@@ -142,14 +142,14 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 #### Flow
 
-`()` evaluation, message argument  
 `|` pipe backward  
 `«` pipe backward (or `<<`)  
 `»` pipe forward (or `>>`)  
+`()` evaluation, message argument  
 
 #### Other
 
-`,` items separator  
+`,` separator  
 `*` mutable, exposed  
 `_` wildcard, ignore
 

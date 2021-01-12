@@ -134,11 +134,14 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 #### Literals
 
 `{}` cell  
-`=>` method  
-`->` block  
 `[]` array, message definition  
 `""` string  
 `--` comment
+
+#### Hints
+
+`=>` method  
+`->` block  
 
 #### Flow
 

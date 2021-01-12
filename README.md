@@ -88,7 +88,7 @@ answer: 42
 
 This message matches the `(key): (value)` receptor of the cell, setting the cell's `answer` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
 
-A method may also be assigned to a slot, becoming a local function in that scope. Even returning a value is done by assignment:
+A method may also be assigned to a slot, becoming a local function in the current and nested scopes. Even returning a value is done by assignment:
 
 ```smalltalk
 double: [(number)] => {

@@ -74,7 +74,7 @@ Every expression is the sending of a message to a receiver. Messages may contain
 
 Sending a message to a cell:
 
-`cell` `message with an (argument)`
+`receiver` `message with an (argument)`
 
 The message is a sequence of words that may contain arguments (evaluated as expressions). The message forms a signature that the receiving cell's receptors are matched against. The message ends when a closing bracket, pipe operator, comment or end of line is encountered.
 

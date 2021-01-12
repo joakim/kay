@@ -98,7 +98,7 @@ Using a slot as an argument in a message is otherwise done by wrapping it in `()
 console log (answer)
 ```
 
-Methods can be assigned to slots, becoming a local function in the current and any nested scopes. Returning a value is done by assignment:
+Methods can be assigned to slots, becoming a local function in the current and any nested scopes. Returning a value is done by assignment to the cell's `return` slot:
 
 ```smalltalk
 double: [(number)] => {

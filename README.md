@@ -52,7 +52,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 ### Slots
 
-Slots hold the cell's internal state. Slots are immutable, unless explicitly marked as mutable. They are only accessible from the current and any nested scopes, unless the cell is marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
+Slots hold the cell's internal state. Slots are read-only, unless explicitly marked as mutable. They are only accessible from the current and any nested scopes, unless the cell is marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
 
 <br/>
 

@@ -68,7 +68,7 @@ Syntax for sending a message to a cell:
 
 `cell` `message with an (argument)`
 
-The message is a sequence of words lasting until the end of line or a flow operator is encountered. It can contain arguments and expressions, and form a signature that the receiving cell's receptors are matched against.
+The message is a sequence of words lasting until a pipe operator, closing bracket, comment or end of line is encountered. It can contain arguments and expressions, and form a signature that the receiving cell's receptors are matched against.
 
 For example, to log to the console:
 
@@ -135,20 +135,21 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 `{}` cell  
 `[]` array, message definition  
-`()` evaluation, message argument  
 `=>` method  
 `->` block  
 `""` string  
 `--` comment
 
-#### Piping
+#### Flow
 
+`()` evaluation, message argument  
 `|` pipe backward  
 `«` pipe backward (or `<<`)  
 `»` pipe forward (or `>>`)  
 
 #### Other
 
+`,` items separator
 `*` mutable, exposed  
 `_` wildcard, ignore
 

@@ -127,22 +127,35 @@ Messages may also include expressions wrapped in parentheses `()`, as this condi
 console log (answer = 42 | if true => 'Correct' | if false => 'You are mistaken')
 ```
 
-This syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.
+Kay's syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.
 
 ### Operators
 
-`{}` = cell literal  
-`[]` = message definition, array literal  
+#### Literals
+
+`{}` = cell  
+`[]` = message definition, array  
 `()` = message argument, evaluation/grouping  
 `=>` = method  
 `->` = block  
+
+#### Piping
+
+`| ` = pipeline (backward)  
 `<<` = compose (backward)  
 `>>` = compose (forward)  
-`| ` = pipeline (backward)  
-`* ` = mutable  
+
+#### Assignment
+
 `: ` = assignment  
+`* ` = mutable, exposed  
+
+#### Equality and relational
+
 `= ` = equality  
 `≠ ` = inequality  
+`> ` = greater than  
+`< ` = less than  
 `≥ ` = greater than or equals  
 `≤ ` = less than or equals  
 

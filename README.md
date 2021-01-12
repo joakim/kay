@@ -131,10 +131,6 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 ### Operators
 
-`:` assignment  
-`*` mutable, exposed  
-`_` wildcard, ignore
-
 #### Literals
 
 `{}` cell  
@@ -148,6 +144,12 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 `|` pipe backward  
 `«` compose backward (or `<<`)  
 `»` compose forward (or `>>`)  
+
+#### Other
+
+`:` assignment  
+`*` mutable, exposed  
+`_` wildcard, ignore
 
 <br/>
 

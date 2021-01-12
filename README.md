@@ -142,17 +142,17 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 #### Piping
 
 `|` pipe backward  
-`«` compose backward (`<<`)  
-`»` compose forward (`>>`)  
+`«` compose backward (or `<<`)  
+`»` compose forward (or `>>`)  
 
 #### Equality and relational
 
 `=` equality  
-`≠` inequality (`!=`)  
+`≠` inequality (or `!=`)  
 `>` greater than  
 `<` less than  
-`≥` greater than or equals (`>=`)  
-`≤` less than or equals (`<=`)  
+`≥` greater than or equals (or `>=`)  
+`≤` less than or equals (or `<=`)  
 
 #### Other
 

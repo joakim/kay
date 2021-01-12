@@ -142,6 +142,7 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 `{}` cell  
 `[]` array, message definition  
+`()` evaluation, message argument  
 `""` string  
 `=>` method  
 `->` block  
@@ -152,7 +153,6 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 `|` pipe backward  
 `«` pipe backward (or `<<`)  
 `»` pipe forward (or `>>`)  
-`()` evaluation, message argument  
 
 #### Other
 

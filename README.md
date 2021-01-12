@@ -595,16 +595,16 @@ foobar: Cell {
         }
         
         loop -> {
-            instructions: await (rna take)
+            instructions: await « rna take promise
             process (instructions)
         }
     }
     
-    ribosomes append ribosome
+    ribosomes append (ribosome)
     
     dna on change (transcribe)
     
-    [increase foo] => dna foo | increment
+    [increase foo] => dna foo « increment
 }
 
 foobar increase foo

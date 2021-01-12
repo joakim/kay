@@ -78,7 +78,7 @@ Sending a message to a cell:
 
 `receiver` `message with an (argument)`
 
-The message is a sequence of words that may contain arguments (evaluated as expressions). The message forms a signature that the receiving cell's receptors are matched against. The message ends when a closing bracket, flow operator, comment or end of line is encountered.
+The message is a sequence of words that may contain arguments (evaluated as expressions). The message forms a signature that the receiving cell's receptors are matched against. The message ends when a flow operator, closing evaluation bracket, line comment or end of line is encountered.
 
 For example, to log to the console:
 

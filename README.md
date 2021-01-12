@@ -121,7 +121,7 @@ answer = 42
 
 Technically, that is three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the boolean in turn. They are chaining methods, evaluating the passed block only if the boolean is `true` or `false`, respectively, returning the boolean. `else` is passed an inline block.
 
-Messages may also include expressions wrapped in parentheses `()`, as this conditional shows:
+Messages may also include expressions wrapped in `()`, as this conditional shows:
 
 ```smalltalk
 console log (answer = 42 | if true => 'Correct' | if false => 'You are mistaken')

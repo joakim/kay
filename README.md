@@ -138,7 +138,7 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 `""` string  
 `--` comment
 
-#### Hints
+#### Kinds
 
 `=>` method  
 `->` block  

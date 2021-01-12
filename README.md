@@ -190,7 +190,7 @@ Replicant: {
 }
 
 "create a Nexus9 cell by cloning and extending the Replicant cell"
-Nexus9: Replicant with {
+Nexus9: Replicant {
     replicant: self
     model: 'Nexus 9'
     intelligence: 100
@@ -224,7 +224,7 @@ Nexus9: Replicant with {
 }
 
 "create a new Nexus 9 replicant"
-officer-k: Nexus9 with { name: 'K', intelligence: 140 }
+officer-k: Nexus9 { name: 'K', intelligence: 140 }
 
 "signal its `move` receptor"
 officer-k move
@@ -415,7 +415,7 @@ Cell: {
     }
     
     "clones itself, merging with the specified cell(s), enabling composition of multiple cells"
-    [with (spec)] => {
+    [(spec)] => {
         clone: cell
         
         "merge slots into the clone"
@@ -436,9 +436,6 @@ Cell: {
     
     "exposed slot checker"
     [has (key)] => `Reflect.has(cell.exposed, key)`
-    
-    "exposed slot getter"
-    [(key)] => (cell is exposed) and (cell has (key)) | `Reflect.get(cell.exposed, key)` if true
     
     "exposed slot setter (returns itself, enabling piping/chaining)"
     [(key): (value)] => {
@@ -521,7 +518,7 @@ Value: {
 }
 
 "definition of the Boolean value"
-Boolean: Value with {
+Boolean: Value {
     cell: self
     
     "preprocess the value before being set, casting it to a boolean"
@@ -543,7 +540,7 @@ bool negate
 print (bool)  --> false "(the value is automagically unwrapped when read)"
 
 "definition of the Array value"
-Array: Value with {
+Array: Value {
     cell: self
     
     [is array] => true

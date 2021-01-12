@@ -127,7 +127,7 @@ Messages may also include expressions wrapped in parentheses `()`, as this condi
 console log (answer = 42 | if true => 'Correct' | if false => 'You are mistaken')
 ```
 
-The syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.
+This syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.
 
 ### Operators
 

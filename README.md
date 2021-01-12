@@ -50,7 +50,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 - **Block** cells are executable, but can not take arguments or return values
 -->
 
-#### Slots
+### Slots
 
 Slots hold the cell's internal state. They are immutable, unless explicitly marked as mutable, and only accessible from the current and any nested scopes, unless explicitly marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
 

@@ -86,7 +86,7 @@ Assignment is a message, implicitly sent to the current cell:
 answer: 42
 ```
 
-This message matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
+This message matches the `(key): (value)` receptor of the cell, setting the cell's `answer` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
 
 A method may also be assigned to a slot, becoming a local function in that scope. Even returning a value is done by assignment:
 

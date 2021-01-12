@@ -52,7 +52,7 @@ All cells are first-class reference types that are passed by value, having inter
 
 #### Slots
 
-Slots hold the cell's internal state. They are immutable, unless explicitly marked as mutable, and only accessible from the current and any nested scopes, unless explicitly marked as exposed. Slots are similar to block-scoped variables or object properties.
+Slots hold the cell's internal state. They are immutable, unless explicitly marked as mutable, and only accessible from the current and any nested scopes, unless explicitly marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
 
 <br/>
 

@@ -40,7 +40,7 @@ There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28ce
 
 Cells are by default encapsulated and opaque. The internal state may only be accessed from the outside through setter and getter signals, unless slots are explicitly exposed. Exceptions are handled internally, a cell can not crash.
 
-Cells are first-class reference types and are passed by value, with lexical closure. They are persistent data structures, the "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
+Cells are first-class reference types that are passed by value, with lexical closure. They are persistent data structures, the "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
 <!--
 #### Cell types

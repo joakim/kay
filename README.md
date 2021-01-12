@@ -133,22 +133,23 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 #### Literals
 
-`{}` cell  
-`[]` message definition, array  
-`()` argument, evaluation/grouping  
-`=>` method  
-`->` block  
+`{}` cell  
+`[]` message definition, array  
+`()` argument, evaluation/grouping  
+`=>` method  
+`->` block  
+`""` string  
 
 #### Piping
 
-`|` pipe backward  
-`«` compose backward (or `<<`)  
-`»` compose forward (or `>>`)  
+`|` pipe backward  
+`«` compose backward (or `<<`)  
+`»` compose forward (or `>>`)  
 
 #### Other
 
-`*` mutable, exposed  
-`_` wildcard, ignore
+`*` mutable, exposed  
+`_` wildcard, ignore
 
 <br/>
 

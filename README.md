@@ -134,8 +134,8 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 #### Literals
 
 `{}` cell  
-`[]` message definition, array  
-`()` argument, evaluation/grouping  
+`[]` array, message definition  
+`()` evaluation, message argument  
 `=>` method  
 `->` block  
 `""` string  

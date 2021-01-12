@@ -42,13 +42,15 @@ Cells are by default encapsulated and opaque. The internal state may only be acc
 
 Cells are first-class reference types with persistent data structures. The "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling reactivity.
 
+<!--
 #### Cell types
 
 - **Record** cells are not executable
 - **Method** cells are executable, take arguments and return values
 - **Block** cells are executable, but can not take arguments or return values
+-->
 
-All cells are first-class reference types that are passed by value, having internal state and closure. All cells may have receptor methods.
+Cells are passed by value, having internal state and closure. Any cell may have receptor methods.
 
 #### Slots
 

@@ -98,7 +98,7 @@ Using a slot as an argument in a message is otherwise done by wrapping it in `()
 console log (answer)
 ```
 
-Methods can be assigned to slots, becoming a local function in the current and any nested scopes. Even returning a value is done by assignment:
+Methods can be assigned to slots, becoming a local function in the current and any nested scopes. Returning a value is done by assignment:
 
 ```smalltalk
 double: [(number)] => {
@@ -108,7 +108,7 @@ double: [(number)] => {
 double 21  --> 42
 ```
 
-Blocks can form part of messages and even emulate control flow statements, as this equivalent to an if-then-else statement shows:
+Blocks can form part of messages and emulate control flow statements, as this equivalent to an if-then-else statement shows:
 
 ```smalltalk
 answer = 42

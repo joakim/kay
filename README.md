@@ -145,11 +145,6 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 `<<` = compose (backward)  
 `>>` = compose (forward)  
 
-#### Assignment
-
-`: ` = assignment  
-`* ` = mutable, exposed  
-
 #### Equality and relational
 
 `= ` = equality  
@@ -158,6 +153,12 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 `< ` = less than  
 `≥ ` = greater than or equals  
 `≤ ` = less than or equals  
+
+#### Other
+
+`: ` = assignment  
+`* ` = mutable, exposed  
+`_ ` = wildcard, ignore
 
 <br/>
 

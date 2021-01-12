@@ -236,7 +236,7 @@ officer-k move
 
 <br/>
 
-### Demonstrations
+### Features
 
 Everything is a cell: `Environment > Modules > (Cells > Cells...) > Values`
 

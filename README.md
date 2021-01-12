@@ -143,8 +143,8 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 #### Piping
 
 `|` pipe backward  
-`«` compose backward (or `<<`)  
-`»` compose forward (or `>>`)  
+`«` pipe backward (or `<<`)  
+`»` pipe forward (or `>>`)  
 
 #### Other
 

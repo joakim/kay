@@ -50,6 +50,10 @@ Cells are first-class reference types with persistent data structures. The "[obs
 
 All cells are first-class reference types that are passed by value, having internal state and closure. All cells may have receptor methods.
 
+#### Slots
+
+Slots represent the cell's internal state. They are immutable, unless explicitly marked as mutable, and only accessible from the current and any nested scopes, unless explicitly marked as exposed. Slots are similar to block-scoped variables or object properties.
+
 <br/>
 
 <b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
@@ -58,7 +62,7 @@ All cells are first-class reference types that are passed by value, having inter
 
 ## Syntax
 
-Everything is an expression. There are no statements, only cells and messages.
+Everything is an expression. There are no statements or variables, only cells and messages.
 
 Syntax for sending a message to a cell:
 
@@ -80,7 +84,7 @@ console: {
 }
 ```
 
-Assignment is a message, implicitly sent to the current cell:
+Slot assignment is done by sending a setter message, implicitly sent to the current cell:
 
 ```smalltalk
 answer: 42
@@ -88,7 +92,13 @@ answer: 42
 
 This message matches the `(key): (value)` receptor of the cell, setting the cell's `answer` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
 
-A method may also be assigned to a slot, becoming a local function in the current and any nested scopes. Even returning a value is done by assignment:
+Using a slot as an argument in a message is otherwise done by wrapping it in `()`, evaluating it before the message is sent:
+
+```smalltalk
+console log (answer)
+```
+
+Methods can be assigned to slots, becoming a local function in the current and any nested scopes. Even returning a value is done by assignment:
 
 ```smalltalk
 double: [(number)] => {
@@ -109,7 +119,7 @@ answer = 42
     | else -> marvin despair
 ```
 
-This is actually three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the boolean's value in turn. They are chaining methods, evaluating the passed block if its value is `true` or `false` (respectively) and returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
+Technically, that is three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the boolean's value in turn. They are chaining methods, evaluating the passed block if its value is `true` or `false` (respectively) and returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
 
 Messages may also include expressions wrapped in parentheses `()`:
 

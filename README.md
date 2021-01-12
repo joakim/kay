@@ -58,15 +58,15 @@ All cells are first-class reference types that are passed by value, having inter
 
 ## Syntax
 
-Everything is an expression. There are no statements, only cells and message passing.
+Everything is an expression. There are no statements, only cells and messages.
 
-Syntax for sending a message to a cell, signaling its matching receptor:
+Syntax for sending a message to a cell:
 
 `cell` `message with an (argument)`
 
-The message is a line of text, having possibly several words and arguments, forming a pattern that is matched against (late/dynamic binding).
+The message is a sequence of words lasting until the end of line or a flow operator is encountered. It can contain arguments and expressions, and form a signature that the receiving cell's receptors are matched against.
 
-To write to the console:
+For example, to log to the console:
 
 ```smalltalk
 console log 'hello, world'
@@ -80,7 +80,7 @@ console: {
 }
 ```
 
-Even assignment is a message, implicitly sent to the current cell:
+Assignment is a message, implicitly sent to the current cell:
 
 ```smalltalk
 answer: 42
@@ -88,7 +88,7 @@ answer: 42
 
 This message matches the `(key): (value)` receptor of the cell, setting the cell's `foo` slot to `42`. Assignment messages are special in that anything following the `:` is evaluated as an expression.
 
-A method can also be assigned to a slot, becoming a local method. Its arguments form part of the message. Even returning a value is done by assignment:
+A method may also be assigned to a slot, becoming a local function in that scope. Even returning a value is done by assignment:
 
 ```smalltalk
 double: [(number)] => {
@@ -98,7 +98,7 @@ double: [(number)] => {
 double 21  --> 42
 ```
 
-Blocks can form part of messages, as this example equivalent to an if-else statement shows:
+Blocks can form part of messages and even emulate control flow statements, as this equivalent to an if-then-else statement shows:
 
 ```smalltalk
 answer = 42
@@ -109,13 +109,15 @@ answer = 42
     | else -> marvin despair
 ```
 
-And messages can include expressions wrapped in `()`:
+This is actually three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then -> {}` and `else -> {}` act on the boolean's value in turn. They are chaining methods, evaluating the passed block if its value is `true` or `false` (respectively) and returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
+
+Messages may also include expressions wrapped in parentheses `()`:
 
 ```smalltalk
-console log (answer = 42 | then => 'Correct' | else => 'You are mistaken')
+console log (answer = 42 | if-true => 'Correct' | if-false => 'You are mistaken')
 ```
 
-A few, easy to understand concepts that are capable of implementing most concepts typically found in high-level programming languages.
+The syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.
 
 ### Operators
 
@@ -124,8 +126,8 @@ A few, easy to understand concepts that are capable of implementing most concept
 `()` = message argument, evaluation/grouping  
 `=>` = method  
 `->` = block  
-`<<` = pipe backward  
-`>>` = pipe forward  
+`<<` = compose (backward)  
+`>>` = compose (forward)  
 `| ` = pipeline (backward)  
 `* ` = mutable  
 `: ` = assignment  

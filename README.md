@@ -109,7 +109,7 @@ answer = 42
     | else -> marvin despair
 ```
 
-This is actually three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then -> {}` and `else -> {}` act on the boolean's value in turn. They are chaining methods, evaluating the passed block if its value is `true` or `false` (respectively) and returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
+This is actually three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the boolean's value in turn. They are chaining methods, evaluating the passed block if its value is `true` or `false` (respectively) and returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
 
 Messages may also include expressions wrapped in parentheses `()`:
 

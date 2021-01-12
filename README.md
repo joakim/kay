@@ -133,32 +133,32 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 #### Literals
 
-`{}` – cell  
-`[]` – message definition, array  
-`()` – argument, evaluation/grouping  
-`=>` – method  
-`->` – block  
+`{}` cell  
+`[]` message definition, array  
+`()` argument, evaluation/grouping  
+`=>` method  
+`->` block  
 
 #### Piping
 
-`|` – pipeline (backward)  
-`«` – compose (backward)  
-`»` – compose (forward)  
+`|` pipeline (backward)  
+`«` compose (backward)  
+`»` compose (forward)  
 
 #### Equality and relational
 
-`=` – equality  
-`≠` – inequality  
-`>` – greater than  
-`<` – less than  
-`≥` – greater than or equals  
-`≤` – less than or equals  
+`=` equality  
+`≠` inequality  
+`>` greater than  
+`<` less than  
+`≥` greater than or equals  
+`≤` less than or equals  
 
 #### Other
 
-`:` – assignment  
-`*` – mutable, exposed  
-`_` – wildcard, ignore
+`:` assignment  
+`*` mutable, exposed  
+`_` wildcard, ignore
 
 <br/>
 

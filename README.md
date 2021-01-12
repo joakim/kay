@@ -52,7 +52,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 ### Slots
 
-Slots hold the cell's internal state. Slots are read-only, unless explicitly marked as mutable. They are only accessible from the current and any nested scopes, unless the cell is marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
+Slots hold the cell's internal state. Slots are read-only, unless explicitly marked as writable. They are only accessible from the current and any nested scopes, unless the cell is marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
 
 <br/>
 
@@ -150,8 +150,8 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 #### Other
 
 `,` separator  
-`*` mutable, exposed  
-`_` wildcard, ignore
+`*` writable, exposed  
+`_` wildcard, ignore  
 
 <br/>
 
@@ -164,7 +164,7 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 ```smalltalk
 "create a Replicant cell"
 Replicant: {
-    "slots (`name` is marked as mutable)"
+    "slots (`name` is marked as writable)"
     *name: 'Replicant'
     model: 'Generic'
     
@@ -294,7 +294,7 @@ method: => {
 result: do (method)  --> '2 + 3 = 5'
 print (result)       --> 5
 
-"a mutable record with all slots exposed, marked with `*` (object/struct/dict in other languages)"
+"an exposed record with all slots writable, marked with `*` (object/struct/dict in other languages)"
 mutable: *{
     foo: 42
     bar: true
@@ -316,8 +316,8 @@ mutable
 key: 'foo'
 mutable (key): 42
 
-"a record cell with a mutable slot (only mutable from within)"
-mutable-slot: {
+"a record cell with a writable slot (only writable from within)"
+writable-slot: {
     cell: self
     *bar: true
     
@@ -325,7 +325,7 @@ mutable-slot: {
         cell bar: false
     }
 }
-mutable-slot mutate
+writable-slot mutate
 
 "slots are block scoped and may be shadowed by nested cells"
 scoped: {
@@ -429,11 +429,11 @@ Cell: {
     [has (key)] => `Reflect.has(cell.exposed, key)`
     
     "exposed slot getter"
-    [(key)] => (cell is mutable) or (cell has (key)) | `Reflect.get(cell.exposed, key)` if true
+    [(key)] => (cell is exposed) and (cell has (key)) | `Reflect.get(cell.exposed, key)` if true
     
     "exposed slot setter (returns itself, enabling piping/chaining)"
     [(key): (value)] => {
-        (cell is mutable) or (cell has (key))
+        (cell is exposed) and (cell has (key))
             | if true -> `Reflect.set(cell.exposed, key, value)`
         return: cell
     }
@@ -445,8 +445,8 @@ Cell: {
     [if false (implication)] => `(cell ? undefined : do(implication)) ?? cell`
     [(value) if true] => `cell ? value : undefined`
     [(value) if false] => `cell ? undefined : value`
-    [(value-1) if true else (value-2)] => `cell ? value-1 : value-2`
-    [(value-1) if false else (value-2)] => `cell ? value-2 : value-1`
+    [(value-1) if true else (value-2)] => `cell ? value_1 : value_2`
+    [(value-1) if false else (value-2)] => `cell ? value_2 : value_1`
     
     "returns whether the cell has all exposed slots"
     [is exposed] => Boolean (exposed size)
@@ -503,12 +503,12 @@ Value: {
     }
     
     "conditionals"
-    [if true (then)] => `(cell.value ? do(then) : undefined) ?? cell`
-    [if false (else)] => `(cell.value ? undefined : do(else)) ?? cell`
+    [if true (implication)] => `(cell.value ? do(implication) : undefined) ?? cell`
+    [if false (implication)] => `(cell.value ? undefined : do(implication)) ?? cell`
     [(value) if true] => `cell.value ? value : undefined`
     [(value) if false] => `cell.value ? undefined : value`
-    [(value-1) if true else (value-2)] => `cell.value ? value-1 : value-2`
-    [(value-1) if false else (value-2)] => `cell.value ? value-2 : value-1`
+    [(value-1) if true else (value-2)] => `cell.value ? value_1 : value_2`
+    [(value-1) if false else (value-2)] => `cell.value ? value_2 : value_1`
 }
 
 "definition of the Boolean value"
@@ -517,6 +517,8 @@ Boolean: Value with {
     
     "preprocess the value before being set, casting it to a boolean"
     cell add preprocessor [(value)] => `Boolean(value)`
+    
+    [and (value-2)] => `cell.value && value_2`
     
     "negates the value"
     [negate] => set `!cell.value`

@@ -62,7 +62,9 @@ Slots hold the cell's internal state. Slots are read-only, unless explicitly mar
 
 ## Expressions / Messages
 
-Everything is an expression. There are no statements or variables, only cells (senders and receivers) and messages.
+Everything is an expression.
+
+There are no statements or variables, only cells (senders and receivers) and messages.
 
 Every expression is the sending of a message to a receiver. Messages may contain expressions as arguments.
 

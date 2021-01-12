@@ -166,7 +166,9 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 ### Blade Runner
 
-An object-oriented example. Note that this style is not enforced, the language is flexible enough to support other paradigms.
+An object-oriented example.
+
+Note that this style is not enforced, the language is flexible enough to support other paradigms.
 
 ```smalltalk
 "create a Replicant cell"

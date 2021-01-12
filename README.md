@@ -119,12 +119,12 @@ answer = 42
     | else -> marvin despair
 ```
 
-Technically, that is three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the boolean's value in turn. They are chaining methods, evaluating the passed block if its value is `true` or `false` (respectively) and returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
+Technically, that is three messages. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the boolean in turn. They are chaining methods, evaluating the passed block only if the boolean is `true` or `false`, respectively, returning the boolean. Various constructs and DSLs may be implemented using blocks and chaining.
 
-Messages may also include expressions wrapped in parentheses `()`:
+Messages may also include expressions wrapped in parentheses `()`, as this conditional shows:
 
 ```smalltalk
-console log (answer = 42 | if-true => 'Correct' | if-false => 'You are mistaken')
+console log (answer = 42 | if true => 'Correct' | if false => 'You are mistaken')
 ```
 
 The syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.

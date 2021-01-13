@@ -372,13 +372,14 @@ print (add-10 2)  --> 12
 "inlined version of the `adder` method"
 inlined: [(x)] => [(y)] => x + y
 
-"as in the self language, assignment is really implicit setter signals on the current cell (`self`)"
-foo: 42
-self foo: 42  -- "the two are equivalent"
+"as in the self language, assignment is really setter signals on the current cell (`self`)"
+foo: 42  -- "sugar"
+self set foo: 42  -- "desugared"
 
-"setters are special, what follows `:` is evaluated as an expression, `()` is not needed"
+"assignment is special, what follows `:` is evaluated as an expression, `()` is not needed"
 bar: foo
 
+"here `()` is needed to evaluate the slot"
 print (bar)  --> 42
 ```
 

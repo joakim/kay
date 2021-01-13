@@ -329,11 +329,11 @@ mutable (key): 42
 
 "a record cell with a writable slot (only writable from within)"
 writable-slot: {
-    cell: self
+    my: self
     *bar: true
     
     [mutate] => {
-        cell bar: false
+        my bar: false
     }
 }
 writable-slot mutate

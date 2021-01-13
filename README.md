@@ -131,7 +131,7 @@ That is one expression of three pipelined messages. First `= 42` is sent to the 
 Messages may also include expressions wrapped in `()`, as this conditional shows:
 
 ```smalltalk
-console log (answer = 42 | if true => 'Correct' | if false => 'You are mistaken')
+console log (answer = 42 | 'Correct' if true else 'You are mistaken')
 ```
 
 Kay's syntax offers a small number of easy to understand concepts, capable of implementing most constructs typically found in high-level programming languages.

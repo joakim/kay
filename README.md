@@ -78,7 +78,7 @@ Sending a message to a cell:
 
 `receiver` `message with an (argument)`
 
-The message is a sequence of words that may contain arguments (evaluated as expressions). The message forms a signature that the receiving cell's receptors are matched against. The message ends when a flow operator, line comment, end of evaluation (right parenthesis) or end of line is encountered.
+The message is a sequence of words that may contain arguments (evaluated as expressions). The message forms a signature that the receiving cell's receptors are matched against. The message ends when a binary operator, line comment, end of evaluation (right parenthesis) or end of line is encountered.
 
 For example, to log to the console:
 
@@ -142,11 +142,11 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 `{}` cell  
 `[]` array, message definition  
-`()` evaluation, message argument  
+`()` expression evaluation, message argument  
 `""` string  
 `=>` method  
 `->` block  
-`--` comment
+`--` comment  
 
 #### Flow
 

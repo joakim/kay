@@ -150,9 +150,9 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 #### Flow
 
-`|` pipe backward  
-`«` pipe backward (or `<<`)  
-`»` pipe forward (or `>>`)  
+`|` pipeline  
+`«` push left (or `<<`)  
+`»` push right (or `>>`)  
 
 #### Other
 

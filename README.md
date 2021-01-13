@@ -374,10 +374,11 @@ inlined: [(x)] => [(y)] => x + y
 
 "as in the self language, assignment is really setter signals on the current cell (`self`)"
 foo: 42  -- "sugar"
-self set foo: 42  -- "desugared"
+self foo: (42)  -- "desugared"
 
 "assignment is special, what follows `:` is evaluated as an expression, `()` is not needed"
 bar: foo
+self bar: (foo)  -- "desugared"
 
 "here `()` is needed to evaluate the slot"
 print (bar)  --> 42

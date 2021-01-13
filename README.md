@@ -100,7 +100,7 @@ Slot assignment is done by sending a setter message, implicitly sent to the curr
 answer: 42
 ```
 
-This message matches the `(key): (value)` receptor of the cell, setting the cell's `answer` slot to `42`. Assignment messages are special in that anything following the `:` is desugared into an expression, evaluating it into a value.
+This message matches the `(key): (value)` receptor of the cell, setting the cell's `answer` slot to `42`. Assignment messages are special in that anything following the `:` is desugared into an expression, evaluating it to return a value.
 
 Using a slot as an argument in a message is otherwise done by wrapping it in `()`, evaluating it before the message is sent:
 

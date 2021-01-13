@@ -373,14 +373,14 @@ print (add-10 2)  --> 12
 inlined: [(x)] => [(y)] => x + y
 
 "as in the self language, assignment is really setter signals on the current cell (`self`)"
-foo: 42  -- "sugar"
+foo: 42  -- "syntactic sugar"
 self foo: (42)  -- "desugared"
 
-"assignment is special, what follows `:` is evaluated as an expression, `()` is not needed"
+"assignment is special, what follows `:` is evaluated as an expression, so `()` is not needed"
 bar: foo
 self bar: (foo)  -- "desugared"
 
-"here `()` is needed to evaluate the slot"
+"here, `()` is needed to evaluate the slot, or the unknown message 'bar' would be sent"
 print (bar)  --> 42
 ```
 

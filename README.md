@@ -142,7 +142,7 @@ Kay's syntax offers a small number of easy to understand concepts, capable of im
 
 `{}` cell  
 `[]` array, message definition  
-`()` expression evaluation, message argument  
+`()` expression, message argument  
 `""` string  
 `=>` method  
 `->` block  

@@ -68,7 +68,7 @@ Everything is an expression.
 
 An expression contains one (or more) message signal(s) and evaluates to the (last) signal's return value.
 
-A signal is a "message send" to a cell. Expressions are used to include values as arguments in the message.
+A signal is a message sent to a receiver cell. Expressions are used to include values as arguments in the message.
 
 There are no variables or statements, only cells (senders and receivers) with slots (state) and expressions (message signals).
 

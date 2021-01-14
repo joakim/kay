@@ -100,32 +100,32 @@ Initial data types.
 
 #### Literals
 
-`{}`  – cell  
-`[]`  – array  
-`""`  – string  
-`=>`  – method  
-`->`  – block  
-`true`  
-`false`  
-`nothing`  
+  - `{}`  – cell  
+  - `[]`  – array  
+  - `""`  – string  
+  - `=>`  – method  
+  - `->`  – block  
+  - `true`  
+  - `false`  
+  - `nothing`  
 
 #### Messaging
 
-`''`  – message definition  
-`()`  – message parameter, expression grouping  
+  - `''`  – message definition  
+  - `()`  – message parameter, expression grouping  
 
 #### Flow
 
-`|`   – pipeline  
-`»`   – compose (forward)  
-`«`   – compose (reverse)  
-`,`   – expression separator  
+  - `|`   – pipeline  
+  - `»`   – compose (forward)  
+  - `«`   – compose (reverse)  
+  - `,`   – expression separator  
 
 #### Other
 
-`*`   – writable, exposed ("star")  
-`_`   – ignore, any ("blank")  
-`--` – comment  
+  - `*`   – writable, exposed ("star")  
+  - `_`   – ignore, any ("blank")  
+  - `--` – comment  
 
 ### Examples
 

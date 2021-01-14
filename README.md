@@ -2,7 +2,7 @@
 
 ![K in Blade Runner 2049, seen from the back walking into an orange haze](https://i.imgur.com/uakY6W8.jpg)
 
-A simple message-based programming language inspired by [Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf), [Self](https://selflanguage.org/), [Erlang](https://www.eighty-twenty.org/2011/05/08/weaknesses-of-smalltalk-strengths-of-erlang), [Clojure](https://clojure.org/about/state) and [Blade Runner](https://maidenpublishing.co.uk/review/bladerunner/).
+A simple message-based programming language inspired by [Smalltalk](http://smalltalk.org/), [Self](https://selflanguage.org/), [Erlang](https://www.eighty-twenty.org/2011/05/08/weaknesses-of-smalltalk-strengths-of-erlang), [Clojure](https://clojure.org/about/state) and [Blade Runner](https://maidenpublishing.co.uk/review/bladerunner/).
 
 <br/>
 
@@ -213,7 +213,7 @@ print ((10 double) negate)  -- desugared
 
 The language offers a small set of easy to understand concepts and a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
 
-It should even be possible to translate the global cells and methods into other natural languages than English, enabling developers to code in their native language. Combined with its simplicity and flexibility, this could be a powerful tool for teaching programming to kids worldwide, true to the spirit of Smalltalk.
+It should even be possible to translate the global cells and methods into other natural languages than English, enabling developers to code in their native language. Combined with its simplicity and flexibility, this could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/refs/Ingalls%20-%20Design%20Principles%20Behind%20Smalltalk.pdf).
 
 <br/>
 

@@ -152,7 +152,7 @@ host: {
 host greet "Joe"  --> "Hey, Joe!"
 ```
 
-A method (`=>`) is simply syntactic sugar for a 1-receptor cell. Slots are lexically scoped, so when assigned to a slot, methods become local functions of the cell they're defined in and any of its nested cells. An inline method implicitly returns the result of its expression, as this example shows:
+A method (`=>`) is simply syntactic sugar for a 1-receptor cell, like the `host` above. Slots are lexically scoped, so when assigned to a slot, methods become local functions of the cell they're defined in and any of its nested cells. An inline method implicitly returns the result of its expression, as this example shows:
 
 ```lua
 double: '(number)' => number * 2

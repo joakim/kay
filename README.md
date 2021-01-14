@@ -142,14 +142,14 @@ console log (answer)
 A cell's receptor is defined as a message signature (`'...'`) tied to a cell containing expressions. The receptor's cell may have its own slots (local state), and return a value by assigning to it's own `return` slot:
 
 ```lua
-welcome: {
+host: {
     'greet (name)' {
         greeting: "Hey, {name}!"
         return: greeting
     }
 }
 
-welcome greet "Joe"  --> "Hey, Joe!"
+host greet "Joe"  --> "Hey, Joe!"
 ```
 
 A method (`=>`) is simply syntactic sugar for a 1-receptor cell. Slots are lexically scoped, so when assigned to a slot, methods become local functions of the cell they're defined in and any of its nested cells. An inline method implicitly returns the result of its expression, as this example shows:

@@ -81,7 +81,7 @@ Initial data types.
 #### Primitive
 
   - `nothing` – bottom value (a cell that only ever returns itself)  
-  - `boolean` – `true` and `false`  
+  - `boolean` – `true` or `false`  
   - `number`  
   - `string`  
 

@@ -310,16 +310,20 @@ record-example: {
 }
 
 -- literal for a block cell (compound statements or closure in other languages)
-block-literal: -> { … }
+block-literal: -> {
+    -- expressions...
+}
 
--- a block cell sent as an argument to the `then` receptor of `Boolean`
+-- a block sent as an argument to the `if (condition) (then)` receptor of `true`
 block-example: true | if true -> {
     truth: "It is true"
     print (truth)
 }
 
 -- literal for a method cell (function or private method in other languages)
-method-literal: '' => { … }
+method-literal: => {
+    -- expressions...
+}
 
 -- a method cell that receives a message, prints its argument and returns a string
 method-example: '(argument)' => {
@@ -611,15 +615,6 @@ Array: Value {
     'map (mapper)' { return: `cell.value.map(mapper)` }
     'each (handler)' { return: `cell.value.forEach(handler)` }
     -- ...
-}
-
--- the method literal is the syntax sugar equivalent to `Method (message) { code... }`
--- a method literal declared without being assigned to a slot is a receptor of the cell
-Method: {
-    '(message) (code)' { return: `function (message) { code }` }
-    'signature' {
-        -- ...
-    }
 }
 
 -- `print` is a slot on the environment cell that is a method cell

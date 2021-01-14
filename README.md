@@ -234,6 +234,8 @@ print « 10 double | negate  -- sugar (equivalent)
 print ((10 double) negate)  -- desugared
 ```
 
+For more examples, see [examples.md](examples.md).
+
 <br/>
 
 ## What it brings

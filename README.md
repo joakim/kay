@@ -163,8 +163,8 @@ A block (`->`) is syntactic sugar for a cell containing expressions, but lacking
 
 ```lua
 answer = 42  --> true
-    | then -> marvin shrug
-    | else -> marvin despair
+    | if true -> marvin shrug
+    | if false -> marvin despair
 ```
 
 That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the result in turn. They are chaining methods, evaluating their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
@@ -267,7 +267,7 @@ Nexus9: Replicant {
         
         -- signal receptors of the boolean result of `>`, equivalent to an if statement
         intelligence > 100
-            | then -> {
+            | if true -> {
                 think "Why did I move?"
                 think "Am I really a replicant?"
                 think "My name is Joe..."
@@ -276,7 +276,7 @@ Nexus9: Replicant {
                 replicant name: "Joe"
                 say "My name is {name}!"
             }
-            | else -> think "*crickets*"
+            | if false -> think "*crickets*"
     }
 }
 
@@ -313,7 +313,7 @@ record-example: {
 block-literal: -> { … }
 
 -- a block cell sent as an argument to the `then` receptor of `Boolean`
-block-example: true | then -> {
+block-example: true | if true -> {
     truth: "It is true"
     print (truth)
 }
@@ -485,9 +485,9 @@ Cell: {
         }
         
         -- if merging with an array of cells, merge each cell in turn
-        spec (is array)
-            | then -> spec each '(item)' => merge (item)
-            | else -> merge (spec)
+        spec is array
+            | if true -> spec each '(item)' => merge (item)
+            | if false -> merge (spec)
         
         return: clone
     }
@@ -506,16 +506,12 @@ Cell: {
     }
     
     -- conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)
-    'then (implication)' { return: cell if true (implication) }
-    'else (implication)' { return: cell if false (implication) }
-    'if true (implication)' { return: `(cell ? do(implication) : undefined) ?? cell` }
-    'if false (implication)' { return: `(cell ? undefined : do(implication)) ?? cell` }
-    '(value) if true' { return: `cell ? value : undefined` }
-    '(value) if false' { return: `cell ? undefined : value` }
-    '(value-1) if true else (value-2)' { return: `cell ? value_1 : value_2` }
-    '(value-1) if false else (value-2)' { return: `cell ? value_2 : value_1` }
+    'if (condition) (then)' { `(equals(cell, condition) && do(then))`, return: cell }
+    'if (condition) (then) else (else)' { `(equals(cell, condition) ? do(then) : do(else))`, return: cell }
+    '(value) if (condition)' { return: `(equals(cell, condition) ? value : undefined)` }
+    '(value-1) if (condition) else (value-2)' { return: `equals(cell, condition) ? value_1 : value_2` }
     
-    -- returns whether the cell has all exposed slots
+    -- returns whether the cell is exposed
     'is exposed' { return: Boolean (exposed size) }
     
     -- checks whether the cell has a receptor matching the signature
@@ -553,6 +549,9 @@ Value: {
         return: clone
     }
     
+    -- checker
+    'is array' { return: true }
+    
     -- unwraps the internal value
     'unwrap' { return: `cell.value` }
     
@@ -571,13 +570,11 @@ Value: {
         return: do (alternative)
     }
     
-    -- conditionals
-    'if true (implication)' { return: `(cell.value ? do(implication) : undefined) ?? cell` }
-    'if false (implication)' { return: `(cell.value ? undefined : do(implication)) ?? cell` }
-    '(value) if true' { return: `cell.value ? value : undefined` }
-    '(value) if false' { return: `cell.value ? undefined : value` }
-    '(value-1) if true else (value-2)' { return: `cell.value ? value_1 : value_2` }
-    '(value-1) if false else (value-2)' { return: `cell.value ? value_2 : value_1` }
+    -- conditionals (checking the value slot)
+    'if (condition) (then)' { `(equals(cell.value, condition) && do(then))`, return: cell }
+    'if (condition) (then) else (else)' { `(equals(cell.value, condition) ? do(then) : do(else))`, return: cell }
+    '(value) if (condition)' { return: `(equals(cell.value, condition) ? value : undefined)` }
+    '(value-1) if (condition) else (value-2)' { return: `equals(cell.value, condition) ? value_1 : value_2` }
 }
 
 -- definition of the Boolean value
@@ -593,7 +590,7 @@ Boolean: Value {
     'negate' { return: set `!cell.value` }
 }
 
--- instantiated booleans (on the environment cell)
+-- instantiated booleans (primitives on the environment cell)
 true: Boolean 1
 false: Boolean 0
 
@@ -660,8 +657,7 @@ foobar: Cell {
         instructions: {
             -- ...
         }
-        foo ≥ 42
-            | then -> rna put (instructions)
+        foo ≥ 42 | if true -> rna put (instructions)
     }
     
     ribosome: {

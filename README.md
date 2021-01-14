@@ -550,7 +550,7 @@ Value: {
     }
     
     -- checker
-    'is array' { return: true }
+    'is value' { return: true }
     
     -- unwraps the internal value
     'unwrap' { return: `cell.value` }

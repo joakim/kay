@@ -207,7 +207,7 @@ print ((10 double) negate)  -- desugared
 
 ## What it brings
 
-The language offers a small set of easy to understand concepts and a simple syntax, yet is capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
+The language offers a small set of easy to understand concepts and a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
 
 It should even be possible to translate the global cells and methods into other natural languages than English, enabling developers to code in their native language. Combined with its simplicity and flexibility, this could be a powerful tool for teaching programming to kids worldwide, true to the spirit of Smalltalk.
 

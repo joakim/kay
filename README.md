@@ -83,8 +83,8 @@ Preliminary data types.
 
   - `{}`   – cell  
   - `[]`   – static array  
-  - `*{}` – exposed cell (similar to record/object/struct/dict)  
-  - `*[]` – dynamic array (similar to sequence/list)  
+  - `*{}` – exposed cell (record/object/structure/dictionary)  
+  - `*[]` – dynamic array (list/sequence)  
 
 <br/>
 
@@ -106,7 +106,7 @@ Preliminary data types.
 #### Messaging
 
   - `''`  message definition  
-  - `()`  message parameter, expression grouping  
+  - `()`  message parameter, expression  
 
 #### Flow
 

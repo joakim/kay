@@ -189,7 +189,7 @@ The pipeline operator is best suited to an object-oriented style of programming 
 ((10 double) negate) print  -- desugared
 ```
 
-While the into operators are best suited to a functional programming style (calling named methods):
+While the into operators are best suited to a functional programming style (applying functions to values):
 
 ```lua
 double 10 » negate » print  -- sugar

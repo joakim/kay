@@ -80,17 +80,17 @@ Initial data types.
 
 #### Primitive
 
-  - `nothing` bottom value (a cell that only ever returns itself)  
-  - `boolean` `true` and `false`  
+  - `nothing` (bottom value, a cell that only ever returns itself)  
+  - `boolean` (`true` and `false`)  
   - `number`  
   - `string`  
 
 #### Composite
 
-  - `{}`   cell  
-  - `[]`   static array  
-  - `*{}` exposed cell (mutable record/object/struct/dict)  
-  - `*[]` dynamic array (dynamic array/sequence/list)  
+  - `{}`   (cell)  
+  - `[]`   (static array)  
+  - `*{}` (exposed cell, similar to record/object/struct/dict)  
+  - `*[]` (dynamic array, similar to sequence/list)  
 
 <br/>
 
@@ -100,32 +100,32 @@ Initial data types.
 
 #### Literals
 
-  - `{}`  cell  
-  - `[]`  array  
-  - `""`  string  
-  - `=>`  method  
-  - `->`  block  
+  - `{}`  (cell)  
+  - `[]`  (array)  
+  - `""`  (string)  
+  - `=>`  (method)  
+  - `->`  (block)  
   - `true`  
   - `false`  
   - `nothing`  
 
 #### Messaging
 
-  - `''`  message definition  
-  - `()`  message parameter, expression grouping  
+  - `''`  (message definition)  
+  - `()`  (message parameter, expression grouping)  
 
 #### Flow
 
-  - `|`   pipeline  
-  - `»`   compose (forward)  
-  - `«`   compose (reverse)  
-  - `,`   expression separator  
+  - `|`   (pipeline)  
+  - `»`   (compose forward)  
+  - `«`   (compose reversed)  
+  - `,`   (expression separator)  
 
 #### Other
 
-  - `*`   writable, exposed ("star")  
-  - `_`   ignore, any ("blank")  
-  - `--` comment  
+  - `*`   (writable, exposed)  
+  - `_`   (ignore, any)  
+  - `--` (comment)  
 
 ### Examples
 

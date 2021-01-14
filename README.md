@@ -139,7 +139,7 @@ In order to use a slot as an argument in a regular message, it must be wrapped i
 console log (answer)
 ```
 
-A cell's receptor is defined as a message signature (`'...'`) tied to a cell containing expressions. The receptor's cell may have its own slots (local state), and return a value by assigning to it's own `return` slot:
+A cell's receptor is defined as a message signature (`''`) tied to a cell containing expressions. The receptor's cell may have its own slots (local state), and return a value by assigning to it's own `return` slot:
 
 ```lua
 host: {

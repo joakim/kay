@@ -76,14 +76,14 @@ There are no variables or statements, only cells (senders and receivers) with sl
 
 ## Data types
 
-Initial data types.
+Preliminary data types.
 
 #### Primitive
 
   - `nothing` – bottom value (a cell that only ever returns itself)  
   - `boolean` – `true` or `false`  
-  - `number`  
-  - `string`  
+  - `number` – IEEE 754 64-bit double-precision floating-point?  
+  - `string` – UTF-8?  
 
 #### Composite
 

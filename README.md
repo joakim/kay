@@ -268,4 +268,4 @@ It should even be possible to translate the global cells and methods into other 
 <br/>
 <br/>
 
-<p align="center"><sup>Made in Norway, the land of Simula</sup></p>
+<p align="center"><sup>Made in the land of Simula</sup></p>

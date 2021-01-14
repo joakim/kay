@@ -219,7 +219,7 @@ It should even be possible to translate the global cells and methods into other 
 
 ## Examples
 
-<sup>Note: This is mainly an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design.</sup>
+<sup>Note: This is mainly an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Some of it may be outdated.</sup>
 
 ### Blade Runner
 

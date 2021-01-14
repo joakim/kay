@@ -74,6 +74,26 @@ There are no variables or statements, only cells (senders and receivers) with sl
 
 <br/>
 
+## Data types
+
+Initial data types.
+
+#### Primitive
+
+  - `nothing` – bottom value (a cell that only ever returns itself)  
+  - `boolean` – `true` and `false`  
+  - `number`  
+  - `string`  
+
+#### Composite
+
+  - `{}`   – cell  
+  - `[]`   – static array  
+  - `*{}` – exposed cell (mutable record/object/struct/dict)  
+  - `*[]` – dynamic array (dynamic array/sequence/list)  
+
+<br/>
+
 ## Syntax
 
 ### Operators
@@ -206,26 +226,6 @@ print « 10 double | negate  -- sugar (equivalent)
 
 print ((10 double) negate)  -- desugared
 ```
-
-<br/>
-
-## Data types
-
-Initial data types.
-
-#### Primitive
-
-  - `nothing` – bottom value (a cell that only ever returns itself)  
-  - `boolean` – `true` and `false`  
-  - `number`  
-  - `string`  
-
-#### Composite
-
-  - `{}`   – cell  
-  - `[]`   – static array  
-  - `*{}` – exposed cell (mutable record/object/struct/dict)  
-  - `*[]` – dynamic array (dynamic array/sequence/list)  
 
 <br/>
 

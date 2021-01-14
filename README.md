@@ -336,7 +336,9 @@ method-inlined: '(argument)' => true
 
 -- literal for a receptor method (similar to object method in other languages)
 -- a receptor is simply a method that is not assigned to a slot
-'foo (bar)' { … }
+'foo (bar)' {
+    -- expressions...
+}
 
 -- a receptor method illustrating how messages are used
 'receptor with one (argument)' {

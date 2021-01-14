@@ -44,16 +44,6 @@ Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Inf
 
 Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value), with [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)). They are [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie), the "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
 
-<!--
-#### Cell types
-
-- **Record** cells are not executable
-- **Method** cells are executable, take arguments and return values
-- **Block** cells are executable, but can not take arguments or return values
--->
-
-### Slots
-
 Slots hold the cell's state. Slots are read-only, unless explicitly marked as writable. They are only accessible from the current and any nested scopes, unless the cell is marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
 
 <br/>
@@ -126,6 +116,14 @@ Preliminary data types.
   - `*`   writable, exposed ("star")  
   - `_`   ignore, any ("blank")  
   - `--` comment  
+
+<!--
+#### Cell types
+
+- **Record** cells are not executable
+- **Method** cells are executable, take arguments and return values
+- **Block** cells are executable, but can not take arguments or return values
+-->
 
 ### Examples
 

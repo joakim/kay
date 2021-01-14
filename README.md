@@ -169,13 +169,17 @@ answer = 42  --> true
 
 That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the result in turn. They are chaining methods, evaluating their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
-Expressions are evaluated left-to-right, so when passing the result of an expression as an argument, the expression must be wrapped in `()`:
+Expressions are evaluated left-to-right, so when passing the result of an expression as an argument, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
 
 ```lua
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This becomes cumbersome when nesting multiple expressions. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (into forward) and `«` (into reverse) is prescribed.
+This becomes cumbersome when nesting multiple expressions. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (into forward) and `«` (into reverse) is prescribed:
+
+```lua
+console log << answer = 42 | "Correct" if true else "You are mistaken"
+```
 
 The pipeline operator is best suited to an object-oriented style of programming (sending messages to objects):
 
@@ -194,7 +198,7 @@ print « negate « double 10  -- sugar (equivalent)
 print (negate (double 10))  -- desugared
 ```
 
-The two styles can be combined (the into operators have precedence):
+The two styles can be combined as shown earlier (the into operators have precedence):
 
 ```lua
 10 double | negate » print  -- sugar

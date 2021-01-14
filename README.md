@@ -110,7 +110,7 @@ Sending a message to a cell:
 
 `receiver` `message with an (argument)`
 
-A message is a sequence of Unicode words that may contain arguments. The message forms a signature that the receiving cell's receptors are matched against. Arguments, expressions in parenthesis, are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
+A message is a sequence of Unicode words that may contain arguments. The message forms a signature that the receiving cell's receptors are matched against. Arguments (expressions in parenthesis) are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
 
 A message expression ends when a flow operator, binary operator, matching right parenthesis, end of line or comment is encountered.
 

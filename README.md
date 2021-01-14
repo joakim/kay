@@ -175,7 +175,7 @@ Expressions are evaluated left-to-right, so when passing the result of an expres
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This becomes cumbersome when nesting multiple expressions. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (into forward) and `«` (into reverse) is prescribed:
+This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (into forward) and `«` (into reverse) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"

@@ -62,7 +62,7 @@ Slots hold the cell's state. Slots are read-only, unless explicitly marked as wr
 
 <br/>
 
-## Expressions, signals and messages
+## Messages (expressions and signals)
 
 Everything is an expression.
 

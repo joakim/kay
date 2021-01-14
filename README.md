@@ -100,29 +100,32 @@ Initial data types.
 
 #### Literals
 
-`{}`  cell  
-`[]`  array  
-`""`  string  
-`=>`  method  
-`->`  block  
+`{}`  – cell  
+`[]`  – array  
+`""`  – string  
+`=>`  – method  
+`->`  – block  
+`true`  
+`false`  
+`nothing`  
 
 #### Messaging
 
-`''`  message definition  
-`()`  message parameter, expression grouping  
+`''`  – message definition  
+`()`  – message parameter, expression grouping  
 
 #### Flow
 
-`|`   pipeline  
-`»`   compose (forward)  
-`«`   compose (reverse)  
-`,`   expression separator  
+`|`   – pipeline  
+`»`   – compose (forward)  
+`«`   – compose (reverse)  
+`,`   – expression separator  
 
 #### Other
 
-`*`   writable, exposed ("star")  
-`_`   ignore, any ("blank")  
-`--` comment  
+`*`   – writable, exposed ("star")  
+`_`   – ignore, any ("blank")  
+`--` – comment  
 
 ### Examples
 
@@ -195,7 +198,7 @@ Expressions are evaluated left-to-right, so when passing the result of an expres
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (compose forward) and `«` (compose reverse) is prescribed:
+This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrome), the use of flow operators `|` (pipeline), `»` (compose forward) and `«` (compose reverse) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"

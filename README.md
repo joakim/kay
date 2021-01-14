@@ -179,14 +179,34 @@ host: {
 host greet "Joe"  --> "Hey, Joe!"
 ```
 
-A method (`=>`) is simply syntactic sugar for a 1-receptor cell, like the `host` above. Slots are lexically scoped, so when assigned to a slot, methods become local functions of the cell they're defined in and any of its nested cells. An inline method implicitly returns the result of its expression, as this example shows:
+A method (`=>`) is simply syntactic sugar for a 1-receptor cell. Here's the `host` above as a method:
+
+```lua
+host: 'greet (name)' => {
+    greeting: "Hey, {name}!"
+    return: greeting
+}
+```
+
+An inline method implicitly returns the result of its expression. Here's the `host` method as a one-liner:
+
+```lua
+host: 'greet (name)' => "Hey, {name}!"
+```
+
+Slots are lexically scoped. When assigned to a slot, a method become a local function of the cell it's defined in and any of its nested cells:
 
 ```lua
 double: '(number)' => number * 2
-double 21 --> 42
+
+nested: {
+    cell: {
+        double 21  --> 42
+    }
+}
 ```
 
-A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. They therefore can't receive messages or return values, even when inlined. They are most useful when sent as arguments in messages, easily emulating control flow statements like this equivalent to an `if-then-else` statement:
+A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. They therefore can't receive messages or return values, even when inlined. But they do have closure, making them useful when passed as arguments in messages, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:
 
 ```lua
 answer = 42  --> true

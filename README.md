@@ -94,8 +94,8 @@ There are no variables or statements, only cells (senders and receivers) with sl
 #### Flow
 
 `|`   pipeline  
-`»`   into (forward)  
-`«`   into (reverse)  
+`»`   compose (forward)  
+`«`   compose (reverse)  
 `,`   expression separator (comma)  
 
 #### Other
@@ -175,7 +175,7 @@ Expressions are evaluated left-to-right, so when passing the result of an expres
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (into forward) and `«` (into reverse) is prescribed:
+This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrom), the use of flow operators `|` (pipeline), `»` (compose forward) and `«` (compose reverse) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"
@@ -189,7 +189,7 @@ The pipeline operator is best suited to an object-oriented style of programming 
 ((10 double) negate) print  -- desugared
 ```
 
-While the into operators are best suited to a functional programming style (applying functions to values):
+While the compose operators are best suited to a functional programming style (applying functions to values):
 
 ```lua
 double 10 » negate » print  -- sugar
@@ -198,7 +198,7 @@ print « negate « double 10  -- sugar (equivalent)
 print (negate (double 10))  -- desugared
 ```
 
-The two styles can be combined as shown earlier (the into operators have precedence):
+The two styles can be combined as shown earlier (the compose operators have precedence):
 
 ```lua
 10 double | negate » print  -- sugar

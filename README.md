@@ -122,7 +122,7 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Slot assignment is done by (implicltly) sending a setter message to the current cell (`self`):
+Slot assignment is done by (implicitly) sending a setter message to the current cell (`self`):
 
 ```lua
 answer: 42

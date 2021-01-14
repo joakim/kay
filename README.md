@@ -46,8 +46,9 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 <br/>
 
-<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.  
- 
+<b title="Too long; didn't read">TL;DR:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
+
+<br/>
 
 ### Slots
 

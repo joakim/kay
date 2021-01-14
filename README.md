@@ -29,7 +29,7 @@ hello: '(name)' => {
     return: "hello, {name}!"
 }
 
-print (hello "world")  --> "hello, world!"
+print « hello "world"  --> "hello, world!"
 ```
 
 <br/>

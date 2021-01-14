@@ -96,12 +96,12 @@ There are no variables or statements, only cells (senders and receivers) with sl
 `|`   pipeline  
 `»`   compose (forward)  
 `«`   compose (reverse)  
-`,`   expression separator (comma)  
+`,`   expression separator  
 
 #### Other
 
-`*`   writable, exposed (star)  
-`_`   ignore, any (blank)  
+`*`   writable, exposed ("star")  
+`_`   ignore, any ("blank")  
 `--` comment  
 
 ### Examples

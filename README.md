@@ -129,6 +129,8 @@ Preliminary data types.
 - **Block** cells are executable, but can not take arguments or return values
 -->
 
+<br/>
+
 ### Examples
 
 Sending a message to a cell:

@@ -169,7 +169,7 @@ answer = 42  --> true
 
 That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the result in turn. They are chaining methods, evaluating their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
-Expressions are evaluated inside-out and left-to-right, so when passing the result of an expression as an argument, the expression must be wrapped in `()`:
+Expressions are evaluated left-to-right, so when passing the result of an expression as an argument, the expression must be wrapped in `()`:
 
 ```lua
 console log ((answer = 42) "Correct" if true else "You are mistaken")

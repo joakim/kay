@@ -234,15 +234,15 @@ Replicant: {
     *name: "Replicant"
     model: "Generic"
     
+    -- local method (assigned to a slot)
+    say: '(words)' => {
+        print "{name} says: {words}"
+    }
+    
     -- receptor method (responds to messages from the outside)
     'move (distance)' {
         meters: distance = 1 | "meter" if true else "meters"
         print "{name} the {model} replicant moved {distance} {meters}"
-    }
-    
-    -- local method (assigned to a slot)
-    say: '(words)' => {
-        print "{name} says: {words}"
     }
 }
 

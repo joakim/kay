@@ -215,17 +215,17 @@ Initial data types.
 
 #### Primitive
 
-`nothing` – bottom value (a cell that only ever returns itself)  
-`boolean` – `true` and `false`  
-`number`  
-`string`  
+  - `nothing` – bottom value (a cell that only ever returns itself)  
+  - `boolean` – `true` and `false`  
+  - `number`  
+  - `string`  
 
 #### Composite
 
-`{}`  cell  
-`[]`  static array  
-`*[]` mutable array (dynamic array/sequence/list)  
-`*{}` mutable cell (record/object/struct/dict)  
+  - `{}`   – cell  
+  - `[]`   – static array  
+  - `*{}` – exposed cell (mutable record/object/struct/dict)  
+  - `*[]` – dynamic array (dynamic array/sequence/list)  
 
 <br/>
 

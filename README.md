@@ -209,6 +209,26 @@ print ((10 double) negate)  -- desugared
 
 <br/>
 
+## Data types
+
+Initial data types.
+
+#### Primitive
+
+`nothing` – bottom value (a cell that only ever returns itself)  
+`boolean` – `true` and `false`  
+`number`  
+`string`  
+
+#### Composite
+
+`{}`  cell  
+`[]`  static array  
+`*[]` mutable array (dynamic array/sequence/list)  
+`*{}` mutable cell (record/object/struct/dict)  
+
+<br/>
+
 ## What it brings
 
 The language offers a small set of easy to understand concepts and a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
@@ -230,8 +250,8 @@ Note that this style is not enforced, the language is flexible enough to support
 ```lua
 -- create a Replicant cell
 Replicant: {
-    -- slots (`name` is marked as writable)
-    *name: "Replicant"
+    -- slots
+    *name: "Replicant"  -- writable slot
     model: "Generic"
     
     -- local method (assigned to a slot)
@@ -251,7 +271,7 @@ Nexus9: Replicant {
     replicant: self
     model: "Nexus 9"
     intelligence: 100
-    thoughts: []
+    thoughts: *[]  -- dynamic array
     
     think: '(thought)' => {
         -- send an `append` message to the `thoughts` array with the `thought` argument's value
@@ -462,7 +482,7 @@ print (bar)  --> 42
 -- all other cells descend from the base Cell
 Cell: {
     cell: self
-    lineage: [{}]
+    lineage: *[{}]
     exposed: {}
     
     -- slot initialization
@@ -533,8 +553,8 @@ Value: {
     
     -- internal value and its validators, preprocessors and subscribers
     value: {}
-    validators: []
-    preprocessors: []
+    validators: *[]
+    preprocessors: *[]
     subscribers: {}
     
     -- local setter method for mutating the internal value
@@ -646,9 +666,8 @@ foobar: Cell {
         foo: 40
     }
     
-    rna: Queue
-    
-    ribosomes: []
+    rna: Queue new
+    ribosomes: Set new
     
     transcribe: '(value)' => {
         instructions: {
@@ -669,7 +688,7 @@ foobar: Cell {
         }
     }
     
-    ribosomes append (ribosome)
+    ribosomes add (ribosome)
     
     dna on change (transcribe)
     

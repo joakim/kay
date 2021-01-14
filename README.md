@@ -219,7 +219,7 @@ It should even be possible to translate the global cells and methods into other 
 
 ## Examples
 
-<sup>Note: This is mainly an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. The following examples use Lua syntax highlighting. `-->` comments signify output.</sup>
+<sup>Note: This is mainly an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design.</sup>
 
 ### Blade Runner
 

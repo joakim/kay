@@ -186,14 +186,14 @@ host: 'greet (name)' => {
     greeting: "Hey, {name}!"
     return: greeting
 }
-
-host greet "Joe"  --> "Hey, Joe!"
 ```
 
-An inline method implicitly returns the result of its expression. Here's the `host` method as a one-liner:
+An inline method implicitly returns the result of its expression. Here's a one-line greeter:
 
 ```lua
-host: 'greet (name)' => "Hey, {name}!"
+greet: '(name)' => "Hey, {name}!"
+
+greet "Joe"  --> "Hey, Joe!"
 ```
 
 Slots are lexically scoped. When assigned to a slot, a method become a local function of the cell it's defined in and any of its nested cells:

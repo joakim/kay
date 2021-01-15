@@ -21,7 +21,7 @@ Replicant: {
     }
     
     -- receptor method (responds to messages from the outside)
-    'move (distance)' {
+    'move (distance)' => {
         meters: distance = 1 | "meter" if true else "meters"
         print "{name} the {model} replicant moved {distance} {meters}"
     }
@@ -40,7 +40,7 @@ Nexus9: Replicant {
         print "{name} thinks: {thought}"
     }
     
-    'move' {
+    'move' => {
         print "*moves*"
         
         -- signal the `move (distance)` receptor cloned from `Replicant`
@@ -117,12 +117,12 @@ method-inlined: '(argument)' => true
 
 -- literal for a receptor method (similar to object method in other languages)
 -- a receptor is simply a method that is not assigned to a slot
-'foo (bar)' {
+'foo (bar)' => {
     -- expressions...
 }
 
 -- a receptor method illustrating how messages are used
-'receptor with one (argument)' {
+'receptor with one (argument)' => {
     -- messages are flexible text patterns that may contain arguments
     -- arguments are enclosed in `()`, the matched value will be bound to a slot of that name
     -- the syntax could be extended to support typed arguments
@@ -174,7 +174,7 @@ writable-slot: {
     my: self
     *bar: true
     
-    'mutate' {
+    'mutate' => {
         my bar: false
     }
 }
@@ -185,14 +185,14 @@ scoped: {
     inner: 42
     
     nested: {
-        'answer' {
+        'answer' => {
             original: inner       --> 42 (a clone of `inner`)
             inner: "shadowed"     --> "shadowed" (a new, local slot)
             return: original
         }
     }
     
-    'answer' {
+    'answer' => {
         nested answer
     }
 }
@@ -238,7 +238,7 @@ print (bar)  --> 42
 
 ```lua
 -- the void type is a special cell that only ever returns itself
-{}: { '_' { return: self } }
+{}: { '_' => { return: self } }
 
 -- all other cells descend from the base Cell
 Cell: {
@@ -253,7 +253,7 @@ Cell: {
     expose: '(key): ...(value)' => exposed (key): value
     
     -- clones itself (matches an empty message)
-    '' {
+    '' => {
         clone: `Object.assign(Object.create(null), cell)`
         
         -- append a reference to itself as the parent of the clone
@@ -263,7 +263,7 @@ Cell: {
     }
     
     -- clones itself, merging with the specified cell(s), enabling composition of multiple cells
-    '(spec)' {
+    '(spec)' => {
         clone: cell
         
         -- merge slots into the clone
@@ -280,32 +280,32 @@ Cell: {
     }
     
     -- returns the cell's lineage
-    'lineage' { return: lineage }
+    'lineage' => lineage
     
     -- exposed slot checker
-    'has (key)' { return: `Reflect.has(cell.exposed, key)` }
+    'has (key)' => `Reflect.has(cell.exposed, key)`
     
     -- exposed slot setter (returns itself, enabling piping/chaining)
-    '(key): (value)' {
+    '(key): (value)' => {
         (cell is exposed) and (cell has (key))
             | if true -> `Reflect.set(cell.exposed, key, value)`
         return: cell
     }
     
     -- conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)
-    'if (condition) (then)' { `(equals(cell, condition) && do(then))`, return: cell }
-    'if (condition) (then) else (else)' { `(equals(cell, condition) ? do(then) : do(else))`, return: cell }
-    '(value) if (condition)' { return: `(equals(cell, condition) ? value : undefined)` }
-    '(value-1) if (condition) else (value-2)' { return: `equals(cell, condition) ? value_1 : value_2` }
+    'if (condition) (then)' => { `(equals(cell, condition) && do(then))`, return: cell }
+    'if (condition) (then) else (else)' => { `(equals(cell, condition) ? do(then) : do(else))`, return: cell }
+    '(value) if (condition)' => `(equals(cell, condition) ? value : undefined)`
+    '(value-1) if (condition) else (value-2)' => `equals(cell, condition) ? value_1 : value_2`
     
     -- returns whether the cell is exposed
-    'is exposed' { return: Boolean (exposed size) }
+    'is exposed' => Boolean (exposed size)
     
     -- checks whether the cell has a receptor matching the signature
-    'has receptor (signature)' { return: `cell.hasReceptor(signature)` }
+    'has receptor (signature)' => `cell.hasReceptor(signature)`
     
     -- applies a receptor of this cell to another cell
-    'apply (message) to (other)' { return: `Reflect.apply(cell, other, message)` }
+    'apply (message) to (other)' => `Reflect.apply(cell, other, message)`
 }
 
 -- definition of the Value cell
@@ -330,38 +330,38 @@ Value: {
     }
     
     -- constructor
-    '(value)' {
+    '(value)' => {
         clone: cell
         `clone.value = value`
         return: clone
     }
     
     -- checker
-    'is value' { return: true }
+    'is value' => true
     
     -- unwraps the internal value
-    'unwrap' { return: `cell.value` }
+    'unwrap' => `cell.value`
     
     -- adds a validator for the value
-    'add validator (validator)' { validators append (validator) }
+    'add validator (validator)' => { validators append (validator) }
     
     -- adds a preprocessor for the value
-    'add preprocessor (preprocessor)' { preprocessors append (preprocessor) }
+    'add preprocessor (preprocessor)' => { preprocessors append (preprocessor) }
     
     -- adds a subscriber to an event
-    'on (event) (subscriber)' { subscribers (event) | append (subscriber) }
+    'on (event) (subscriber)' => { subscribers (event) | append (subscriber) }
     
     -- pattern matching
-    'match (alternatives)' {
+    'match (alternatives)' => {
         alternative: alternatives find '(method)' => matches (method signature)
         return: do (alternative)
     }
     
     -- conditionals (checking the value slot)
-    'if (condition) (then)' { `(equals(cell.value, condition) && do(then))`, return: cell }
-    'if (condition) (then) else (else)' { `(equals(cell.value, condition) ? do(then) : do(else))`, return: cell }
-    '(value) if (condition)' { return: `(equals(cell.value, condition) ? value : undefined)` }
-    '(value-1) if (condition) else (value-2)' { return: `equals(cell.value, condition) ? value_1 : value_2` }
+    'if (condition) (then)' => { `(equals(cell.value, condition) && do(then))`, return: cell }
+    'if (condition) (then) else (else)' => { `(equals(cell.value, condition) ? do(then) : do(else))`, return: cell }
+    '(value) if (condition)' => `(equals(cell.value, condition) ? value : undefined)`
+    '(value-1) if (condition) else (value-2)' => `equals(cell.value, condition) ? value_1 : value_2`
 }
 
 -- definition of the Boolean value
@@ -371,10 +371,10 @@ Boolean: Value {
     -- preprocess the value before being set, casting it to a boolean
     cell add preprocessor '(value)' => `Boolean(value)`
     
-    'and (other-value)' { return: `cell.value && other_value` }
+    'and (other-value)' => `cell.value && other_value`
     
     -- negates the value
-    'negate' { return: set `!cell.value` }
+    'negate' => set `!cell.value`
 }
 
 -- instantiated booleans (primitives on the environment cell)
@@ -390,13 +390,13 @@ print (bool)  --> false "(the value is automagically unwrapped when read)"
 Array: Value {
     cell: self
     
-    'is array' { return: true }
-    'first' { return: `cell.value[0]` }
-    'last' { return: `cell.value[value.length - 1]` }
-    'append (value)' { return: `cell.value = [...cell.value, value]` }
-    'prepend (value)' { return: `cell.value = [value, ...cell.value]` }
-    'map (mapper)' { return: `cell.value.map(mapper)` }
-    'each (handler)' { return: `cell.value.forEach(handler)` }
+    'is array' => true
+    'first' => `cell.value[0]`
+    'last' => `cell.value[value.length - 1]`
+    'append (value)' => `cell.value = [...cell.value, value]`
+    'prepend (value)' => `cell.value = [value, ...cell.value]`
+    'map (mapper)' => `cell.value.map(mapper)`
+    'each (handler)' => `cell.value.forEach(handler)`
     -- ...
 }
 
@@ -405,7 +405,7 @@ print: '(value)' => console log (value)
 
 -- `console` is a cell with receptors
 console: {
-    'log (value)' { `console.log(value)` }
+    'log (value)' => `console.log(value)`
     -- ...
 }
 
@@ -453,7 +453,7 @@ foobar: Cell {
     
     dna on change (transcribe)
     
-    'increase foo' {
+    'increase foo' => {
         dna foo | increment
     }
 }

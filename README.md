@@ -35,11 +35,11 @@ print « hello "world"  --> "hello, world!"
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells encapsulate slots, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
 
-Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). The internal state may only be accessed from the outside through setter and getter messages, unless marked as exposed. Exceptions are handled internally, a cell can not crash.
+Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). The internal state may only be accessed from the outside through setter and getter messages, unless marked as mutable. Exceptions are handled internally, a cell can not crash.
 
 Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value), with [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)). They are [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie), the "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
 
@@ -49,9 +49,9 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 <br/>
 
-## Slots
+## Fields
 
-Slots hold the cell's state. Slots are read-only, unless explicitly marked as writable. They are only accessible from the current and any nested scopes, unless the cell is marked as exposed. Slots are similar to block-scoped variables or object properties in other languages.
+Fields hold the cell's state. Fields are read-only, unless explicitly marked as writable. They are lexically scoped and are only accessible from the current and any nested scopes, unless the cell is marked as mutable, in which case its fields are also accessible from the outside. Fields are similar to block-scoped variables or object properties.
 
 <br/>
 
@@ -61,9 +61,9 @@ Everything is an expression.
 
 An expression contains one (or more) message signal(s) and evaluates to the (last) signal's return value.
 
-A signal is a message sent to a receiver cell. Expressions are used to include values as arguments in the message.
+A signal is a message sent to a receiver cell. Expressions are used to include values in slots (arguments) in the message.
 
-There are no variables or statements, only cells (senders and receivers) with slots (state) and expressions (message signals).
+There are no variables or statements, only cells (senders and receivers) with fields (state) and expressions (message signals).
 
 <br/>
 
@@ -81,9 +81,9 @@ Preliminary data types.
 #### Composite
 
   - `{}`   – cell  
+  - `*{}` – record cell (mutable object/structure/dictionary)  
   - `[]`   – static array  
-  - `*{}` – exposed cell (record/object/structure/dictionary)  
-  - `*[]` – dynamic array (list/sequence)  
+  - `*[]` – dynamic array (mutable array/list/sequence)  
 
 <br/>
 
@@ -109,14 +109,14 @@ Preliminary data types.
 
 #### Flow
 
-  - `|`   pipeline ("then")  
-  - `»`   compose forward ("into")  
+  - `|`   pipeline  
+  - `»`   compose forward  
   - `«`   compose reversed  
   - `,`   expression separator  
 
 #### Other
 
-  - `*`   writable, exposed ("star")  
+  - `*`   mutable ("star")  
   - `_`   ignore, any ("blank")  
   - `--` comment  
 
@@ -134,9 +134,9 @@ Preliminary data types.
 
 Sending a message to a cell:
 
-`receiver` `message with an (argument)`
+`receiver` `message with a (slot)`
 
-A message is a sequence of Unicode words that may contain arguments. The message forms a signature that the receiving cell's receptors are matched against. Arguments (expressions in parentheses) are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
+A message is a sequence of Unicode words that may contain slots (arguments). The message forms a signature that the receiving cell's receptors are matched against. Slots are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
 
 A message expression ends when a flow operator, binary operator, matching right parenthesis, end of line or comment is encountered.
 
@@ -148,24 +148,27 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Slot assignment is done by (implicitly) sending a setter message to the current cell (`self`):
+Assignment is done by (implicitly) sending a setter message to the current cell (`self`):
 
 ```lua
 answer: 42
 
 -- is really:
-self answer: 42
+self "answer": (42)
 ```
 
-This message matches the `(key): (value)` receptor of the cell, setting the cell's `answer` slot to `42`. Assignment messages are special in that anything following the `:` is desugared into an expression, evaluating it to return a value.
+This message matches the `(name): (value)` receptor of the cell, setting the cell's `answer` field to `42`. Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression.
 
-In order to use a slot as an argument in a regular message, it must be wrapped in `()`, evaluating it before the message is sent:
+Assigning an existing field will clone that field's referenced cell (enabled by persistent data structures):
 
 ```lua
-console log (answer)
+foo: answer
+
+-- is really:
+self "foo": (answer)
 ```
 
-A method is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`) containing expressions. The method's cell may have its own slots (local state), and return a value by assigning to it's `return` slot:
+A method is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The method's cell may have its own fields (local state), and may return a value by assigning to it's `return` field:
 
 ```lua
 greet: '(name)' => {
@@ -173,6 +176,7 @@ greet: '(name)' => {
     return: greeting
 }
 
+-- applying the method:
 greet "Joe"  --> "Hey, Joe!"
 ```
 
@@ -182,7 +186,7 @@ An inline method implicitly returns the result of its expression. Here's the abo
 greet: '(name)' => "Hey, {name}!"
 ```
 
-Slots are lexically scoped. When a method is assigned to a slot, it becomes a local function of that cell and any of its nested cells:
+Fields are lexically scoped. When a method is assigned to a field, it becomes a local function of that cell and any of its nested cells:
 
 ```lua
 greet: '(name)' => "Hey, {name}!"
@@ -194,17 +198,18 @@ nested: {
 }
 ```
 
-A receptor is simply a method that's defined directly on a cell, not assigned to a slot. Here's the `greet` method as a receptor on a cell:
+A cell receptor is simply a method that's defined directly on a cell, not assigned to a field. Here's the `greet` method as a receptor:
 
 ```lua
 host: {
     'greet (name)' => "Hey, {name}!"
 }
 
+-- sending the message 'greet "Joe"' to `host`:
 host greet "Joe"  --> "Hey, Joe!"
 ```
 
-A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. It therefore can't receive messages or return values, even when inlined. But blocks do have closure, making them useful when passed as arguments in messages, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:
+A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. It therefore can't receive messages or return values, even when inlined. But blocks do have closure, making them useful in message slots, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:
 
 ```lua
 answer = 42
@@ -212,15 +217,15 @@ answer = 42
     | if false -> marvin despair
 ```
 
-That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` slot, returning `true`, before `then` and `else` act on the result in turn. They are chaining methods, evaluating their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `then` and `else` act on the result in turn. They are chaining methods, evaluating their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
-Expressions are evaluated left-to-right, so when passing the result of an expression as an argument, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
+Expressions are evaluated left-to-right, so when passing the result of an expression in a message slot, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
 
 ```lua
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrome), the use of flow operators `|` (pipeline), `»` (compose forward) and `«` (compose reverse) is prescribed:
+This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrome), the use of flow operators `|` (pipeline), `»` (compose forward) and `«` (compose reversed) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"

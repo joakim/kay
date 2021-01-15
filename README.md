@@ -166,7 +166,7 @@ In order to use a slot as an argument in a regular message, it must be wrapped i
 console log (answer)
 ```
 
-A method (`=>`) is defined as a message signature (`''`) tied to a cell containing expressions. The method's cell may have its own slots (local state), and return a value by assigning to it's `return` slot:
+A method is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`) containing expressions. The method's cell may have its own slots (local state), and return a value by assigning to it's `return` slot:
 
 ```lua
 greet: '(name)' => {

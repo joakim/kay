@@ -88,8 +88,6 @@ Preliminary data types.
 
   - `{}`   – cell  
   - `[]`   – table (array/object)  
-  - `*{}` – mutable cell  
-  - `*[]` – mutable table (mutable array/object)  
 
 <br/>
 

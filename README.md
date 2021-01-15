@@ -87,7 +87,9 @@ Preliminary data types.
 #### Composite
 
   - `{}`   – cell  
-  - `[]`   – table (array/object)  
+  - `[]`   – array (either indexed or associative)  
+
+The array is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables.
 
 <br/>
 
@@ -98,7 +100,7 @@ Preliminary data types.
 #### Literals
 
   - `{}`  cell  
-  - `[]`  table  
+  - `[]`  array  
   - `""`  string  
   - `=>`  method  
   - `->`  block  

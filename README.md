@@ -170,7 +170,7 @@ A cell's receptor is defined as a message signature (`''`) tied to a cell contai
 
 ```lua
 host: {
-    'greet (name)' {
+    'greet (name)' => {
         greeting: "Hey, {name}!"
         return: greeting
     }

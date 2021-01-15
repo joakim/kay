@@ -196,7 +196,7 @@ greet: '(name)' => "Hey, {name}!"
 greet "Joe"  --> "Hey, Joe!"
 ```
 
-Slots are lexically scoped. When assigned to a slot, a method become a local function of the cell it's defined in and any of its nested cells:
+Slots are lexically scoped. When assigned to a slot, a method becomes a local function of the cell it's defined in and any of its nested cells:
 
 ```lua
 double: '(number)' => number * 2

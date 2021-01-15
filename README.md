@@ -243,7 +243,7 @@ print « negate « double 10  -- sugar (equivalent)
 print (negate (double 10))  -- desugared
 ```
 
-The two styles can be combined (the compose operators have precedence):
+The two styles can be combined (the compose operators have higher precedence):
 
 ```lua
 10 double | negate » print  -- sugar

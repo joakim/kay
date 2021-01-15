@@ -11,11 +11,11 @@ Note that this style is not enforced, the language is flexible enough to support
 ```lua
 -- create a Replicant cell
 Replicant: {
-    -- slots
-    *name: "Replicant"  -- writable slot
+    -- fields
+    *name: "Replicant"  -- mutable field
     model: "Generic"
     
-    -- local method (assigned to a slot)
+    -- local method (assigned to a field)
     say: '(words)' => {
         print "{name} says: {words}"
     }
@@ -82,17 +82,14 @@ officer-k move
 Cells within cells interlinked: `Environment > Modules > (Cells > Cells...) > Values`
 
 ```lua
--- literal for a record cell
-record-literal: {}
-
--- a record cell with a slot (object with a private property in other languages)
-record-example: {
-    answer: 42
+-- literal for a cell
+cell-literal: {
+    -- ...
 }
 
 -- literal for a block cell (compound statements or closure in other languages)
 block-literal: -> {
-    -- expressions...
+    -- ...
 }
 
 -- a block sent as an argument to the `if (condition) (then)` receptor of `true`
@@ -115,26 +112,26 @@ method-example: '(argument)' => {
 -- an inlined method cell, having implicit `return` (lambda in other languages)
 method-inlined: '(argument)' => true
 
--- literal for a receptor method (similar to object method in other languages)
--- a receptor is simply a method that is not assigned to a slot
+-- literal for a receptor method
+-- a receptor is simply a method that is not assigned to a field
 'foo (bar)' => {
     -- expressions...
 }
 
 -- a receptor method illustrating how messages are used
-'receptor with one (argument)' => {
-    -- messages are flexible text patterns that may contain arguments
-    -- arguments are enclosed in `()`, the matched value will be bound to a slot of that name
-    -- the syntax could be extended to support typed arguments
+'receptor with one (slot)' => {
+    -- messages are flexible text patterns that may contain slots `()` holding arguments
+    -- a slot's matched value will be bound to a field of that name
+    -- this syntax could support typed arguments
     
-    -- `()` is similarly used to interpolate expressions (also slots) when sending messages
+    -- `()` is also used to interpolate expressions (also fields) in slots when sending messages
     print (argument)
     
-    -- `{}` is used to interpolate expressions (also slots) in strings
+    -- while `{}` is used to interpolate expressions (also fields) in strings
     print "argument is {argument}"
 }
 
--- a method cell without arguments (equivalent to a function expression with no arguments)
+-- a method cell without arguments
 method: => {
     a: 2
     b: 3
@@ -147,30 +144,28 @@ method: => {
 result: do (method)  --> "2 + 3 = 5"
 print (result)       --> 5
 
--- an exposed record with all slots writable, marked with `*` (object/struct/dict in other languages)
-mutable: *{
+-- a table is a hashed associative array, similar to lua's tables
+object: [
     foo: 42
     bar: true
-}
+]
+list: [1, 2, 3]  -- 0-indexed
 
--- mutating slots from outside the cell
--- setters return the cell itself, enabling chaining of messages
-mutable (foo: 10) (bar: false)
+-- mutating object fields
+-- setters return the table itself, enabling chaining of messages
+object foo: 10 | bar: false
 
--- simpler syntax using the pipeline operator
-mutable foo: 10 | bar: false
-
--- looks great when multiline (fluent interface)
-mutable
+-- looks nice when multiline (fluent interface)
+object
     | foo: 10
     | bar: false
 
--- mutating a slot by referencing its name using a local slot's value
+-- mutating a field by referencing its name using a local field's string value
 key: "foo"
-mutable (key): 42
+object (key): 42
 
--- a record cell with a writable slot (only writable from within)
-writable-slot: {
+-- a cell with a mutable field (only mutable from within)
+mutable-field: {
     my: self
     *bar: true
     
@@ -178,16 +173,16 @@ writable-slot: {
         my bar: false
     }
 }
-writable-slot mutate
+mutable-field mutate
 
--- slots are block scoped and may be shadowed by nested cells
+-- fields are block scoped and may be shadowed by nested cells
 scoped: {
     inner: 42
     
     nested: {
         'answer' => {
             original: inner       --> 42 (a clone of `inner`)
-            inner: "shadowed"     --> "shadowed" (a new, local slot)
+            inner: "shadowed"     --> "shadowed" (a new, local field)
             return: original
         }
     }
@@ -224,7 +219,7 @@ self foo: (42)  -- desugared
 bar: foo
 self bar: (foo)  -- desugared
 
--- here, `()` is needed to evaluate the slot, or the unknown message 'bar' would be sent
+-- here, `()` is needed to evaluate the field, or the unknown message 'bar' would be sent
 print (bar)  --> 42
 ```
 
@@ -246,10 +241,10 @@ Cell: {
     lineage: *[{}]
     exposed: {}
     
-    -- slot initialization
+    -- field initialization
     set: '(key): ...(value)' => `Reflect.set(cell, key, value)`
     
-    -- exposed slot initialization (`*`) is syntactic sugar for this method
+    -- exposed field initialization (`*`) is syntactic sugar for this method
     expose: '(key): ...(value)' => exposed (key): value
     
     -- clones itself (matches an empty message)
@@ -266,9 +261,9 @@ Cell: {
     '(spec)' => {
         clone: cell
         
-        -- merge slots into the clone
-        merge: '(slots)' => {
-            slots each '(key) (value)' => `Reflect.set(clone, key, value)`
+        -- merge fields into the clone
+        merge: '(fields)' => {
+            fields each '(key) (value)' => `Reflect.set(clone, key, value)`
         }
         
         -- if merging with an array of cells, merge each cell in turn
@@ -282,10 +277,10 @@ Cell: {
     -- returns the cell's lineage
     'lineage' => lineage
     
-    -- exposed slot checker
+    -- exposed field checker
     'has (key)' => `Reflect.has(cell.exposed, key)`
     
-    -- exposed slot setter (returns itself, enabling piping/chaining)
+    -- exposed field setter (returns itself, enabling piping/chaining)
     '(key): (value)' => {
         (cell is exposed) and (cell has (key))
             | if true -> `Reflect.set(cell.exposed, key, value)`
@@ -357,7 +352,7 @@ Value: {
         return: do (alternative)
     }
     
-    -- conditionals (checking the value slot)
+    -- conditionals (checking the value field)
     'if (condition) (then)' => { `(equals(cell.value, condition) && do(then))`, return: cell }
     'if (condition) (then) else (else)' => { `(equals(cell.value, condition) ? do(then) : do(else))`, return: cell }
     '(value) if (condition)' => `(equals(cell.value, condition) ? value : undefined)`
@@ -400,7 +395,7 @@ Array: Value {
     -- ...
 }
 
--- `print` is a slot on the environment cell that is a method cell
+-- `print` is a field on the environment cell that is a method cell
 print: '(value)' => console log (value)
 
 -- `console` is a cell with receptors

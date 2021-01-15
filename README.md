@@ -69,7 +69,7 @@ There are no variables or statements, only cells (senders and receivers) with fi
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> Everything is an expression, and every expression is a message (or messages).
+<b title="Too long; didn't read">Summary:</b> Everything is an expression, and every expression is a message (or messages) sent.
 
 <br/>
 

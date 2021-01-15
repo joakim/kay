@@ -182,7 +182,7 @@ An inline method implicitly returns the result of its expression. Here's the abo
 greet: '(name)' => "Hey, {name}!"
 ```
 
-Slots are lexically scoped. When assigned to a slot, a method becomes a local function of the cell it's defined in and any of its nested cells:
+Slots are lexically scoped. When a message is assigned to a slot, it becomes a local function of that cell and any of its nested cells:
 
 ```lua
 greet: '(name)' => "Hey, {name}!"

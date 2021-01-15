@@ -87,9 +87,9 @@ Preliminary data types.
 #### Composite
 
   - `{}`   – cell  
-  - `*{}` – record cell (mutable object/structure/dictionary)  
-  - `[]`   – static array  
-  - `*[]` – dynamic array (mutable array/list/sequence)  
+  - `[]`   – table (array/object)  
+  - `*{}` – mutable cell  
+  - `*[]` – mutable table (mutable array/object)  
 
 <br/>
 
@@ -100,7 +100,7 @@ Preliminary data types.
 #### Literals
 
   - `{}`  cell  
-  - `[]`  array  
+  - `[]`  table  
   - `""`  string  
   - `=>`  method  
   - `->`  block  

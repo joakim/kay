@@ -45,7 +45,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 <br/>
 
-<b title="Too long; didn't read">TLDR:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
+<b title="Too long; didn't read">Summary:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque and safe. The runtime is the stem.
 
 <br/>
 
@@ -55,19 +55,21 @@ Fields hold the cell's state. Fields are read-only, unless explicitly marked as 
 
 <br/>
 
-<b title="Too long; didn't read">TLDR:</b> Fields are the synthesis of block-scoped variables and object properties.
+<b title="Too long; didn't read">Summary:</b> Fields are the synthesis of block-scoped variables and object properties.
 
 <br/>
 
 ## Messages (expressions and signals)
-
-Everything is an expression.
 
 An expression contains one (or more) message signal(s) and evaluates to the (last) signal's return value.
 
 A signal is a message sent to a receiver cell. Expressions are used to include values in slots (arguments) in the message.
 
 There are no variables or statements, only cells (senders and receivers) with fields (state) and expressions (message signals).
+
+<br/>
+
+<b title="Too long; didn't read">Summary:</b> Everything is an expression, and every expression is a message (or messages).
 
 <br/>
 

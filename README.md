@@ -9,7 +9,6 @@ A simple message-based programming language inspired by [Smalltalk](http://worry
 > OOP to me means only messaging, local retention and protection and hiding of state-process, and extreme late-binding of all things.
 
 – Alan Kay
-
 <br/>
 
 > The basic principle of recursive design is to make the parts have the same power as the whole.
@@ -177,7 +176,7 @@ greet: '(name)' => {
 greet "Joe"  --> "Hey, Joe!"
 ```
 
-An inline method implicitly returns the result of its expression. Here's a one-line greeter:
+An inline method implicitly returns the result of its expression. Here's the above method as a one-liner:
 
 ```lua
 greet: '(name)' => "Hey, {name}!"

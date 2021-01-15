@@ -186,6 +186,8 @@ host: 'greet (name)' => {
     greeting: "Hey, {name}!"
     return: greeting
 }
+
+host greet "Joe"  --> "Hey, Joe!"
 ```
 
 An inline method implicitly returns the result of its expression. Here's the `host` method as a one-liner:

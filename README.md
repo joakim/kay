@@ -45,7 +45,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> A cell is the synthesis of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque, safe. The runtime is the stem.
+<b title="Too long; didn't read">Summary:</b> A cell is the consolidation of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by message signaling. Encapsulated, opaque, safe. The runtime is the stem.
 
 <br/>
 
@@ -55,7 +55,7 @@ Fields hold the cell's state. Fields are read-only, unless explicitly marked as 
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> Fields are the synthesis of block-scoped variables and object properties.
+<b title="Too long; didn't read">Summary:</b> Fields are the consolidation of block-scoped variables and object properties.
 
 <br/>
 

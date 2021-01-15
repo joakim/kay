@@ -179,12 +179,17 @@ host: {
 host greet "Joe"  --> "Hey, Joe!"
 ```
 
-A method (`=>`) is simply syntactic sugar for a 1-receptor cell. Here's the `host` above as a method:
+A method (`=>`) is simply syntactic sugar for a 1-receptor cell. Here's the receptor above as a method:
 
 ```lua
-host: 'greet (name)' => {
-    greeting: "Hey, {name}!"
-    return: greeting
+host: {
+    greet: '(name)' => {
+        greeting: "Hey, {name}!"
+        return: greeting
+    }
+    
+    -- being a local method, it can only be called from within the cell
+    greet "Joe"  --> "Hey, Joe!"
 }
 ```
 

@@ -434,7 +434,7 @@ foobar: Cell {
         instructions: {
             -- ...
         }
-        foo ≥ 42 | if true -> rna put (instructions)
+        dna foo | ≥ 42 | if true -> rna put (instructions)
     }
     
     ribosome: {

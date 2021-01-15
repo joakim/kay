@@ -166,51 +166,43 @@ In order to use a slot as an argument in a regular message, it must be wrapped i
 console log (answer)
 ```
 
-A cell's receptor is defined as a message signature (`''`) tied to a cell containing expressions. The receptor's cell may have its own slots (local state), and return a value by assigning to it's own `return` slot:
+A method (`=>`) is defined as a message signature (`''`) tied to a cell containing expressions. The method's cell may have its own slots (local state), and return a value by assigning to it's `return` slot:
 
 ```lua
-host: {
-    'greet (name)' => {
-        greeting: "Hey, {name}!"
-        return: greeting
-    }
+greet: '(name)' => {
+    greeting: "Hey, {name}!"
+    return: greeting
 }
 
-host greet "Joe"  --> "Hey, Joe!"
-```
-
-A method (`=>`) is simply syntactic sugar for a 1-receptor cell. Here's the receptor above as a method:
-
-```lua
-host: {
-    greet: '(name)' => {
-        greeting: "Hey, {name}!"
-        return: greeting
-    }
-    
-    -- being a local method, it can only be called from within the cell
-    greet "Joe"  --> "Hey, Joe!"
-}
+greet "Joe"  --> "Hey, Joe!"
 ```
 
 An inline method implicitly returns the result of its expression. Here's a one-line greeter:
 
 ```lua
 greet: '(name)' => "Hey, {name}!"
-
-greet "Joe"  --> "Hey, Joe!"
 ```
 
 Slots are lexically scoped. When assigned to a slot, a method becomes a local function of the cell it's defined in and any of its nested cells:
 
 ```lua
-double: '(number)' => number * 2
+greet: '(name)' => "Hey, {name}!"
 
 nested: {
     cell: {
-        double 21  --> 42
+        greet "Joe"  --> "Hey, Joe!"
     }
 }
+```
+
+A receptor is simply a method that's defined directly on a cell, not assigned to a slot. Here's the `greet` method as a receptor on a cell:
+
+```lua
+host: {
+    'greet (name)' => "Hey, {name}!"
+}
+
+host greet "Joe"  --> "Hey, Joe!"
 ```
 
 A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. It therefore can't receive messages or return values, even when inlined. But blocks do have closure, making them useful when passed as arguments in messages, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:

@@ -207,7 +207,7 @@ host greet "Joe"  --> "Hey, Joe!"
 A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. It therefore can't receive messages or return values, even when inlined. But blocks do have closure, making them useful when passed as arguments in messages, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:
 
 ```lua
-answer = 42  --> true
+answer = 42
     | if true -> marvin shrug
     | if false -> marvin despair
 ```

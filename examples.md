@@ -32,7 +32,7 @@ Nexus9: Replicant {
     replicant: self
     model: "Nexus 9"
     intelligence: 100
-    thoughts: *[]  -- dynamic array
+    thoughts: []
     
     think: '(thought)' => {
         -- send an `append` message to the `thoughts` array with the `thought` argument's value
@@ -238,14 +238,10 @@ print (bar)  --> 42
 -- all other cells descend from the base Cell
 Cell: {
     cell: self
-    lineage: *[{}]
-    exposed: {}
+    lineage: [{}]
     
     -- field initialization
     set: '(key): ...(value)' => `Reflect.set(cell, key, value)`
-    
-    -- exposed field initialization (`*`) is syntactic sugar for this method
-    expose: '(key): ...(value)' => exposed (key): value
     
     -- clones itself (matches an empty message)
     '' => {
@@ -277,24 +273,11 @@ Cell: {
     -- returns the cell's lineage
     'lineage' => lineage
     
-    -- exposed field checker
-    'has (key)' => `Reflect.has(cell.exposed, key)`
-    
-    -- exposed field setter (returns itself, enabling piping/chaining)
-    '(key): (value)' => {
-        (cell is exposed) and (cell has (key))
-            | if true -> `Reflect.set(cell.exposed, key, value)`
-        return: cell
-    }
-    
     -- conditionals (replaces if statements, any cell can define its own truthy/falsy-ness)
     'if (condition) (then)' => { `(equals(cell, condition) && do(then))`, return: cell }
     'if (condition) (then) else (else)' => { `(equals(cell, condition) ? do(then) : do(else))`, return: cell }
     '(value) if (condition)' => `(equals(cell, condition) ? value : undefined)`
     '(value-1) if (condition) else (value-2)' => `equals(cell, condition) ? value_1 : value_2`
-    
-    -- returns whether the cell is exposed
-    'is exposed' => Boolean (exposed size)
     
     -- checks whether the cell has a receptor matching the signature
     'has receptor (signature)' => `cell.hasReceptor(signature)`
@@ -309,8 +292,8 @@ Value: {
     
     -- internal value and its validators, preprocessors and subscribers
     value: {}
-    validators: *[]
-    preprocessors: *[]
+    validators: []
+    preprocessors: []
     subscribers: {}
     
     -- local setter method for mutating the internal value
@@ -418,9 +401,9 @@ Disclaimer: I am not a molecular biologist! (Nor am I a computer scientist.)
 foobar: Cell {
     cell: self
     
-    dna: *{
+    dna: [
         foo: 40
-    }
+    ]
     
     rna: Queue new
     ribosomes: Set new

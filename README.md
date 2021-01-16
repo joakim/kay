@@ -45,17 +45,17 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> A cell is the consolidation of object, method and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
+**Summary:** A cell is the consolidation of object, method and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
 
 <br/>
 
 ## Fields
 
-Fields hold the cell's state. Fields are read-only, unless explicitly marked as mutable. They are lexically scoped and are only accessible from the current and any nested scopes, unless the cell itself is marked as mutable, in which case its fields are also accessible from the outside.
+Fields hold the cell's state. Fields are read-only, unless explicitly marked as mutable. They are lexically scoped and are only accessible from the current and any nested scopes.
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> Fields are the consolidation of block-scoped variables and object properties.
+**Summary:** Fields are the consolidation of block-scoped variables and object properties.
 
 <br/>
 
@@ -69,7 +69,7 @@ There are no variables or statements, only cells (senders and receivers) with fi
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> Everything is an expression, and every expression is a message (or messages) sent.
+**Summary:** Everything is an expression, and every expression is a message (or messages) sent.
 
 <br/>
 

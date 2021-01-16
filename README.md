@@ -35,13 +35,13 @@ print « hello "world"  --> "hello, world!"
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are dynamically matched against the signatures of the cell's [receptor](https://en.wikipedia.org/wiki/Cell_surface_receptor) methods. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor) and dynamically dispatched to the right method. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
 
-There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)) ([phenotypes](https://en.wikipedia.org/wiki/Phenotype)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded.
+There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded, however.
 
-Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). The internal state may only be accessed from the outside through setter and getter messages, unless marked as mutable. Exceptions are handled internally, a cell can not crash.
+Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). The internal state may only be accessed from the outside through setter and getter messages, unless marked as mutable. Any exceptions are handled internally, a cell can not crash.
 
-Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value), with [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)). They are [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie), the "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new variant from that view for the observer, based on structural sharing of its past variants. Cells may subscribe to each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
+Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type), are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value) and have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)). They are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie), the "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a fixed "view" of the cell's state as it was at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new local variant from that view, based on structural sharing of its past variants. Cells may subscribe to each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
 
 <br/>
 
@@ -51,7 +51,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 ## Fields
 
-Fields hold the cell's state. Fields are read-only, unless explicitly marked as mutable. They are lexically scoped and are only accessible from the current and any nested scopes, unless the cell is marked as mutable, in which case its fields are also accessible from the outside.
+Fields hold the cell's state. Fields are read-only, unless explicitly marked as mutable. They are lexically scoped and are only accessible from the current and any nested scopes, unless the cell itself is marked as mutable, in which case its fields are also accessible from the outside.
 
 <br/>
 

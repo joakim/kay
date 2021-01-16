@@ -45,7 +45,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [ref
 
 <br/>
 
-<b title="Too long; didn't read">Summary:</b> A cell is the consolidation of record, method and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
+<b title="Too long; didn't read">Summary:</b> A cell is the consolidation of object, method and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
 
 <br/>
 
@@ -129,7 +129,7 @@ The array is the consolidation of indexed array (list/vector) and associative ar
 <!--
 #### Cell types
 
-- **Record** cells are not executable
+- **Object** cells are not executable
 - **Method** cells are executable, take arguments and return values
 - **Block** cells are executable, but can not take arguments or return values
 -->

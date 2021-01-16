@@ -116,8 +116,8 @@ The array is the consolidation of indexed array (list/vector) and associative ar
 #### Flow
 
   - `|`   pipeline  
-  - `»`   compose forward  
-  - `«`   compose reversed  
+  - `»`   compose left-to-right  
+  - `«`   compose right-to-left  
   - `,`   expression separator  
 
 #### Other
@@ -231,7 +231,7 @@ Expressions are evaluated left-to-right, so when passing the result of an expres
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrome), the use of flow operators `|` (pipeline), `»` (compose forward) and `«` (compose reversed) is prescribed:
+This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrome), the use of flow operators `|` (pipeline) and `«` or `»` (compose) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"

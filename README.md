@@ -174,7 +174,7 @@ foo: answer
 self "foo": (answer)
 ```
 
-A method is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The method's cell may have its own fields (local state), and may return a value by assigning to it's `return` field:
+A method is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
 greet: '(name)' => {

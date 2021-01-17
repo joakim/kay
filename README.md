@@ -35,7 +35,7 @@ print « hello "world"  --> "hello, world!"
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor) and dynamically dispatched to the right method. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor) and dynamically dispatched to the right function. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded, however.
 
@@ -47,7 +47,7 @@ Cells have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_pro
 
 <br/>
 
-**Summary:** A cell is the consolidation of object, method and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
+**Summary:** A cell is the consolidation of object, function and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
 
 <br/>
 
@@ -104,7 +104,7 @@ A collection is the consolidation of indexed array (list/vector) and associative
   - `{}`  cell  
   - `[]`  collection  
   - `""`  string  
-  - `=>`  method  
+  - `=>`  function  
   - `->`  block  
   - `true`  
   - `false`  
@@ -132,7 +132,7 @@ A collection is the consolidation of indexed array (list/vector) and associative
 #### Cell types
 
 - **Object** cells are not executable
-- **Method** cells are executable, take arguments and return values
+- **Function** cells are executable, take arguments and return values
 - **Block** cells are executable, but can not take arguments or return values
 -->
 
@@ -176,7 +176,7 @@ foo: answer
 self "foo": (answer)
 ```
 
-A method is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
+A function is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
 greet: '(name)' => {
@@ -184,17 +184,17 @@ greet: '(name)' => {
     return: greeting
 }
 
--- applying the method:
+-- applying the function:
 greet "Joe"  --> "Hey, Joe!"
 ```
 
-An inline method implicitly returns the result of its expression. Here's the above method as a one-liner:
+An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
 
 ```lua
 greet: '(name)' => "Hey, {name}!"
 ```
 
-Fields are lexically scoped. When a method is assigned to a field, it becomes a local function of that cell and any of its nested cells:
+Fields are lexically scoped. When a function is assigned to a field, it becomes a local function of that cell and any of its nested cells:
 
 ```lua
 greet: '(name)' => "Hey, {name}!"
@@ -206,7 +206,7 @@ nested: {
 }
 ```
 
-A cell receptor is simply a method that's defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor:
+A cell receptor is simply a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
 
 ```lua
 host: {
@@ -225,7 +225,7 @@ answer = 42
     | if false -> marvin despair
 ```
 
-That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `then` and `else` act on the result in turn. They are chaining methods, evaluating their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `then` and `else` act on the result in turn. Each evaluate their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
 Expressions are evaluated left-to-right, so when passing the result of an expression in a message slot, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
 
@@ -273,7 +273,7 @@ For more examples, see [examples.md](examples.md).
 
 The language offers a small set of easy to understand concepts and a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
 
-It should even be possible to translate the global cells and methods into other natural languages than English, enabling developers to code in their native language. With its simplicity and flexibility, my hope is that this could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
+It should even be possible to translate the globals into other natural languages than English, enabling developers to code in their native language. With its simplicity and flexibility, my hope is that this could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
 
 <br/>
 <br/>

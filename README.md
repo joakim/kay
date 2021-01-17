@@ -167,7 +167,7 @@ self "answer": (42)
 
 This message matches the `(name): (value)` receptor of the cell, setting the cell's `answer` field to `42`. Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression.
 
-Assigning an existing field will clone that field's referenced cell (enabled by persistent data structures):
+Assigning the name of an existing field will clone that field's cell (enabled by persistent data structures):
 
 ```lua
 foo: answer

@@ -233,9 +233,9 @@ print (bar)  --> 42
 
 ```lua
 -- the void type is a special cell that only ever returns itself (or a fallback)
-{}: {
-    '_' => { return: self }
+nothing: {
     '? (fallback)' => fallback
+    '_' => nothing
 }
 
 -- all other cells descend from the base Cell

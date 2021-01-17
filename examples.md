@@ -235,7 +235,7 @@ print (bar)  --> 42
 -- the void type is a special cell that only ever returns itself (or a fallback)
 nothing: {
     '? (fallback)' => fallback
-    '_' => nothing
+    _ => nothing
 }
 
 -- all other cells descend from the base Cell

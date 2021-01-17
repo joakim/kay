@@ -81,15 +81,15 @@ Preliminary data types.
 
 #### Primitive
 
-  - `nothing` – bottom value (a cell that only ever returns itself)  
-  - `boolean` – `true` or `false`  
-  - `number` – IEEE 754 64-bit double-precision floating-point?  
-  - `string` – UTF-8?  
+  - `nothing` – bottom value (a cell that only ever returns itself)
+  - `boolean` – `true` or `false`
+  - `number` – IEEE 754 64-bit double-precision floating-point?
+  - `string` – UTF-8?
 
 #### Composite
 
-  - `{}`   – cell  
-  - `[]`   – collection (indexed/associative array)  
+  - `{}`   – cell
+  - `[]`   – collection (indexed/associative array)
 
 A collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables.
 
@@ -97,36 +97,42 @@ A collection is the consolidation of indexed array (list/vector) and associative
 
 ## Syntax
 
+### Literals
+
+  - `{}`  cell
+  - `[]`  collection
+  - `""`  string
+  - `=>`  function
+  - `->`  block
+  - `''`  message definition
+  - `()`  message parameter, expression
+  - `true`
+  - `false`
+  - `nothing`
+
 ### Operators
-
-#### Literals
-
-  - `{}`  cell  
-  - `[]`  collection  
-  - `""`  string  
-  - `=>`  function  
-  - `->`  block  
-  - `true`  
-  - `false`  
-  - `nothing`  
-
-#### Messaging
-
-  - `''`  message definition  
-  - `()`  message parameter, expression  
 
 #### Flow
 
-  - `|`   pipeline  
-  - `»`   compose left-to-right  
-  - `«`   compose right-to-left  
-  - `,`   expression separator  
+  - `|`   pipeline
+  - `»`   compose left-to-right
+  - `«`   compose right-to-left
+  - `,`   expression separator
+  
+#### Binary
+
+  - Logical: `and`, `or`
+  - Equality: `=`, `≠`
+  - Relational: `<`, `>`, `≤`, `≥`
+  - Arithmetic: `+`, `-`, `×`, `/`
 
 #### Other
 
-  - `*`   writable ("star")  
-  - `_`   match any, ignore ("blank")  
-  - `--` comment  
+  - `*`   writable ("star")
+  - `_`   match any, ignore ("blank")
+  - `--` comment
+
+A binary operator results in a signal to the left-hand side with one argument, the right-hand side. A set of symbols are reserved for future operators.
 
 <!--
 #### Cell types

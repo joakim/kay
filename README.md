@@ -35,7 +35,7 @@ print « hello "world"  --> "hello, world!"
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor) and dynamically dispatched to the right function. A receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor). A receptor function is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded, however.
 
@@ -65,7 +65,7 @@ Fields hold the cell's internal state. Fields are read-only, unless explicitly m
 
 An expression contains one (or more) message signal(s) and evaluates to the (last) signal's return value.
 
-A signal is a message sent to a cell. Expressions are used to include values as arguments in message slots.
+A signal is a message sent to a cell. Expressions are used to include values as arguments in message slots. Messages are dynamically dispatched.
 
 There are no statements, only cells (senders and receivers) with fields (state) and expressions (message signals).
 

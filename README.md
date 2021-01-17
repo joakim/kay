@@ -125,7 +125,7 @@ A collection is the consolidation of indexed array (list/vector) and associative
 #### Other
 
   - `*`   writable ("star")  
-  - `_`   ignore, any ("blank")  
+  - `_`   match any, ignore ("blank")  
   - `--` comment  
 
 <!--

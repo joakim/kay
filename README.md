@@ -188,7 +188,7 @@ greet: '(name)' => {
 greet "Joe"  --> "Hey, Joe!"
 ```
 
-An inline function implicitly returns the result of its expression. If the message consists of just a single argument slot, the signature can be reduced to just that argument's name. Here's the above function as a one-liner:
+An inline function implicitly returns the result of its expression. If the message consists of just a single argument slot, the signature can be reduced to just that slot. Here's the above function as a one-liner:
 
 ```lua
 greet: name => "Hey, {name}!"

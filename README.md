@@ -47,7 +47,7 @@ Cells have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_pro
 
 <br/>
 
-**Summary:** A cell is the consolidation of object, function and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated, opaque and safe. The runtime is the stem.
+**Summary:** A cell is the consolidation of object, function and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated and safe. Reactive. The runtime is the stem.
 
 <br/>
 

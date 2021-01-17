@@ -24,7 +24,7 @@ A simple message-based programming language inspired by [Smalltalk](https://www.
 <br/>
 
 ```lua
-hello: '(name)' => {
+hello: name => {
     return: "hello, {name}!"
 }
 
@@ -188,16 +188,16 @@ greet: '(name)' => {
 greet "Joe"  --> "Hey, Joe!"
 ```
 
-An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
+An inline function implicitly returns the result of its expression. If the message consists of just a single argument slot, the signature can be reduced to just that argument's name. Here's the above function as a one-liner:
 
 ```lua
-greet: '(name)' => "Hey, {name}!"
+greet: name => "Hey, {name}!"
 ```
 
-Fields are lexically scoped. When a function is assigned to a field, it becomes a local function of that cell and any of its nested cells:
+When a function is assigned to a field, it becomes a local function of that cell and any of its nested cells:
 
 ```lua
-greet: '(name)' => "Hey, {name}!"
+greet: name => "Hey, {name}!"
 
 nested: {
     cell: {
@@ -206,14 +206,14 @@ nested: {
 }
 ```
 
-A cell receptor can be thought of as a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
+A cell receptor is a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
 
 ```lua
 host: {
     'greet (name)' => "Hey, {name}!"
 }
 
--- sending the message 'greet "Joe"' to `host`:
+-- sending the message 'greet "Joe"' to the `host` cell:
 host greet "Joe"  --> "Hey, Joe!"
 ```
 

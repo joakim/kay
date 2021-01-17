@@ -225,7 +225,7 @@ answer = 42
     | if false -> marvin despair
 ```
 
-That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `then` and `else` act on the result in turn. Each evaluate their passed inline block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `then` and `else` act on the result in turn. Each evaluate their passed block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
 Expressions are evaluated left-to-right, so when passing the result of an expression in a message slot, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
 

@@ -53,7 +53,7 @@ Cells have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_pro
 
 ## Fields
 
-Fields hold the cell's internal state. Fields are read-only, unless explicitly marked as mutable. They are lexically scoped and are only accessible from the current and any nested scopes.
+Fields hold the cell's internal state. Fields are read-only, unless explicitly marked as writable. They are lexically scoped and are only accessible from the current and any nested scopes.
 
 <br/>
 
@@ -124,7 +124,7 @@ A collection is the consolidation of indexed array (list/vector) and associative
 
 #### Other
 
-  - `*`   mutable ("star")  
+  - `*`   writable ("star")  
   - `_`   ignore, any ("blank")  
   - `--` comment  
 

@@ -232,8 +232,11 @@ print (bar)  --> 42
 <sup>Paraphrased from the Wikipedia article on [Cell (biology)](https://en.wikipedia.org/wiki/Cell_(biology)).</sup>
 
 ```lua
--- the void type is a special cell that only ever returns itself
-{}: { '_' => { return: self } }
+-- the void type is a special cell that only ever returns itself (or a fallback)
+{}: {
+    '_' => { return: self }
+    '? (fallback)' => fallback
+}
 
 -- all other cells descend from the base Cell
 Cell: {

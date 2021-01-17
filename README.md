@@ -277,6 +277,5 @@ It should even be possible to translate the globals into other natural languages
 
 <br/>
 <br/>
-<br/>
 
 <p align="center"><sup>Made in the land of Simula</sup></p>

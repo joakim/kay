@@ -7,7 +7,7 @@ subject: {
     events emit change: [
         old: -- ...
         new: -- ...
-    ])
+    ]
     
     -- error event (predefined)
     events emit error: (Error "oh noes")

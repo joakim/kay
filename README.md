@@ -45,7 +45,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_citizen) [refe
 
 <br/>
 
-**Summary:** A cell is the consolidation of object, function and block, implemented as a first-class reference type with built-in persistence, communicating by messaging. Encapsulated and safe. Reactive. The runtime is the stem.
+**Summary:** A cell is the consolidation of object, function and block, implemented as a first-class reference type, communicating by messaging. Encapsulated and safe. Reactive. The runtime is the stem.
 
 <br/>
 

@@ -10,11 +10,11 @@ The code and its AST is essentially a tree of cells within cells, vaguely remini
   - Like Smalltalk's always-running VM with [image-based persistance](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence), but only during development
   - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection)/macros, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
-  - An IDE may allow inspection of cells' state and direct manipulation of code while running (Smalltalk)
-  - Possibly adding time as a factor, enabling time travel debugging?
   - The message slot syntax (`()`) was chosen to enable some of Bret Victor's ideas
+  - An IDE may "concretize" cells, enabling inspection of their state and direct manipulation while running
+  - Maybe enables time as a factor, with time travel debugging?
 
-It's not homoiconic like Lisp, though. Maybe it could be if cells and collections were the same thing?
+It's not homoiconic like Lisp, though maybe it could be if cells and collections were the same thing?
 
 
 ### The Internet

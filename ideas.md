@@ -7,7 +7,7 @@ Not my ideas, but ideas nonetheless.
 The code and its AST is essentially a tree of cells within cells, vaguely reminiscent of Lisp's lists. This enables some interesting ideas:
 
 - Easy to traverse for visualization, "realtime" IDE, persistence, refactoring, etc
-  - Like Smalltalk's always-running VM with [image-based persistance](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence)
+  - Like Smalltalk's always-running VM with [image-based persistance](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence), but only during development
   - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection)/macros, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
   - An IDE may allow inspection of cells' state and direct manipulation of code while running (Smalltalk)

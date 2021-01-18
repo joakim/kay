@@ -210,7 +210,7 @@ nested: {
 }
 ```
 
-A cell receptor is a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
+A receptor is a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
 
 ```lua
 host: {

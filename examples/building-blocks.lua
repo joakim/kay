@@ -1,5 +1,6 @@
--- > The cell is the basic structural, functional, and logical unit of all known programs. A cell is the smallest unit of code. Cells are often called the "building blocks of code".
--- Paraphrased from the Wikipedia article on [Cell (biology)](https://en.wikipedia.org/wiki/Cell_(biology))
+-- > The cell is the basic structural, functional, and logical unit of all known programs.
+-- > A cell is the smallest unit of code. Cells are often called the "building blocks of code".
+-- Paraphrased from https://en.wikipedia.org/wiki/Cell_(biology)
 
 -- the void type is a special cell that only ever returns itself (or a fallback)
 nothing: {

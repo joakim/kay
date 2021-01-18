@@ -1,6 +1,6 @@
 # Examples
 
-<sup>Note: This is mainly an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Some of it may be outdated.</sup>
+Note: This is mainly an exploration of possibilities. Consider it [Readme Driven](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) Programming Language Design. Some of it may be outdated.
 
 ## Blade Runner
 

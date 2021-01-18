@@ -39,7 +39,7 @@ It's cells all the way down, from environment to values. Cells encapsulate field
 
 There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded, however.
 
-Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). Their internal state may only be accessed from the outside through messaging. Any exceptions are handled internally, a cell can not crash.
+Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). Their internal state may only be accessed from the outside through messaging. Any exceptions are handled internally, a cell can not crash the system.
 
 Cells are [first-class](https://en.wikipedia.org/wiki/First-class_function) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value). They are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie), an "[observer](https://en.wikipedia.org/wiki/Observer_(quantum_physics))" of a cell gets a [snapshot](https://en.wikipedia.org/wiki/Snapshot_(computer_storage)) of the cell and its state at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a cell creates a new local variant based on that snapshot, with structural sharing of its past variants.
 

@@ -39,7 +39,7 @@ There's no inheritance, only [cloning](https://en.wikipedia.org/wiki/Clone_%28ce
 
 Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). Their internal state may only be accessed from the outside through messaging. Any exceptions are handled internally, a cell can not crash the system.
 
-Cells are [first-class](https://en.wikipedia.org/wiki/First-class_citizen) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value). They have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) and may observe each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
+Cells are [first-class](https://en.wikipedia.org/wiki/First-class_citizen) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value). They have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) and may [observe](https://en.m.wikipedia.org/wiki/Observer_pattern) each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
 
 <br/>
 

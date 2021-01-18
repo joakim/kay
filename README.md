@@ -89,9 +89,7 @@ Preliminary data types.
   - `{}`   – cell
   - `[]`   – collection (indexed/associative array)
 
-A collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables.
-
-Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie). An "[observer](https://imgur.com/iMf3GBa)" of a collection gets a [snapshot](https://en.wikipedia.org/wiki/Snapshot_(computer_storage)) of its state at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a collection results in a new local variant based on that snapshot, with structural sharing of its past states.
+A collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables. Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie). An "[observer](https://imgur.com/iMf3GBa)" of a collection gets a [snapshot](https://en.wikipedia.org/wiki/Snapshot_(computer_storage)) of its state at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a collection results in a new local variant based on that snapshot, with structural sharing of its past states.
 
 <br/>
 

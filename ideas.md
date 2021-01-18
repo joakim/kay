@@ -4,7 +4,7 @@ Not my ideas, but ideas nonetheless.
 
 ### Trees
 
-The code and its AST is essentially a tree of cells within cells, vaguely reminiscent of Lisp's lists. This enables some interesting ideas:
+The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
 - Easy to traverse for visualization, "realtime" IDE, persistence, refactoring, etc
   - Like Smalltalk's always-running VM with [image-based persistance](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence), but only during development

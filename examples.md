@@ -104,13 +104,13 @@ method-literal: => {
 }
 
 -- a method cell that receives a message, prints its argument and returns a string
-method-example: '(argument)' => {
+method-example: 'word (argument)' => {
     print (argument)
     return: "argument was {argument}"
 }
 
--- an inlined method cell, having implicit `return` (lambda in other languages)
-method-inlined: '(argument)' => true
+-- an inlined method with one argument, having implicit `return` (lambda in other languages)
+method-inlined: argument => true
 
 -- literal for a receptor method
 -- a receptor is simply a method that is not assigned to a field
@@ -118,11 +118,11 @@ method-inlined: '(argument)' => true
     -- expressions...
 }
 
--- a receptor method illustrating how messages are used
-'receptor with one (slot)' => {
+-- a receptor method illustrating how typed messages may be used
+'enable-user username: (name: String) active: (enabled: Boolean)' => {
     -- messages are flexible text patterns that may contain slots `()` holding arguments
     -- a slot's matched value will be bound to a field of that name
-    -- this syntax could support typed arguments
+    -- slots could support static typing, checking against type or protocol?
     
     -- `()` is also used to interpolate expressions (also fields) in slots when sending messages
     print (argument)
@@ -144,21 +144,23 @@ method: => {
 result: do (method)  --> "2 + 3 = 5"
 print (result)       --> 5
 
--- a table is a hashed associative array, similar to lua's tables
-object: [
+-- a table is an indexed/associative array, similar to lua's tables
+object: [  -- associative (keyed)
     foo: 42
     bar: true
 ]
-list: [1, 2, 3]  -- 0-indexed
+list: [1, 2, 3]  -- indexed (0-based)
+tuple: [42, true]
 
 -- mutating object fields
 -- setters return the table itself, enabling chaining of messages
-object foo: 10 | bar: false
+object foo: 42 | bar: false | baz: "qux"
 
 -- looks nice when multiline (fluent interface)
 object
-    | foo: 10
+    | foo: 42
     | bar: false
+    | baz: "qux"
 
 -- mutating a field by referencing its name using a local field's string value
 key: "foo"
@@ -177,13 +179,13 @@ mutable-field mutate
 
 -- fields are block scoped and may be shadowed by nested cells
 scoped: {
+    original: self
     inner: 42
     
     nested: {
         'answer' => {
-            original: inner       --> 42 (a clone of `inner`)
-            inner: "shadowed"     --> "shadowed" (a new, local field)
-            return: original
+            inner: "shadowed"  --> "shadowed" (a new, local field)
+            return: original inner   --> `scoped`'s `inner`
         }
     }
     
@@ -246,8 +248,8 @@ Cell: {
     -- field initialization
     set: '(key): ...(value)' => `Reflect.set(cell, key, value)`
     
-    -- clones itself (matches an empty message)
-    '' => {
+    -- clones itself
+    'clone' => {
         clone: `Object.assign(Object.create(null), cell)`
         
         -- append a reference to itself as the parent of the clone
@@ -256,12 +258,16 @@ Cell: {
         return: clone
     }
     
-    -- clones itself, merging with the specified cell(s), enabling composition of multiple cells
+    -- clones itself, merging with the specified cell(s) (initialization/mixins)
     '(spec)' => {
-        clone: cell
+        clone: cell clone
         
         -- merge fields into the clone
-        merge: '(fields)' => {
+        merge: '(mixin)' => {
+            -- evaluate the mixin, giving it a chance to initialize itself
+            fields: do (mixin)
+            
+            -- copy over its fields to the clone
             fields each '(key) (value)' => `Reflect.set(clone, key, value)`
         }
         

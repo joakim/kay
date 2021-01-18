@@ -12,6 +12,7 @@ The code and its AST is essentially a tree of cells within cells, vaguely remini
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
   - An IDE may allow inspection of cells' state and direct manipulation of code while running (Smalltalk)
   - Possibly adding time as a factor, enabling time travel debugging?
+  - The message slot syntax (`()`) was chosen to enable some of Bret Victor's ideas
 
 It's not homoiconic like Lisp, though. Maybe it could be if cells and collections were the same thing?
 

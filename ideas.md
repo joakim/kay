@@ -1,5 +1,7 @@
 # Ideas
 
+Not my ideas, but ideas nonetheless.
+
 ### Trees
 
 The code and its AST is essentially a tree of cells within cells, vaguely reminiscent of Lisp's lists. This enables some interesting ideas:

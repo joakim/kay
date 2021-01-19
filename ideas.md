@@ -15,6 +15,11 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - An IDE may "concretize" cells, enabling inspection of their state and direct manipulation while running
   - Maybe enables time as a factor, with time travel debugging?
 
+### Forests
+
+Speaking of trees, it makes a lot of sense to think about apps/servers as multicellular organisms communicating through soil/air/water. Trees in forests communicate by sending chemical signals (messages) and nutrients (data) over [fungal networks](https://en.wikipedia.org/wiki/Mycorrhiza), as well as [pheromones](https://en.wikipedia.org/wiki/Pheromone) through the air. Similarly, apps/servers need "fungi" to communicate with each other, either over short distances ([inter-process communication](https://en.wikipedia.org/wiki/Inter-process_communication)) or over long distances ([networks](https://en.wikipedia.org/wiki/Computer_network)). The Internet works (and looks) a lot like fungi.
+
+One characteristic that plants and apps have in common is that they are usually in a fixed position (on the network), in contrast to animals that move around. Plant cells may therefore be a more suitable model than animal cells.
 
 ### Evolution
 

@@ -1,6 +1,6 @@
 # Ideas
 
-Not all ideas are my own, obviously.
+Not all ideas are my own, obviously. Some are more wild than others.
 
 
 ### Trees

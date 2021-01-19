@@ -145,8 +145,8 @@ A binary operator results in a signal to the left-hand side with one argument, t
 A cell is defined with the `{}` literal:
 
 ```lua
-foo: {
-    -- fields and expressions here
+name: {
+    -- fields and expressions
 }
 ```
 

@@ -142,6 +142,14 @@ A binary operator results in a signal to the left-hand side with one argument, t
 
 ## Examples
 
+A cell is defined with the `{}` literal:
+
+```lua
+foo: {
+    -- fields and expressions here
+}
+```
+
 Sending a message to a cell:
 
 `receiver` `message with a (slot)`
@@ -158,25 +166,16 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Assignment is done by (implicitly) sending a setter message to the current cell (`self`):
+Assignment is done by (implicitly) calling the `set` function on the current cell:
 
 ```lua
 answer: 42
 
 -- is really:
-self "answer": (42)
+set "answer": (42)  --> 42
 ```
 
-This message matches the `(name): (value)` receptor of the cell, setting the cell's `answer` field to `42`. Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression.
-
-Assigning the name of an existing field will clone that field's cell (enabled by persistent data structures):
-
-```lua
-foo: answer
-
--- is really:
-self "foo": (answer)
-```
+Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
 
 A function is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 

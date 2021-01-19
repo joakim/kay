@@ -14,8 +14,6 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - An IDE may "concretize" cells, enabling inspection of their state and direct manipulation while running
   - Maybe enables time as a factor, with time travel debugging?
 
-It's not homoiconic like Lisp, though maybe it could be if cells and collections were the same thing?
-
 
 ### The Internet
 

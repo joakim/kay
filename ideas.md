@@ -1,6 +1,7 @@
 # Ideas
 
-Not my ideas, but ideas nonetheless.
+Not all ideas are my own, obviously.
+
 
 ### Trees
 
@@ -14,6 +15,20 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - An IDE may "concretize" cells, enabling inspection of their state and direct manipulation while running
   - Maybe enables time as a factor, with time travel debugging?
 
+
+### Evolution
+
+Taking inspiration from (my limited understanding of) molecular biology to the extreme:
+
+- Cells are like [plant stem cells](https://en.wikipedia.org/wiki/Plant_stem_cell)
+- Every cell has a nucleus with DNA (encoded information) with restricted access from outside the nucleus
+- They are isolated entities (protected by a membrane) that act on messages in their environment
+- Always adapting to stimuli, the DNA in a cell may mutate over time, but most change is epigenetic
+- Cells build dynamic structures (organisms) of differentiated cells, based on their ever-evolving DNA
+- In the (encoded/encrypted) DNA is the "recipe" for an entire organism
+- State is an emerging phenomenon of "conciousness"
+
+Good luck implementing _that!_
 
 ### The Internet
 

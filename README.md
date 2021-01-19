@@ -266,7 +266,7 @@ print « 10 double | negate  -- sugar (equivalent)
 print ((10 double) negate)  -- desugared
 ```
 
-For more examples, see [examples](examples/).
+[More examples](examples/)
 
 <br/>
 

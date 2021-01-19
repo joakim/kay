@@ -146,7 +146,7 @@ A cell is defined with the `{}` literal:
 
 ```lua
 name: {
-    -- fields, expressions and receptors
+    -- expressions
 }
 ```
 

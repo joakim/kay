@@ -17,7 +17,7 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
 
 This _could_ be a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
-### Development environment
+### Live development environment
 
 Like Smalltalk, code should (be able to) be always running during development.
 
@@ -36,8 +36,10 @@ Like Smalltalk, code should (be able to) be always running during development.
   - **Outline** of the project's structure, with filters/search
     - **Project** tab for navigating the project's own modules and cells
     - **External** tab for navigating and managing external modules (dependencies)
+    - Allowing different _views_ of the project's structure (by hierarchy, tags, etc)
   - **Inspect** for watching (or visualizing) the state of specified cells
-    - Tabs for different views into the app (showing the current cell by default when paused)
+    - Allowing different _views_ into the project's state
+    - Showing the current cell by default when paused
   - **Terminal** for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
     - Could be just an input field at the bottom, with the result shown as an overlay just above it

@@ -163,7 +163,7 @@ Assignment is done by (implicitly) calling the `set` function on the current cel
 answer: 42
 
 -- is really:
-set "answer": (42)  -- 42
+self set "answer": (42)  -- 42
 ```
 
 Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 

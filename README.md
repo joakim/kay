@@ -186,7 +186,7 @@ An inline function implicitly returns the result of its expression. Here's the a
 greet: '(name)' -> "Hey, {name}!"
 ```
 
-Fields are lexically scoped. A function assigned to a field is available within that cell and any of its nested cells:
+Fields are lexically scoped. A function is available within the cell it's defined in and any nested cells:
 
 ```lua
 greet: '(name)' -> "Hey, {name}!"

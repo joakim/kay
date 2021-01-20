@@ -15,7 +15,7 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
   - May facilitate adding time as a factor, with time travel debugging
 
-### Development Environment
+### Development environment
 
 Like Smalltalk, code should (be able to) be always running during development.
 

@@ -23,8 +23,8 @@ Like Smalltalk, code should (be able to) be always running during development.
 
 - [Intelligent code completion](https://en.wikipedia.org/wiki/Intelligent_code_completion)
   - Typed message signatures and slots can take [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) to [the next level](http://worrydream.com/LearnableProgramming/)
-- Breakpoints, with support for conditions
 - Edit-in-place while running
+- Breakpoints, with support for conditions
 - Time travel, with intuitive navigation controls and visualization of changes
   - Similar to a browser (previous, next, reload)
   - Controls for run/pause, and which level to operate on (expression or breakpoint)

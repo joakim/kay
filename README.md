@@ -99,7 +99,6 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `[]`  collection
   - `""`  string
   - `=>`  function
-  - `->`  block
   - `''`  message definition
   - `()`  message parameter, expression
   - `true`
@@ -129,14 +128,6 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `--` comment
 
 A binary operator results in a signal to the left-hand side with one argument, the right-hand side. A set of symbols are reserved for future operators.
-
-<!--
-#### Cell types
-
-- **Object** cells are not executable
-- **Function** cells are executable, take arguments and return values
-- **Block** cells are executable, but can not take arguments or return values
--->
 
 <br/>
 
@@ -189,16 +180,16 @@ greet: '(name)' => {
 greet "Joe"  --> "Hey, Joe!"
 ```
 
-An inline function implicitly returns the result of its expression. If the message consists of just a single argument slot, the signature can be reduced to just that slot. Here's the above function as a one-liner:
+An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
 
 ```lua
-greet: name => "Hey, {name}!"
+greet: '(name)' => "Hey, {name}!"
 ```
 
-When a function is assigned to a field, it becomes a local function of that cell and any of its nested cells:
+Fields are lexically scoped. A function assigned to a field is available within that cell and any of its nested cells:
 
 ```lua
-greet: name => "Hey, {name}!"
+greet: '(name)' => "Hey, {name}!"
 
 nested: {
     cell: {
@@ -218,15 +209,17 @@ host: {
 host greet "Joe"  --> "Hey, Joe!"
 ```
 
+<!--
 A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. It therefore can't receive messages or return values, even when inlined. But blocks do have closure, making them useful in message slots, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:
 
 ```lua
 answer = 42
-    | if true -> marvin shrug
-    | if false -> marvin despair
+    | if true => marvin shrug
+    | if false => marvin despair
 ```
 
-That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed block only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+-->
 
 Expressions are evaluated left-to-right, so when passing the result of an expression in a message slot, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
 

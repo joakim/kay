@@ -26,7 +26,7 @@ A simple message-based programming language inspired by [Smalltalk](https://www.
 ```lua
 hello: name -> "hello, {name}!"
 
-print « hello "world"  --> "hello, world!"
+print « hello "world"  -- = "hello, world!"
 ```
 
 <br/>
@@ -163,7 +163,7 @@ Assignment is done by (implicitly) calling the `set` function on the current cel
 answer: 42
 
 -- is really:
-set "answer": (42)  --> 42
+set "answer": (42)  -- = 42
 ```
 
 Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
@@ -177,7 +177,7 @@ greet: '(name)' -> {
 }
 
 -- applying the function:
-greet "Joe"  --> "Hey, Joe!"
+greet "Joe"  -- = "Hey, Joe!"
 ```
 
 An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
@@ -193,7 +193,7 @@ greet: '(name)' -> "Hey, {name}!"
 
 nested: {
     cell: {
-        greet "Joe"  --> "Hey, Joe!"
+        greet "Joe"  -- = "Hey, Joe!"
     }
 }
 ```
@@ -206,7 +206,7 @@ host: {
 }
 
 -- sending the message 'greet "Joe"' to the `host` cell:
-host greet "Joe"  --> "Hey, Joe!"
+host greet "Joe"  -- = "Hey, Joe!"
 ```
 
 <!--

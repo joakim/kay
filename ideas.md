@@ -34,7 +34,7 @@ Like Smalltalk, code should (be able to) be always running during development.
   - _Dependencies_ for navigating and managing external dependencies
   - _Inspect_ for watching (or visualizing) the state of specified cells
     - Tabs for different views into the app (showing the current cell by default when paused)
-  - [_Terminal_](https://en.wikipedia.org/wiki/Direct_mode) for the input of messages and output of their return value (REPL)
+  - _Terminal_ for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
   - _Log_ for the output of _log_ and _error_ messages (separate from the terminal)
   - _Stack_ for the current stack trace when paused

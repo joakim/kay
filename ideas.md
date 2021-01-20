@@ -24,8 +24,6 @@ This _could_ be a more low-level [intermediate representation](https://en.wikipe
 
 Like Smalltalk, code should (be able to) be always running during development.
 
-<br/>
-
 ### Features
 
 - [Intelligent code completion](https://en.wikipedia.org/wiki/Intelligent_code_completion)

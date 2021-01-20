@@ -7,13 +7,13 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
-- Easy to traverse for visualization, "realtime" IDE, persistence, refactoring, etc
-  - Like Smalltalk's always-running VM with [image-based persistance](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence), but only during development
+- Easy to traverse for introspection, visualization, "realtime" IDE, refactoring, persistence, etc
+  - Like Smalltalk's always-running [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but mainly during development
   - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection)/macros, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
-  - The message slot syntax (`()`) was chosen to enable some of Bret Victor's ideas
-  - An IDE may "concretize" cells, enabling inspection of their state and direct manipulation while running
-  - Maybe enables time as a factor, with time travel debugging?
+  - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#Development_Environment))
+  - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
+  - May facilitate adding time as a factor, with time travel debugging
 
 ### Forests
 
@@ -35,18 +35,14 @@ Taking inspiration from (my limited understanding of) molecular biology to the e
 
 Good luck implementing _that!_
 
-### The Internet
-
-As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), truly object-oriented message-based programming languages like Smalltalk are really analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between cells.
-
-<sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had stuck to Smalltalk, and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
-
 ### Development Environment
 
 Like Smalltalk, code should (be able to) be always running during development.
 
 #### Features
 
+- IntelliSense
+  - Typed message signatures and slots can take IntelliSense suggestions/autocomplete to [the next level](http://worrydream.com/LearnableProgramming/)
 - Breakpoints, with support for conditions
 - Edit-in-place while running
 - Time travel, with intuitive navigation controls and visualization of changes
@@ -71,3 +67,9 @@ Files should not be the concern of the developer. The IDE should abstract away f
 ##### The problem
 
 The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages.
+
+### The Internet
+
+As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), truly object-oriented message-based programming languages like Smalltalk are really analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between cells.
+
+<sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had stuck to Smalltalk, and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>

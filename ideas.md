@@ -15,7 +15,7 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
   - May facilitate adding time as a factor, with time travel debugging
 
-This _could_ be a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling better developer experiences.
+This _could_ be a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
 ### Development environment
 

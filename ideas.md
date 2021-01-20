@@ -51,13 +51,17 @@ Like Smalltalk, code should (be able to) be always running during development.
   - **Profile** for performance profiling of code
   - **Cards** for [interacting](https://github.com/bhauman/devcards) with the project, producing visual test cases and examples?
 
-#### Directory structure
+### Directory structure
 
 Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.
 
-##### The problem
+#### The problem
 
 The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages.
+
+### Documentation
+
+Documentation should be an integral part of the language. Not only in the shape of comments, but code itself should be self-documenting.
 
 ### The Internet
 

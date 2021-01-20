@@ -3,7 +3,7 @@
 Not all ideas are my own. Some are more wild than others. The wildest ones are probably mine.
 
 
-### Trees
+## Trees
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
@@ -17,7 +17,7 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
 
 This _could_ be a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
-### Live development environment
+## Live development environment
 
 Like Smalltalk, code should (be able to) be always running during development.
 
@@ -51,31 +51,31 @@ Like Smalltalk, code should (be able to) be always running during development.
   - **Profile** for performance profiling of code
   - **Cards** for [interacting](https://github.com/bhauman/devcards) with the project, producing visual test cases and examples?
 
-### Directory structure
+## Directory structure
 
 Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.
 
-#### The problem
+##### The problem
 
 The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages.
 
-### Documentation
+## Documentation
 
 Documentation should be an integral part of the language. Not only in the shape of comments, but code itself should be self-documenting.
 
-### The Internet
+## The Internet
 
 As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), truly object-oriented message-based programming languages like Smalltalk are really analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between cells.
 
 <sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had stuck to Smalltalk, and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 
-### Forests
+## Forests
 
 Speaking of [trees](#trees), it makes a lot of sense to think about apps/servers as multicellular organisms communicating through soil/air/water. Trees in forests communicate by sending chemical signals (messages) and nutrients (data) over [fungal networks](https://en.wikipedia.org/wiki/Mycorrhiza), as well as [pheromones](https://en.wikipedia.org/wiki/Pheromone) through the air. Similarly, apps/servers need fungi/air/water to communicate with each other, either over short ([inter-process communication](https://en.wikipedia.org/wiki/Inter-process_communication)) or long ([networks](https://en.wikipedia.org/wiki/Computer_network)) distances. The Internet already works (and looks) a lot like fungi. But I'm sure we could do even better.
 
 One characteristic that plants and apps have in common is that they are immobile, in contrast to animals. A mobile device running apps is like taking a potted plant for a walk. Plant cells are therefore a more suitable model for computing than animal cells.
 
-### Evolution
+## Evolution
 
 Taking inspiration from (my limited understanding of) molecular biology to the extreme:
 

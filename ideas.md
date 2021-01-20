@@ -56,7 +56,7 @@ Like Smalltalk, code should (be able to) be always running during development.
   - _Outline_ pane for navigating the code structure (modules and cells)
     - Controls for searching/filtering
   - _Inspect_ pane for watching (or visualizing) the state of specified cells
-    - Tabs for different views into the app (when paused, showing the current cell by default)
+    - Tabs for different views into the app (showing the current cell by default when paused)
   - [_Terminal_](https://en.wikipedia.org/wiki/Direct_mode) pane for the input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
   - _Log_ pane for the output of _log_ and _error_ messages (separate from the terminal)

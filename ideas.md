@@ -21,7 +21,7 @@ This _could_ be a more low-level [intermediate representation](https://en.wikipe
 
 Like Smalltalk, code should (be able to) be always running during development.
 
-#### Features
+### Features
 
 - [Intelligent code completion](https://en.wikipedia.org/wiki/Intelligent_code_completion)
   - Message signatures with typed slots (and defaults) can take [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) to [the next level](http://worrydream.com/LearnableProgramming/)
@@ -31,7 +31,7 @@ Like Smalltalk, code should (be able to) be always running during development.
   - Similar to a browser (previous, next, reload)
   - Controls for run/pause, and which level to operate on (expression or breakpoint)
 
-#### Panes/views
+### Panes/views
 
   - **Outline** of the project's structure, with filters/search
     - **Internal** tab for navigating the project's own modules and cells

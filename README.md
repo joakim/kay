@@ -24,7 +24,7 @@ A simple message-based programming language inspired by [Smalltalk](https://www.
 <br/>
 
 ```lua
-hello: name => "hello, {name}!"
+hello: name -> "hello, {name}!"
 
 print « hello "world"  --> "hello, world!"
 ```
@@ -98,7 +98,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `{}`  cell
   - `[]`  collection
   - `""`  string
-  - `=>`  function
+  - `->`  function
   - `''`  message definition
   - `()`  message parameter, expression
   - `true`
@@ -168,10 +168,10 @@ set "answer": (42)  --> 42
 
 Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
 
-A function is defined as a message signature (`''`) tied (`=>`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
+A function is defined as a message signature (`''`) tied (`->`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
-greet: '(name)' => {
+greet: '(name)' -> {
     greeting: "Hey, {name}!"
     return: greeting
 }
@@ -183,13 +183,13 @@ greet "Joe"  --> "Hey, Joe!"
 An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
 
 ```lua
-greet: '(name)' => "Hey, {name}!"
+greet: '(name)' -> "Hey, {name}!"
 ```
 
 Fields are lexically scoped. A function assigned to a field is available within that cell and any of its nested cells:
 
 ```lua
-greet: '(name)' => "Hey, {name}!"
+greet: '(name)' -> "Hey, {name}!"
 
 nested: {
     cell: {
@@ -202,7 +202,7 @@ A receptor is a function that's defined directly on a cell, not assigned to any 
 
 ```lua
 host: {
-    'greet (name)' => "Hey, {name}!"
+    'greet (name)' -> "Hey, {name}!"
 }
 
 -- sending the message 'greet "Joe"' to the `host` cell:
@@ -214,8 +214,8 @@ A block (`->`) is syntactic sugar for a cell containing expressions, but lacking
 
 ```lua
 answer = 42
-    | if true => marvin shrug
-    | if false => marvin despair
+    | if true -> marvin shrug
+    | if false -> marvin despair
 ```
 
 That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.

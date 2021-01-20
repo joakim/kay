@@ -24,22 +24,23 @@ Like Smalltalk, code should (be able to) be always running during development.
 #### Features
 
 - [Intelligent code completion](https://en.wikipedia.org/wiki/Intelligent_code_completion)
-  - Typed message signatures and slots can take [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) to [the next level](http://worrydream.com/LearnableProgramming/)
+  - Message signatures with typed slots (and defaults) can take [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) to [the next level](http://worrydream.com/LearnableProgramming/)
 - Edit-in-place while running
 - Breakpoints, with support for conditions
 - Time travel, with intuitive navigation controls and visualization of changes
   - Similar to a browser (previous, next, reload)
   - Controls for run/pause, and which level to operate on (expression or breakpoint)
 
-#### Panes
+#### Panes/views
 
   - **Outline** of the project's structure, with filters/search
-    - **Project** tab for navigating the project's own modules and cells
+    - **Internal** tab for navigating the project's own modules and cells
     - **External** tab for navigating and managing external modules (dependencies)
     - Allowing different _views_ of the project's structure (by hierarchy, tags, etc)
-  - **Inspect** for watching (or visualizing) the state of specified cells
+    - Could work as a menu: click a cell/function to insert it at the cursor
+  - **State** for watching (or visualizing!) the state of specified cells
     - Allowing different _views_ into the project's state
-    - Showing the current cell by default when paused
+    - By default showing the active cell when the runtime is paused
   - **Terminal** for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
     - Could be just an input field at the bottom, with the result shown as an overlay just above it
@@ -48,6 +49,7 @@ Like Smalltalk, code should (be able to) be always running during development.
   - **Network** for inspecting network activity, with filters/search
   - **Stack** for the current stack trace when paused
   - **Profile** for performance profiling of code
+  - **Cards** for [interacting](https://github.com/bhauman/devcards) with the project, producing visual test cases and examples?
 
 #### Directory structure
 

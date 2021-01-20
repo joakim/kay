@@ -66,7 +66,7 @@ Like Smalltalk, code should (be able to) be always running during development.
 
 #### Directory structure
 
-Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing the developer to focus on the _actual_ structure of the project: its modules and cells, as they are structured in the runtime. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, with a clear structure matching the mental model of the project.
+Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, with a clear structure matching the mental model of the project.
 
 ##### The problem
 

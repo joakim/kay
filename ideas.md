@@ -21,8 +21,8 @@ Like Smalltalk, code should (be able to) be always running during development.
 
 #### Features
 
-- IntelliSense
-  - Typed message signatures and slots can take IntelliSense suggestions/autocomplete to [the next level](http://worrydream.com/LearnableProgramming/)
+- [Intelligent code completion](https://en.wikipedia.org/wiki/Intelligent_code_completion)
+  - Typed message signatures and slots can take [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) to [the next level](http://worrydream.com/LearnableProgramming/)
 - Breakpoints, with support for conditions
 - Edit-in-place while running
 - Time travel, with intuitive navigation controls and visualization of changes

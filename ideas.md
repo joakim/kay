@@ -31,9 +31,9 @@ Like Smalltalk, code should (be able to) be always running during development.
 
 #### Panes
 
-  - **Outline** for navigating the project's structure (modules and cells)
-    - Controls for searching/filtering
-  - **Dependencies** for navigating and managing external dependencies
+  - **Outline** of the project's structure, with controls for searching/filtering
+    - **Project** tab for navigating the project's own modules and cells
+    - **External** tab for navigating and managing external modules (dependencies)
   - **Inspect** for watching (or visualizing) the state of specified cells
     - Tabs for different views into the app (showing the current cell by default when paused)
   - **Terminal** for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)

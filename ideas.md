@@ -11,7 +11,7 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - Like Smalltalk's always-running [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but perhaps only during development
   - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection)/macros, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
-  - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#Development_Environment))
+  - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
   - May facilitate adding time as a factor, with time travel debugging
 

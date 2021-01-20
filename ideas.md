@@ -28,18 +28,20 @@ Like Smalltalk, code should (be able to) be always running during development.
 - Time travel, with intuitive navigation controls and visualization of changes
   - Similar to a browser (previous, next, reload)
   - Controls for run/pause, and which level to operate on (expression or breakpoint)
-- Panes
-  - _Outline_ for navigating the project's structure (modules and cells)
+
+#### Panes
+
+  - **Outline** for navigating the project's structure (modules and cells)
     - Controls for searching/filtering
-  - _Dependencies_ for navigating and managing external dependencies
-  - _Inspect_ for watching (or visualizing) the state of specified cells
+  - **Dependencies** for navigating and managing external dependencies
+  - **Inspect** for watching (or visualizing) the state of specified cells
     - Tabs for different views into the app (showing the current cell by default when paused)
-  - _Terminal_ for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)
+  - **Terminal** for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
-  - _Log_ for the output of _log_ and _error_ messages (separate from the terminal)
-  - _Stack_ for the current stack trace when paused
-  - _Profile_ for performance profiling of code
-  - _Network_ for inspecting network activity
+  - **Log** for the output of _log_ and _error_ messages (separate from the terminal)
+  - **Stack** for the current stack trace when paused
+  - **Profile** for performance profiling of code
+  - **Network** for inspecting network activity
 
 #### Directory structure
 

@@ -43,21 +43,31 @@ As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), t
 
 ### Development Environment
 
-Like Smalltalk, code should (be able to) be always running, at least during development.
+Like Smalltalk, code should (be able to) be always running during development.
 
-#### IDE features
+#### Features
 
 - Breakpoints, with support for conditions
+- Edit-in-place while running
 - Time travel, with intuitive navigation controls and visualization of changes
   - Similar to a browser (previous, next, reload)
   - Controls for run/pause, and which level to operate on (expression or breakpoint)
-- Edit-in-place when the runtime is paused
 - Panes
-  - _Outline_ pane for navigating the code structure (cells)
+  - _Outline_ pane for navigating the code structure (modules and cells)
     - Controls for searching/filtering
   - _Inspect_ pane for watching (or visualizing) the state of specified cells
     - Tabs for different views into the app (when paused, showing the current cell by default)
-  - [_Terminal_](https://en.wikipedia.org/wiki/Direct_mode) pane for the input of messages and output of their return value
+  - [_Terminal_](https://en.wikipedia.org/wiki/Direct_mode) pane for the input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
-  - _Log_ pane for the output of log and error messages (separate from the console)
+  - _Log_ pane for the output of _log_ and _error_ messages (separate from the terminal)
   - _Stack_ pane for the current stack trace when paused
+  - _Profile_ pane for performance profiling of code
+  - _Network_ pane for inspecting network activity
+
+#### Directory structure
+
+Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing the developer to focus on the _actual_ structure of the project: its modules and cells, as they are structured in the runtime. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, with a clear structure matching the mental model of the project.
+
+##### The problem
+
+The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages.

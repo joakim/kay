@@ -40,3 +40,24 @@ Good luck implementing _that!_
 As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), truly object-oriented message-based programming languages like Smalltalk are really analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between cells.
 
 <sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had stuck to Smalltalk, and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
+
+### Development Environment
+
+Like Smalltalk, code should (be able to) be always running, at least during development.
+
+#### IDE features
+
+- Breakpoints, with support for conditions
+- Time travel, with intuitive navigation controls and visualization of changes
+  - Similar to a browser (previous, next, reload)
+  - Controls for run/pause, and which level to operate on (expression or breakpoint)
+- Edit-in-place when the runtime is paused
+- Panes
+  - _Outline_ pane for navigating the code structure (cells)
+    - Controls for searching/filtering
+  - _Inspect_ pane for watching (or visualizing) the state of specified cells
+    - Tabs for different views into the app (when paused, showing the current cell by default)
+  - [_Terminal_](https://en.wikipedia.org/wiki/Direct_mode) pane for the input of messages and output of their return value
+    - Full introspection and reflection capabilities (the developer is granted "God mode")
+  - _Log_ pane for the output of log and error messages (separate from the console)
+  - _Stack_ pane for the current stack trace when paused

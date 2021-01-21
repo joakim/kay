@@ -136,16 +136,25 @@ A binary operator results in a signal to the left-hand side with one argument, t
 A cell is defined with the `{}` literal:
 
 ```lua
-{
+cell: {
     -- expressions
 }
 ```
 
-Sending a message to a cell:
+Alternatively, indentation can be used to define cells:
 
-`receiver` `message with a (slot)`
+```lua
+cell:
+    -- expressions
+```
 
-A message is a sequence of Unicode words that may contain slots (arguments). The message forms a signature that the receiving cell's receptors are matched against. Slots are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
+The following examples will use this style.
+
+Expressions are messages sent to cells. To send a message to a cell:
+
+`cell` `message with a (slot)`
+
+A _message_ is a sequence of Unicode words that may contain _slots_ (arguments). The message forms a _signature_ that the receiving cell's _receptors_ are matched against. Slots are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
 
 A message expression ends when a flow operator, binary operator, matching right parenthesis, end of line or comment is encountered.
 
@@ -171,10 +180,9 @@ Assignment messages are syntactic sugar, anything before the `:` gets desugared 
 A function is defined as a message signature (`''`) tied (`->`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
-greet: '(name)' -> {
+greet: '(name)' ->
     greeting: "Hey, {name}!"
     return: greeting
-}
 
 -- applying the function:
 greet "Joe"  -- "Hey, Joe!"
@@ -191,19 +199,16 @@ Fields are lexically scoped. A function is available within the cell it's define
 ```lua
 greet: '(name)' -> "Hey, {name}!"
 
-nested: {
-    cell: {
+nested:
+    cell:
         greet "Joe"  -- "Hey, Joe!"
-    }
-}
 ```
 
 A receptor is a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
 
 ```lua
-host: {
+host:
     'greet (name)' -> "Hey, {name}!"
-}
 
 -- sending the message 'greet "Joe"' to the `host` cell:
 host greet "Joe"  -- "Hey, Joe!"

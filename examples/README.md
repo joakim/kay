@@ -44,7 +44,7 @@ Nexus9: Replicant
         
         -- signal receptors of the boolean result of `>`, equivalent to an if statement
         intelligence > 100
-            | if true ->
+            | is true ->
                 think "Why did I move?"
                 think "Am I really a replicant?"
                 think "My name is Joe..."
@@ -52,7 +52,7 @@ Nexus9: Replicant
                 -- mutate the state of an outer cell
                 replicant name: "Joe"
                 say "My name is {name}!"
-            | if false -> think "*crickets*"
+            | is false -> think "*crickets*"
 
 -- create a new Nexus 9 replicant
 officer-k: Nexus9 { name: "K", intelligence: 140 }
@@ -86,7 +86,7 @@ block-literal: -> {
 }
 
 -- a block sent as an argument to the `if (condition) (then)` receptor of `true`
-block-example: true | if true -> {
+block-example: true | is true -> {
     truth: "It is true"
     print (truth)
 }

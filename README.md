@@ -133,7 +133,7 @@ A binary operator results in a signal to the left-hand side with one argument, t
 
 ## Examples
 
-A cell is defined with the `{}` literal:
+A _cell_ is defined with the `{}` literal:
 
 ```lua
 cell: {
@@ -154,7 +154,7 @@ Expressions are _messages_ sent to _cells_. To send a _message_:
 
 `cell` `message with a (slot)`
 
-A _message_ is a sequence of Unicode words that may contain _slots_ (arguments). The message forms a _signature_ that the receiving cell's _receptors_ are matched against. _Slots_ are evaluated and attached to the _message_ before it is sent. Literals may be used verbatim, without parenthesis.
+A _message_ is a sequence of Unicode words that may contain _slots_ (arguments). The message forms a _signature_ that the receiving _cell_'s _receptors_ are matched against. _Slots_ are evaluated and attached to the _message_ before it is sent. Literals may be used verbatim, without parenthesis.
 
 An expression ends when a flow operator, binary operator, matching right parenthesis, end of line or comment is encountered.
 
@@ -164,7 +164,7 @@ For example, to log to the console:
 console log "hello, world"
 ```
 
-This sends a `log "hello, world"` _message_ to the `console` cell, matching its `log (value)` _receptor_, writing the value to the console's output.
+This sends a `log "hello, world"` _message_ to the `console` _cell_, matching its `log (value)` _receptor_, writing the value to the console's output.
 
 Assignment is done by (implicitly) calling the `set` _function_ on the current _cell_:
 
@@ -175,9 +175,9 @@ answer: 42
 self set "answer": (42)
 ```
 
-Assignment _messages_ are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
+Assignment _messages_ are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the _cell_'s `answer` field to `42` (a `Number` _cell_). 
 
-A _function_ is defined as a _message signature_ (`''`) tied (`->`) to a _cell_ (`{}`). The _function_'s cell may have its own _fields_ (local state), and may return a value by assigning to its `return` _field_:
+A _function_ is defined as a _message signature_ (`''`) tied (`->`) to a _cell_ (`{}`). The _function_'s _cell_ may have its own _fields_ (local state), and may return a value by assigning to its `return` _field_:
 
 ```lua
 greet: '(name)' ->

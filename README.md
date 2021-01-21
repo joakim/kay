@@ -133,7 +133,7 @@ A binary operator results in a signal to the left-hand side with one argument, t
 
 ## Examples
 
-A _cell_ is defined with the `{}` literal:
+A cell is defined with the `{}` literal:
 
 ```lua
 cell: {
@@ -150,11 +150,11 @@ cell:
 
 The following examples will use the indentation style.
 
-Expressions are _messages_ sent to _cells_. To send a _message_:
+Expressions are messages sent to cells. To send a message:
 
 `cell` `message with a (slot)`
 
-A _message_ is a sequence of Unicode words that may contain _slots_ (arguments). The message forms a _signature_ that the receiving _cell_'s _receptors_ are matched against. _Slots_ are evaluated and attached to the _message_ before it is sent. Literals may be used verbatim, without parenthesis.
+A message is a sequence of Unicode words that may contain slots (arguments). The message forms a signature that the receiving cell's receptors are matched against. Slots are evaluated and attached to the message before it is sent. Literals may be used verbatim, without parenthesis.
 
 An expression ends when a flow operator, binary operator, matching right parenthesis, end of line or comment is encountered.
 
@@ -164,9 +164,9 @@ For example, to log to the console:
 console log "hello, world"
 ```
 
-This sends a `log "hello, world"` _message_ to the `console` _cell_, matching its `log (value)` _receptor_, writing the value to the console's output.
+This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Assignment is done by (implicitly) calling the `set` _function_ on the current _cell_:
+Assignment is done by (implicitly) calling the `set` function on the current cell:
 
 ```lua
 answer: 42
@@ -175,9 +175,9 @@ answer: 42
 self set "answer": (42)
 ```
 
-Assignment _messages_ are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the _cell_'s `answer` field to `42` (a `Number` _cell_). 
+Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
 
-A _function_ is defined as a _message signature_ (`''`) tied (`->`) to a _cell_ (`{}`). The _function_'s _cell_ may have its own _fields_ (local state), and may return a value by assigning to its `return` _field_:
+A function is defined as a message signature (`''`) tied (`->`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
 greet: '(name)' ->
@@ -188,13 +188,13 @@ greet: '(name)' ->
 greet "Joe"  -- "Hey, Joe!"
 ```
 
-An inline _function_ implicitly returns the result of its expression. Here's the above _function_ as a one-liner:
+An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
 
 ```lua
 greet: '(name)' -> "Hey, {name}!"
 ```
 
-_Fields_ are lexically scoped. A _function_ is available within the _cell_ it's defined in and any nested _cells_:
+Fields are lexically scoped. A function is available within the cell it's defined in and any nested cells:
 
 ```lua
 greet: '(name)' -> "Hey, {name}!"
@@ -204,7 +204,7 @@ nested:
         greet "Joe"  -- "Hey, Joe!"
 ```
 
-A _receptor_ is a _function_ that's defined directly on a _cell_, not assigned to any _field_. Here's the `greet` _function_ as a _receptor_:
+A receptor is a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
 
 ```lua
 host:
@@ -214,7 +214,7 @@ host:
 host greet "Joe"  -- "Hey, Joe!"
 ```
 
-_Functions_ can also be passed as values in _slots_, easily emulating blocks in control flow statements of traditional languages. Here is the equivalent of an `if-then-else` statement with inline _functions_:
+Functions can also be passed as values in slots, easily emulating blocks in control flow statements of traditional languages. Here is the equivalent of an `if-then-else` statement with inline functions:
 
 ```lua
 answer = 42
@@ -222,9 +222,9 @@ answer = 42
     | if false -> marvin despair
 ```
 
-That's one expression of three messages pipelined. First `= 42` is sent to the `answer` _field_, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed _function_ only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
-Expressions are evaluated left-to-right. To ensure correct order of evaluation, or to use an expression in a _slot_, wrap it in `()`:
+Expressions are evaluated left-to-right. To ensure correct order of evaluation, or to use an expression in a slot, wrap it in `()`:
 
 ```lua
 console log ((answer = 42) "Correct" if true else "You are mistaken")

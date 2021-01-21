@@ -141,14 +141,12 @@ cell: {
 }
 ```
 
-Alternatively, indentation can be used, similar to Python:
+Alternatively, indentation can be used, similar to Python. The following examples will use this style:
 
 ```lua
 cell:
     -- expressions
 ```
-
-The following examples will use the indentation style.
 
 Expressions are messages sent to cells. To send a message:
 

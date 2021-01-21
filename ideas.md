@@ -14,6 +14,12 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 <br/>
 
+## Learning
+
+It should be possible to translate the "globals" into other natural languages than English, enabling developers to code in their native language. With the simple and flexible syntax, my hope is that this could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
+
+<br/>
+
 ## Trees
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:

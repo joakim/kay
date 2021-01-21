@@ -141,7 +141,7 @@ cell: {
 }
 ```
 
-Alternatively, indentation can be used, similar to Python. The following examples will use this style:
+Alternatively, one can use indentation, similar to Python. The following examples will use this style:
 
 ```lua
 cell:

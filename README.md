@@ -271,8 +271,6 @@ print ((10 double) negate)  -- desugared
 
 The language offers a small set of easy to understand concepts and a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
 
-It should even be possible to translate the globals into other natural languages than English, enabling developers to code in their native language. With its simplicity and flexibility, my hope is that this could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
-
 <br/>
 <br/>
 

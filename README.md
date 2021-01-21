@@ -218,11 +218,11 @@ Functions can also be passed as values (lambdas) in slots. Because functions hav
 marvin: ParanoidAndroid {}
 
 answer = 42
-    | if true -> marvin shrug
-    | if false -> marvin despair
+    | is true -> marvin shrug
+    | is false -> marvin despair
 ```
 
-That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `is true` and `is false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
 Expressions are evaluated left-to-right. To ensure correct order of evaluation, or to use an expression in a slot, wrap it in `()`:
 

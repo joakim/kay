@@ -24,7 +24,7 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
-- Easy to traverse for introspection, analysis, visualization, refactoring, persistence of state, etc
+- Easy traversal for introspection, analysis, visualization, refactoring, persistence of state, etc
   - Like Smalltalk's always-running [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but perhaps only during development
   - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection), macros, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)

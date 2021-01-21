@@ -16,7 +16,7 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 ## Learning
 
-It should be possible to translate the "globals" into other natural languages than English, enabling developers to code in their native language. With the simple and flexible syntax, my hope is that this could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
+It should be possible to translate the "globals" into other natural languages than English, enabling developers to code in their native language. With the simple and flexible syntax, my hope is that this could be a powerful tool for teaching programming concepts to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
 
 <br/>
 

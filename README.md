@@ -215,6 +215,8 @@ host greet "Joe"  -- "Hey, Joe!"
 Functions can also be passed as values (lambdas) in slots. Because functions have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement with inline functions having no arguments:
 
 ```lua
+marvin: ParanoidAndroid new
+
 answer = 42
     | if true -> marvin shrug
     | if false -> marvin despair

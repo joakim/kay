@@ -31,6 +31,9 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
   - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
   - The tree could facilitate adding time as a factor, with time travel debugging
+- Metadata on the cell level
+  - Tags, links, etc
+  - Should probably not be accessible from code, but from the developer environment (see below), macros, etc
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 

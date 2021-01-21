@@ -209,8 +209,7 @@ host: {
 host greet "Joe"  -- "Hey, Joe!"
 ```
 
-<!--
-A block (`->`) is syntactic sugar for a cell containing expressions, but lacking a receptor. It therefore can't receive messages or return values, even when inlined. But blocks do have closure, making them useful in message slots, easily emulating control flow statements. Like this equivalent to an `if-then-else` statement:
+Functions can also be passed as values in message slots, easily emulating blocks in control flow statements of traditional languages. Here is the equivalent of an `if-then-else` statement with inline functions:
 
 ```lua
 answer = 42
@@ -218,16 +217,15 @@ answer = 42
     | if false -> marvin despair
 ```
 
-That's one expression of three messages, pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
--->
+That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `if true` and `if false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
-Expressions are evaluated left-to-right, so when passing the result of an expression in a message slot, or to ensure correct order of evaluation, the expression must be wrapped in `()`:
+Expressions are evaluated left-to-right. To ensure correct order of evaluation, or to use an expression in a message slot, wrap it in `()`:
 
 ```lua
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-This quickly becomes cumbersome. To avoid parenthitis (also known as LISP syndrome), the use of flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
+To avoid parenthitis (also known as LISP syndrome), the use of flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"

@@ -4,7 +4,7 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 <br/>
 
-## Grammar
+## Linguistics
 
 | Classification | Role                  | Corresponding construct  |
 | :------------- | :-------------------- | :----------------------- |

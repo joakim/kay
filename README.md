@@ -124,7 +124,8 @@ Collection is the consolidation of indexed array (list/vector) and associative a
 #### Other
 
   - `*`   writable ("star")
-  - `_`   match any, ignore ("blank")
+  - `_`   ignore/any ("blank")
+  - `\`   escape
   - `--` comment
 
 A binary operator results in a signal to the left-hand side with one argument, the right-hand side. A set of symbols are reserved for future operators.

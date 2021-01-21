@@ -30,7 +30,7 @@ This _could_ be a more low-level [intermediate representation](https://en.wikipe
 
 <br/>
 
-## Live development environment
+## Development environment
 
 Like Smalltalk, code should (be able to) be always running during development.
 

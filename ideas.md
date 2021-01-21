@@ -106,8 +106,8 @@ Taking inspiration from (my limited understanding of) molecular biology to the e
 - Every cell has a nucleus with DNA (encoded information) with restricted access from outside the nucleus
 - They are isolated entities (protected by a membrane) that act on messages in their environment
 - Always adapting to stimuli, the DNA in a cell may mutate over time, but most change is epigenetic
-- Cells build dynamic structures (organisms) of differentiated cells, based on their ever-evolving DNA
-- In the (encoded/encrypted) DNA is the "recipe" for an entire organism
+- Cells build ever-evolving organisms of differentiated cells, based on their ever-evolving DNA
+- The (encoded/encrypted) DNA holds the "recipe" for an entire organism
 - State is an emerging phenomenon of "conciousness"
 
 Good luck implementing _that!_

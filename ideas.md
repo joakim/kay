@@ -24,15 +24,15 @@ It should be possible to translate the "globals" into other natural languages th
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
-- Easy to traverse for introspection, visualization, "realtime" IDE, refactoring, persistence, etc
+- Easy to traverse for introspection, analysis, visualization, refactoring, persistence of state, etc
   - Like Smalltalk's always-running [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but perhaps only during development
-  - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection)/macros, etc
+  - [Reflection](https://en.wikipedia.org/wiki/Smalltalk#Reflection), macros, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
   - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
-  - May facilitate adding time as a factor, with time travel debugging
+  - The tree could facilitate adding time as a factor, with time travel debugging
 
-This _could_ be a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
+This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
 <br/>
 

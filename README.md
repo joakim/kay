@@ -2,7 +2,7 @@
 
 <!-- ![K in Blade Runner 2049, seen from the back walking into an orange haze](https://i.imgur.com/uakY6W8.jpg) -->
 
-A simple message-based programming language inspired by [Smalltalk](https://www.codeproject.com/Articles/1241904/Introduction-to-the-Smalltalk-Programming-Language), [Self](https://selflanguage.org/), [Erlang](https://www.eighty-twenty.org/2011/05/08/weaknesses-of-smalltalk-strengths-of-erlang), [Clojure](https://clojure.org/about/state), [sci-fi](https://maidenpublishing.co.uk/review/bladerunner/) and [biology](https://en.wikipedia.org/wiki/Cell_(biology)).
+A simple message-based programming language inspired by [Smalltalk](https://www.codeproject.com/Articles/1241904/Introduction-to-the-Smalltalk-Programming-Language), [Self](https://selflanguage.org/), [Erlang](https://www.eighty-twenty.org/2011/05/08/weaknesses-of-smalltalk-strengths-of-erlang), [Clojure](https://clojure.org/about/state), [sci-fi](https://www.moremountains.net/film-analysis/2020/7/3/interlinked-within-cells) and [biology](https://en.wikipedia.org/wiki/Cell_(biology)).
 
 <br/>
 

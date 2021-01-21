@@ -99,7 +99,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `""`  string
   - `''`  message definition
   - `()`  message parameter, expression
-  - `->`  function
+  - `->`  method
   - `true`
   - `false`
   - `nothing`
@@ -164,7 +164,7 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Assignment is done by (implicitly) calling the `set` function on the current cell:
+Assignment is done by (implicitly) calling the `set` method on the current cell:
 
 ```lua
 answer: 42
@@ -175,24 +175,24 @@ self set "answer": (42)
 
 Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
 
-A function is defined as a message signature (`''`) tied (`->`) to a cell (`{}`). The function's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
+A method is defined as a message signature (`''`) tied (`->`) to a cell (`{}`). The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
 greet: '(name)' ->
     greeting: "Hey, {name}!"
     return: greeting
 
--- applying the function:
+-- applying the method:
 greet "Joe"  -- "Hey, Joe!"
 ```
 
-An inline function implicitly returns the result of its expression. Here's the above function as a one-liner:
+An inline method implicitly returns the result of its expression. Here's the above method as a one-liner:
 
 ```lua
 greet: '(name)' -> "Hey, {name}!"
 ```
 
-Fields are lexically scoped. A function is available within the cell it's defined in and any nested cells:
+Fields are lexically scoped. A method is available within the cell it's defined in and any nested cells:
 
 ```lua
 greet: '(name)' -> "Hey, {name}!"
@@ -202,7 +202,7 @@ nested:
         greet "Joe"  -- "Hey, Joe!"
 ```
 
-A receptor is a function that's defined directly on a cell, not assigned to any field. Here's the `greet` function as a receptor:
+A receptor is a method that's defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor:
 
 ```lua
 host:
@@ -212,7 +212,7 @@ host:
 host greet "Joe"  -- "Hey, Joe!"
 ```
 
-Functions can also be passed as values (lambdas) in slots. Because functions have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement with inline functions having no arguments:
+Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement with inline methods having no arguments:
 
 ```lua
 marvin: ParanoidAndroid {}
@@ -222,7 +222,7 @@ answer = 42
     | is false -> marvin despair
 ```
 
-That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `is true` and `is false` act on the result in turn. Each evaluate their passed function only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `is true` and `is false` act on the result in turn. Each evaluate their passed method only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
 
 Expressions are evaluated left-to-right. To ensure correct order of evaluation, or to use an expression in a slot, wrap it in `()`:
 
@@ -244,7 +244,7 @@ The pipeline operator is best suited to an object-oriented style of programming 
 ((10 double) negate) print  -- desugared
 ```
 
-While the compose operators are best suited to a functional programming style (applying functions to values):
+While the compose operators are best suited to a functional programming style (applying methods to values):
 
 ```lua
 double 10 » negate » print  -- sugar

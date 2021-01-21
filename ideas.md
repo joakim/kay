@@ -4,6 +4,16 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 <br/>
 
+## Grammar
+
+| Classification | Description           | Construct  |
+| -------------- | --------------------- | ---------- |
+| Noun           | Names                 | Cell       |
+| Verb           | States action         | Function   |
+| Adjective      | Describes/limits noun | Protocol   |
+
+<br/>
+
 ## Trees
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:

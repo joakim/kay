@@ -225,7 +225,7 @@ Expressions are evaluated left-to-right. To ensure correct order of evaluation, 
 console log ((answer = 42) "Correct" if true else "You are mistaken")
 ```
 
-To avoid parenthitis (also known as LISP syndrome), the use of flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
+This can become tedious. To avoid parenthitis (also known as LISP syndrome), the use of flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
 
 ```lua
 console log « answer = 42 | "Correct" if true else "You are mistaken"

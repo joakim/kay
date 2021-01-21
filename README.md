@@ -97,9 +97,9 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `{}`  cell
   - `[]`  collection
   - `""`  string
-  - `->`  function
   - `''`  message definition
   - `()`  message parameter, expression
+  - `->`  function
   - `true`
   - `false`
   - `nothing`

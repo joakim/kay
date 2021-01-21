@@ -6,11 +6,11 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 ## Grammar
 
-| Classification | Description           | Construct  |
-| -------------- | --------------------- | ---------- |
-| Noun           | Names                 | Cell       |
-| Verb           | States action         | Function   |
-| Adjective      | Describes/limits noun | Protocol   |
+| Classification | Role                  | Corresponding construct  |
+| -------------- | --------------------- | ------------------------ |
+| Noun           | Names                 | Cell                     |
+| Verb           | States action         | Function                 |
+| Adjective      | Describes/limits noun | Protocol                 |
 
 <br/>
 

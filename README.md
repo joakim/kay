@@ -57,7 +57,7 @@ Fields hold the cell's internal state. Fields are read-only, unless explicitly m
 
 <br/>
 
-## Messages (expressions and signals)
+## Messages
 
 An expression contains one (or more) message signal(s) and evaluates to the (last) signal's return value.
 

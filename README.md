@@ -9,6 +9,7 @@ A simple message-based programming language inspired by [Smalltalk](https://www.
 > OOP to me means only messaging, local retention and protection and hiding of state-process, and extreme late-binding of all things.
 
 – Alan Kay
+
 <br/>
 
 > The basic principle of recursive design is to make the parts have the same power as the whole.

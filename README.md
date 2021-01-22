@@ -25,7 +25,7 @@ A simple message-based programming language inspired by [Smalltalk](https://www.
 <br/>
 
 ```lua
-hello: `(name)` -> "hello, {name}!"
+hello: '(name)' -> "hello, {name}!"
 
 print « hello "world"  -- "hello, world!"
 ```
@@ -98,7 +98,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `{}`  cell
   - `[]`  collection
   - `""`  string
-  - ``` `` ```  message definition
+  - `''`  message definition
   - `()`  message parameter, expression
   - `->`  method
   - `true`
@@ -176,10 +176,10 @@ self set "answer": (42)
 
 Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
 
-A method is defined as a message signature ``` `` ``` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
+A method is defined as a message signature `''` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
-greet: `(name)` ->
+greet: '(name)' ->
     greeting: "Hey, {name}!"
     return: greeting
 
@@ -190,13 +190,13 @@ greet "Joe"  -- "Hey, Joe!"
 An inline method implicitly returns the result of its expression. Here's the above method as a one-liner:
 
 ```lua
-greet: `(name)` -> "Hey, {name}!"
+greet: '(name)' -> "Hey, {name}!"
 ```
 
 Fields are lexically scoped. A method is available within the cell it's defined in and any nested cells:
 
 ```lua
-greet: `(name)` -> "Hey, {name}!"
+greet: '(name)' -> "Hey, {name}!"
 
 nested:
     cell:
@@ -207,9 +207,9 @@ A receptor is a method that's defined directly on a cell, not assigned to any fi
 
 ```lua
 host:
-    `greet (name)` -> "Hey, {name}!"
+    'greet (name)' -> "Hey, {name}!"
 
--- sending the message `greet "Joe"` to the host cell:
+-- sending the message 'greet "Joe"' to the host cell:
 host greet "Joe"  -- "Hey, Joe!"
 ```
 

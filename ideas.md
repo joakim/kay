@@ -24,7 +24,7 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
-- Easy traversal for introspection, analysis, visualization, refactoring, persistence of state, reflection, macros, etc
+- Easy traversal for introspection, analysis, refactoring, visualization, diffing, history/persistence (of state), reflection, macros, etc
   - Always-running environment like Smalltalk [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but perhaps only during development
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
   - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))

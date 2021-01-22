@@ -67,7 +67,7 @@ There are no statements, only cells (senders and receivers) with fields (state) 
 
 <br/>
 
-**Summary:** Everything is an expression, and every expression is a message (or messages) sent.
+**Summary:** Everything is an expression, and every expression is the sending of a message (or messages).
 
 <br/>
 

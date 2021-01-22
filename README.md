@@ -63,7 +63,7 @@ An expression contains one (or more) message signal(s) and evaluates to the (las
 
 A signal is a message sent to a cell. Expressions are used to include values as arguments in message slots. Messages are dynamically dispatched.
 
-There are no statements, only cells (senders and receivers) with fields (state) and expressions (message signals).
+There are no statements, only cells (senders and receivers) and expressions (message signals).
 
 <br/>
 

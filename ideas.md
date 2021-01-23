@@ -20,23 +20,6 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 <br/>
 
-## Values within cells within modules within one runtime?
-
-Not "it's cells all the way down", but JavaScript's "(nearly) everything is an object".
-
-In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same features (encapsulation, receptors/behaviors, etc).
-
-That makes it 4 levels to reason about:
-
-1. `Runtime` – Environment
-2. `Module` – "[Eukaryotic](https://en.wikipedia.org/wiki/Eukaryote#Cell_features)" cell
-3. `Cell` – Subcellular cell
-4. `Value` – [Proteins](https://en.wikipedia.org/wiki/Protein) and other molecules
-
-Instead of the cell's local state being its nucleus, perhaps a better analogy is the database (persisted state)? The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0). Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far.
-
-<br/>
-
 ## Trees
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
@@ -137,3 +120,20 @@ Taking inspiration from (my limited understanding of) molecular biology to the e
 - State is an emerging phenomenon of "conciousness"
 
 Good luck implementing _that!_
+
+<br/>
+
+## Values within cells within modules within one runtime?
+
+Not "it's cells all the way down", but JavaScript's "(nearly) everything is an object".
+
+In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same features (encapsulation, receptors/behaviors, etc).
+
+That makes it 4 levels to reason about:
+
+1. `Runtime` – Environment
+2. `Module` – "[Eukaryotic](https://en.wikipedia.org/wiki/Eukaryote#Cell_features)" cell
+3. `Cell` – Subcellular cell
+4. `Value` – [Proteins](https://en.wikipedia.org/wiki/Protein) and other molecules
+
+Instead of the cell's local state being its nucleus, perhaps a better analogy is the database (persisted state)? The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0). Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far.

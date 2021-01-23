@@ -127,7 +127,7 @@ Good luck implementing _that!_
 
 Not "it's cells all the way down", but JavaScript's "([almost](https://stackoverflow.com/questions/9108925/how-is-almost-everything-in-javascript-an-object)) everything is an object".
 
-In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same features (encapsulation, receptors/behaviors, etc).
+In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same general features (encapsulation, receptors/behaviors, etc).
 
 That makes it 4 levels to reason about:
 
@@ -138,4 +138,4 @@ That makes it 4 levels to reason about:
 
 Viewing a module as "the cell" makes sense. Modules/cells are the building blocks of the app/organism. Specialized, differentiated, loosely coupled. Inside you'll find a tiny contained universe of smaller structures, functionality and values, that is easy to reason about in isolation.
 
-Instead of the cell's local state being its nucleus, perhaps a better analogy is the database (persisted state)? Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far. The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0).
+Instead of _the cell's local state_ being its nucleus, perhaps a better analogy is _the database_ (persisted state)? Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far. The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0).

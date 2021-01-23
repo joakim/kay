@@ -138,4 +138,4 @@ That makes it 4 levels to reason about:
 
 Viewing a module as "the cell" makes sense. Modules/cells are the building blocks of the app/organism. Specialized, differentiated, loosely coupled. Inside you'll find a tiny contained universe of smaller structures, functionality and values, that is easy to reason about in isolation.
 
-Instead of the cell's local state being its nucleus, perhaps a better analogy is the database (persisted state)? The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0). Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far.
+Instead of the cell's local state being its nucleus, perhaps a better analogy is the database (persisted state)? Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far. The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0).

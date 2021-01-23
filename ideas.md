@@ -133,7 +133,7 @@ That makes it 4 levels to reason about:
 
 1. `Runtime` – Environment
 2. `Module` – "[Eukaryotic](https://en.wikipedia.org/wiki/Eukaryote#Cell_features)" cell
-3. `Cell` – Subcellular cell
+3. `Cell` – "[Endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis)" cell
 4. `Value` – [Proteins](https://en.wikipedia.org/wiki/Protein) and other molecules
 
 Viewing a module as "the cell" makes sense. Modules/cells are the building blocks of the app/organism. Specialized, differentiated, loosely coupled. Open it up and you'll find a tiny contained universe of smaller structures, functionality and values, that is easy to reason about in isolation.

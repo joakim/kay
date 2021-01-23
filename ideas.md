@@ -33,6 +33,8 @@ That makes it 4 levels to reason about:
 3. `Cell` – Subcellular cell
 4. `Value` – [Proteins](https://en.wikipedia.org/wiki/Protein) and other molecules
 
+Instead of the cell's local state being its nucleus, perhaps a better analogy is the database (persisted state)? The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0). Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far.
+
 <br/>
 
 ## Trees

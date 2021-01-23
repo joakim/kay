@@ -22,7 +22,9 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 ## Values within cells within modules within one runtime?
 
-Not "everything is a cell", but JavaScript's "(nearly) everything is an object". In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same features (encapsulation, receptors/behaviors, etc).
+Not "it's cells all the way down", but JavaScript's "(nearly) everything is an object".
+
+In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same features (encapsulation, receptors/behaviors, etc).
 
 That makes it 4 levels to reason about:
 

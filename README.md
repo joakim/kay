@@ -274,4 +274,4 @@ The language offers a small set of easy to understand concepts and a simple synt
 <br/>
 <br/>
 
-<p align="center"><sup>Made in the land of Simula</sup></p>
+<p align="center"><sup>From the land of Simula</sup></p>

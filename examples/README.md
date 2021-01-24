@@ -16,11 +16,11 @@ Replicant:
     model: "Generic"
     
     -- local method (assigned to a field)
-    say: '(words)' ->
+    say: (words) ->
         print "{name} says: {words}"
     
     -- receptor method (responds to messages from the outside)
-    'move (distance)' ->
+    move (distance) ->
         meters: distance = 1 | "meter" if true else "meters"
         print "{name} the {model} replicant moved {distance} {meters}"
 
@@ -31,12 +31,12 @@ Nexus9: Replicant
     intelligence: 100
     thoughts: []
     
-    think: '(thought)' ->
+    think: (thought) ->
         -- send an `append` message to the `thoughts` array with the `thought` argument's value
         thoughts append (thought)
         print "{name} thinks: {thought}"
     
-    'move' ->
+    move ->
         print "*moves*"
         
         -- signal the `move (distance)` receptor cloned from `Replicant`
@@ -97,7 +97,7 @@ method-literal: -> {
 }
 
 -- a method cell that receives a message, prints its argument and returns a string
-method-example: 'word (argument)' -> {
+method-example: word (argument) -> {
     print (argument)
     return: "argument was {argument}"
 }
@@ -107,12 +107,12 @@ method-inlined: argument -> true
 
 -- literal for a receptor method
 -- a receptor is simply a method that is not assigned to a field
-'foo (bar)' -> {
+foo (bar) -> {
     -- expressions...
 }
 
 -- a receptor method illustrating how typed messages may be used
-'enable-user username: (name: String) active: (enabled: Boolean)' -> {
+enable-user username: (name: String) active: (enabled: Boolean) -> {
     -- messages are flexible text patterns that may contain slots `()` holding arguments
     -- a slot's matched value will be bound to a field of that name
     -- slots could support static typing, checking against type or protocol?
@@ -164,7 +164,7 @@ mutable-field: {
     my: self
     *bar: true
     
-    'mutate' -> {
+    mutate -> {
         my bar: false
     }
 }
@@ -176,13 +176,13 @@ scoped: {
     inner: 42
     
     nested: {
-        'answer' -> {
+        answer -> {
             inner: "shadowed"  --> "shadowed" (a new, local field)
             return: original inner   --> `scoped`'s `inner`
         }
     }
     
-    'answer' -> {
+    answer -> {
         nested answer
     }
 }
@@ -191,8 +191,8 @@ scoped: {
 print (scoped answer = 42 | "Indeed" if true)  --> "Indeed"
 
 -- a method demonstrating closure
-adder: '(x)' -> {
-    return: '(y)' -> {
+adder: (x) -> {
+    return: (y) -> {
         return: x + y
     }
 }
@@ -204,7 +204,7 @@ print (add-5 2)   --> 7
 print (add-10 2)  --> 12
 
 -- inlined version of the `adder` method
-inlined: '(x)' -> '(y)' -> x + y
+inlined: (x) -> (y) -> x + y
 
 -- as in the self language, assignment is really setter signals on the current cell (`self`)
 foo: 42  -- syntactic sugar

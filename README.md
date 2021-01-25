@@ -226,7 +226,7 @@ marvin: ParanoidAndroid {}
 answer = 42
     if true -> {
         marvin shrug
-        marvin say "Only if you count in base-13"
+        marvin say "Only if you count in base 13"
     }
     else -> marvin despair
 ```

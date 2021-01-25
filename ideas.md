@@ -121,7 +121,7 @@ Taking inspiration from (my limited understanding of) molecular biology to the e
 
 - Cells are like [plant stem cells](https://en.wikipedia.org/wiki/Plant_stem_cell)
 - Every cell has a nucleus with DNA (encoded information) with restricted access from outside the nucleus
-- They are isolated entities (protected by a membrane)
+- They are isolated from their environment, protected by a membrane
 - They act on messages in their environment through receptors
 - They emit messages into their environment
 - Always adapting to stimuli, the DNA in a cell may mutate over time, but most change is epigenetic

@@ -120,6 +120,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - Equality: `=`, `≠`
   - Relational: `<`, `>`, `≤`, `≥`
   - Arithmetic: `+`, `-`, `×`, `/`
+  - Access: `.`
 
 #### Other
 

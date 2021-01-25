@@ -49,7 +49,7 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 ## Development environment
 
-Like Smalltalk, code should (be able to) be always running during development.
+Like Smalltalk, code should (be able to) be always running (during development).
 
 ### Features
 

@@ -16,7 +16,7 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 ## Learning
 
-With its simple and flexible syntax, my hope is that this language could be a powerful tool for teaching programming concepts to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren). It should even be possible to translate its "globals" into other natural languages than English, enabling developers to code in their native language.
+With its simple and flexible syntax, my hope is that this language could be a powerful tool for teaching programming concepts to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren). It should even be possible to translate its "globals" into other natural languages than English, enabling people to code in their native language.
 
 <br/>
 

@@ -253,7 +253,7 @@ a « b « c = a (b (c))
 a » b » c = c (b (a))
 ```
 
-The pipeline operator is suitable for chaining messages (fluent style):
+The pipeline operator is suitable for chaining messages ([fluent interface](https://en.wikipedia.org/wiki/Fluent_interface)):
 
 ```lua
 10 double | negate | print  -- sugar

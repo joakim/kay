@@ -124,6 +124,7 @@ Taking inspiration from (my limited understanding of) molecular biology to the e
 - They are isolated from their environment, protected by a membrane
 - They act on messages in their environment, picked up through receptors
 - They emit messages into their environment
+- Messages have a signature, but no address, and may be picked up by any matching receptor
 - Always adapting to stimuli, the DNA in a cell may mutate over time, but most change is epigenetic
 - Cells build ever-evolving organisms of differentiated cells, based on their ever-evolving DNA
 - The (encoded/encrypted) DNA holds the "recipe" for an entire organism

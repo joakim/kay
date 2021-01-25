@@ -37,9 +37,13 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
-### Not necessarily hierarchical
+### Not hierarchic, not necessarily anarchic, maybe holarchic?
 
-[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view the tree of cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous, interconnected units (agents/actors). Inheritance is about "genetics", not about "control".
+[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view the tree of cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous, interconnected units (agents/actors). Inheritance is about _genetics_, not _rule_. It's about _communication_, _synergy_, _symbiosis_, _cooperation_. Being _flexible_, not _rigid_.
+
+[Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology): "rule of a high priest"  
+[Anarchy](https://en.wikipedia.org/wiki/Anarchy#Etymology): "without ruler"  
+[Holarchy](http://www.worldtrans.org/essay/holarchies.html): "a whole that is part of a larger whole"  
 
 <br/>
 

@@ -281,7 +281,7 @@ console log ((10 double) negate)  -- desugared
 
 ## What it brings
 
-The language offers a small set of easy to understand concepts and a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
+The language offers a small set of easy to understand concepts with a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
 
 <br/>
 <br/>

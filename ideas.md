@@ -37,6 +37,10 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
+### Not necessarily hierarchical
+
+[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view the tree of cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous, interconnected units (agents/actors). Inheritance is about "genetics", not about "control".
+
 <br/>
 
 ## Development environment

@@ -70,7 +70,7 @@ Like Smalltalk, code should (be able to) be always running (during development).
     - Could work as a menu: click a cell/method to insert it at the cursor
   - **State** for watching (or visualizing!) the state of specified cells
     - Allowing different _views_ into the project's state
-    - By default showing the active cell when the runtime is paused
+    - By default showing the active/selected cell
   - **Terminal** for the [direct](https://en.wikipedia.org/wiki/Direct_mode) input of messages and output of their return value (REPL)
     - Full introspection and reflection capabilities (the developer is granted "God mode")
     - Could be just an input field at the bottom, with the result shown as an overlay just above it

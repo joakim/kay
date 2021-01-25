@@ -125,7 +125,7 @@ Taking inspiration from (my limited understanding of) molecular biology to the e
 - Always adapting to stimuli, the DNA in a cell may mutate over time, but most change is epigenetic
 - Cells build ever-evolving organisms of differentiated cells, based on their ever-evolving DNA
 - The (encoded/encrypted) DNA holds the "recipe" for an entire organism
-- State is an emerging phenomenon of "conciousness"
+- Program state as the emerging phenomenon of [conciousness](https://en.wikipedia.org/wiki/Hard_problem_of_consciousness)?
 
 Good luck implementing _that!_
 

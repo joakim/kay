@@ -238,7 +238,7 @@ guess: 3 * (7 + 7)
 console log ((guess = answer) "Correct" if true else "You are mistaken")
 ```
 
-Nested parentheses can become tedious. To improve readability and prevent parenthitis (also known as LISP syndrome), the use of the flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
+Nested parentheses can become tedious. To improve readability and prevent parenthitis (also known as LISP syndrome), use of the flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
 
 ```lua
 console log « guess = answer | "Correct" if true else "You are mistaken"

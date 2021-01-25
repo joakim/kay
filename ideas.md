@@ -39,7 +39,7 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 ### Not hierarchic, not necessarily anarchic, maybe holarchic?
 
-[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view the tree of cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous, interconnected units (agents/actors). Inheritance is about _genetics_, not _rule_. It's all about _communication_, _cooperation_, _synergy_, _symbiosis_. Being _flexible_, not _rigid_.
+[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view the tree of cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous, interconnected units (agents/actors). Inheritance is about _genetics_, not rule. It's all about _communication_, _cooperation_, _synergy_, _symbiosis_. Being _flexible_, not rigid.
 
 [Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology): "rule of a high priest"  
 [Anarchy](https://en.wikipedia.org/wiki/Anarchy#Etymology): "without ruler"  

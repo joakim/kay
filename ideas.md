@@ -111,7 +111,7 @@ As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), p
 
 Speaking of [trees](#trees), it makes a lot of sense to think about apps/servers as multicellular organisms communicating through soil/air/water. Trees in forests communicate by sending chemical signals (messages) and nutrients (data) over [fungal networks](https://en.wikipedia.org/wiki/Mycorrhiza), as well as [pheromones](https://en.wikipedia.org/wiki/Pheromone) through the air. Similarly, apps/servers need fungi/air/water to communicate with each other, either over short ([inter-process communication](https://en.wikipedia.org/wiki/Inter-process_communication)) or long ([networks](https://en.wikipedia.org/wiki/Computer_network)) distances. The Internet already works (and looks) a lot like fungi. But I'm sure we could do even better.
 
-One characteristic that plants and apps have in common is that they are immobile, in contrast to animals. **Apps running on a mobile device is like taking potted plants for a walk.** Plant cells may be a more suitable model for computing than animal cells, at least for now.
+One characteristic that plants and apps have in common is that they are immobile, in contrast to animals. _Apps running on a mobile device is like taking potted plants for a walk._ Plant cells may be a more suitable model for computing than animal cells, at least for now.
 
 <br/>
 

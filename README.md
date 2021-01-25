@@ -214,13 +214,16 @@ host:
 host greet "Joe"  -- "Hey, Joe!"
 ```
 
-Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement with inline methods without arguments acting as blocks:
+Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement using methods without arguments to serve as block statements:
 
 ```lua
 marvin: ParanoidAndroid {}
 
 answer = 42
-    if true -> marvin shrug
+    if true -> {
+        marvin shrug
+        marvin say "Only if you count in base-13"
+    }
     else -> marvin despair
 ```
 
@@ -240,6 +243,7 @@ Nested parentheses can become tedious. To prevent parenthitis (also known as LIS
 ```lua
 console log « guess = answer | "Correct" if true else "You are mistaken"
 
+-- Comparison
 a | b | c = ((a) b) c
 a « b « c = a (b (c))
 a » b » c = c (b (a))

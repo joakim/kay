@@ -25,7 +25,7 @@ A simple message-based programming language inspired by [Smalltalk](https://www.
 <br/>
 
 ```lua
-hello: (name) -> "hello, {name}!"
+hello: '(name)' -> "hello, {name}!"
 
 print « hello "world"  -- "hello, world!"
 ```
@@ -98,7 +98,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
   - `{}`  cell
   - `[]`  collection
   - `""`  string
-<!--  - `''`  message definition -->
+  - `''`  message definition
   - `()`  message parameter, expression
   - `->`  method
   - `true`
@@ -180,7 +180,7 @@ Assignment messages are syntactic sugar, anything before the `:` gets desugared 
 A method is defined as a message signature `''` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
-greet: (name) ->
+greet: '(name)' ->
     greeting: "Hey, {name}!"
     return: greeting
 
@@ -191,13 +191,13 @@ greet "Joe"  -- "Hey, Joe!"
 An inline method implicitly returns the result of its expression. Here's the above method as a one-liner:
 
 ```lua
-greet: (name) -> "Hey, {name}!"
+greet: '(name)' -> "Hey, {name}!"
 ```
 
 Fields are lexically scoped. A method is available within the cell it's defined in and any nested cells:
 
 ```lua
-greet: (name) -> "Hey, {name}!"
+greet: '(name)' -> "Hey, {name}!"
 
 nested:
     cell:
@@ -208,37 +208,44 @@ A receptor is a method that's defined directly on a cell, not assigned to any fi
 
 ```lua
 host:
-    greet (name) -> "Hey, {name}!"
+    'greet (name)' -> "Hey, {name}!"
 
 -- sending the message 'greet "Joe"' to the host cell:
 host greet "Joe"  -- "Hey, Joe!"
 ```
 
-Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement with inline methods having no arguments:
+Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement with inline methods without arguments acting as blocks:
 
 ```lua
 marvin: ParanoidAndroid {}
 
 answer = 42
-    | is true -> marvin shrug
-    | is false -> marvin despair
+    if true -> marvin shrug
+    else -> marvin despair
 ```
 
-That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `is true` and `is false` act on the result in turn. Each evaluate their passed method only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.
+Having higher precedence, the binary message `= 42` is first sent to `answer`, resulting in a boolean (`true`), which is then sent the `if (condition) (true-block) else (false-block)` message. The message is split over several lines (indented) to improve readability. Inline method literals are passed in the `true-block` and `false-block` slots, to be evaluated by the receptor. Because methods have closure, this effectively emulates block statements in imperative languages.
 
-Expressions are evaluated left-to-right. To ensure correct order of evaluation, or to use an expression in a slot, wrap it in `()`:
+<!--That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `is true` and `is false` act on the result in turn. Each evaluate their passed method only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.-->
+
+Expressions are evaluated left-to-right, with binary operators having higher precedence than regular messages. To ensure correct order of evaluation, improve readability, or to use an expression in a slot, wrap the code in `()`:
 
 ```lua
-console log ((answer = 42) "Correct" if true else "You are mistaken")
+guess: 3 * (7 + 7)
+console log ((guess = answer) "Correct" if true else "You are mistaken")
 ```
 
-This can become tedious. To avoid parenthitis (also known as LISP syndrome), the use of flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
+Nested parentheses can become tedious. To prevent parenthitis (also known as LISP syndrome) and improve readability, the use of flow operators pipeline (`|`) and compose (`«` or `»`) is prescribed:
 
 ```lua
-console log « answer = 42 | "Correct" if true else "You are mistaken"
+console log « guess = answer | "Correct" if true else "You are mistaken"
+
+a | b | c = ((a) b) c
+a « b « c = a (b (c))
+a » b » c = c (b (a))
 ```
 
-The pipeline operator is best suited to an object-oriented style of programming (sending messages to objects):
+The pipeline operator is suitable for chaining messages (fluent style):
 
 ```lua
 10 double | negate | print  -- sugar
@@ -246,22 +253,22 @@ The pipeline operator is best suited to an object-oriented style of programming 
 ((10 double) negate) print  -- desugared
 ```
 
-While the compose operators are best suited to a functional programming style (applying methods to values):
+While the compose operators are suitable for a more functional style:
 
 ```lua
-double 10 » negate » print  -- sugar
-print « negate « double 10  -- sugar (equivalent)
+count » increment » console log  -- sugar
+console log « increment « count  -- sugar (equivalent)
 
-print (negate (double 10))  -- desugared
+console log (increment (count))  -- desugared
 ```
 
-The two styles can be combined (the compose operators have higher precedence):
+The two styles can be combined (the compose operators having higher precedence):
 
 ```lua
-10 double | negate » print  -- sugar
-print « 10 double | negate  -- sugar (equivalent)
+10 double | negate » console log  -- sugar
+console log « 10 double | negate  -- sugar (equivalent)
 
-print ((10 double) negate)  -- desugared
+console log ((10 double) negate)  -- desugared
 ```
 
 [More examples...](examples/)

@@ -150,3 +150,5 @@ That makes it 4 levels to reason about:
 Viewing a module as "the cell" makes sense. Modules/cells are the building blocks of the app/organism. Specialized, differentiated, loosely coupled. Inside you'll find a tiny contained universe of smaller structures, functionality and values, that is easy to reason about in isolation.
 
 Instead of _the cell's local state_ being its nucleus, perhaps a better analogy is _the database_ (persisted state)? Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far. The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0).
+
+<sup>Don't tell FP developers, but one _could_ view functions as bacteria. Or [mitochondria](https://en.wikipedia.org/wiki/Mitochondrion), to be precise. "Mitochondria are typically round to oval in shape and range in size from 0.5 to 10 μm" – sounds about right. "Mitochondria are often referred to as the powerhouses of the cell. They help turn the energy we take from food into energy that the cell can use." – sounds a bit better.</sup>

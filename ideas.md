@@ -43,7 +43,7 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 [Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology): "rule of a high priest"  
 [Anarchy](https://en.wikipedia.org/wiki/Anarchy#Etymology): "without ruler"  
-[Holarchy](http://www.worldtrans.org/essay/holarchies.html): "a whole that is part of a larger whole"  
+[Holarchy](https://en.wikipedia.org/wiki/Holarchy): "a whole that is part of a larger whole"  
 
 <br/>
 

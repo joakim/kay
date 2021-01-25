@@ -9,7 +9,7 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 | Classification | Role                  | Corresponding construct  |
 | :------------- | :-------------------- | :----------------------- |
 | Noun           | Names                 | Cell                     |
-| Verb           | States action         | Function                 |
+| Verb           | States action         | Method                   |
 | Adjective      | Describes/limits noun | Protocol                 |
 
 <br/>
@@ -67,7 +67,7 @@ Like Smalltalk, code should (be able to) be always running during development.
     - **Internal** tab for navigating the project's own modules and cells
     - **External** tab for navigating and managing external modules (dependencies)
     - Allowing different _views_ of the project's structure (by hierarchy, tags, etc)
-    - Could work as a menu: click a cell/function to insert it at the cursor
+    - Could work as a menu: click a cell/method to insert it at the cursor
   - **State** for watching (or visualizing!) the state of specified cells
     - Allowing different _views_ into the project's state
     - By default showing the active cell when the runtime is paused

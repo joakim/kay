@@ -142,14 +142,14 @@ cell: {
     -- expressions
 }
 ```
-
+<!--
 Alternatively, one can use indentation, similar to Python. The following examples will use this style:
 
 ```lua
 cell:
     -- expressions
 ```
-
+-->
 Expressions are messages sent to cells. To send a message:
 
 `cell` `message with a (slot)`
@@ -180,9 +180,10 @@ Assignment messages are syntactic sugar, anything before the `:` gets desugared 
 A method is defined as a message signature `''` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
 ```lua
-greet: '(name)' ->
+greet: '(name)' -> {
     greeting: "Hey, {name}!"
     return: greeting
+}
 
 -- applying the method:
 greet "Joe"  -- "Hey, Joe!"
@@ -199,16 +200,19 @@ Fields are lexically scoped. A method is available within the cell it's defined 
 ```lua
 greet: '(name)' -> "Hey, {name}!"
 
-nested:
-    cell:
+nested: {
+    cell: {
         greet "Joe"  -- "Hey, Joe!"
+    }
+}
 ```
 
 A receptor is a method that's defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor:
 
 ```lua
-host:
+host: {
     'greet (name)' -> "Hey, {name}!"
+}
 
 -- sending the message 'greet "Joe"' to the host cell:
 host greet "Joe"  -- "Hey, Joe!"

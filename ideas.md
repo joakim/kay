@@ -24,8 +24,11 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 Extremes are not beneficial. Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending immutable data (values), and internally processing that data using functions, may be the best of both worlds? Especially for learning?
 
-Some benefits of objects: easy to understand, almost real/tangible, great fit for graphical programming such as GUIs or games, great fit for entities on a network, etc.  
-Some benefits of functions: simple (if not easy), predictable (if pure), concise (small units of code), powerful, great fit for handling the flow of data
+Some benefits of objects:  
+easy to understand, almost real/tangible, great fit for graphical programming such as GUIs or games, great fit for entities on a network, etc.
+
+Some benefits of functions:  
+simple (if not easy), predictable (if pure), concise (small units of code), powerful, great fit for handling the flow of data, etc.
 
 <br/>
 

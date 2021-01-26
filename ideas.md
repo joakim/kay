@@ -51,7 +51,7 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 Differentiate between cells as _objects_ (code) and cells representing _values_ (data)? Opaque objects with receptors (code) and immutable primitive/composite data types (data) allows one to reason about the code in an intuitive way, while managing state in a controlled way.
 
-### Reactive state (data flow)
+### Reactive (data flow)?
 
 State as reactive as spreadsheets? Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with "field"):
 

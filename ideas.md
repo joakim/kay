@@ -47,6 +47,26 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 <br/>
 
+## State
+
+Differentiate between cells as _objects_ (code) and cells representing _values_ (data)? Opaque objects with receptors (code) and immutable primitive/composite data types (data) allows one to reason about the code in an intuitive way, while managing state in a controlled way.
+
+### Reactive state (data flow)
+
+State as reactive as spreadsheets? Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with "field"):
+
+1. A field's value relies solely on the formula the user has typed into the field
+2. The formula may rely on the value of other fields, but those fields are likewise restricted to user-entered data or formulas
+3. There are no "side effects" to calculating a formula: the only output is to display the calculated result inside its occupying field
+4. There is no natural mechanism for permanently modifying the contents of a field unless the user manually modifies the field's contents
+5. In the context of programming languages, this yields a limited form of first-order functional programming
+
+#4 may have to be broken/reworded for this to be applicable to state in a programming language.
+
+Data flow programming goes back to [Larry Tesler's 1968 language Compel](https://www.reddit.com/r/ProgrammingLanguages/comments/l1m4wr/a_language_design_for_concurrent_processes/).
+
+<br/>
+
 ## Development environment
 
 Like Smalltalk, code should (be able to) be always running (during development).

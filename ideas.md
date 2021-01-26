@@ -28,7 +28,7 @@ Some benefits of objects:
 easy to understand, almost real/tangible, great fit for graphical programming such as GUIs or games, great fit for entities on a network, etc.
 
 Some benefits of functions:  
-simple (if not easy), predictable (if pure), concise (small units of code), powerful, great fit for handling the flow of data, etc.
+simple (not necessarily easy), predictable (if pure), concise (small units of code), powerful, great fit for handling the flow of data, etc.
 
 <br/>
 

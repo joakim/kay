@@ -26,7 +26,7 @@ The Internet is a global computer, and the web runs in its application layer.
 
 The lingua france of the web is JavaScript – a suboptimal language with some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (first-class functions/closures and immutable primitives). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the [Strongtalk](https://en.wikipedia.org/wiki/Strongtalk) assembler. Smalltalk/Self and JavaScript have quite a few things in common.
 
-While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. That is, a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
+While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. In other words, it has to be a compile-to-JavaScript language (until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
 
 <br/>
 

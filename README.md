@@ -36,7 +36,7 @@ print « hello "world"  -- "hello, world!"
 
 It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the receiving cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor). The receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
 
-There are no classes, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded, however.
+There are no classes, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29) ([copied](https://en.wikipedia.org/wiki/Prototype-based_programming#Concatenation) or [linked](https://en.wikipedia.org/wiki/Prototype-based_programming#Delegation)), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded when cloning.
 
 Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). Their internal state may only be accessed from the outside through messaging. Any exceptions are handled internally, a cell can not crash the system.
 

@@ -30,7 +30,7 @@ The lingua france of the web is JavaScript, a language with many faults but also
 
 In other words, it has to be a compile-to-JavaScript language (until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
 
-<sub>Fun fact: Kay's presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
+<sub>Fun fact: Kay's presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have many "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But those good parts are hard to get to, especially for beginners. Thought experiment: Imagine if Java hadn't happened, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 
 <br/>
 

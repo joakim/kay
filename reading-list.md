@@ -12,6 +12,6 @@ Smalltalk:
 - [What FP can learn from Smalltalk](https://www.youtube.com/watch?v=baxtyeFVn3w) (video)
 - [Alan Kay answers questions about Smalltalk](https://computinged.wordpress.com/2010/09/11/moti-asks-objects-never-well-hardly-ever/#comment-3766)
 
-Clojure:
+State/time:
 
 - [Values and Change: Clojure’s approach to Identity and State](https://clojure.org/about/state)

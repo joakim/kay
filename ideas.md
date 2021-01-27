@@ -78,13 +78,13 @@ The code and its AST is essentially a tree of cells within cells, reminiscent of
 
 This enables some interesting ideas:
 
-- Metadata on the cell level
-  - Extension of semantics
-  - Tags, documentation, links, etc
 - Introspection and reflection
   - Easy traversal for introspection, analysis, refactoring, visualization, diffing, history/persistence, reflection, macros, etc
   - Reflection should probably not be accessible from running code, but require elevated permissions (developer environment, macros, etc)
   - Always-running environment like Smalltalk's [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, perhaps only during development?
+- Metadata on the cell level
+  - Extension of semantics
+  - Tags, documentation, links, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
   - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running

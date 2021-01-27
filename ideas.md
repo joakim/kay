@@ -52,7 +52,7 @@ Abstract things (numbers, booleans, strings, dates, points, lists, records, etc)
 
 Time is of the essence.
 
-[Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) by Bret Victor + [Clojure's approach to Identity and State](https://clojure.org/about/state), only with cells and values types? All mutation of state is done through messages, so the history of mutations may be (globally) recorded, rewound, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) should also be possible.
+[Rich Hickey's approach to identity and state](https://clojure.org/about/state) + [Bret Victor's Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII), only with cells and values types? All mutation of state is done through messages, so the history of mutations may be (globally) recorded, rewound, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) should also be possible.
 
 ### Reactive
 

@@ -58,7 +58,7 @@ Time is of the essence.
 
 State as reactive as spreadsheets?
 
-Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with the word "field"):
+Must be limited according to Alan Kay's [Spreadsheet Value Rule](https://en.wikipedia.org/wiki/Spreadsheet#Values) (the word "cell" replaced with the word "field"):
 
 1. A field's value relies solely on the formula the user has typed into the field
 2. The formula may rely on the value of other fields, but those fields are likewise restricted to user-entered data or formulas

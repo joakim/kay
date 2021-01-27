@@ -18,11 +18,11 @@ Replicant:
     model: "Generic"
     
     -- local method (assigned to a field)
-    say: (words) ->
+    say: '(words)' ->
         print "{name} says: {words}"
     
     -- receptor method (responds to messages from the outside)
-    move (distance) ->
+    'move (distance)' ->
         meters: distance = 1 | "meter" if true else "meters"
         print "{name} the {model} replicant moved {distance} {meters}"
 
@@ -33,12 +33,12 @@ Nexus9: Replicant
     intelligence: 100
     thoughts: []
     
-    think: (thought) ->
+    think: '(thought)' ->
         -- send an `append` message to the `thoughts` array with the `thought` argument's value
         thoughts append (thought)
         print "{name} thinks: {thought}"
     
-    move ->
+    'move' ->
         print "*moves*"
         
         -- signal the `move (distance)` receptor cloned from `Replicant`
@@ -46,7 +46,7 @@ Nexus9: Replicant
         
         -- signal receptors of the boolean result of `>`, equivalent to an if statement
         intelligence > 100
-            | is true ->
+            if true ->
                 think "Why did I move?"
                 think "Am I really a replicant?"
                 think "My name is Joe..."
@@ -54,7 +54,7 @@ Nexus9: Replicant
                 -- mutate the state of an outer cell
                 replicant name: "Joe"
                 say "My name is {name}!"
-            | is false -> think "*crickets*"
+            else -> think "*crickets*"
 
 -- create a new Nexus 9 replicant
 officer-k: Nexus9 { name: "K", intelligence: 140 }

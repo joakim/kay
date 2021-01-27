@@ -10,7 +10,7 @@ Smalltalk:
 - [LISP, Smalltalk and the power of symmetry](https://insearchofsecrets.com/2014/08/04/lisp-smalltalk-and-the-power-of-symmetry/) 
 - [What killed Smalltalk](https://pointersgonewild.com/2015/08/20/what-killed-smalltalk/)
 - [Alan Kay answers questions about Smalltalk](https://computinged.wordpress.com/2010/09/11/moti-asks-objects-never-well-hardly-ever/#comment-3766)
-- [https://www.youtube.com/watch?v=baxtyeFVn3w](What FP can learn from Smalltalk)
+- [What FP can learn from Smalltalk](https://www.youtube.com/watch?v=baxtyeFVn3w)
 
 Clojure:
 

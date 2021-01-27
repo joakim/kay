@@ -44,7 +44,9 @@ Time is of the essence. [Inventing on Principle](https://www.youtube.com/watch?v
 
 ### Reactive (data flow)?
 
-State as reactive as spreadsheets? Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with the word "field"):
+State as reactive as spreadsheets?
+
+Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with the word "field"):
 
 1. A field's value relies solely on the formula the user has typed into the field
 2. The formula may rely on the value of other fields, but those fields are likewise restricted to user-entered data or formulas

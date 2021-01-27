@@ -22,7 +22,7 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 ## Pure OOP + Pure FP?
 
-Extremes are not beneficial. Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending immutable data (values), and internally processing that data using functions, may be the best of both worlds? Especially for learning?
+Extremes are not beneficial. Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending messages with immutable data (values), and internally processing data using pure functions, may be the best of both worlds?
 
 Some benefits of objects:  
 easy to understand, almost real/tangible, great fit for graphical programming such as GUIs or games, great fit for entities on a network, etc.
@@ -30,19 +30,21 @@ easy to understand, almost real/tangible, great fit for graphical programming su
 Some benefits of functions:  
 simple (not necessarily easy), predictable (if pure), concise (small units of code), powerful, great fit for handling the flow of data, etc.
 
+One thing they have in common is that they are [black boxes](https://en.wikipedia.org/wiki/Black_box) to other parts of code. Methods may be implemented as a cell with exactly one behavior (receptor). The _receptor_ is the actual function, the cell encapsulates its internal state (and enables introspection).
+
 <br/>
 
 ## State
 
-Differentiate between cells as _objects_ (code) and cells representing _values_ (data)? Opaque objects with receptors (code) and immutable primitive/composite data types (data) allows one to reason about the code in an intuitive way, while managing state in a controlled way.
+Differentiate between cells that are _objects_ (entities with behaviors) and cells that represent _values_ (data). Having both opaque objects (entity) with receptors (behavior) and immutable primitive/composite data types (data) allows one to reason about code in an intuitive way, while managing state in a controlled way. At least, that's the idea.
 
 ### Time
 
-[Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) by Bret Victor + [Clojure's approach to Identity and State](https://clojure.org/about/state). All mutation of state is done through messages, so the history of state changes _could_ be recorded and navigated.
+Time is of the essence. [Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) by Bret Victor + [Clojure's approach to Identity and State](https://clojure.org/about/state). All mutation of state is done through messages, so the history of state changes may be recorded, rewound, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) may also be possible.
 
 ### Reactive (data flow)?
 
-State as reactive as spreadsheets? Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with "field"):
+State as reactive as spreadsheets? Must be limited according to Alan Kay's Spreadsheet Value Rule (the word "cell" replaced with the word "field"):
 
 1. A field's value relies solely on the formula the user has typed into the field
 2. The formula may rely on the value of other fields, but those fields are likewise restricted to user-entered data or formulas
@@ -52,7 +54,7 @@ State as reactive as spreadsheets? Must be limited according to Alan Kay's Sprea
 
 #4 may have to be broken/reworded for this to be applicable to state in a programming language.
 
-Data flow programming goes back to [Larry Tesler's 1968 language Compel](https://www.reddit.com/r/ProgrammingLanguages/comments/l1m4wr/a_language_design_for_concurrent_processes/).
+Data flow programming goes back to [Larry Tesler's 1968 language Compel](https://www.reddit.com/r/ProgrammingLanguages/comments/l1m4wr/a_language_design_for_concurrent_processes/). With the enormous success of spreadsheets (#1 programming environment), it's a wonder that so few programming languages have caught on to its ideas.
 
 <br/>
 

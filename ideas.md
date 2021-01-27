@@ -48,7 +48,7 @@ One thing that pure OOP and pure FP have in common is that their units of code a
 
 Differentiate between cells that are _objects_ (entities with behaviors) and cells that represent _values_ (data).
 
-Having both opaque object cells (entities) with receptors (behaviors) and immutable primitive/composite value cells (data) allows one to reason about code in an intuitive way, while managing state in a controlled way. At least, that's the idea.
+Having both opaque object cells (entities) with receptors (behaviors) and immutable primitive/composite value cells (data) allows one to reason about code in an intuitive way, while managing state in a controlled way, similar to [Clojure's Atoms](https://clojure.org/reference/atoms).
 
 Abstract things (numbers, booleans, strings, dates, points, lists, records, etc) are best represented as immutable data types with value semantics. While "concrete" things are more intuitive when represented as objects with behaviors and reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and is easy to work with.
 

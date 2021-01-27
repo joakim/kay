@@ -68,7 +68,7 @@ Must be limited according to Alan Kay's [Spreadsheet Value Rule](https://en.wiki
 
 #4 may have to be broken/reworded for this to be applicable to state in a programming language.
 
-Data flow programming goes back to [Larry Tesler's 1968 language Compel](https://www.reddit.com/r/ProgrammingLanguages/comments/l1m4wr/a_language_design_for_concurrent_processes/). With the enormous success of spreadsheets (#1 programming environment), it's a wonder that so few programming languages have caught on to its ideas.
+Data flow programming goes back to [Larry Tesler's 1968 language Compel](https://www.reddit.com/r/ProgrammingLanguages/comments/l1m4wr/a_language_design_for_concurrent_processes/). With the enormous success of spreadsheets (#1 programming environment), it's a wonder so few programming languages have caught on to its ideas.
 
 <br/>
 

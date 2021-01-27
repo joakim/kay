@@ -282,6 +282,8 @@ console log ((10 double) negate)  -- desugared
 
 [More examples...](examples/)
 
+[Ideas...](ideas.md)
+
 <br/>
 
 ## What it brings

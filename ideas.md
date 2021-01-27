@@ -20,19 +20,15 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 <br/>
 
-## The Web
+## Internet
 
-The Internet is a global computer, and the web runs in its application layer.
+As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language should be in tune with its environment: a language of _messages_ between autonomous _entities_.
 
-The lingua france of the web is JavaScript – a suboptimal language with some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (first-class functions/closures and immutable primitives). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the [Strongtalk](https://en.wikipedia.org/wiki/Strongtalk) assembler. Smalltalk/Self and JavaScript have quite a few things in common.
+If the Internet is a global machine, the Web runs in its application layer.
 
-While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. In other words, it has to be a compile-to-JavaScript language (until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
+The lingua france of the web is JavaScript, a suboptimal language with some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (first-class functions/closures and immutable primitives). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the [Strongtalk](https://en.wikipedia.org/wiki/Strongtalk) assembler. Smalltalk/Self and JavaScript have quite a few things in common.
 
-<br/>
-
-## The Internet
-
-As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between decentralized entities.
+In other words, it has to be a compile-to-JavaScript language (until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
 
 <sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 

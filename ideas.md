@@ -40,7 +40,7 @@ Extremes are not beneficial.
 
 Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending messages containing immutable data (values), and internally processing that data using pure functions, may be the best of both worlds?
 
-One thing that pure OOP and pure FP have in common is that their units of code are [black boxes](https://en.wikipedia.org/wiki/Black_box). Technically, method may be implemented as a cell that has exactly one receptor. The receptor being the actual function, the cell encapsulating its internal state.
+One thing that pure OOP and pure FP have in common is that their units of code are [black boxes](https://en.wikipedia.org/wiki/Black_box). Technically, methods may be implemented as a cell that has exactly one receptor. The receptor being the actual function, the cell encapsulating its internal state.
 
 <br/>
 

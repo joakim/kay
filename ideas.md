@@ -20,27 +20,39 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 <br/>
 
+## The Web
+
+The Internet is a global computer, and the web runs in its application layer.
+
+The lingua france of the web is JavaScript – a suboptimal language with some interesting qualities. It has a lightweight object-oriented approach, inspired by Self (prototype-based), coupled with functional programming features, inspired by Scheme (first-class functions/closures). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the Strongtalk assembler. Smalltalk/Self and JavaScript have quite a few things in common.
+
+While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. That is, a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
+
+<br/>
+
 ## Pure OOP + Pure FP?
 
-Extremes are not beneficial. Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending messages with immutable data (values), and internally processing data using pure functions, may be the best of both worlds?
+Extremes are not beneficial.
 
-Some benefits of objects:  
-easy to understand, almost real/tangible, great fit for graphical programming such as GUIs or games, great fit for entities on a network, etc.
+Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending messages containing immutable data (values), internally processing data using pure functions, may be the best of both worlds?
 
-Some benefits of functions:  
-simple (not necessarily easy), predictable (if pure), concise (small units of code), powerful, great fit for handling the flow of data, etc.
-
-One thing they have in common is that they are [black boxes](https://en.wikipedia.org/wiki/Black_box) to other parts of code. Methods may be implemented as a cell with exactly one behavior (receptor). The _receptor_ is the actual function, the cell encapsulates its internal state (and enables introspection).
+One thing that pure OOP and pure FP have in common is that their units of code are [black boxes](https://en.wikipedia.org/wiki/Black_box). Technically, methods may be implemented as a cell having exactly one behavior (receptor). The _receptor_ being the actual function, the cell encapsulating its internal state.
 
 <br/>
 
 ## State
 
-Differentiate between cells that are _objects_ (entities with behaviors) and cells that represent _values_ (data). Having both opaque objects (entity) with receptors (behavior) and immutable primitive/composite data types (data) allows one to reason about code in an intuitive way, while managing state in a controlled way. At least, that's the idea.
+Differentiate between cells that are _objects_ (entities with behaviors) and cells that represent _values_ (data).
+
+Having both opaque objects (entity) with receptors (behavior) and immutable primitive/composite value types (data) allows one to reason about code in an intuitive way, while managing state in a controlled way. At least, that's the idea. Technically, value types may be [autoboxed](https://en.wikipedia.org/wiki/Object_type_%28object-oriented_programming%29#Autoboxing) to cells, just as in ECMAScript.
+
+Abstract things (numbers, booleans, strings, dates, points, lists, records, etc) are best represented as immutable data types with value semantics. Values don't change over time. And some things are best represented as entities with state, having reference semantics.
 
 ### Time
 
-Time is of the essence. [Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) by Bret Victor + [Clojure's approach to Identity and State](https://clojure.org/about/state), only with cells? All mutation of state is done through messages, so the history of state changes may be (globally) recorded, rewound, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) should also be possible.
+Time is of the essence.
+
+[Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) by Bret Victor + [Clojure's approach to Identity and State](https://clojure.org/about/state), only with cells and values types? All mutation of state is done through messages, so the history of mutations may be (globally) recorded, rewound, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) should also be possible.
 
 ### Reactive
 
@@ -62,7 +74,9 @@ Data flow programming goes back to [Larry Tesler's 1968 language Compel](https:/
 
 ## Trees
 
-The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
+The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists.
+
+This enables some interesting ideas:
 
 - Metadata on the cell level
   - Extension of semantics
@@ -90,7 +104,7 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 ## Development environment
 
-Like Smalltalk, code should (be able to) be always running (during development).
+Like Smalltalk, code should (be able to) be always running (at least during development).
 
 ### Features
 

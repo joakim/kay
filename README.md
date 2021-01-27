@@ -125,7 +125,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
 #### Other
 
   - `*`   writable ("star")
-  - `~`   reactive ("tilde")
+  - `~`   reactive ("tilde")
   - `_`   ignore/any ("blank")
   - `\`   escape
   - `--` comment

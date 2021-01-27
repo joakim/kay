@@ -44,9 +44,9 @@ One thing that pure OOP and pure FP have in common is that their units of code a
 
 Differentiate between cells that are _objects_ (entities with behaviors) and cells that represent _values_ (data).
 
-Having both opaque objects (entity) with receptors (behavior) and immutable primitive/composite value types (data) allows one to reason about code in an intuitive way, while managing state in a controlled way. At least, that's the idea. Technically, value types may be [autoboxed](https://en.wikipedia.org/wiki/Object_type_%28object-oriented_programming%29#Autoboxing) to cells, just as in ECMAScript.
+Having both opaque object cells (entities) with receptors (behaviors) and immutable primitive/composite value cells (data) allows one to reason about code in an intuitive way, while managing state in a controlled way. At least, that's the idea.
 
-Abstract things (numbers, booleans, strings, dates, points, lists, records, etc) are best represented as immutable data types with value semantics. Values don't change over time. And some things are best represented as entities with state, having reference semantics.
+Abstract things (numbers, booleans, strings, dates, points, lists, records, etc) are best represented as immutable data types with value semantics. While "concrete" things are more intuitive when represented as objects with behaviors and reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and is easy to work with.
 
 ### Time
 

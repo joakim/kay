@@ -280,6 +280,8 @@ console log « 10 double | negate  -- sugar (equivalent)
 console log ((10 double) negate)  -- desugared
 ```
 
+<br/>
+
 [More examples...](examples/)
 
 [Ideas...](ideas.md)

@@ -22,7 +22,7 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 ## Internet
 
-As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language should be in tune with its environment: a language of _messages_ between autonomous _entities_.
+As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language should be in tune with its environment: a language of _messages_ between _autonomous entities_.
 
 If the Internet is a global machine, the Web runs in its application layer.
 

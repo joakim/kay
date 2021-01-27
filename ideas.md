@@ -24,9 +24,17 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 The Internet is a global computer, and the web runs in its application layer.
 
-The lingua france of the web is JavaScript – a suboptimal language with some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (first-class functions/closures and immutable primitives). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the [Strongtalk](https://en.wikipedia.org/wiki/Strongtalk) assembler. Smalltalk/Self and JavaScript have quite a few things in common.
+The lingua france of the web is JavaScript – a suboptimal language with some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (first-class functions/closures and immutable primitives). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the [Strongtalk](https://en.wikipedia.org/wiki/Strongtalk) assembler. Smalltalk/Self and JavaScript have quite a few things in common.
 
 While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. That is, a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
+
+<br/>
+
+## The Internet
+
+As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between decentralized entities.
+
+<sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 
 <br/>
 
@@ -102,6 +110,22 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 <br/>
 
+## Directory structure
+
+Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.
+
+#### The problem
+
+The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump right into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages. It could even be built into the web browser. If not simply running [as a web app](https://microsoft.github.io/monaco-editor/). UNIX skills should not be a _requirement_ for programming.
+
+<br/>
+
+## Documentation
+
+Documentation should be an integral part of the language. Not only in the shape of comments, but code itself should be self-documenting.
+
+<br/>
+
 ## Development environment
 
 Like Smalltalk, code should (be able to) be always running (at least during development).
@@ -135,30 +159,6 @@ Like Smalltalk, code should (be able to) be always running (at least during deve
   - **Stack** for the current stack trace when paused
   - **Profile** for performance profiling of code
   - **Cards** for [interacting](https://github.com/bhauman/devcards) with the project, producing visual test cases and examples?
-
-<br/>
-
-## Directory structure
-
-Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.
-
-#### The problem
-
-The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump right into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages. It could even be built into the web browser. If not simply running [as a web app](https://microsoft.github.io/monaco-editor/). UNIX skills should not be a _requirement_ for programming.
-
-<br/>
-
-## Documentation
-
-Documentation should be an integral part of the language. Not only in the shape of comments, but code itself should be self-documenting.
-
-<br/>
-
-## The Internet
-
-As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. I believe that a programming language for the Internet should be in tune with its environment, a language of messages between objects.
-
-<sub>Fun fact: The presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have some "good parts", hidden beneath layers of Java syntax, quirks and inconsistencies. But it's not as close a representation of the ideas behind the Internet as it could've been. Imagine if Java hadn't happened 😲, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 
 <br/>
 

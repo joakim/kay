@@ -204,6 +204,8 @@ Viewing a module as "the cell" makes sense. Modules/cells are the building block
 
 Instead of _the cell's local state_ being its nucleus, perhaps a better analogy is _the database_ (persisted state)? Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far. The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0).
 
+<br/>
+
 ## Numbers
 
 > Exact number manipulation is a true advantage of Smalltalk. If a SmallInteger operation leaves its range, the result becomes a LargeInteger. 

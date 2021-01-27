@@ -203,3 +203,9 @@ That makes it 4 levels to reason about:
 Viewing a module as "the cell" makes sense. Modules/cells are the building blocks of the app/organism. Specialized, differentiated, loosely coupled. Inside you'll find a tiny contained universe of smaller structures, functionality and data that can be reasoned about in isolation.
 
 Instead of _the cell's local state_ being its nucleus, perhaps a better analogy is _the database_ (persisted state)? Of course, each cell doesn't have its own database, but the biology-computing analogy only goes so far. The size of the human genome is [~700 MB](https://medium.com/precision-medicine/how-big-is-the-human-genome-e90caa3409b0).
+
+## Numbers
+
+> Exact number manipulation is a true advantage of Smalltalk. If a SmallInteger operation leaves its range, the result becomes a LargeInteger. 
+
+The JavaScript number magic equivalent would be `Number` -> `BigInt` if the number is an integer.

@@ -64,16 +64,17 @@ Data flow programming goes back to [Larry Tesler's 1968 language Compel](https:/
 
 The code and its AST is essentially a tree of cells within cells, reminiscent of Lisp's lists. This enables some interesting ideas:
 
-- Easy traversal for introspection, analysis, refactoring, visualization, diffing, history/persistence, reflection, macros, etc
-  - ... not just of code, but also state
-  - Always-running environment like Smalltalk [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but perhaps only during development
+- Metadata on the cell level
+  - Extension of semantics
+  - Tags, documentation, links, etc
+- Introspection and reflection
+  - Easy traversal for introspection, analysis, refactoring, visualization, diffing, history/persistence, reflection, macros, etc
+  - Reflection should probably not be accessible from running code, but require elevated permissions (developer environment, macros, etc)
+  - Always-running environment like Smalltalk's [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, perhaps only during development?
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
   - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
   - The tree could facilitate adding time as a factor, with time travel debugging
-- Metadata on the cell level
-  - Tags, links, etc
-  - Should probably not be accessible from code, but from the developer environment (see below), macros, etc
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 

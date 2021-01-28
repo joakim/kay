@@ -106,6 +106,12 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 <br/>
 
+## DSL
+
+With such a simple syntax and underlying tree structure, the language should be very suitable for making embedded [DSLs](https://en.wikipedia.org/wiki/Domain-specific_language).
+
+<br/>
+
 ## Directory structure
 
 Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.

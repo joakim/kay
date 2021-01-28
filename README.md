@@ -38,7 +38,7 @@ It's cells all the way down, from environment to values. Cells encapsulate field
 
 There are no classes, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29) (by [concatenation](https://en.wikipedia.org/wiki/Prototype-based_programming#Concatenation) or [delegation](https://en.wikipedia.org/wiki/Prototype-based_programming#Delegation)), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded when cloning.
 
-Cells are by default [encapsulated and opaque](https://en.wikipedia.org/wiki/Information_hiding). Their internal state may only be accessed from the outside through messaging. Any exceptions are handled internally, a cell should not be able to crash the system.
+Cells are [encapsulated](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)), their internal state may only be accessed from the outside through messaging. Any exceptions are handled internally, a cell should not be able to crash the system.
 
 Cells are [first-class](https://en.wikipedia.org/wiki/First-class_citizen) [reference types](https://en.wikipedia.org/wiki/Value_type_and_reference_type) that are [passed by value](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value). They have [lexical closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) and may [observe](https://en.wikipedia.org/wiki/Observer_pattern) each other, enabling [reactivity](https://en.wikipedia.org/wiki/Reactive_programming#Object-oriented).
 

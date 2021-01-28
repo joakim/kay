@@ -174,13 +174,13 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Assignment is done by (implicitly) sending the `set` message to the current cell, `self`:
+Assignment is done by (implicitly) sending the `define` message to the current cell, `self`:
 
 ```lua
 answer: 42
 
 -- is really:
-self set "answer": (42)
+self define "answer": (42)
 ```
 
 Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42`. 

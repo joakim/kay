@@ -92,7 +92,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
 
 ## Values
 
-Value types are immutable. If bound to a writable field, the value will be wrapped in a `Value` cell, similar to Clojure's [atoms](https://clojure.org/reference/atoms). This allows management of state over time, while enabling validation and subscription to change events.
+Value types are immutable. If bound to a writable field, the value will be wrapped in a `Value` cell, similar to Clojure's [atoms](https://clojure.org/reference/atoms). This allows management of state over time, while enabling validation and subscription to events.
 
 The "observer" of a `Value` can get a [snapshot](https://imgur.com/iMf3GBa) of the field's current (immutable) value. [Mutating](https://en.wikipedia.org/wiki/Mutation) a `Value` will replaced the old immutable value with a new. For collections, with structural sharing of its past states.
 

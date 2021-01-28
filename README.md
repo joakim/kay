@@ -104,6 +104,7 @@ The "observer" of a `Value` may dereference its state, returning a [snapshot](ht
 
   - `{}`  cell
   - `[]`  collection
+  - `42`  number
   - `""`  string
   - `''`  message definition
   - `()`  message parameter, expression

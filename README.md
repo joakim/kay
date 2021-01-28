@@ -125,6 +125,7 @@ Value types are immutable. If bound to a writable field, the value will be wrapp
 #### Various
 
   - `*`   writable ("star")
+  - `&`   reference ("ref")
   - `_`   ignore/any ("blank")
   - `\`   escape
   - `--` comment

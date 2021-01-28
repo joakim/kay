@@ -34,7 +34,7 @@ print « hello "world"  -- "hello, world!"
 
 ## Cells
 
-It's cells all the way down, from environment to values. Cells encapsulate fields, expressions and receptors, and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the receiving cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor). The receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
+It's cells all the way down, from environment to values. Cells encapsulate fields (state), receptors (methods) and messages (expressions), and communicate by [message signaling](https://en.wikipedia.org/wiki/Cell_communication_(biology)). Messages are matched against the signatures of the receiving cell's [receptors](https://en.wikipedia.org/wiki/Cell_surface_receptor). The receptor is responsible for the [transduction](https://en.wikipedia.org/wiki/Signal_transduction) of a received message and for producing a response.
 
 There are no classes, only [cloning](https://en.wikipedia.org/wiki/Clone_%28cell_biology%29) (by [concatenation](https://en.wikipedia.org/wiki/Prototype-based_programming#Concatenation) or [delegation](https://en.wikipedia.org/wiki/Prototype-based_programming#Delegation)), [composition](https://en.wikipedia.org/wiki/Composition_over_inheritance) and [protocols](https://en.wikipedia.org/wiki/Protocol_(object-oriented_programming)). The [lineage](https://en.wikipedia.org/wiki/Cell_lineage) of a cell is recorded when cloning.
 

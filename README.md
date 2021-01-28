@@ -61,7 +61,7 @@ Fields hold the cell's internal state. Fields are read-only, unless explicitly m
 
 An expression contains one (or more) message signal(s) and evaluates to the (last) signal's return value.
 
-A signal is a message sent to a cell. Expressions are used to include values as arguments in message slots. Messages are dynamically dispatched.
+A signal is a message sent to a cell. Expressions are used to include values as arguments in message slots. Messages are [dynamically dispatched](https://en.wikipedia.org/wiki/Dynamic_dispatch), with the ability to support [multiple dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch).
 
 There are no statements, only cells (senders and receivers) and expressions (message signals).
 

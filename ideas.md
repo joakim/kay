@@ -34,35 +34,33 @@ In other words, it has to be a compile-to-JavaScript language (until [WebAssembl
 
 <br/>
 
-## Pure OOP + Pure FP?
+## OOP + FP?
 
-Extremes are not beneficial.
+Extremes are not beneficial. While Clojure combines pure FP with managed stateful reference types, this language combines pure OOP with immutable data types.
 
-Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete cells (objects), interacting by sending messages containing immutable data (values), and internally processing that data using pure functions, may be the best of both worlds?
-
-One thing that pure OOP and pure FP have in common is that their units of code are [black boxes](https://en.wikipedia.org/wiki/Black_box). Technically, methods may be implemented as a cell that has exactly one receptor. The receptor being the actual function, the cell encapsulating its internal state.
+Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete objects (code), interacting by sending messages containing immutable values (data), and internally processing those values using pure functions, may be the best of both worlds?
 
 <br/>
 
 ## State
 
-Differentiate between cells that are _objects_ (entities with behaviors) and cells that represent _values_ (data).
+Differentiate between cells that are _objects_ (entities with behaviors) and cells that hold _values_ (data). Writable fields may be implemented like [Atoms](https://clojure.org/reference/atoms) in Clojure, as a reference type pointing to an immutable value type. This does add a level of indirection, with a performance and memory penalty, but it enables the sharing and management of state in a controlled way. Fields are read-only by default, requiring explicit marking (`*`) to initialize it as a writable reference type.
 
-Having both opaque object cells (entities) with receptors (behaviors) and immutable primitive/composite value cells (data) allows one to reason about code in an intuitive way, while managing state in a controlled way, similar to [Clojure's Atoms](https://clojure.org/reference/atoms).
+Having both _object_ cells (entities) and _value_ cells with immutable data types (data), allows one to reason about code in an intuitive yet beneficial way. Object cells are "concrete" autonomous entities with fields (state). Fields hold "abstract" immutable values, which if made writable can change over time. Object cells can only change their own fields directly. Other cells must ask for changes through messaging.
 
-Abstract things (numbers, booleans, strings, dates, points, lists, records, etc) are best represented as immutable data types with value semantics. While "concrete" things are more intuitive when represented as objects with behaviors and reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and is easy to work with.
+Abstract things (numbers, booleans, strings, dates, etc) are best represented as immutable data types, while "concrete" things are more intuitive when represented as objects with reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and enables the expression of advances programs, without losing control of state over time.
 
 ### Time
 
-Time is of the essence.
+Because time is of the essence.
 
-[Rich Hickey's approach to identity and state](https://clojure.org/about/state) + [Bret Victor's Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII), only with cells and primitive values? If all mutation of state is done through messages, the history of mutations may be (globally) recorded, rewound, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) should also be possible.
+[Rich Hickey's approach to identity and state](https://clojure.org/about/state) + [Bret Victor's Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII), only with cells? If writable fields are managed using "atoms", and all mutation of state is the swapping of immutable values by messages, the history of change may be (globally) recorded, rewound, paused, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) may also be possible?
 
 ### Reactive
 
 State as reactive as spreadsheets?
 
-Must be limited according to Alan Kay's [Spreadsheet Value Rule](https://en.wikipedia.org/wiki/Spreadsheet#Values) (the word "cell" replaced with the word "field"):
+Must adher to Alan Kay's [Spreadsheet Value Rule](https://en.wikipedia.org/wiki/Spreadsheet#Values) (the word "cell" replaced with the word "field"):
 
 1. A field's value relies solely on the formula the user has typed into the field
 2. The formula may rely on the value of other fields, but those fields are likewise restricted to user-entered data or formulas

@@ -124,7 +124,6 @@ The "observer" of a `Value` may dereference its state, returning a [snapshot](ht
 #### Various
 
   - `*`   writable ("star")
-  - `~`   reactive ("tilde")
   - `_`   ignore/any ("blank")
   - `\`   escape
   - `--` comment

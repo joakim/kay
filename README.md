@@ -183,7 +183,7 @@ answer: 42
 self set "answer": (42)
 ```
 
-Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42` (a `Number` cell). 
+Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example sets the cell's `answer` field to `42`. 
 
 A method is defined as a message signature `''` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
@@ -215,11 +215,11 @@ nested: {
 }
 ```
 
-A receptor is a method that's defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor:
+A receptor can be thought of as a method defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor:
 
 ```lua
 host: {
-    'greet (name)' -> "Hey, {name}!"
+    'greet (name)' -> "Hey, {name}!"  -- the receptor
 }
 
 -- sending the message 'greet "Joe"' to the host cell:

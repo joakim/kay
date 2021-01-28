@@ -74,8 +74,6 @@ There are no statements, only cells (senders and receivers) and expressions (mes
 
 ## Data types
 
-Preliminary data types.
-
 #### Reference types
 
   - `{}`   – cell
@@ -123,6 +121,14 @@ The "observer" of a `Value` can get a [snapshot](https://imgur.com/iMf3GBa) of t
   - `«`   compose right-to-left
   - `,`   expression separator
   
+#### Various
+
+  - `*`   writable ("star")
+  - `~`   reactive ("tilde")
+  - `_`   ignore/any ("blank")
+  - `\`   escape
+  - `--` comment
+
 #### Binary
 
   - Logical: `and`, `or`
@@ -130,14 +136,6 @@ The "observer" of a `Value` can get a [snapshot](https://imgur.com/iMf3GBa) of t
   - Relational: `<`, `>`, `≤`, `≥`
   - Arithmetic: `+`, `-`, `×`, `/`
   - Access: `.`
-
-#### Other
-
-  - `*`   writable ("star")
-  - `~`   reactive ("tilde")
-  - `_`   ignore/any ("blank")
-  - `\`   escape
-  - `--` comment
 
 A binary operator results in a signal to the left-hand side with one argument, the right-hand side. A set of symbols are reserved for future operators.
 

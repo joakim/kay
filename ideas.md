@@ -48,7 +48,7 @@ Differentiate between cells that are _objects_ (entities with behaviors) and cel
 
 Having both _object_ cells (entities) and _value_ cells with immutable data types (data), allows one to reason about code in an intuitive yet beneficial way. Object cells are "concrete" autonomous entities with fields (state). Fields hold "abstract" immutable values, which if made writable can change over time. Object cells can only change their own fields directly. Other cells must ask for changes through messaging.
 
-Abstract things (numbers, booleans, strings, dates, etc) are best represented as immutable data types, while "concrete" things are more intuitive when represented as objects with reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and enables the expression of advances programs, without losing control of state over time.
+Abstract things (numbers, booleans, strings, dates, etc) are best represented as immutable data types, while "concrete" things are more intuitive when represented as objects with reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and enables the expression of advanced programs with state managed safely over time.
 
 ### Time
 

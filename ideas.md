@@ -2,6 +2,8 @@
 
 Not all ideas are my own. Some are more wild than others. The wildest ones are probably mine.
 
+(This is mostly a way for me to document my own thinking.)
+
 <br/>
 
 ## Linguistics

@@ -36,7 +36,7 @@ In other words, it has to be a compile-to-JavaScript language (until [WebAssembl
 
 ## OOP + FP?
 
-Extremes are not beneficial. While Clojure combines pure FP with managed stateful reference types, this language combines pure OOP with immutable data types.
+Extremes are not beneficial. While Clojure combines pure FP with managed stateful reference types, this language combines pure OOP with immutable data types and first-class functions.
 
 Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete objects (code), interacting by sending messages containing immutable values (data), and internally processing those values using pure functions, may be the best of both worlds?
 

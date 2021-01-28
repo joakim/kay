@@ -87,7 +87,15 @@ Preliminary data types.
   - `{}`   – cell
   - `[]`   – collection (indexed/associative array)
 
-Collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables. Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie). An "[observer](https://imgur.com/iMf3GBa)" of a collection gets a [snapshot](https://en.wikipedia.org/wiki/Snapshot_(computer_storage)) of its state at that instant in time. [Mutating](https://en.wikipedia.org/wiki/Mutation) a collection results in a new local variant based on that snapshot, with structural sharing of its past states.
+Collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables. Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie).
+
+<br/>
+
+## Values
+
+Primitive values and collections are immutable value types. If bound to a writable field, the value will be wrapped in a `Value` cell, similar to Clojure's [atoms](https://clojure.org/reference/atoms). This provides a way to manage state over time, while enabling validation and subscription to change events.
+
+The "observer" of a `Value` can get a [snapshot](https://imgur.com/iMf3GBa) of the field's current (immutable) value. [Mutating](https://en.wikipedia.org/wiki/Mutation) a `Value` will replaced the old immutable value with a new. For collections, with structural sharing of its past states.
 
 <br/>
 

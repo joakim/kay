@@ -2,8 +2,8 @@
 
 Developer environment:
 
-- [Bret Victor - Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) (video)
-- [Moldable development](https://www.youtube.com/watch?v=Pot9GnHFOVU) (video)
+- [Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII) by Bret Victor (video)
+- [Moldable development](https://www.youtube.com/watch?v=Pot9GnHFOVU) by Tudor Gîrba (video)
 
 Smalltalk:
 

@@ -16,13 +16,11 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 <br/>
 
-## Learning and extending
+## Learning
 
 With its simple syntax and semantics, my hope is that this language could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
 
 It should even be possible to translate into other natural languages than English, enabling people to code in their native language!
-
-The language should also be suitable for making embedded [DSLs](https://en.wikipedia.org/wiki/Domain-specific_language).
 
 <br/>
 

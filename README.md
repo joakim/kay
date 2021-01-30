@@ -52,7 +52,7 @@ Cells are [first-class](https://en.wikipedia.org/wiki/First-class_citizen) [refe
 
 ## Fields
 
-Fields hold the cell's internal state. Fields are read-only, unless explicitly marked as writable. They are lexically scoped, only accessible from the current and any nested scopes.
+Fields hold the cell's internal state. Fields are read-only, but the bound value may be writable. Fields are lexically scoped, only directly accessible from the current and any nested scopes.
 
 <br/>
 
@@ -94,7 +94,7 @@ Collection is the consolidation of indexed array (list/vector) and associative a
 
 ## Values
 
-Value types are immutable. If bound to a writable field, the value will be wrapped in a `Value` cell, similar to Clojure's [atoms](https://clojure.org/reference/atoms). This allows management of state over time, while enabling validation and subscription to events.
+Value types are immutable. If marked as writable, the value will be wrapped in a `Value` cell, similar to Clojure's [atoms](https://clojure.org/reference/atoms). This allows management of state over time, while enabling validation and subscription to events.
 
 [Observing](https://imgur.com/iMf3GBa) a `Value` will automagically dereference it, returning a snapshot of its current state (value). [Mutating](https://en.wikipedia.org/wiki/Mutation) a `Value` will [swap](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) the old immutable value for a new one. Collections use structural sharing of past states.
 
@@ -249,7 +249,7 @@ Having higher precedence, the binary message `= 42` is first sent to `answer`, r
 Expressions are evaluated left-to-right, with binary operators having higher precedence than regular messages. To ensure correct order of evaluation, improve readability, or to use an expression in a slot, wrap the code in `()`:
 
 ```lua
-guess: 3 * (7 + 7)
+guess: 3 × (7 + 7)
 console log ((guess = answer) "Correct" if true else "You are mistaken")
 ```
 

@@ -62,7 +62,7 @@ Fields hold the cell's internal state. Fields are read-only, unless explicitly m
 
 ## Messages
 
-An expression contains one (or more) literal(s) or message signal(s). If comma separated, it evaluates to the result of the last item.
+An expression contains one (or more) literal(s) or signal(s). If comma separated, it evaluates to the result of the last item.
 
 A signal is a message sent to a cell. Expressions are used to include values as arguments in message slots. Messages are [dynamically dispatched](https://en.wikipedia.org/wiki/Dynamic_dispatch), with the ability to support [multiple dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch).
 

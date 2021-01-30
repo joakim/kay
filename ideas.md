@@ -62,7 +62,7 @@ Certain aspects of a program might be best modelled using object-oriented thinki
 
 ## State
 
-The fields of cells are read-only by default. Mutating fields directly is discouraged. A field points to either a cell (by reference) or an immutable value type. (Value types are [autoboxed](https://en.wikipedia.org/wiki/Object_type_%28object-oriented_programming%29#Autoboxing) to their corresponding _value_ cell when used a recipient of a message.)
+The fields of cells are read-only by default. Mutating fields directly is discouraged. A field points to either a cell (by reference) or an immutable value type. (Value types are [autoboxed](https://en.wikipedia.org/wiki/Object_type_%28object-oriented_programming%29#Autoboxing) to their corresponding _value_ cell when used as a recipient of a message.)
 
 With all this immutability, how does one mutate state? Mutability can be implemented using something like Clojure's [atoms](https://clojure.org/reference/atoms) – a reference type (cell) wrapping an immutable value type, with [behaviors for replacing](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) the current value with a new one. This does add one level of indirection, having some performance and memory penalty, but it enables the management of state in a controlled way. Reads should still be fast. As a bonus, it enables reactivity, validation and metadata.
 

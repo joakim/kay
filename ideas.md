@@ -62,7 +62,7 @@ In other words, this has to be a compile-to-JavaScript language (at least until 
 
 ## State
 
-The fields of cells are (by default) read-only. A field points to either a cell (by reference) or an immutable value type.
+The fields of cells are read-only by default. A field points to either a cell (by reference) or an immutable value type.
 
 Mutable state may be implemented like Clojure's [atoms](https://clojure.org/reference/atoms) – a cell (reference type) wrapping an immutable value type, with [behaviors for replacing](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) the current value with a new one. This does add a level of indirection, having a performance and memory penalty, but it enables the management and even sharing of state in a controlled way. Reads should still be fast. As a bonus, it enables event-based reactivity and runtime guards.
 

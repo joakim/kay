@@ -62,11 +62,13 @@ In other words, this has to be a compile-to-JavaScript language (at least until 
 
 ## State
 
-The fields of cells are read-only by default. A field points to either a cell (by reference) or an immutable value type.
+The fields of cells are read-only by default. A field points to either a cell (by reference) or an immutable value type. (Value types are [autoboxed](https://en.wikipedia.org/wiki/Object_type_%28object-oriented_programming%29#Autoboxing) to their corresponding _value_ cell when used a recipient of a message.)
 
-Mutable state may be implemented like Clojure's [atoms](https://clojure.org/reference/atoms) – a reference type (cell) wrapping an immutable value type, with [behaviors for replacing](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) the current value with a new one. This does add a level of indirection, having a performance and memory penalty, but it enables the management and even sharing of state in a controlled way. Reads should still be fast. As a bonus, it enables reactivity and validation.
+Mutable state may be implemented like Clojure's [atoms](https://clojure.org/reference/atoms) – a reference type (cell) wrapping an immutable value type, with [behaviors for replacing](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) the current value with a new one. This does add a level of indirection, having some performance and memory penalty, but it enables the management and even sharing of state in a controlled way. Reads should still be fast. As a bonus, it enables reactivity, validation and metadata.
 
-Having both _object_ cells and _value_ cells holding immutable values, allows one to reason about code in an intuitive way. An object cell is a "concrete" thing with reference semantics and internal state. Those fields may hold "abstract" immutable values (like numbers, booleans, strings, dates, collections, etc). The challenge lies in uniting the two worlds ("concrete" and "abstract") in a way that makes sense intuitively and enables the expression of advanced programs, with state managed safely over time.
+The uncoupling of _entities_ and _values_, as opposed to "everything is an object", may actually be helpful when reasoning about code. An object cell is a "concrete" thing with reference semantics, behaviors and internal state. Its fields can hold "abstract" things with value semantics (numbers, booleans, strings, dates, collections, etc). Although they are in fact immutable, they may be replaced over time. "Concrete" entities containing "abstract" values.
+
+The challenge lies in uniting those two worlds ("concrete" and "abstract") in a way that makes sense intuitively while enabling the expression of advanced programs, with state managed safely over time.
 
 ### Time
 

@@ -16,7 +16,7 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 <br/>
 
-## Learning
+## Learning and extending
 
 With its simple syntax and semantics, my hope is that this language could be a powerful tool for teaching programming to kids worldwide, true to [the spirit of Smalltalk](http://worrydream.com/EarlyHistoryOfSmalltalk/#smalltalkAndChildren).
 

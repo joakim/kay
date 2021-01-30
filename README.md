@@ -296,7 +296,7 @@ console log ((10 double) negate)  -- desugared
 
 [Ideas...](ideas.md)
 
-Got any ideas or constructive criticism? Feel free to [open an issue](https://github.com/joakim/kay/issues/new). This language is still in its early stages of design. Contributions are always welcome, this is not meant to be a solo project.
+Like what you see? Got any ideas or constructive criticism? Feel free to [open an issue](https://github.com/joakim/kay/issues/new). This language is still in its early stages of design. Contributions are always welcome, this is not meant to be a solo project.
 
 <br/>
 

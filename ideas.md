@@ -218,7 +218,7 @@ Instead of _the cell's local state_ being its nucleus, perhaps a better analogy 
 
 ## Numbers
 
-Numbers should support units (such as `cm`, `ms`, `kg`, `percent`) and easy conversion between compatible units (for example `10 cm as inches`).
+Numbers should support units (such as `cm`, `ms`, `kg`, `percent`) and easy conversion between compatible units (for example `10 inches as cm`).
 
 Smalltalk is known for its exact number representation. This will have to be handled by libraries, as JavaScript's `Number` has "arbitrary imprecision".
 

@@ -26,7 +26,7 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 Most object-oriented languages are highly complex, while pure object-oriented languages like Smalltalk and Self have almost Lisp like qualities. This language aims to bring back that simplicity of the early Smalltalks, and goes even further by leaving out classical inheritance (sorry, Nygaard).
 
-Instead of subclassing, there's cloning. Instead of interfaces, there's protocols. Inheritance becomes a question of [heredity](https://en.wikipedia.org/wiki/Heredity), not of [bestowal of rights](https://en.wikipedia.org/wiki/Inheritance). It's not about ruling, but about _cooperation_, _synergy_, _symbiosis_. It's about being _flexible_. Cloning may be done either by concatenation (mixin) or delegation (prototype).
+Instead of subclassing, there's cloning. Instead of interfaces, there's protocols. Inheritance becomes a question of [heredity](https://en.wikipedia.org/wiki/Heredity), not of [bestowal of rights](https://en.wikipedia.org/wiki/Inheritance). It's not about _ruling_, but about _cooperation_, _synergy_, _symbiosis_. It's not about _hierarchy_, but about being _flexible_. In that spirit, cloning may be done either by concatenation (mixin) or delegation (prototype).
 
 ### Not hierarchic, not necessarily anarchic, maybe holarchic?
 

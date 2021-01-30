@@ -8,11 +8,11 @@ Not all ideas are my own. Some are more wild than others. The wildest ones are p
 
 ## Linguistics
 
-| Classification | Role                  | Corresponding construct  |
-| :------------- | :-------------------- | :----------------------- |
-| Noun           | Names                 | Cell                     |
-| Verb           | States action         | Method                   |
-| Adjective      | Describes/limits noun | Protocol                 |
+| Classification | What is does          | Corresponding construct |
+| :------------- | :-------------------- | :---------------------- |
+| Noun           | Names                 | Cell                    |
+| Verb           | States action         | Function                |
+| Adjective      | Describes/limits noun | Protocol                |
 
 <br/>
 
@@ -22,45 +22,59 @@ With its simple and flexible syntax, my hope is that this language could be a po
 
 <br/>
 
-## Internet
+## Pure OOP
 
-As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), pure object-oriented message-based programming languages like Smalltalk are analogous to the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language should be in tune with its environment: a language of _messages_ between _autonomous entities_.
+Most object-oriented languages are highly complex, while pure object-oriented languages like Smalltalk and Self have almost Lisp like qualities. This language aims to bring back that simplicity of the early Smalltalks, and goes even further by leaving out classical inheritance (sorry, Nygaard).
 
-If the Internet is a global machine, then the web runs in its application layer.
+Instead of subclassing, there's cloning. Instead of interfaces, there's protocols. Inheritance becomes a question of [heredity](https://en.wikipedia.org/wiki/Heredity), not of [bestowal of rights](https://en.wikipedia.org/wiki/Inheritance). It's not about ruling, but about _cooperation_, _synergy_, _symbiosis_. It's about being _flexible_. Cloning may be done either by concatenation (mixin) or delegation (prototype).
 
-The lingua france of the web is JavaScript, a language with many faults but also some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (first-class functions/closures and immutable primitives). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency, while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the [Strongtalk](https://en.wikipedia.org/wiki/Strongtalk) assembler. Smalltalk/Self and JavaScript have quite a few things in common.
+### Not hierarchic, not necessarily anarchic, maybe holarchic?
 
-In other words, it has to be a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
+[Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology) – "rule of a high priest"  
+[Anarchy](https://en.wikipedia.org/wiki/Anarchy#Etymology) – "without ruler"  
+[Holarchy](https://en.wikipedia.org/wiki/Holarchy) – "a whole that is part of a larger whole"  
+
+[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous interconnected entities ([actors](https://en.wikipedia.org/wiki/Actor_model)).
+
+### Pure FP
+
+Extremes are not beneficial. While Clojure combines pure functional programming with managed stateful reference types, this language combines pure OOP with immutable value types and first-class functions.
+
+Certain aspects of a program might be best modelled using object-oriented thinking, while other aspects best handled using functional programming principles. Structuring a project as discrete entities, interacting by sending messages containing immutable values, and internally processing those values using pure functions, might be the best of both worlds?
+
+<br/>
+
+## The Internet
+
+As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), a pure object-oriented message-based programming language like Smalltalk resembles the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language has to be in tune with its environment: a language of _messages_ between _autonomous entities_.
+
+If the Internet is a global machine, then the web runs on its application layer.
+
+The lingua franca of the web is JavaScript, a language with many faults but also some interesting qualities. It has a lightweight object-oriented approach, inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features, inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (immutable primitives and first-class functions). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency, while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the Strongtalk assembler. Smalltalk/Self and JavaScript have quite a few things in common.
+
+In other words, this has to be a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
 
 <sub>Fun fact: Kay's presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have many "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But those good parts are hard to get to, especially for beginners. Thought experiment: Imagine if Java hadn't happened, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 
 <br/>
 
-## OOP + FP?
-
-Extremes are not beneficial. While Clojure combines pure FP with managed stateful reference types, this language combines pure OOP with immutable data types and first-class functions.
-
-Some aspects of a program may be best modelled using object-oriented thinking, while other aspects are best handled using functional programming principles. Structuring a project as discrete objects (code), interacting by sending messages containing immutable values (data), and internally processing those values using pure functions, may be the best of both worlds?
-
-<br/>
-
 ## State
 
-Differentiate between cells that are _objects_ (entities with behaviors) and cells that hold _values_ (data). Writable fields may be implemented like [Atoms](https://clojure.org/reference/atoms) in Clojure, as a reference type pointing to an immutable value type. This does add a level of indirection, with a performance and memory penalty, but it enables the sharing and management of state in a controlled way. Fields are read-only by default, requiring an explicit sigil (`*`) to initialize it as a writable reference type.
+Differentiate between cells that are _objects_ (entities with behaviors) and cells that hold _values_ (data). Mutability may be implemented like Clojure's [atoms](https://clojure.org/reference/atoms), a reference type pointing to an immutable value type. This does add a level of indirection, with a performance and memory penalty, but it enables the management and even sharing of state in a controlled way. It also enables event-based reactivity and runtime guards.
 
-Having both _object_ cells (entities) and _value_ cells with immutable data types (data), allows one to reason about code in an intuitive yet beneficial way. Object cells are "concrete" autonomous entities with fields (state). Fields hold "abstract" immutable values, which if made writable can change over time. Object cells can only change their own fields directly. Other cells must ask for changes through messaging.
+Having both _object_ cells (entities) and _value_ cells with immutable value types (data), allows one to reason about code in an intuitive way. An object cell is a "concrete" thing with reference semantics and internal state. Its fields may hold "abstract" immutable values (like numbers, booleans, strings, dates, sets, etc). While the values are immutable, they may later be [swapped](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) if wrapped in an atom. An object cells may only change its own fields directly. Other cells must ask for changes through messaging.
 
-Abstract things (numbers, booleans, strings, dates, etc) are best represented as immutable data types, while "concrete" things are more intuitive when represented as objects with reference semantics. The challenge lies in uniting these two "worlds" in a way that makes sense and enables the expression of advanced programs with state managed safely over time.
+The challenge lies in uniting the two worlds ("concrete" and "abstract") in a way that makes sense intuitively and enables the expression of advanced programs, with state managed safely over time.
 
 ### Time
 
 Because time is of the essence.
 
-[Rich Hickey's approach to identity and state](https://clojure.org/about/state) + [Bret Victor's Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII), only with cells? If writable fields are managed using "atoms", and all mutation of state is the swapping of immutable values by messages, the history of change may be (globally) recorded, rewound, paused, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) may also be possible?
+The idea is to combine [Rich Hickey's approach to identity and state](https://clojure.org/about/state) with [Bret Victor's Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII), using cells. If mutability is managed with atoms, and all mutation of state is the swapping of immutable values by messaging, the history of changes may be (globally) recorded, rewound, paused, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) may also be possible?
 
 ### Reactive
 
-State as reactive as spreadsheets?
+When all mutation of state is done by messaging, reactivity is a short step away. Maybe even as reactive as spreadsheets?
 
 Must adher to Alan Kay's [Spreadsheet Value Rule](https://en.wikipedia.org/wiki/Spreadsheet#Values) (the word "cell" replaced with the word "field"):
 
@@ -95,14 +109,6 @@ This enables some interesting ideas:
   - The tree could facilitate adding time as a factor, with time travel debugging
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
-
-### Not hierarchic, not necessarily anarchic, maybe holarchic?
-
-[Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view the tree of cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous interconnected entities (agents/actors). It's not [inheritance](https://en.wikipedia.org/wiki/Inheritance) (bestowal of rights), but [heredity](https://en.wikipedia.org/wiki/Heredity) (genetics). It's not about ruling, but about _cooperation_, _synergy_, _symbiosis_. Being _flexible_, not rigid.
-
-[Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology) – "rule of a high priest"  
-[Anarchy](https://en.wikipedia.org/wiki/Anarchy#Etymology) – "without ruler"  
-[Holarchy](https://en.wikipedia.org/wiki/Holarchy) – "a whole that is part of a larger whole"  
 
 <br/>
 

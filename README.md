@@ -27,7 +27,9 @@ A simple message-based programming language inspired by [Smalltalk](https://lear
 ```lua
 hello: '(name)' -> "hello, {name}!"  -- method definition
 
-print « hello "world"  -- "hello, world!"
+hello "world" | print  -- message pipelining
+
+-- "hello, world!"
 ```
 
 <br/>

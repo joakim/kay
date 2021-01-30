@@ -68,7 +68,7 @@ Mutable state may be implemented like Clojure's [atoms](https://clojure.org/refe
 
 The uncoupling of _entities_ and _values_, as opposed to "everything is an object", may actually be helpful when reasoning about code. An object cell is a "concrete" thing with reference semantics, behaviors and internal state. Its fields can hold "abstract" things with value semantics (numbers, booleans, strings, dates, collections, etc). Although they are in fact immutable, they may be replaced over time. "Concrete" entities containing "abstract" values.
 
-The challenge lies in uniting those two worlds ("concrete" and "abstract") in a way that makes sense intuitively while enabling the expression of advanced programs, with state managed safely over time.
+The challenge lies in uniting those two worlds in a way that makes sense intuitively while enabling the expression of advanced programs, with state managed safely over time.
 
 ### Time
 

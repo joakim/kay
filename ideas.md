@@ -26,7 +26,7 @@ It should even be possible to translate into other natural languages than Englis
 
 ## Pure OOP
 
-Most object-oriented languages are highly complex, while pure OOP languages like Smalltalk and Self have almost Lisp like qualities. This language aims to bring back that simplicity of the early Smalltalks, and goes even further by leaving out classical inheritance (sorry, Nygaard).
+Most object-oriented languages are highly complex, while pure OOP languages like Smalltalk and Self have almost Lisp like qualities. This language aims to bring back that simplicity of the early Smalltalks, and goes even further by leaving out classical inheritance (apologies, Nygaard).
 
 Instead of subclassing, there's cloning. Instead of interfaces, there's protocols. Inheritance becomes a question of [heredity](https://en.wikipedia.org/wiki/Heredity), not of [bestowal of rights](https://en.wikipedia.org/wiki/Inheritance). It's not about _ruling_, but about _cooperation_, _synergy_, _symbiosis_. It's not about _hierarchy_, but about being _flexible_. In that spirit, cloning may be done either by concatenation (mixin) or delegation (prototype).
 

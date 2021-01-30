@@ -302,9 +302,9 @@ The language offers a small set of easy to understand concepts with a simple syn
 
 Like what you see? Got any ideas or constructive criticism? Feel free to [open an issue](https://github.com/joakim/kay/issues/new). This language is still in its early stages of design. Contributions are always welcome, this is not intended to be a solo project.
 
-[More examples...](examples/)
-
 [Ideas...](ideas.md)
+
+[More examples...](examples/)
 
 <br/>
 <p align="center"><sup>From the land of Simula</sup></p>

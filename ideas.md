@@ -62,11 +62,11 @@ In other words, this has to be a compile-to-JavaScript language (at least until 
 
 ## State
 
-Differentiate between cells that are _objects_ (entities with behaviors) and cells that hold _values_ (data). Mutability may be implemented like Clojure's [atoms](https://clojure.org/reference/atoms), a reference type pointing to an immutable value type. This does add a level of indirection, with a performance and memory penalty, but it enables the management and even sharing of state in a controlled way. It also enables event-based reactivity and runtime guards.
+The fields of cells are (by default) read-only. A field points to either a cell (by reference) or a value type (immutable).
 
-Having both _object_ cells (entities) and _value_ cells with immutable value types (data), allows one to reason about code in an intuitive way. An object cell is a "concrete" thing with reference semantics and internal state. Its fields may hold "abstract" immutable values (like numbers, booleans, strings, dates, sets, etc). While the values are immutable, they may later be [swapped](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) if wrapped in an atom. An object cells may only change its own fields directly. Other cells must ask for changes through messaging.
+Mutable state may be implemented like Clojure's [atoms](https://clojure.org/reference/atoms) – a cell (reference type) wrapping an immutable value type, with [behaviors for replacing](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/swap!) the current value with a new one. This does add a level of indirection, having a performance and memory penalty, but it enables the management and even sharing of state in a controlled way. Reads should still be fast. As a bonus, it enables event-based reactivity and runtime guards.
 
-The challenge lies in uniting the two worlds ("concrete" and "abstract") in a way that makes sense intuitively and enables the expression of advanced programs, with state managed safely over time.
+Having both _object_ cells and _value_ cells holding immutable values, allows one to reason about code in an intuitive way. An object cell is a "concrete" thing with reference semantics and internal state. Those fields may hold "abstract" immutable values (like numbers, booleans, strings, dates, collections, etc). The challenge lies in uniting the two worlds ("concrete" and "abstract") in a way that makes sense intuitively and enables the expression of advanced programs, with state managed safely over time.
 
 ### Time
 

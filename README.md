@@ -292,6 +292,12 @@ console log ((10 double) negate)  -- desugared
 
 <br/>
 
+## What it brings
+
+The language offers a small set of easy to understand concepts with a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
+
+<br/>
+
 [More examples...](examples/)
 
 [Ideas...](ideas.md)
@@ -299,12 +305,4 @@ console log ((10 double) negate)  -- desugared
 Like what you see? Got any ideas or constructive criticism? Feel free to [open an issue](https://github.com/joakim/kay/issues/new). This language is still in its early stages of design. Contributions are always welcome, this is not meant to be a solo project.
 
 <br/>
-
-## What it brings
-
-The language offers a small set of easy to understand concepts with a simple syntax, yet should be capable of implementing most constructs typically found in high-level programming languages, while remaining truly multi-paradigm.
-
-<br/>
-<br/>
-
 <p align="center"><sup>From the land of Simula</sup></p>

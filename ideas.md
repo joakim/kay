@@ -22,6 +22,8 @@ With its simple syntax and semantics, my hope is that this language could be a p
 
 It should even be possible to translate into other natural languages than English, enabling people to code in their native language!
 
+The language should also be suitable for making embedded [DSLs](https://en.wikipedia.org/wiki/Domain-specific_language).
+
 <br/>
 
 ## Pure OOP
@@ -113,12 +115,6 @@ This enables some interesting ideas:
   - The tree could facilitate adding time as a factor, with time travel debugging
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
-
-<br/>
-
-## DSL
-
-With such a simple syntax and underlying tree structure, the language should be very suitable for making embedded [DSLs](https://en.wikipedia.org/wiki/Domain-specific_language).
 
 <br/>
 

@@ -88,7 +88,7 @@ Must adher to Alan Kay's [Spreadsheet Value Rule](https://en.wikipedia.org/wiki/
 4. There is no natural mechanism for permanently modifying the contents of a field unless the user manually modifies the field's contents
 5. In the context of programming languages, this yields a limited form of first-order functional programming
 
-#4 may have to be broken/reworded for this to be applicable to state in a programming language.
+#4 may have to be reworded for this to be applicable to state in a programming language.
 
 Data flow programming goes back to [Larry Tesler's 1968 language Compel](https://www.reddit.com/r/ProgrammingLanguages/comments/l1m4wr/a_language_design_for_concurrent_processes/). With the enormous success of spreadsheets (#1 programming environment), it's a wonder so few programming languages have caught on to its ideas.
 

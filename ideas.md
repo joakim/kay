@@ -214,6 +214,10 @@ Instead of _the cell's local state_ being its nucleus, perhaps a better analogy 
 
 ## Numbers
 
-> Exact number manipulation is a true advantage of Smalltalk. If a SmallInteger operation leaves its range, the result becomes a LargeInteger. 
+Numbers should support units (such as `cm`, `ms`, `kg`, `percent`) and easy conversion between compatible units (for example `10 seconds as ms`).
+
+Smalltalk is known for its exact number representation. This will have to be handled by libraries, as JavaScript's `Number` has "arbitrary imprecision".
+
+> If a SmallInteger operation leaves its range, the result becomes a LargeInteger.
 
 The JavaScript number magic equivalent would be `Number` -> `BigInt` if the number is an integer.

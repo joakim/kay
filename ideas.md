@@ -30,8 +30,6 @@ Most object-oriented languages are highly complex, while pure OOP languages like
 
 Instead of subclassing, there's cloning. Instead of interfaces, there's protocols. Inheritance becomes a question of [heredity](https://en.wikipedia.org/wiki/Heredity), not of [bestowal of rights](https://en.wikipedia.org/wiki/Inheritance). It's not about _ruling_, but about _synergy_, _symbiosis_, _cooperation_. It's not about _hierarchy_, but about being _flexible_. In that spirit, cloning may be done by concatenation (mixin) or delegation (prototype).
 
-<br/>
-
 ### Not hierarchic, not necessarily anarchic, maybe holarchic?
 
 [Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology) – "rule of a high priest"  
@@ -39,8 +37,6 @@ Instead of subclassing, there's cloning. Instead of interfaces, there's protocol
 [Holarchy](https://en.wikipedia.org/wiki/Holarchy) – "a whole that is part of a larger whole"  
 
 [Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous interconnected entities ([actors](https://en.wikipedia.org/wiki/Actor_model)).
-
-<br/>
 
 ### + Pure FP
 
@@ -74,15 +70,11 @@ The differentiation of _entities_ and _values_ as two fundamental concepts, as o
 
 The challenge lies in uniting those two worlds in a way that makes sense intuitively while enabling the expression of advanced programs, with state managed safely over time.
 
-<br/>
-
 ### Time
 
 Because time is of the essence.
 
 The idea is to combine [Rich Hickey's approach to identity and state](https://clojure.org/about/state) with [Bret Victor's Inventing on Principle](https://www.youtube.com/watch?v=PUv66718DII), using cells. If mutability is managed with atoms, and all mutation of state is the swapping of immutable values by messaging, the history of changes may be (globally) recorded, rewound, paused, replayed, stepped through and inspected. [Transactions](https://clojure.org/reference/refs) may also be possible?
-
-<br/>
 
 ### Reactive
 
@@ -128,8 +120,6 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.
 
-<br/>
-
 #### The problem
 
 The current state of programming is full of distractions, taking away focus from what this artform is really all about: _designing_, _building_, _thinking_, _exploring_. This is especially true for beginners, who are faced with a number of hurdles that first have to be overcome before even being _able_ to write a line of code. Anyone should be able to jump right into a project and immediately write a line of code and see its result. To install an IDE and open a project is admittedly also a hurdle, but it's a much smaller one than the status quo of programming languages. It could even be built into the web browser. If not simply running [as a web app](https://microsoft.github.io/monaco-editor/). UNIX skills should not be a _requirement_ for programming.
@@ -146,8 +136,6 @@ Documentation should be an integral part of the language. Not only in the shape 
 
 Like Smalltalk, code should (be able to) be always running (at least during development).
 
-<br/>
-
 ### Features
 
 - [Intelligent code completion](https://en.wikipedia.org/wiki/Intelligent_code_completion)
@@ -157,8 +145,6 @@ Like Smalltalk, code should (be able to) be always running (at least during deve
 - Time travel, with intuitive navigation controls and visualization of changes
   - Similar to a browser (previous, next, reload)
   - Controls for run/pause, and which level to operate on (expression or breakpoint)
-
-<br/>
 
 ### Panes/views
 

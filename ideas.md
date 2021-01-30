@@ -54,7 +54,7 @@ Instead of subclassing, there's cloning. Instead of interfaces, there's protocol
 
 ### + Pure FP
 
-Extremes are not beneficial. While Clojure combines pure functional programming with managed stateful reference types, this language combines pure OOP with immutable value types and first-class functions. Its OOP parts remain pure.
+Extremes are not beneficial. While Clojure combines pure functional programming with managed stateful reference types, this language combines pure object-oriented programming with immutable value types and first-class functions. Its object-oriented parts remain pure.
 
 Certain aspects of a program might be best modelled using object-oriented thinking, while other aspects best handled using functional programming principles. Structuring a project as discrete entities, interacting by sending messages containing immutable values, and internally processing those values using pure functions, might be the best of both worlds?
 

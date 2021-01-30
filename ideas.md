@@ -36,7 +36,7 @@ Instead of subclassing, there's cloning. Instead of interfaces, there's protocol
 
 [Holarchy](http://www.worldtrans.org/essay/holarchies.html) may be a more fruitful way to view cells. [Multi-agent system](https://en.wikipedia.org/wiki/Multi-agent_system) is another related concept. Without hierarchical subclassing, cells become autonomous interconnected entities ([actors](https://en.wikipedia.org/wiki/Actor_model)).
 
-### Pure FP
+### + Pure FP
 
 Extremes are not beneficial. While Clojure combines pure functional programming with managed stateful reference types, this language combines pure OOP with immutable value types and first-class functions.
 

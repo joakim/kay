@@ -103,7 +103,7 @@ This enables some interesting ideas:
 - Introspection and reflection
   - Easy traversal for introspection, analysis, refactoring, visualization, diffing, history/persistence, reflection, macros, etc
   - Reflection should probably not be accessible from running code, but require elevated permissions (developer environment, macros, etc)
-  - Always-running environment like Smalltalk's [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, perhaps only during development?
+  - Always-running environment like Smalltalk's [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but only during development?
 - Metadata on the cell level
   - Extension of semantics
   - Tags, documentation, links, etc

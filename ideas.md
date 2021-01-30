@@ -24,6 +24,20 @@ It should even be possible to translate into other natural languages than Englis
 
 <br/>
 
+## The Internet
+
+As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), a pure object-oriented message-based programming language like Smalltalk resembles the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language has to be in tune with its environment: a language of _messages_ between _autonomous entities_.
+
+If the Internet is a global machine, then the web runs on its application layer.
+
+The lingua franca of the web is JavaScript, a language with many faults but also some interesting qualities. It has a lightweight object-oriented approach inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (immutable primitives and first-class functions). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency, while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the Strongtalk assembler. Smalltalk/Self and JavaScript have quite a few things in common.
+
+In other words, this has to be a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
+
+<sub>Fun fact: Kay's presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have many "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But those good parts are hard to get to, especially for beginners. Thought experiment: Imagine if Java hadn't happened, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
+
+<br/>
+
 ## Pure OOP
 
 Most object-oriented languages are highly complex, while pure OOP languages like Smalltalk and Self have almost Lisp like qualities. This language aims to bring back that simplicity of the early Smalltalks, and goes even further by leaving out classical inheritance (apologies to Nygaard).
@@ -43,20 +57,6 @@ Instead of subclassing, there's cloning. Instead of interfaces, there's protocol
 Extremes are not beneficial. While Clojure combines pure functional programming with managed stateful reference types, this language combines pure OOP with immutable value types and first-class functions.
 
 Certain aspects of a program might be best modelled using object-oriented thinking, while other aspects best handled using functional programming principles. Structuring a project as discrete entities, interacting by sending messages containing immutable values, and internally processing those values using pure functions, might be the best of both worlds?
-
-<br/>
-
-## The Internet
-
-As Alan Kay [points out](https://www.youtube.com/watch?v=AnrlSqtpOkw#t=2m56s), a pure object-oriented message-based programming language like Smalltalk resembles the Internet. While Smalltalk was a language for the _personal_ computer, this should be a language for the _global_ computer. I believe that such a language has to be in tune with its environment: a language of _messages_ between _autonomous entities_.
-
-If the Internet is a global machine, then the web runs on its application layer.
-
-The lingua franca of the web is JavaScript, a language with many faults but also some interesting qualities. It has a lightweight object-oriented approach inspired by [Self](https://en.wikipedia.org/wiki/Self_(programming_language)) (prototype-based), coupled with functional programming features inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) (immutable primitives and first-class functions). Its runtime environment is single-threaded, yet its [event loop](https://en.wikipedia.org/wiki/Event_loop) enables fast (enough) non-blocking concurrency, while being extremely error tolerant. The [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) runtime even has ties to Smalltalk, its assembler was based on the Strongtalk assembler. Smalltalk/Self and JavaScript have quite a few things in common.
-
-In other words, this has to be a compile-to-JavaScript language (at least until [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) reaches maturity).
-
-<sub>Fun fact: Kay's presentation was done in an emulation of a Smalltalk system from the 70s running on JavaScript. JavaScript _does_ have many "good parts", hidden beneath layers of Java like syntax, quirks and inconsistencies. But those good parts are hard to get to, especially for beginners. Thought experiment: Imagine if Java hadn't happened, IBM had continued backing Smalltalk and Netscape had [chosen](https://en.wikipedia.org/wiki/JavaScript#Creation_at_Netscape) Smalltalk or Self in 1995, to eventually become the lingua franca of the web. This project wouldn't have been necessary.</sub>
 
 <br/>
 

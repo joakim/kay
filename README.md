@@ -196,7 +196,7 @@ greet: '(name)' -> {
     return: greeting
 }
 
--- applying the method:
+-- calling the method (sending a message, "Joe", to the greet method)
 greet "Joe"  -- "Hey, Joe!"
 ```
 

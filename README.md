@@ -29,7 +29,7 @@ hello: '(name)' -> "hello, {name}!"  -- method definition
 
 hello "world" | print  -- message pipelining
 
-"hello, world!"
+--> "hello, world!"
 ```
 
 <br/>

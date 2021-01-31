@@ -148,6 +148,8 @@ Like Smalltalk, code should (be able to) be always running (at least during deve
 
 ### Panes/views
 
+  Edit: Don't read the list below. Instead check out [Glamorous Toolkit](https://gtoolkit.com/)!
+
   - **Outline** of the project's structure, with filters/search
     - **Internal** tab for navigating the project's own modules and cells
     - **External** tab for navigating and managing external modules (dependencies)

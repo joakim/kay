@@ -127,7 +127,7 @@ Value types are immutable. If marked as writable, the value will be wrapped in a
 #### Various
 
   - `*`   writable ("star")
-  - `&`   reference ("ref")
+  - `&`   reference
   - `_`   ignore/any ("blank")
   - `\`   escape
   - `--` comment

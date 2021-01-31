@@ -300,7 +300,7 @@ The language offers a small set of easy to understand concepts with a simple syn
 
 ## Contributions
 
-Like what you see? Got any ideas or constructive criticism? Feel free to [open an issue](https://github.com/joakim/kay/issues/new). This language is still in its early stages of design. Contributions are always welcome, this is not intended to be a solo project.
+Like what you see? Got any ideas or constructive criticism? Feel free to [open an issue](https://github.com/joakim/kay/issues/new). This language is still in its early stages of design. Contributions are always welcome, this was not intended to be a solo project :)
 
 [Ideas...](ideas.md)
 

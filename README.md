@@ -218,7 +218,7 @@ nested: {
 }
 ```
 
-A receptor can be thought of as a method defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor:
+A receptor can be thought of as a method defined directly on a cell, not assigned to any field. Here's the `greet` method as a receptor on a cell named `host`:
 
 ```lua
 host: {

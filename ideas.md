@@ -44,7 +44,7 @@ Most object-oriented languages are highly complex, while pure OOP languages like
 
 Instead of subclassing, there's cloning. Instead of interfaces, there's protocols. Inheritance becomes a question of [heredity](https://en.wikipedia.org/wiki/Heredity), not of [bestowal of rights](https://en.wikipedia.org/wiki/Inheritance). It's not about _ruling_, but about _synergy_, _symbiosis_, _cooperation_. It's not about _hierarchy_, but about being _flexible_. In that spirit, cloning may be done by concatenation (mixin) or delegation (prototype).
 
-### Not hierarchic, not necessarily anarchic, maybe holarchic?
+### Not hierarchic, nor anarchic, but maybe holarchic?
 
 [Hierarchy](https://en.wikipedia.org/wiki/Hierarchy#Etymology) – "rule of a high priest"  
 [Anarchy](https://en.wikipedia.org/wiki/Anarchy#Etymology) – "without ruler"  

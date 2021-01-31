@@ -86,8 +86,8 @@ There are no statements, only cells (senders and receivers) and expressions (mes
   - `boolean` – `true` or `false`
   - `number` – IEEE 754 64-bit double-precision floating-point?
   - `string` – UTF-8?
-  - `[]`   – collection (indexed/associative array)
-
+  - `[]`   – collection  
+  
 Collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables. Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie).
 
 <br/>

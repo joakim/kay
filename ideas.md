@@ -199,7 +199,7 @@ Good luck implementing _[that!](https://en.wikipedia.org/wiki/Hard_problem_of_co
 
 ## Values within cells within modules within one runtime?
 
-Not "it's turtles all the way down", but JavaScript's "([almost](https://stackoverflow.com/questions/9108925/how-is-almost-everything-in-javascript-an-object)) everything is an object".
+Not "everything is an object", but JavaScript's "([almost](https://stackoverflow.com/questions/9108925/how-is-almost-everything-in-javascript-an-object)) everything is an object".
 
 In this perspective, the **module** is the cell. As in biological cells, there can be various subcellular components, including [endosymbiotic](https://en.wikipedia.org/wiki/Endosymbiosis) "cells within cells" ([Mitochondrion](https://en.wikipedia.org/wiki/Mitochondrion), [Plastids](https://en.wikipedia.org/wiki/Plastid)) and other organelles. These subcellular cells are lighter and simpler than the module, but share the same general features (encapsulation, receptors/behaviors, etc).
 

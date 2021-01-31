@@ -90,7 +90,7 @@ There are no statements, only cells (senders and receivers) and expressions (mes
   - `string` – UTF-8?
   - `[]`   – collection  
   
-Collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's tables. Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie).
+Collection is the consolidation of indexed array (list/vector) and associative array (object/dictionary/structure), similar to Lua's [tables](https://en.wikipedia.org/wiki/Lua_(programming_language)#Tables). Collections are implemented as [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure#Persistent_hash_array_mapped_trie).
 
 <br/>
 

@@ -225,11 +225,11 @@ host: {
     'greet (name)' -> "Hey, {name}!"  -- the receptor
 }
 
--- sending the message 'greet "Joe"' to the host cell:
+-- sending the message 'greet "Joe"' to the host cell
 host greet "Joe"  -- "Hey, Joe!"
 ```
 
-Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement using methods without arguments to serve as block statements:
+Methods can also be passed as values (lambdas) in slots. Because methods have closure, they can emulate control flow statement blocks of traditional languages. Here is the equivalent of an `if-then-else` statement using methods without arguments serving as block statements:
 
 ```lua
 marvin: ParanoidAndroid {}

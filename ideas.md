@@ -102,7 +102,6 @@ This enables some interesting ideas:
 
 - Introspection and reflection
   - Easy traversal for introspection, analysis, refactoring, visualization, diffing, history/persistence, reflection, macros, etc
-  - Reflection should probably not be accessible from running code, but require elevated permissions (developer environment, macros, etc)
   - Always-running environment like Smalltalk's [image-based](https://en.wikipedia.org/wiki/Smalltalk#Image-based_persistence) VM, but only during development?
 - Metadata on the cell level
   - Extension of semantics
@@ -114,11 +113,11 @@ This enables some interesting ideas:
 
 This _could_ be implemented as a more low-level [intermediate representation](https://en.wikipedia.org/wiki/Intermediate_representation), like in [Bosque](https://github.com/microsoft/BosqueLanguage/), without any particular target language/system in mind. In any case, the focus should be on enabling a better developer experience.
 
-<br/>
-
 ### Reflection
 
 Reflection is allowed within the confines of a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) object, adhering to the [object-capability model](https://en.m.wikipedia.org/wiki/Object-capability_model) of computer security. Capabilities should probably be much more restricted for "live" code than for the developer during development. A cell should at least be able to `self reflect` (finally the term makes sense).
+
+<br/>
 
 ## Directory structure
 

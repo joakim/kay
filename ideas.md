@@ -115,7 +115,7 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 ### Reflection
 
-Reflection should be allowed within the confines of something like a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy object), implementing the [object-capability model](https://en.m.wikipedia.org/wiki/Object-capability_model) of computer security. Capabilities should probably be much more restricted for "live" code than for the developer during development. A cell should at least be able to `self reflect` (finally the term makes sense).
+Reflection should be allowed within the confines of something like a [proxy object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), implementing the [object-capability model](https://en.m.wikipedia.org/wiki/Object-capability_model) of computer security. Capabilities should probably be much more restricted for "live" code than for the developer during development. A cell should at least be able to `self reflect` (finally the term makes sense).
 
 <br/>
 

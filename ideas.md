@@ -116,6 +116,10 @@ This _could_ be implemented as a more low-level [intermediate representation](ht
 
 <br/>
 
+### Reflection
+
+Reflection is allowed within the confines of a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) object, adhering to the [object-capability model](https://en.m.wikipedia.org/wiki/Object-capability_model) of computer security. Capabilities should probably be much more restricted for "live" code than for the developer during development. A cell should at least be able to `self reflect` (finally the term makes sense).
+
 ## Directory structure
 
 Files should not be the concern of the developer. The IDE should abstract away files and folders, allowing developers to focus on their mental model of the project. This doesn't have to be image-based like Smalltalk. For interoperability and version control, it should still use files and folders under the hood, matching the inherent structure of the project.

@@ -107,7 +107,7 @@ This enables some interesting ideas:
   - Extension of semantics
   - Tags, documentation, links, etc
 - [Learnable programming](http://worrydream.com/LearnableProgramming/) (Bret Victor)
-  - The message slot syntax (`()`) was chosen because it enables some of Bret Victor's powerful ideas (see [below](#development-environment))
+  - The message slot syntax (`()`) was chosen because it facilitates some of Bret Victor's powerful ideas (see [below](#development-environment))
   - An IDE may concretize/visualize cells, enabling inspection of their state and direct manipulation while running
   - The tree could facilitate adding time as a factor, with time travel debugging
 

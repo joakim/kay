@@ -147,6 +147,8 @@ A binary operator results in a signal to the left-hand side with one argument, t
 
 ## Examples
 
+#### Cells and messaging
+
 A cell is defined with the `{}` literal:
 
 ```lua
@@ -178,6 +180,8 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
+#### Assignment (fields)
+
 Assignment is done by (implicitly) sending a message to the current cell, `self`:
 
 ```lua
@@ -199,6 +203,8 @@ active set true
 ```
 
 This creates a reference type containing the specified value, similar to [Clojure's atoms](https://clojure.org/reference/atoms).
+
+#### Methods and receptors
 
 A method is defined as a message signature `''` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
@@ -257,6 +263,8 @@ answer = 42
 Having higher precedence, the binary message `= 42` is first sent to `answer`, resulting in a boolean (`true`), which is then sent the `if (condition) (true-block) else (false-block)` message. The message is split over several lines (indented) to improve readability. Inline method literals are passed in the `true-block` and `false-block` slots, to be evaluated by the receptor. Because methods have closure, this effectively emulates block statements in imperative languages.
 
 <!--That's one expression of three messages pipelined. First `= 42` is sent to the `answer` field, returning `true`, before `is true` and `is false` act on the result in turn. Each evaluate their passed method only if the boolean's value is `true`/`false` (respectively), before returning the boolean for further chaining.-->
+
+#### Evaluation operators
 
 Expressions are evaluated left-to-right, with binary operators having higher precedence than regular messages. To ensure correct order of evaluation, improve readability, or to use an expression in a slot, wrap the code in `()`:
 

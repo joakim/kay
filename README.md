@@ -194,7 +194,7 @@ A field may be defined as mutable by appending a `*`:
 ```lua
 active: false *
 
--- mutate
+-- mutate its value
 active set true
 ```
 

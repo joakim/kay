@@ -128,7 +128,7 @@ Value types are immutable. If marked as writable, the value will be wrapped in a
   
 #### Various
 
-  - `*`   writable ("star")
+  - `*`   mutable
   - `&`   reference
   - `_`   ignore/any ("blank")
   - `\`   escape
@@ -179,16 +179,27 @@ console log "hello, world"
 
 This sends a `log "hello, world"` message to the `console` cell, matching its `log (value)` receptor, writing the value to the console's output.
 
-Assignment is done by (implicitly) sending the `define` message to the current cell, `self`:
+Assignment is done by (implicitly) sending a message to the current cell, `self`:
 
 ```lua
 answer: 42
 
--- is really:
-self define "answer": (42)
+-- is really
+self answer: 42
 ```
 
-Assignment messages are syntactic sugar, anything before the `:` gets desugared into a string and anything after gets desugared into an expression. The above example creates an `answer` field with a value of `42`. 
+This defines an `answer` field with a value of `42` on the current cell.
+
+A field may be defined as mutable by appending a `*`:
+
+```lua
+active: false *
+
+-- mutate
+active set true
+```
+
+This creates a reference type containing the specified value, similar to [Clojure's atoms](https://clojure.org/reference/atoms).
 
 A method is defined as a message signature `''` tied `->` to a cell `{}`. The method's cell may have its own fields (local state), and may return a value by assigning to its `return` field:
 
